@@ -80,16 +80,16 @@
         <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
 </div>
-<div class="centerwrapper">
-    <div class="width1 margin1">
-        <div class="well well-large topmargin1 leftfloat width2 height1">
+<div class="container">
+    <div class="row margin1">
+        <div class="well span3">
             <h4 class="fontcolor1">How We Works</h4><br>
             <span class="badge badge-info">1</span> Ipsum purus lobortis porttitor sit. Qui ut orci, suscipit pede vitae suspendisse sociis eu feugiat, sed massa amet, ac orci, posuere felis et.<br><br>
             <span class="badge badge-info">2</span> Eros integer massa phasellus magna donec neque. A wisi a, lorem venenatis varius malesuada vivamus aliquam.<br><br>
             <span class="badge badge-info">3</span> Vestibulum mauris dolor, vitae in, nulla vitae nunc quis, vestibulum in, cum odio turpis pede wisi sed nam. <br><br>
             <span class="badge badge-info">4</span> Tortor in vel. Nibh id. Et ut morbi amet aliquam, sit suspendisse orci, in porta libero orci dolor.<br>
         </div>
-        <div class="well well-large topmargin1 leftfloat leftmargin1 width5 height1">
+        <div class="well span8">
             <div>
                 <h4 class="fontcolor1">Sponsor a child today</h4>
                 <div class="leftfloat">
