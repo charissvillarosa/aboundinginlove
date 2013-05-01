@@ -15,7 +15,7 @@ class SponseesController extends AppController
     
     public function view($id)
     {
-        $sponsee = $this->Sponsee->read('null', $id);
+        $sponsee = $this->Sponsee->read(null, $id);
         $this->set("sponsee", $sponsee['Sponsee']);
     }
 }
