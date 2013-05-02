@@ -94,67 +94,54 @@
         <div class="well span8">
             <div>
                 <h4 class="fontcolor1">Sponsor a child today</h4>
-                <div class="pull-left leftmargin1 topmargin1">
-                    <div class="pull-left">
-                        <?php
-                        $imageURl;
-                        $sponsee;
-                        
-                        if ($sponsee['primaryimage']) {
-                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
-                        } else {
-                            $imageURl = 'sponsees/nophoto.jpg';
-                        }
-                        $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
-                        echo $this->Html->image($imageURl, $attrs);
-                        ?>
-                    </div>
-                    <div class="pull-left box leftmargin1 ">
-                        <div class="pull-left span3">
-                            <b class="fontcolor1">
-                                <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
-                            </b><br>
-                            <b>Flag : <?php echo $sponsee['country'] ?></b>
-                            <p>This is a sample content for sam's life summary...</p>
-                            <a href="#" class="btn btn-info btn-small">Read their story</a>
+                <?php
+                foreach ($sponseeList as $item) :
+                    $sponsee = $item['Sponsee'];
+                    ?>
+                    <div class="pull-left span10 topmargin1">
+                        <div class="pull-left">
+                            <?php
+                            $imageURl;
+                            if ($sponsee['primaryimage']) {
+                                $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
+                            }
+                            else {
+                                $imageURl = 'sponsees/nophoto.jpg';
+                            }
+                            $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
+                            echo $this->Html->image($imageURl, $attrs);
+                            ?>
                         </div>
-                        <div class="rightfloat span2 verticalline">
-                            <p><b class="fontcolor1 fontsize1">45%</b> raised</p>
-                            <div class="progress progress-success">
-                                <div class="bar" style="width: 45%"></div>
+                        <div class="pull-left leftmargin1 box">
+                            <div class="pull-left span3">
+                                <p>
+                                    <b class="fontcolor1">
+                                        <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
+                                    </b><br>
+                                    <b>Flag : <?php echo $sponsee['country'] ?></b>
+                                </p>
+                                <p>
+                                    <?php
+                                    $info = $sponsee['information'];
+                                    echo $this->Text->truncate($info, 150, array('exact' => false));
+                                    ?>
+                                </p>
+                                <?php echo $this->Html->link('Read more', array('action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-small')); ?>
+
                             </div>
-                            <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                            <div class="rightfloat"><a href="#" class="btn btn-success btn-small">Donate</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pull-left imageborder topmargin1 leftmargin1 ">
-                    <div class="pull-left">
-                        <?php
-                        echo $this->Html->image('sponsees/rosalie.jpg', array('alt' => '', 'width' => '165', 'class' => 'img-polaroid'));
-                        ?>
-                    </div>
-                    <div class="leftmargin1 pull-left box">
-                        <div class="pull-left span3">
-                            <p>
-                                <b class="fontcolor1">ROSALIE ROSELLO</b><br>
-                                <b>Address | Map Location</b>
-                            </p>
-                            <p>This is a sample content for sam's life summary...</p>
-                            <a href="#" class="btn btn-info btn-small">Read their story</a>
-                        </div>
-                        <div class="rightfloat span2 verticalline">
-                            <p><b class="fontcolor1 fontsize1">90%</b> raised</p>
-                            <div class="progress progress-warning">
-                                <div class="bar" style="width: 90%"></div>
+                            <div class="rightfloat span3 verticalline">
+                                <p><b class="fontcolor1 fontsize1">45%</b> raised</p>
+                                <div class="progress progress-success">
+                                    <div class="bar" style="width: 45%"></div>
+                                </div>
+                                <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
+                                <div class="rightfloat"><a class="btn btn-success btn-small">Donate</a></div>
                             </div>
-                            <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                            <div class="rightfloat"><a href="#" class="btn btn-warning btn-small">Donate</a></div>
                         </div>
                     </div>
-                </div>
-             </div>
+                <?php endforeach; ?>
+            </div>
         </div>
-        
+
     </div>
 </div>

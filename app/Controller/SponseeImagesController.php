@@ -7,12 +7,6 @@
 class SponseeImagesController extends AppController
 {
     
-    public function index()
-    {
-        $list = $this->Sponsee->find('all');
-        $this->set("sponseeList", $list);
-    }
-    
     public function view($id)
     {
         $this->autoRender = false;

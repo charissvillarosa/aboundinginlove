@@ -26,8 +26,8 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/page_name.ctp)...
  */
-    Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'index'));
-	Router::connect('/home', array('controller' => 'pages', 'action' => 'display', 'index'));
+    Router::connect('/', array('controller' => 'home', 'action' => 'index'));
+	Router::connect('/home', array('controller' => 'home', 'action' => 'index'));
 	Router::connect('/projects', array('controller' => 'pages', 'action' => 'display', 'projects'));
 	Router::connect('/programs', array('controller' => 'pages', 'action' => 'display', 'programs'));
 	Router::connect('/donate', array('controller' => 'pages', 'action' => 'display', 'donate'));
