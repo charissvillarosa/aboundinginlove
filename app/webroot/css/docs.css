@@ -8,7 +8,6 @@
     left:0;
     top:0;
     height:400px;
-    width:1378px;
     background: #01789b;
     border-top:solid 5px #015d78;
     border-bottom:solid 3px #0299c6;
@@ -52,6 +51,7 @@
 
 .topmargin1 {margin-top:20px;}
 .topmargin2 {margin-top:30px;}
+.topmargin3 {margin-top:90px;}
 .leftmargin1 {margin-left:20px;}
 .leftmargin2 {margin-left:30px;}
 .leftmargin3 {margin-left:50px;}
@@ -72,6 +72,7 @@
 .height3 {height:1150px;}
 
 .margin1 {margin:20px auto;} 
+.margin2 {margin:5px auto;} 
 
 .fontcolor1 {color:#015d78;}
 
@@ -91,9 +92,9 @@ div.centerwrapper {
     border:solid 1px #b3d1dc;
 }
 .tree {
-    background:url('../img/tree.png');
+    background:url('../img/tree.png') no-repeat;
     height:300px;
-    width:317px;
+    width:1070px;
     position:relative;
     bottom:0;
     left:0;
@@ -127,7 +128,7 @@ div.centerwrapper {
 /*Login.ctp*/
 
 .logincontent {
-    width:800px;
+    width:900px;
     margin: 20px auto;
 }
 .imageborder img{

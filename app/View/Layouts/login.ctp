@@ -16,8 +16,7 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-$cakeDescription = "Website Name";
-$title_for_layout = "Home";
+$cakeDescription = "A Bounding In Love";
 ?>
 <?php
 echo $this->Html->docType('html5');
@@ -47,9 +46,9 @@ echo $this->Html->docType('html5');
     <script>
         $(function() {
             //for menu style and listing
-            $('.dropdown-toggle').dropdown()
+            $('.dropdown-toggle').dropdown();
             
-            // hide and fadeIn all cake flash messages
+            //hide and fadeIn all cake flash messages
             $('.message').hide().fadeIn();
             
             //contact us pop up window
@@ -58,203 +57,178 @@ echo $this->Html->docType('html5');
     </script>
 </head>
 <body>
-    <div id="container">
-        <div id="header">
-            <div class="leftfloat leftmargin3">
-                <p>
+    <div>
+        <div class="header container margin1">
+            <div class="pull-left span4">
+                <p class="fontcolor1 fontsize1">
                     <?php echo $this->Html->image('smalllogo.png', array('width'=>'80px', 'height'=>'82px', 'alt'=>'logo'));?>
                     <b>Charity Slogan put here...</b>
                 </p>
             </div>
-            <div class="rightfloat">
+            <div class="pull-right">
                 <span id="home"><?php echo $this->Html->link('HOME', '/home'); ?></span>
                 <span id="projects"><?php echo $this->Html->link('PROJECTS', '/projects'); ?></span>
                 <span id="program"><?php echo $this->Html->link('PROGRAMS', '/programs'); ?></span>
+                <?php if ($this->Session->read('Auth.User')) : ?>
+                    <span id="login"><a href="logout">LOGOUT</a></span>
+                <?php else : ?>
+                    <span id="login"><a href="#loginModal" role="button" data-toggle="modal">LOGIN</a></span>
+                <?php endif; ?>
                 <span id="register"><?php echo $this->Html->link('REGISTER', '/register'); ?></span>
             </div>
-            <div id="menu" class="rightfloat">
-                <div class="btn-group">
-                    <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                        DONATE
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- dropdown menu links -->
-                        <li><a tabindex="-1" href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li><a tabindex="-1" href="#">Urna et risus vitae</a></li>
-                        <li><a tabindex="-1" href="#">Suscipit ligula</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Eros justo et sit ut felis</a>
+        </div>
+        <div class="clearfix">
+            <div id="menu">
+                <div class="container">
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <?php echo $this->Html->link('DONATE NOW', '/donate', array('class' => 'btn btn-info')); ?>
+                            <!--<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="">
+                                DONATE NOW
+                            </a>-->
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                                SPONSOR A CHILD
+                                <span class="caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
-                                <li><a tabindex="-1" href="#">Lorem ipsum dolor sit amet</a></li>
-                                <li><a tabindex="-1" href="#">Urna et risus vitae</a></li>
-                                <li><a tabindex="-1" href="#">Suscipit ligula</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Eros justo et sit ut felis</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-submenu">
-                                    <a tabindex="-1" href="#">Suscipit ligula</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a tabindex="-1" href="#">Lorem ipsum dolor sit amet</a></li>
-                                        <li><a tabindex="-1" href="#">Urna et risus vitae</a></li>
-                                        <li><a tabindex="-1" href="#">Suscipit ligula</a></li>
-                                    </ul>
+                                <!-- dropdown menu links -->
+                                <li>
+                                    <?php 
+                                    echo $this->Html->link('List of Sponsees', array('controller'=>'sponsees')); ?>
                                 </li>
-                                <li><a tabindex="-1" href="#">Lorem ipsum dolor sit amet</a></li>
-                                <li><a tabindex="-1" href="#">Urna et risus vitae</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="btn-group">
-                    <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                        SPONSOR A CHILD
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- dropdown menu links -->
-                        <li class="dropdown-submenu">
-                            <a tabindex="-1" href="#">Eros justo et sit ut felis</a>
-                            <ul class="dropdown-menu">
+                                <li class="divider"></li>
                                 <li><a tabindex="-1" href="#">Lorem ipsum dolor sit amet</a></li>
                                 <li><a tabindex="-1" href="#">Urna et risus vitae</a></li>
                                 <li><a tabindex="-1" href="#">Suscipit ligula</a></li>
                             </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a tabindex="-1" href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li><a tabindex="-1" href="#">Urna et risus vitae</a></li>
-                        <li><a tabindex="-1" href="#">Suscipit ligula</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group">
-                    <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                        ABOUT US
-                    </a>
-                </div>
-                <div class="btn-group">
-                    <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                        WHAT WE DO?
-                    </a>
-                </div>
-                <div class="btn-group">
-                    <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                        PORTFOLIO
-                    </a>
-                </div>
-                <div class="btn-group">
-                    <a href="#" class="btn btn-info dropdown-toggle" 
-                        rel="popover" 
-                        data-toggle="popover" 
-                        data-placement="bottom" 
-                        data-toggle="popover"
-                        data-content="
-                            <p>Choose from the three options below to contact us online:</p>
-                            <ul>
-                                <li><a href='#'>Questions</a></li>
-                                <li><a href='#'>Feedback</a></li>
-                                <li><a href='#'>Report Website Problem</a></li>
-                            </ul>
-                            <hr>
-                            <h6>Phone Numbers: </h6>
-                            <p class='leftmargin1'>(032)438-9390 / (032)438-9390</p>
-                            <hr>
-                            <p><b>Email : </b><span class='leftmargin1'>example@yahoo.com</span></p>
-                        "
-                        title="CONTACT US">CONTACT US</a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                                ABOUT US
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                                WHAT WE DO?
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                                PORTFOLIO
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-info dropdown-toggle" 
+                               rel="popover" 
+                               data-toggle="popover" 
+                               data-placement="bottom" 
+                               data-toggle="popover"
+                               data-content="
+                               <p>Choose from the three options below to contact us online:</p>
+                               <ul>
+                               <li><a href='#'>Questions</a></li>
+                               <li><a href='#'>Feedback</a></li>
+                               <li><a href='#'>Report Website Problem</a></li>
+                               </ul>
+                               <hr>
+                               <h6>Phone Numbers: </h6>
+                               <p class='leftmargin1'>(032)438-9390 / (032)438-9390</p>
+                               <hr>
+                               <p><b>Email : </b><span class='leftmargin1'>example@yahoo.com</span></p>
+                               "
+                               title="CONTACT US">CONTACT US</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="logincontent">
-             <?php echo $this->fetch('content'); ?>
+            <div class="clearfix" id="logincontent">
+                <?php echo $this->fetch('content'); ?>
+            </div>
         </div>
         <div id="footer">
-            <div class="tree leftfloat"></div>
-            <div class="leftfloat topmargin1 width3">
-                <p class="fontcolor1 fontsize1 leftmargin1 topmargin2">Donate</p>
-                <ul>
-                    <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="#">Urna et risus vitae</a></li>
-                    <li><a href="#">Suscipit ligula</a></li>
-                    <li><a href="#">Eros justo et sit ut felis</a></li>
-                    <li class="leftmargin2"><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li class="leftmargin2"><a href="#">Urna et risus vitae</a></li>
-                    <li class="leftmargin2"><a href="#">Suscipit ligula</a></li> 
-            </div>
-            <div class="leftfloat topmargin1 width3">
-                <p class="fontcolor1 fontsize1 leftmargin1 topmargin2">&nbsp;</p>
-                <ul>
-                    <li><a href="#">Eros justo et sit ut felis</a>
-                    <li class="leftmargin2"><a href="#">Suscipit ligula</a></li>
-                    <li class="leftmargin3"><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li class="leftmargin3"><a href="#">Urna et risus vitae</a></li>
-                    <li class="leftmargin3"><a href="#">Suscipit ligula</a></li>
-                    <li class="leftmargin2"><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li class="leftmargin2"><a href="#">Urna et risus vitae</a></li>
-                </ul>
-            </div>
-            <div class="leftfloat topmargin1 width3">
-                <p class="fontcolor1 fontsize1 leftmargin1 topmargin2">Sponsor a child</p>
-                <ul>
-                    <li><a href="#">Eros justo et sit ut felis</a></li>
-                    <li class="leftmargin2"><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li class="leftmargin2"><a href="#">Urna et risus vitae</a></li>
-                    <li class="leftmargin2"><a href="#">Suscipit ligula</a></li> 
-                    <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="#">Urna et risus vitae</a></li>
-                    <li><a href="#">Suscipit ligula</a></li>
-                </ul>
-            </div>
-            <div class="leftfloat topmargin1 width3">
-                <p class="fontcolor1 fontsize1 leftmargin1 topmargin2">&nbsp;</p>
-                <ul>
-                    <li><a href="#">About Us</a>
-                    <li><a href="#">What we do?</a>
-                    <li><a href="#">Portfolio</a>
-                    <li>
-                        <a href="#" 
-                           rel="popover" 
-                           data-toggle="popover" 
-                           data-placement="left" 
-                           data-toggle="popover"
-                           data-content="
-                            <p>Choose from the three options below to contact us online:</p>
+            <div class="container">
+                <div class="span11">
+                    <div class="tree pull-left">
+                        <div class="span2 pull-right topmargin3">
+                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Projects</a></p>
+                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Program</a></p>
+                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Login</a></p>
+                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Register</a></p>
+                        </div>
+                        <div class="span2 pull-right topmargin3">
+                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Donate Now</a></p>
+                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">What we do?</a></p>
+                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Portfolio</a></p>
+                            <p class="fontcolor1 leftmargin1 topmargin1">
+                                <a href="#" 
+                                       rel="popover" 
+                                       data-toggle="popover" 
+                                       data-placement="left" 
+                                       data-toggle="popover"
+                                       data-content="
+                                       <p>Choose from the three options below to contact us online:</p>
+                                       <ul>
+                                       <li><a href='#'>Questions</a></li>
+                                       <li><a href='#'>Feedback</a></li>
+                                       <li><a href='#'>Report Website Problem</a></li>
+                                       </ul>
+                                       <hr>
+                                       <h6>Phone Numbers: </h6>
+                                       <p class='leftmargin1'>(032)438-9390 / (032)438-9390</p>
+                                       <hr>
+                                       <p><b>Email : </b><span class='leftmargin1'>example@yahoo.com</span></p>
+                                       "
+                                       title="CONTACT US">Contact Us
+                                </a>
+                            </p>
+                        </div>
+                        <div class="span3 pull-right topmargin3">
+                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Donate Now</a></p>
+                            <p class="fontcolor1 leftmargin1 topmargin1">Sponsor a child</p>
                             <ul>
-                                <li><a href='#'>Questions</a></li>
-                                <li><a href='#'>Feedback</a></li>
-                                <li><a href='#'>Report Website Problem</a></li>
+                                <li class="leftmargin1"><a href="#">List of Sponsees</a></li>
+                                <li class="leftmargin2"><a href="#">Lorem ipsum dolor sit amet</a></li>
+                                <li class="leftmargin2"><a href="#">Urna et risus vitae</a></li>
+                                <li class="leftmargin2"><a href="#">Suscipit ligula</a></li>
                             </ul>
-                            <hr>
-                            <h6>Phone Numbers: </h6>
-                            <p class='leftmargin1'>(032)438-9390 / (032)438-9390</p>
-                            <hr>
-                            <p><b>Email : </b><span class='leftmargin1'>example@yahoo.com</span></p>
-                        "
-                        title="CONTACT US">Contact Us</a>
-                    </li>
-                    <li><a href="#">Projects</a>
-                    <li><a href="#">Program</a>
-                    <li><a href="#">Login</a>
-                    <li><a href="#">Register</a>
-                </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="copyright clear leftloat">
-               <div class="leftfloat"><p>&copy; Copyright 2013. Charity Name: All Rights Reserved.</p></div>
-               <div class="rightfloat">
-                   <p>
-                       Follow Us on :
-                       <?php
-                       echo $this->Html->image('facebook_icon.png', array('url' => 'https://www.facebook.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
-                       echo $this->Html->image('twitter_icon.png', array('url' => 'https://twitter.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
-                       echo $this->Html->image('youtube_icon.png', array('url' => 'http://www.youtube.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
-                       echo $this->Html->image('linkedin_icon.png', array('url' => 'http://www.linkedin.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
-                       ?>
-                   </p>
-               </div>
+                <div class="leftfloat"><p>&copy; Copyright 2013. Charity Name: All Rights Reserved.</p></div>
+                <div class="rightfloat">
+                    <p>
+                        Follow Us on :
+                        <?php
+                        echo $this->Html->image('facebook_icon.png', array('url' => 'https://www.facebook.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
+                        echo $this->Html->image('twitter_icon.png', array('url' => 'https://twitter.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
+                        echo $this->Html->image('youtube_icon.png', array('url' => 'http://www.youtube.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
+                        echo $this->Html->image('linkedin_icon.png', array('url' => 'http://www.linkedin.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
+                        ?>
+                    </p>
+                </div>
             </div>
+        </div>
+    </div>
+    <!-- login modal -->
+    <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Login</h3>
+        </div>
+        <div class="modal-body leftmargin1">
+            <?php echo $this->Session->flash(""); ?>
+            <?php echo $this->Form->create("User", array('url' => array('controller' => 'users', 'action' => 'login'))); ?>
+            <fieldset>
+                <?php
+                echo $this->Form->input("username");
+                echo $this->Form->input("password");
+                ?>
+            </fieldset>
+            <?php echo $this->Form->end("Login", array("class" => "btn btn-info")); ?>
         </div>
     </div>
 </body>

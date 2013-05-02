@@ -1,13 +1,13 @@
 <div class="container">
-    <div class="well">
-        <h4 class="fontcolor1">Sponsor a child today</h4>
+    <div class="logincontent">
+        <h3 class="fontcolor1 leftmargin1">Sponsor a child today</h3>
         <?php
         foreach ($sponseeList as $item) :
             $sponsee = $item['Sponsee'];
             ?>
-            <div class="leftfloat">
-                <div class="leftfloat">
-                    <?php
+            <div class="pull-left span10 topmargin1">
+                <div class="pull-left">
+                    <?php 
                     $imageURl;
                     if ($sponsee['primaryimage']) {
                         $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
@@ -18,8 +18,8 @@
                     echo $this->Html->image($imageURl, $attrs);
                     ?>
                 </div>
-                <div class="leftfloat leftmargin1 width6 box">
-                    <div class="leftfloat width7">
+                <div class="pull-left leftmargin1 box">
+                    <div class="pull-left span3">
                         <p>
                             <b class="fontcolor1">
                                 <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
@@ -35,7 +35,7 @@
                         <?php echo $this->Html->link('Read more', array('action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-small')); ?>
 
                     </div>
-                    <div class="rightfloat width7 verticalline">
+                    <div class="rightfloat span3 verticalline">
                         <p><b class="fontcolor1 fontsize1">45%</b> raised</p>
                         <div class="progress progress-success">
                             <div class="bar" style="width: 45%"></div>
@@ -45,6 +45,6 @@
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>  
+        <?php endforeach; ?>
     </div>
 </div>

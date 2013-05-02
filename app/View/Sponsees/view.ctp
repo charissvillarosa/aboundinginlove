@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="well">
+    <div class="logincontent">
         <div class="span2">
             <div>
                 <?php
@@ -14,10 +14,12 @@
                 ?>
             </div>
             <div class="margin1">
-                <b class="fontcolor1">
-                    <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
-                </b><br>
-                <b>Flag : <?php echo $sponsee['country'] ?></b>
+                <p>
+                    <b class="fontcolor1">
+                        <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
+                    </b><br>
+                    <b><?php echo $sponsee['country'] ?> : <a href="<?php echo $sponsee['maplocation'] ?>" target="_blank">Map Location</a></b>
+                </p>
             </div>
             <hr/>
             <div>
@@ -29,13 +31,25 @@
                 <div class="pull-right"><a class="btn btn-success btn-small">Donate</a></div>
                 <div class="clearfix"></div>
             </div>
-        </div>
-        <div class="span5">
-            <h4>Biography</h4>
             <hr/>
-            <p class="">
-                <?php echo $sponsee['information']; ?>
-            </p>
+        </div>
+        <div class="span7">
+            <div class="leftmargin2 bottomargin1">
+                <h4>Biography</h4>
+                <hr/>
+                <p class="">
+                    <?php echo $sponsee['information']; ?>
+                </p>
+                <h4 class="topmargin2">Needs</h4>
+                <hr>
+                <ul class="leftmargin2">
+                    <li>1,000 monthly for basic educational needs and food</li>
+                    <li>2,000 for new dental work</li>
+                    <li>1,500 for medical assistance/check up</li>
+                    <li>500 for clothing allowance</li>
+                    <li>500 for transportation allowance</li>
+                </ul>
+            </ul>
         </div>
     </div>
 </div>

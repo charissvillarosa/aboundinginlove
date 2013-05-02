@@ -84,61 +84,72 @@
     <div class="row margin1">
         <div class="well span3">
             <h4 class="fontcolor1">How We Works</h4><br>
-            <span class="badge badge-info">1</span> Ipsum purus lobortis porttitor sit. Qui ut orci, suscipit pede vitae suspendisse sociis eu feugiat, sed massa amet, ac orci, posuere felis et.<br><br>
-            <span class="badge badge-info">2</span> Eros integer massa phasellus magna donec neque. A wisi a, lorem venenatis varius malesuada vivamus aliquam.<br><br>
-            <span class="badge badge-info">3</span> Vestibulum mauris dolor, vitae in, nulla vitae nunc quis, vestibulum in, cum odio turpis pede wisi sed nam. <br><br>
-            <span class="badge badge-info">4</span> Tortor in vel. Nibh id. Et ut morbi amet aliquam, sit suspendisse orci, in porta libero orci dolor.<br>
+            <p>
+                <span class="badge badge-info">1</span> Ipsum purus lobortis porttitor sit. Qui ut orci, suscipit pede vitae suspendisse sociis eu feugiat, sed massa amet, ac orci, posuere felis et. Qui ut orci, suscipit pede vitae suspendisse sociis eu feugiat, sed massa amet, ac orci, posuere felis et.<br><br>
+                <span class="badge badge-info">2</span> Eros integer massa phasellus magna donec neque. A wisi a, lorem venenatis varius malesuada vivamus aliquam.<br><br>
+                <span class="badge badge-info">3</span> Vestibulum mauris dolor, vitae in, nulla vitae nunc quis, vestibulum in, cum odio turpis pede wisi sed nam. <br><br>
+                <span class="badge badge-info">4</span> Tortor in vel. Nibh id. Et ut morbi amet aliquam, sit suspendisse orci, in porta libero orci dolor. Morci, in porta libero orci dolor. Amet aliquam, sit suspendisse orci, in porta libero.<br>
+            </p>
         </div>
         <div class="well span8">
             <div>
                 <h4 class="fontcolor1">Sponsor a child today</h4>
-                <div class="leftfloat">
-                    <div class="leftfloat">
+                <div class="pull-left leftmargin1 topmargin1">
+                    <div class="pull-left">
                         <?php
-                        echo $this->Html->image('sponsees/sam.jpg', array('alt' => '', 'width' => '165', 'class' => 'img-polaroid'));
+                        $imageURl;
+                        $sponsee;
+                        
+                        if ($sponsee['primaryimage']) {
+                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
+                        } else {
+                            $imageURl = 'sponsees/nophoto.jpg';
+                        }
+                        $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
+                        echo $this->Html->image($imageURl, $attrs);
                         ?>
                     </div>
-                    <div class="leftfloat leftmargin1 width6 box">
-                        <div class="leftfloat width7">
-                            <p>
-                                <b class="fontcolor1">SAM CAÑETE</b><br>
-                                <b>Flag : Location</b>
-                            </p>
+                    <div class="pull-left box leftmargin1 ">
+                        <div class="pull-left span3">
+                            <b class="fontcolor1">
+                                <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
+                            </b><br>
+                            <b>Flag : <?php echo $sponsee['country'] ?></b>
                             <p>This is a sample content for sam's life summary...</p>
-                            <a class="btn btn-info btn-small">Read their story</a>
+                            <a href="#" class="btn btn-info btn-small">Read their story</a>
                         </div>
-                        <div class="rightfloat width7 verticalline">
+                        <div class="rightfloat span2 verticalline">
                             <p><b class="fontcolor1 fontsize1">45%</b> raised</p>
                             <div class="progress progress-success">
                                 <div class="bar" style="width: 45%"></div>
                             </div>
                             <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                            <div class="rightfloat"><a class="btn btn-success btn-small">Donate</a></div>
+                            <div class="rightfloat"><a href="#" class="btn btn-success btn-small">Donate</a></div>
                         </div>
                     </div>
                 </div>
-                <div class="leftfloat imageborder topmargin1">
-                    <div class="leftfloat">
+                <div class="pull-left imageborder topmargin1 leftmargin1 ">
+                    <div class="pull-left">
                         <?php
                         echo $this->Html->image('sponsees/rosalie.jpg', array('alt' => '', 'width' => '165', 'class' => 'img-polaroid'));
                         ?>
                     </div>
-                    <div class="leftfloat leftmargin1 width6 box">
-                        <div class="leftfloat width7">
+                    <div class="leftmargin1 pull-left box">
+                        <div class="pull-left span3">
                             <p>
                                 <b class="fontcolor1">ROSALIE ROSELLO</b><br>
-                                <b>Flag : Location</b>
+                                <b>Address | Map Location</b>
                             </p>
                             <p>This is a sample content for sam's life summary...</p>
-                            <a class="btn btn-info btn-small">Read their story</a>
+                            <a href="#" class="btn btn-info btn-small">Read their story</a>
                         </div>
-                        <div class="rightfloat width7 verticalline">
+                        <div class="rightfloat span2 verticalline">
                             <p><b class="fontcolor1 fontsize1">90%</b> raised</p>
                             <div class="progress progress-warning">
                                 <div class="bar" style="width: 90%"></div>
                             </div>
                             <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                            <div class="rightfloat"><a class="btn btn-warning btn-small">Donate</a></div>
+                            <div class="rightfloat"><a href="#" class="btn btn-warning btn-small">Donate</a></div>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
-<div class="leftfloat leftmargin4 position1 bottomargin1 height2">
+<div class="container">
     <!-- Three columns of text below the carousel -->
-    <div class="topmargin1 well width4">
+    <div class="topmargin1 well">
         <h1 class="fontcolor1">OUR PROJECTS</h1>
         <p class="topmargin1">
             Lorem ipsum dolor sit amet, wisi vitae nec, erat a dis in omnis euismod, aliquet nec phasellus, quam molestie nulla erat lacinia vitae, 
@@ -48,7 +48,7 @@
     </div><!-- /.row -->
 </div>
 <!--thumnails images animation-->
-<div class="rightfloat">
+<div class="pull-right">
     <div class="thumnails_background">
     </div>
 </div>
