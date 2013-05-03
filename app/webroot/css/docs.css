@@ -45,10 +45,6 @@
     padding:3px 0;
 }
 
-.leftfloat {float:left;}
-.rightfloat {float:right;}
-.clear {clear:both;}
-
 .topmargin1 {margin-top:20px;}
 .topmargin2 {margin-top:30px;}
 .topmargin3 {margin-top:90px;}
@@ -58,18 +54,7 @@
 .leftmargin4 {margin-left:60px;}
 .leftmargin5 {margin-left:5px;}
 .bottomargin1 {margin-bottom:50px;}
-
-.width1 {width:1000px;}
-.width2 {width:250px;}
-.width3 {width:230px;}
-.width4 {width:1200px;}
-.width5 {width:615px;}
-.width6 {width:420px;}
-.width7 {width:190px;}
-
-.height1 {height:410px;}
-.height2 {height:1000px;}
-.height3 {height:1150px;}
+.rightmargin1 {margin-right:20px;}
 
 .margin1 {margin:20px auto;} 
 .margin2 {margin:5px auto;} 
@@ -77,6 +62,7 @@
 .fontcolor1 {color:#015d78;}
 
 .fontsize1 {font-size: 20px;}
+.fontsize2 {font-size: 30px;}
 
 /** containers **/
 div.centerwrapper {
@@ -84,8 +70,11 @@ div.centerwrapper {
     margin:0 auto;
     overflow:hidden;
 }
-.center h2, .center p {
+.center h2, .center p{
     text-align:center;
+}
+.center img {
+    margin:0 22%;
 }
 .span4 img.img-circle {
     margin-left:115px;
@@ -113,12 +102,9 @@ div.centerwrapper {
     left:16px;
 }
 .thumnails_background {
-    background: url('../img/thumbnails_background.png');
-    height:282px;
-    width:981px;
-    position:absolute;
-    top:112px;
-    right:45px;
+    background: #0095c6;
+    height:310px;
+    border:solid 1px #0481ab;
 }
 .thumbnails {padding-left:55px;}
 .thumbnails li {
@@ -139,9 +125,9 @@ div.centerwrapper {
     padding-left:30px;
 }
 .box {
-    border-top:solid 1px #ddd;
-    border-bottom:solid 1px #ddd;
-    padding:20px 0;
+    border:solid 1px #e3e3e3;
+    padding:20px;
+    background: #efefef;
 }
 
 .header span {
@@ -154,3 +140,5 @@ div.centerwrapper {
 .header span a {
     padding: 0 0 0 25px;
 }
+
+.backgroundcolor1 {background:#fff;}

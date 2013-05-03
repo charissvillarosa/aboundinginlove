@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="logincontent">
+    <div style="background: #fff;" class="logincontent well">
         <div class="span2">
             <div>
                 <?php
@@ -24,23 +24,23 @@
             <hr/>
             <div>
                 <p><b class="fontcolor1 fontsize1">45%</b> raised</p>
-                <div class="progress progress-success">
+                <div class="progress">
                     <div class="bar" style="width: 45%"></div>
                 </div>
                 <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                <div class="pull-right"><a class="btn btn-success btn-small">Donate</a></div>
+                <div class="pull-right"><a class="btn btn-info btn-small">Donate</a></div>
                 <div class="clearfix"></div>
             </div>
             <hr/>
         </div>
         <div class="span7">
             <div class="leftmargin2 bottomargin1">
-                <h4>Biography</h4>
+                <h4 class="fontcolor1">Biography</h4>
                 <hr/>
                 <p class="">
                     <?php echo $sponsee['information']; ?>
                 </p>
-                <h4 class="topmargin2">Needs</h4>
+                <h4 class="fontcolor1 topmargin2">Needs</h4>
                 <hr>
                 <ul class="leftmargin2">
                     <li>1,000 monthly for basic educational needs and food</li>

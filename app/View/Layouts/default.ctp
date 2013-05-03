@@ -195,8 +195,8 @@ echo $this->Html->docType('html5');
                 </div>
             </div>
             <div class="copyright clear leftloat">
-                <div class="leftfloat"><p>&copy; Copyright 2013. Charity Name: All Rights Reserved.</p></div>
-                <div class="rightfloat">
+                <div class="pull-left"><p>&copy; Copyright 2013. Charity Name: All Rights Reserved.</p></div>
+                <div class="pull-right">
                     <p>
                         Follow Us on :
                         <?php
@@ -210,9 +210,6 @@ echo $this->Html->docType('html5');
             </div>
         </div>
     </div>
-
-    <div id="logo"></div>
-
     <!-- login modal -->
     <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">

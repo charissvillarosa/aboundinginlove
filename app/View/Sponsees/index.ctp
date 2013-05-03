@@ -1,30 +1,30 @@
 <div class="container">
-    <div class="logincontent">
-        <h3 class="fontcolor1 leftmargin1">Sponsor a child today</h3>
+    <div style="background: #fff;" class="logincontent well">
+        <h4 class="fontcolor1 leftmargin1">Sponsor a child today</h4>
         <?php
         foreach ($sponseeList as $item) :
             $sponsee = $item['Sponsee'];
             ?>
-            <div class="pull-left span10 topmargin1">
-                <div class="pull-left">
-                    <?php 
+            <div class="pull-left topmargin1 leftmargin1 box">
+                <div class="pull-left rightmargin1">
+                    <?php
                     $imageURl;
                     if ($sponsee['primaryimage']) {
                         $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
                     } else {
                         $imageURl = 'sponsees/nophoto.jpg';
                     }
-                    $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
+                    $attrs = array('alt' => '', 'width' => '170', 'class' => 'img-polaroid');
                     echo $this->Html->image($imageURl, $attrs);
                     ?>
                 </div>
-                <div class="pull-left leftmargin1 box">
+                <div class="pull-left">
                     <div class="pull-left span3">
                         <p>
                             <b class="fontcolor1">
                                 <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
                             </b><br>
-                            <b>Flag : <?php echo $sponsee['country'] ?></b>
+                            <b><?php echo $sponsee['country'] ?> : <a href="<?php echo $sponsee['maplocation'] ?>" target="_blank">Map Location</a></b>
                         </p>
                         <p>
                             <?php
@@ -37,11 +37,11 @@
                     </div>
                     <div class="rightfloat span3 verticalline">
                         <p><b class="fontcolor1 fontsize1">45%</b> raised</p>
-                        <div class="progress progress-success">
+                        <div class="progress">
                             <div class="bar" style="width: 45%"></div>
                         </div>
                         <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                        <div class="rightfloat"><a class="btn btn-success btn-small">Donate</a></div>
+                        <div class="rightfloat"><a class="btn btn-info btn-small">Donate</a></div>
                     </div>
                 </div>
             </div>

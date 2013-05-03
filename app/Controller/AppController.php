@@ -48,6 +48,8 @@ class AppController extends Controller
     public function beforeFilter()
     {
         $this->Auth->allow("index", "view");
+        $this->Auth->allow("sponsee", "add");
+        $this->Auth->allow("sponsee", "listing");
     }
     
     public function index(){}

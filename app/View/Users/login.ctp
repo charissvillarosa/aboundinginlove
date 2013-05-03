@@ -1,6 +1,10 @@
 <div class="logincontent">
-    <div style="margin-bottom:20px; width:500px;" class="leftfloat">
-        <h3 class="fontcolor1">Lorem ipsum dolor sit amet</h3>
+    <div style="margin-bottom:20px; width:550px;" class="pull-left">
+        <p>
+            <?php echo $this->Html->image('smalllogo.png', array('alt' => 'logo')); ?>
+            <b class="fontcolor1 fontsize2">Lorem ipsum dolor sit</b>
+        </p>
+        <hr>
         <p class="topmargin1">
             Vulputate wisi aenean elementum, accumsan nunc cras adipiscing odio, elit arcu ultricies quis,
             tellus commodo eget semper dolor vel rutrum. Eu felis, vivamus urna sagittis quam sit lorem.
