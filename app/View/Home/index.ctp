@@ -143,6 +143,12 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
+
+                <div class="clearfix"></div>
+                
+                <div class="margin1">
+                    <?php echo $this->Html->link('View more', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-primary btn-small')); ?>
+                </div>
             </div>
         </div>
 

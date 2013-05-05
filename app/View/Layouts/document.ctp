@@ -47,10 +47,10 @@ echo $this->Html->docType('html5');
         $(function() {
             //for menu style and listing
             $('.dropdown-toggle').dropdown();
-            
+
             //hide and fadeIn all cake flash messages
             $('.message').hide().fadeIn();
-            
+
             //contact us pop up window
             $('a[rel=popover]').popover({html: 'true'})
         })
@@ -61,24 +61,33 @@ echo $this->Html->docType('html5');
         <div class="header container margin2">
             <div class="pull-left span4">
                 <p class="fontcolor1 fontsize1">
-                    <?php echo $this->Html->image('smalllogo.png', array('width'=>'80px', 'height'=>'82px', 'alt'=>'logo'));?>
+                    <?php echo $this->Html->image('smalllogo.png', array('width' => '80px', 'height' => '82px', 'alt' => 'logo')); ?>
                     <b>Charity Slogan put here...</b>
                 </p>
             </div>
             <div class="pull-right" style="margin-top: 30px;">
-                <span id="home"><?php echo $this->Html->link('HOME', '/home'); ?></span>
-                <span id="projects"><?php echo $this->Html->link('PROJECTS', '/projects'); ?></span>
-                <span id="program"><?php echo $this->Html->link('PROGRAMS', '/programs'); ?></span>
-                <?php if ($this->Session->read('Auth.User')) : ?>
-                    <span id="login"><a href="logout">LOGOUT</a></span>
-                <?php else : ?>
-                    <span id="login"><a href="#loginModal" role="button" data-toggle="modal">LOGIN</a></span>
-                <?php endif; ?>
-                <span id="register"><?php echo $this->Html->link('REGISTER', '/register'); ?></span>
+                <?php include 'common_header.php' ?>
             </div>
         </div>
         <div class="clearfix">
-            <div class="clearfix" id="logincontent">
+            <div class="clearfix container">
+                <?php
+                $user = $this->Session->read('Auth.User');
+                $controller = $this->name;
+                
+                if ($user && $user['role'] == 'admin') :
+                ?>
+                <div>
+                    <ul class="nav nav-tabs">
+                        <li class="<?php echo $controller == 'Sponsees' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Sponsees', array('controller'=>'sponsees', 'action'=>'index')); ?>
+                        </li>
+                        <li class="<?php echo $controller == 'Users' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index')); ?>
+                        </li>
+                    </ul>
+                </div>
+                <?php endif; ?>
                 <?php echo $this->fetch('content'); ?>
             </div>
         </div>
@@ -98,24 +107,24 @@ echo $this->Html->docType('html5');
                             <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Portfolio</a></p>
                             <p class="fontcolor1 leftmargin1 topmargin1">
                                 <a href="#" 
-                                       rel="popover" 
-                                       data-toggle="popover" 
-                                       data-placement="left" 
-                                       data-toggle="popover"
-                                       data-content="
-                                       <p>Choose from the three options below to contact us online:</p>
-                                       <ul>
-                                       <li><a href='#'>Questions</a></li>
-                                       <li><a href='#'>Feedback</a></li>
-                                       <li><a href='#'>Report Website Problem</a></li>
-                                       </ul>
-                                       <hr>
-                                       <h6>Phone Numbers: </h6>
-                                       <p class='leftmargin1'>(032)438-9390 / (032)438-9390</p>
-                                       <hr>
-                                       <p><b>Email : </b><span class='leftmargin1'>example@yahoo.com</span></p>
-                                       "
-                                       title="CONTACT US">Contact Us
+                                   rel="popover"
+                                   data-toggle="popover"
+                                   data-placement="left"
+                                   data-toggle="popover"
+                                   data-content="
+                                   <p>Choose from the three options below to contact us online:</p>
+                                   <ul>
+                                   <li><a href='#'>Questions</a></li>
+                                   <li><a href='#'>Feedback</a></li>
+                                   <li><a href='#'>Report Website Problem</a></li>
+                                   </ul>
+                                   <hr>
+                                   <h6>Phone Numbers: </h6>
+                                   <p class='leftmargin1'>(032)438-9390 / (032)438-9390</p>
+                                   <hr>
+                                   <p><b>Email : </b><span class='leftmargin1'>example@yahoo.com</span></p>
+                                   "
+                                   title="CONTACT US">Contact Us
                                 </a>
                             </p>
                         </div>

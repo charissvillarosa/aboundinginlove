@@ -61,15 +61,7 @@ echo $this->Html->docType('html5');
         <!--thumnails images animation-->
         <div class="header container margin1">
             <div class="pull-right">
-                <span id="home"><?php echo $this->Html->link('HOME', '/home'); ?></span>
-                <span id="projects"><?php echo $this->Html->link('PROJECTS', '/projects'); ?></span>
-                <span id="program"><?php echo $this->Html->link('PROGRAMS', '/programs'); ?></span>
-                <?php if ($this->Session->read('Auth.User')) : ?>
-                    <span id="login"><a href="logout">LOGOUT</a></span>
-                <?php else : ?>
-                    <span id="login"><a href="#loginModal" role="button" data-toggle="modal">LOGIN</a></span>
-                <?php endif; ?>
-                <span id="register"><?php echo $this->Html->link('REGISTER', '/register'); ?></span>
+                <?php include 'common_header.php' ?>
             </div>
         </div>
 

@@ -38,20 +38,26 @@ class AppController extends Controller
     //public $components = array('DebugKit.Toolbar');
 
     public $components = array(
-        "Session",
-        "Auth" => array(
-            "loginRedirect" => array("controller" => "pages", "action" => "index"),
-            "logoutRedirect" => array("controller" => "pages", "action" => "index")
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array('controller' => 'dashboard'),
+            'logoutRedirect' => array('controller' => 'pages', 'action' => 'index'),
+            'authorize' => array('Controller')
         )
     );
 
-    public function beforeFilter()
+    /**
+     * default value is authorized all
+     * should be overriden for granularity
+     *
+     * @param $user
+     * @return boolean
+     */
+    public function isAuthorized($user)
     {
-        $this->Auth->allow("index", "view");
-        $this->Auth->allow("sponsee", "add");
-        $this->Auth->allow("sponsee", "listing");
+        return true;
     }
-    
+
     public function index(){}
 
 }

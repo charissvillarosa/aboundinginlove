@@ -3,11 +3,20 @@
 class UsersController extends AppController
 {
 
-    var $layout = 'login';
+    var $layout = 'document';
+
+    var $paginate = array(
+        'limit' => 5
+    );
+
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow('add', 'login'); // Letting users register themselves
+    }
 
     public function index()
     {
-        $this->User->recursive = 0;
         $this->set('users', $this->paginate());
     }
 
@@ -22,6 +31,8 @@ class UsersController extends AppController
 
     public function add()
     {
+        $this->layout = 'login';
+
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
@@ -72,14 +83,10 @@ class UsersController extends AppController
         $this->redirect(array('action' => 'index'));
     }
 
-    public function beforeFilter()
-    {
-        parent::beforeFilter();
-        $this->Auth->allow('add', 'login'); // Letting users register themselves
-    }
-
     public function login()
     {
+        $this->layout = 'login';
+
         if ($this->request->is('post')) {
             if ($this->request->is('post')) {
                 if ($this->Auth->login()) {
