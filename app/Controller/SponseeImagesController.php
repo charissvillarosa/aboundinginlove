@@ -7,6 +7,10 @@
 class SponseeImagesController extends AppController
 {
     
+    public function beforeFilter() {
+        $this->Auth->allow('view');
+    }
+    
     public function view($id)
     {
         $this->autoRender = false;

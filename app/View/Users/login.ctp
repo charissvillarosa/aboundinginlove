@@ -35,5 +35,8 @@
             ?>
         </fieldset>
         <?php echo $this->Form->end("Login"); ?>
+        <script>
+            $('#UserUsername').focus();
+        </script>
     </div>
 </div>
