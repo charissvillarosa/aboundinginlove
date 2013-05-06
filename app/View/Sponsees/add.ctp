@@ -1,5 +1,5 @@
-<div class="container">
-    <div style="background: #fff;" class="logincontent well">
+<div class="container tabs">
+    <div class="span11 margin3">
         <div style="margin-bottom:20px;" class="users">
             <?php echo $this->Form->create('Sponsee'); ?>
             <fieldset>
@@ -14,7 +14,7 @@
                 ));
                 echo $this->Form->input('maplocation');
                 echo $this->Form->input('information');
-                echo $this->Form->input('birthdate', array('width' => '100px'));
+                echo $this->Form->input('birthdate', array('class' => 'span2'));
                 ?>
             </fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -812,7 +812,7 @@ h4 small {
 ul,
 ol {
   padding: 0;
-  margin: 0 0 10px 25px;
+  margin: 0 0;
 }
 
 ul ul,
@@ -2145,7 +2145,7 @@ table {
 
 .table-hover tbody tr:hover > td,
 .table-hover tbody tr:hover > th {
-  background-color: #f5f5f5;
+  background-color: #f0f1f1;
 }
 
 table td[class*="span"],
@@ -3938,7 +3938,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .nav {
-  margin-bottom: 20px;
+  margin-top: 20px;
   margin-left: 0;
   list-style: none;
 }

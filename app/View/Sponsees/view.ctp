@@ -1,5 +1,5 @@
-<div class="container">
-    <div style="background: #fff;" class="logincontent well">
+<div class="container tabs">
+    <div class="span11 margin3">
         <div class="span2">
             <div>
                 <?php

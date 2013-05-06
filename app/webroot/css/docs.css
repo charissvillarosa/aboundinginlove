@@ -54,10 +54,12 @@
 .leftmargin4 {margin-left:60px;}
 .leftmargin5 {margin-left:5px;}
 .bottomargin1 {margin-bottom:50px;}
+.bottomargin2 {margin-bottom:10px;}
 .rightmargin1 {margin-right:20px;}
 
 .margin1 {margin:20px auto;} 
 .margin2 {margin:5px auto;} 
+.margin3 {margin:30px auto;} 
 
 .fontcolor1 {color:#015d78;}
 
@@ -142,3 +144,10 @@ div.centerwrapper {
 }
 
 .backgroundcolor1 {background:#fff;}
+.tabs {
+    background: #fff;
+    border-left:solid 1px #ddd;
+    border-right:solid 1px #ddd;
+    border-bottom:solid 1px #ddd;
+    margin-bottom: 30px;
+}

@@ -69,7 +69,7 @@ echo $this->Html->docType('html5');
                 <?php include 'common_header.php' ?>
             </div>
         </div>
-        <div class="clearfix">
+        <div id="logincontent" class="clearfix">
             <div class="clearfix container">
                 <?php
                 $user = $this->Session->read('Auth.User');

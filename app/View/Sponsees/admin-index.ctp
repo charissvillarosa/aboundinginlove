@@ -1,7 +1,11 @@
-<div class="container">
-    <div style="background: #fff;" class="logincontent well">
-        <table class="table table-hover">
+<div class="container tabs">
+    <div class="span11 margin3">
+        <div class="pull-right bottomargin2">
+            <?php echo $this->Html->link('Add New Sponsee', array('action' => 'add'), array('class' => 'btn btn-info btn-small')); ?>
+        </div>
+        <table class="leftmargin1 table table-hover table-bordered">
             <tr>
+                <th>No.</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Country</th>
@@ -9,31 +13,49 @@
                 <th>Information / Biography</th>
                 <th>Birtd Date</th>
                 <th>Primary Id</th>
+                <th>Edit</th>
+                <th>View</th>
+                <th>Delete</th>
             </tr>
 
             <?php
+            $ctr = 1;
+            
             foreach ($sponseeList as $item) :
                 $sponsee = $item['Sponsee'];
                 ?>
                 <tr>
+                    <td><?php echo $ctr; ?>
                     <td><?php echo $sponsee['firstname'] .' '. $sponsee['middlename'] .' '. $sponsee['lastname'] ?></td>
                     <td><?php echo $sponsee['address'] ?></td>
                     <td><?php echo $sponsee['country'] ?></td>
-                    <td><?php echo $sponsee['maplocation'] ?></td>
+                    <td>
+                        <?php 
+                        echo  
+                            $maplocation = $sponsee['maplocation'];
+                            echo $this->Text->truncate($maplocation, 5, array('exact' => false));
+                        ?>
+                    </td>
                     <td>
                         <?php 
                             $info = $sponsee['information'];
-                            echo $this->Text->truncate($info, 50, array('exact' => false));
+                            echo $this->Text->truncate($info, 20, array('exact' => false));
                         ?>
                     </td>
                     <td><?php echo $sponsee['birthdate'] ?></td>
                     <td><?php echo $sponsee['primaryimage'] ?></td>
+                    <td><?php echo 'Edit'; ?></td>
+                    <td><?php echo 'View'; ?></td>
+                    <td><?php echo 'Delete'; ?></td>
                 </tr>
-            <?php endforeach; ?>
+                
+            <?php $ctr++; endforeach; ?>
         </table>
-        <?php echo $this->Paginator->numbers(); ?>
-        <?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?>
-        <?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?>
-        <?php echo $this->Paginator->counter(); ?>
+        <div class="leftmargin1">
+            <button class="btn"><?php echo $this->Paginator->numbers(); ?></button>
+            <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+            <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+            <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
+        </div>
     </div>
 </div>
