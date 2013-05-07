@@ -37,12 +37,7 @@ class Sponsee extends AppModel
                 "allowEmpty" => false
             )
         ),
-        "maplocation" => array(
-            "valid" => array(
-                "rule" => array("notEmpty"),
-                "message" => "A map location is required"
-            )
-        ),
+        "maplocation" => array(),
         "information" => array(
             "valid" => array(
                 "rule" => array("notEmpty"),

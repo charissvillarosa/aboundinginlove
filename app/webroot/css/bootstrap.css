@@ -2145,7 +2145,7 @@ table {
 
 .table-hover tbody tr:hover > td,
 .table-hover tbody tr:hover > th {
-  background-color: #f0f1f1;
+  background-color: #ecfafe;
 }
 
 table td[class*="span"],

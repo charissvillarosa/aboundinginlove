@@ -63,4 +63,36 @@ class SponseesController extends AppController
             }
         }
     }
+    
+    public function edit($id = null){
+        if (!$id) {
+            throw new NotFoundException(__('Invalid input'));
+        }
+
+        $this->Sponsee->id = $id;
+        if ($this->request->is('get')) {
+            $sponsee = $this->Sponsee->read();
+            if (!$sponsee) {
+                throw new NotFoundException(__('Invalid input'));
+            }
+            $this->request->data = $sponsee;
+        }
+        else {
+            if ($this->Sponsee->save($this->request->data)) {
+                $this->Session->setFlash('Sponsee record has been updated.');
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash('Unable to update the record.');
+            }
+        }
+
+    }
+    
+    public function delete($id) {
+        if ($this->Sponsee->delete($id)) {
+            $this->Session->setFlash('Sponsee with id: ' . $id . ' has been deleted.');
+        }
+        $this->redirect(array('action' => 'index'));
+    }
+
 }

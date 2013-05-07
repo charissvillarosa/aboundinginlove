@@ -147,10 +147,9 @@
                 <div class="clearfix"></div>
                 
                 <div class="margin1">
-                    <?php echo $this->Html->link('View more', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-primary btn-small')); ?>
+                    <?php echo $this->Html->link('View more', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

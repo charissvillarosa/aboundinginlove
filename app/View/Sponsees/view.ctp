@@ -1,4 +1,7 @@
 <div class="container tabs">
+    <div class="pull-right topmargin1 rightmargin1">
+        <?php echo $this->Html->link('Go back to Sponsee List', array('action' => 'index'), array('class' => 'btn btn-info btn-small')); ?>
+    </div>
     <div class="span11 margin3">
         <div class="span2">
             <div>
@@ -33,7 +36,7 @@
             </div>
             <hr/>
         </div>
-        <div class="span7">
+        <div class="pull-right span8">
             <div class="leftmargin2 bottomargin1">
                 <h4 class="fontcolor1">Biography</h4>
                 <hr/>
@@ -49,7 +52,7 @@
                     <li>500 for clothing allowance</li>
                     <li>500 for transportation allowance</li>
                 </ul>
-            </ul>
+            </div>
         </div>
     </div>
 </div>

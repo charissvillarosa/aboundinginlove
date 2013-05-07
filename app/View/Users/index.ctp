@@ -33,9 +33,15 @@
                     <td><?php echo $user['firstname'].' '.$user['middlename'].' '.$user['lastname'] ?></td>
                     <td><?php echo $user['address'] ?></td>
                     <td><?php echo $user['country'] ?></td>
-                    <td><?php echo 'Edit'; ?></td>
-                    <td><?php echo 'View'; ?></td>
-                    <td><?php echo 'Delete'; ?></td>
+                    <td align="center">
+                       <i><?php echo $this->Html->link('', array('controller' => 'user', 'action' => 'edit', $user['id']), array('class' => 'icon-edit')); ?></i>
+                    </td>
+                    <td align="center">
+                        <i><?php echo $this->Html->link('', array('controller' => 'user', 'action' => 'view', $user['id']), array('class' => 'icon-list')); ?></i>
+                    </td>
+                    <td align="center">
+                        <i><?php echo $this->Html->link('', array('controller' => 'user', 'action' => 'delete', $user['id']), array('class' => 'icon-trash')); ?></i>
+                    </td>
                 </tr>
             <?php $ctr++; endforeach; ?>
         </table>
