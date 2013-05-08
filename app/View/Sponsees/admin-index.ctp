@@ -44,13 +44,13 @@
                     </td>
                     <td><?php echo $sponsee['birthdate'] ?></td>
                     <td><?php echo $sponsee['primaryimage'] ?></td>
-                    <td align="center">
+                    <td>
                        <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'edit', $sponsee['id']), array('class' => 'icon-edit')); ?></i>
                     </td>
-                    <td align="center">
+                    <td>
                         <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'view', $sponsee['id']), array('class' => 'icon-list')); ?></i>
                     </td>
-                    <td align="center">
+                    <td>
                         <i>
                         <?php echo $this->Html->link(
                             '',
