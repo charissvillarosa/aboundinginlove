@@ -10,17 +10,43 @@ class User extends AppModel
 {
 
     public $validate = array(
+        "email" => array(
+            "kosher" => array(
+                "rule" => "email",
+                "message" => "Please make sure your email is entered correctly."
+            ),
+            "unique" => array(
+                "rule" => "isUnique",
+                "message" => "An account with that email already exists."
+            ),
+            "required" => array(
+                "rule" => "notEmpty",
+                "message" => "Please Enter your email."
+            )
+        ),
         "username" => array(
             "required" => array(
                 "rule" => array("notEmpty"),
                 "message" => "A username is required"
-            )
+            ),
+            "unique" => array(
+                "rule" => "isUnique",
+                "message" => "Username already exists."
+            ),
         ),
-        "password" => array(
-            "required" => array(
-                "rule" => array("notEmpty"),
-                "message" => "A password is required"
-            )
+        'password' => array(
+            'min' => array(
+                'rule' => array('minLength', 6),
+                'message' => 'Password must be at least 6 characters.'
+            ),
+            'required' => array(
+                'rule' => 'notEmpty',
+                'message' => 'Please enter a password.'
+            ),
+        ),
+        'password_confirm' => array(
+            'rule' => 'validatePasswdConfirm',
+            'message' => 'Passwords do not match'
         ),
         "role" => array(
             "valid" => array(
@@ -31,13 +57,35 @@ class User extends AppModel
         )
     );
 
-    public function beforeSave($options = array())
+    function validatePasswdConfirm($data)
     {
-        if (isset($this->data[$this->alias]['password'])) {
-            $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+        if ($this->data['User']['password'] !== $data['password_confirm']) {
+            return false;
         }
         return true;
     }
+
+    function beforeSave()
+    {
+        if (isset($this->data['User']['password'])) {
+            $this->data['User']['password'] = Security::hash($this->data['User']['password'], null, true);
+            unset($this->data['User']['password']);
+        }
+
+        if (isset($this->data['User']['password_confirm'])) {
+            unset($this->data['User']['password_confirm']);
+        }
+
+        return true;
+    }
+
+//    public function beforeSave($options = array())
+//    {
+//        if (isset($this->data[$this->alias]['password'])) {
+//            $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+//        }
+//        return true;
+//    }
 
 }
 

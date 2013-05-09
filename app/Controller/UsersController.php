@@ -24,7 +24,7 @@ class UsersController extends AppController
     {
         $user = $this->User->read(null, $id);
         if ($user) {
-            $this->set("users", $user['Users']);
+            $this->set("user", $user['User']);
         }
         else {
             $this->render('/Errors/notFound');
@@ -58,6 +58,12 @@ class UsersController extends AppController
             else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
+        }
+        else {
+            $this->loadModel('Country');
+            $this->set('countryList', $this->Country->find('list', array(
+                'fields' => array('name','description')
+            )));
         }
     }
 

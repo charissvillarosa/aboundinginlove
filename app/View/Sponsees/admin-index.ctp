@@ -27,7 +27,12 @@
                 <tr>
                     <td><?php echo $ctr; ?>
                     <td><?php echo $sponsee['firstname'] .' '. $sponsee['middlename'] .' '. $sponsee['lastname'] ?></td>
-                    <td><?php echo $sponsee['address'] ?></td>
+                    <td>
+                        <?php 
+                            $add = $sponsee['address'];
+                            echo $this->Text->truncate($add, 20, array('exact' => false));
+                        ?>
+                    </td>
                     <td><?php echo $sponsee['country'] ?></td>
                     <td>
                         <?php 

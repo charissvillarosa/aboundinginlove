@@ -1,5 +1,5 @@
 <div class="logincontent">
-    <div class="pull-left span6">
+    <div class="pull-left span5">
         <p>
             <?php echo $this->Html->image('smalllogo.png', array('alt' => 'logo')); ?>
             <b class="fontcolor1 fontsize2">Lorem ipsum dolor sit</b>
@@ -32,7 +32,8 @@
             <?php
             echo $this->Form->input('username');
             echo $this->Form->input('password');
-            echo $this->Form->input('confirmpassword');
+            echo $this->Form->input('password_confirm', array('type' => 'password'));
+            echo $this->Form->input('email');
             echo $this->Form->input('role', array('type'=>'hidden', 'value'=>'user'));
             ?>
         </fieldset>

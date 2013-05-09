@@ -31,7 +31,12 @@
                     <td><?php echo $user['created'] ?></td>
                     <td><?php echo $user['modified'] ?></td>
                     <td><?php echo $user['firstname'].' '.$user['middlename'].' '.$user['lastname'] ?></td>
-                    <td><?php echo $user['address'] ?></td>
+                    <td>
+                        <?php 
+                            $add = $user['address'];
+                            echo $this->Text->truncate($add, 50, array('exact' => false));
+                        ?>
+                    </td>
                     <td><?php echo $user['country'] ?></td>
                     <td>
                        <i><?php echo $this->Html->link('', array('controller' => 'users', 'action' => 'edit', $user['id']), array('class' => 'icon-edit')); ?></i>
