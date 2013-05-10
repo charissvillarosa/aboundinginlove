@@ -79,6 +79,11 @@ class UsersController extends AppController
                 throw new NotFoundException(__('Invalid input'));
             }
             $this->request->data = $user;
+            //country list
+            $this->loadModel('Country');
+            $this->set('countryList', $this->Country->find('list', array(
+                'fields' => array('name','description')
+            )));
         }
         else {
             if ($this->User->save($this->request->data)) {
@@ -103,13 +108,11 @@ class UsersController extends AppController
         $this->layout = 'login';
 
         if ($this->request->is('post')) {
-            if ($this->request->is('post')) {
-                if ($this->Auth->login()) {
-                    $this->redirect($this->Auth->redirect());
-                }
-                else {
-                    $this->Session->setFlash(__('Invalid username or password, try again'));
-                }
+            if ($this->Auth->login()) {
+                $this->redirect($this->Auth->redirect());
+            }
+            else {
+                $this->Session->setFlash(__('Invalid username or password, try again'));
             }
         }
     }

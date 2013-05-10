@@ -62,6 +62,13 @@ class SponseesController extends AppController
                 $this->Session->setFlash('Unable to add a new record.');
             }
         }
+        else {
+            //country list
+            $this->loadModel('Country');
+            $this->set('countryList', $this->Country->find('list', array(
+                'fields' => array('name','description')
+            )));
+        }
     }
     
     public function edit($id = null){
@@ -76,6 +83,12 @@ class SponseesController extends AppController
                 throw new NotFoundException(__('Invalid input'));
             }
             $this->request->data = $sponsee;
+            
+            //country list
+            $this->loadModel('Country');
+            $this->set('countryList', $this->Country->find('list', array(
+                'fields' => array('name','description')
+            )));
         }
         else {
             if ($this->Sponsee->save($this->request->data)) {

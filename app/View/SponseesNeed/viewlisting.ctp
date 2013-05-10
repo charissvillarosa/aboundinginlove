@@ -6,14 +6,8 @@
         <table class="leftmargin1 table table-hover table-bordered">
             <tr>
                 <th>No.</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Country</th>
-                <th>Map Location</th>
-                <th>Information / Biography</th>
-                <th>Birtd Date</th>
-                <th>Primary Id</th>
-                <th>View Sponsee Needs</th>
+                <th>Category</th>
+                <th>Needs</th>
                 <th>Edit</th>
                 <th>View</th>
                 <th>Delete</th>
@@ -22,7 +16,7 @@
             <?php
             $ctr = 1;
             
-            foreach ($sponseeList as $item) :
+            foreach ($sponseesneed as $item) :
                 $sponsee = $item['Sponsee'];
                 ?>
                 <tr>
@@ -51,7 +45,7 @@
                     <td><?php echo $sponsee['birthdate'] ?></td>
                     <td><?php echo $sponsee['primaryimage'] ?></td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'sponseesneed', 'action' => 'viewlisting', $sponseesneed['id']), array('class' => 'icon-list')); ?></i>
+                        <i><?php echo $this->Html->link('', array('controller' => 'sponseesneed', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-list')); ?></i>
                     </td>
                     <td>
                        <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'edit', $sponsee['id']), array('class' => 'icon-edit')); ?></i>

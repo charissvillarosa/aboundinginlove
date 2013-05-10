@@ -36,7 +36,7 @@ class User extends AppModel
         ),
         'password' => array(
             'min' => array(
-                'rule' => array('minLength', 6),
+                'rule' => array("notEmpty"),
                 'message' => 'Password must be at least 6 characters.'
             ),
             'required' => array(
@@ -59,7 +59,7 @@ class User extends AppModel
 
     function validatePasswdConfirm($data)
     {
-        if ($this->data['User']['password'] !== $data['password_confirm']) {
+        if ($this->data[$this->alias]['password'] !== $data['password_confirm']) {
             return false;
         }
         return true;
@@ -67,13 +67,13 @@ class User extends AppModel
 
     function beforeSave()
     {
-        if (isset($this->data['User']['password'])) {
-            $this->data['User']['password'] = Security::hash($this->data['User']['password'], null, true);
-            unset($this->data['User']['password']);
+        if (isset($this->data[$this->alias]['password'])) {
+            $this->data[$this->alias]['password'] = Security::hash($this->data[$this->alias]['password'], null, true);
+            unset($this->data[$this->alias]['password']);
         }
 
-        if (isset($this->data['User']['password_confirm'])) {
-            unset($this->data['User']['password_confirm']);
+        if (isset($this->data[$this->alias]['password_confirm'])) {
+            unset($this->data[$this->alias]['password_confirm']);
         }
 
         return true;
