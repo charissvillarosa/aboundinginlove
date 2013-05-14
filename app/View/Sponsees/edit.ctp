@@ -11,8 +11,16 @@
                     <?php echo $this->Form->create('Sponsee'); ?>
                     <div class="pull-left">
                         <?php
-                        $imageURl = 'sponsees/nophoto.jpg';
-                        $attrs = array('alt' => '', 'width' => '250', 'class' => 'img-polaroid');
+                        $imageURl;
+                        $imgId = $this->data['Sponsee']['primaryimage'];
+                        
+                        if ($imgId) {
+                            $imageURl = array('controller' => 'sponseeimages', 'action' => 'view', $imgId);
+                        } else {
+                            $imageURl = 'sponsees/nophoto.jpg';
+                        }
+                        
+                        $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
                         echo $this->Html->image($imageURl, $attrs);
                         ?>
                     </div>
@@ -21,7 +29,7 @@
                     echo '<div class="pull-left">' . $this->Form->input('middlename', array('class' => 'span2')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('lastname', array('class' => 'span2')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('address', array('class' => 'span6')) . '</div>';
-                    echo '<div class="pull-left">' . $this->Form->input('Country', array('type'=>'select','options'=>$countryList)) . '</div>';
+                    echo '<div class="pull-left">' . $this->Form->input('country', array('type'=>'select','options'=>$countryList)) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('maplocation', array('class' => 'span9')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('information', array('class' => 'span9', 'rows' => '10')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('birthdate', array('class' => 'span3', 'maxYear' => date('Y'), 'minYear' => 1950)) . '</div>';

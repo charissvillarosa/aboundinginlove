@@ -32,9 +32,8 @@ class Sponsee extends AppModel
         ),
         "country" => array(
             "valid" => array(
-                "rule" => array("inList", array("country")),
-                "message" => "A country is required",
-                "allowEmpty" => false
+                "rule" => array("notEmpty"),
+                "message" => "A country is required"
             )
         ),
         "maplocation" => array(),

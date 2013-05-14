@@ -14,7 +14,7 @@
                     echo '<div class="pull-left">' . $this->Form->input('middlename', array('class' => 'span3')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('lastname', array('class' => 'span3')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('address', array('class' => 'span6')) . '</div>';
-                    echo '<div class="pull-left">' . $this->Form->input('Country', array('type'=>'select','options'=>$countryList)) . '</div>';
+                    echo '<div class="pull-left">' . $this->Form->input('country', array('type'=>'select','options'=>$countryList)) . '</div>';
                     echo '<div class="pull-left">' .$this->Form->input('username', array('class' => 'span3')) . '</div>';
                     echo '<div class="pull-left">' .$this->Form->input('password', array('class' => 'span3')) . '</div>';
                     echo '<div class="pull-left">' .$this->Form->input('confirmpassword', array('class' => 'span3')) . '</div>';
