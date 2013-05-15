@@ -48,14 +48,56 @@
                             <?php echo $sponsee['information']; ?>
                         </p>
                         <h4 class="fontcolor1 topmargin2">Needs</h4>
-                        <hr>
-                        <ul class="leftmargin2">
-                            <li>1,000 monthly for basic educational needs and food</li>
-                            <li>2,000 for new dental work</li>
-                            <li>1,500 for medical assistance/check up</li>
-                            <li>500 for clothing allowance</li>
-                            <li>500 for transportation allowance</li>
-                        </ul>
+                        <?php
+                            
+                            if(empty($sponseeneeds)){
+                              echo "<div class='alert alert-info'>
+                                <h4>Not yet specified.</h4> 
+                                <p class='topmargin1'>To add, just click the add button below.</p>";
+                                echo $this->Html->link('Add Sponsee Needs', array('controller' => 'sponseeneeds', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-big'));
+                              echo "</div>";
+                            }
+                            else {
+                                $ctr = 1;
+                                $prevCat = 0;
+                                echo "<table class='table table-hover table-bordered'>";
+                                    foreach ($sponseeneeds as $item) :
+                                        $need = $item['SponseeNeeds'];
+                                        $category = $item['SponseeNeeds'];
+
+                                        if ($prevCat != $category['id']) : ?>
+                                            <tr>
+                                                <th bgcolor="#eef6fa" colspan="9">
+                                                    <?php echo $category['description'] ?>
+                                                </th>
+                                            </tr
+                                            <tr>
+                                                <td bgcolor="#f9f9f9">No.</td>
+                                                <td bgcolor="#f9f9f9">Description</td>
+                                                <td bgcolor="#f9f9f9">Needed Amount</td>
+                                                <td bgcolor="#f9f9f9">Donated Amount</td>
+                                                <td bgcolor="#f9f9f9">Added By</td>
+                                                <td bgcolor="#f9f9f9">Date Added</td>
+                                                <td bgcolor="#f9f9f9">Date Modified</td>
+                                            </tr>
+                                        <?php 
+                                        $prevCat = $category['id'];
+                                        endif; 
+                                        ?>
+                                        <tr>
+                                            <td bgcolor="#fff"><?php echo $ctr.'.'; ?></td>
+                                            <td bgcolor="#fff"><?php echo $need['description'] ?></td>
+                                            <td bgcolor="#fff"><?php echo $need['neededamount'] ?></td>
+                                            <td bgcolor="#fff"><?php echo $need['donatedamount'] ?></td>
+                                            <td bgcolor="#fff"><?php echo $need['added_by'] ?></td>
+                                            <td bgcolor="#fff"><?php echo $need['created'] ?></td>
+                                            <td bgcolor="#fff"><?php echo $need['modified'] ?></td>
+                                        </tr>
+                                        <?php
+                                    $ctr++;
+                                    endforeach;
+                               echo "</table>";
+                            }?>
                     </div>
                 </div>
             </div>

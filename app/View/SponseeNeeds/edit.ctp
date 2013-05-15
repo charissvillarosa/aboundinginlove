@@ -6,8 +6,7 @@
         <div style="background:#f9f9f9;" class="pull-left well leftmargin1 topmargin1 span10">
             <h4 class="fontcolor1">
                 <?php
-                $sponsee = $sponsee['Sponsee'];
-                echo __('Add New ' . $sponsee['firstname'] . " " . $sponsee['middlename'] . " " . $sponsee['lastname'] . ' Needs');
+                echo __('Edit Sponsee Need');
                 ?>
             </h4>
             <hr>
@@ -32,7 +31,7 @@
                         <?php echo $this->Form->input('neededamount', array('label' => 'Needed Amount')) ?>
                     </div>
                 </fieldset>
-                <?php echo $this->Form->end('Save') ?>
+                <?php echo $this->Form->end('Save Changes') ?>
             </div>
         </div>
     </div>

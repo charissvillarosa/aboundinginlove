@@ -2,13 +2,16 @@
     <div class="span11 margin3">
         <div class="pull-left bottomargin2 leftmargin1">
             <?php
-            $sponsee = $sponseelist['Sponsee'];
-            echo "<h4 class='fontcolor1'>Listing of ".$sponsee['firstname']." ".$sponsee['middlename']." ".$sponsee['lastname']."'s Needs</h4>"
+            $sponsee = $sponsee['Sponsee'];
+            echo "<h4 class='fontcolor1'>".$sponsee['firstname']." ".$sponsee['middlename']." ".$sponsee['lastname']." List of Needs</h4>"
             ?>
         </div>
         <div class="pull-right bottomargin2">
-            <?php echo $this->Html->link('Add New Record', array('action' => 'add'), array('class' => 'btn btn-info btn-small')); ?>
+            <?php echo $this->Html->link('Add New Record', array('action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-small')); ?>
             <?php echo $this->Html->link('Go back to Sponsee List', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-info btn-small')); ?>
+        </div>
+        <div class="leftmargin1">
+            <?php echo $this->Session->flash(); ?>
         </div>
         <table class="leftmargin1 table table-hover table-bordered">
             <?php
@@ -32,7 +35,7 @@
                         <td bgcolor="#f9f9f9">Donated Amount</td>
                         <td bgcolor="#f9f9f9">Added By</td>
                         <td bgcolor="#f9f9f9">Date Added</td>
-                        <td bgcolor="#f9f9f9">View</td>
+                        <td bgcolor="#f9f9f9">Date Modified</td>
                         <td bgcolor="#f9f9f9">Edit</td>
                         <td bgcolor="#f9f9f9">Delete</td>
                     </tr>
@@ -46,18 +49,16 @@
                     <td bgcolor="#fff"><?php echo $need['neededamount'] ?></td>
                     <td bgcolor="#fff"><?php echo $need['donatedamount'] ?></td>
                     <td bgcolor="#fff"><?php echo $need['added_by'] ?></td>
-                    <td bgcolor="#fff"><?php echo $need['date_added'] ?></td>
+                    <td bgcolor="#fff"><?php echo $need['created'] ?></td>
+                    <td bgcolor="#fff"><?php echo $need['modified'] ?></td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'sponseeneeds', 'action' => 'view', $need['id']), array('class' => 'icon-list')); ?></i>
-                    </td>
-                    <td>
-                       <i><?php echo $this->Html->link('', array('controller' => 'sponseeneeds', 'action' => 'edit', $need['id']), array('class' => 'icon-edit')); ?></i>
+                       <i><?php echo $this->Html->link('', array('controller' => 'sponseeneeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit')); ?></i>
                     </td>
                     <td>
                         <i>
                         <?php echo $this->Html->link(
                             '',
-                            array('action' => 'delete', $need['id']),
+                            array('action' => 'delete', $need['id'], $need['sponsee_id']),
                             array('class' => 'icon-trash'),
                             'Are you sure you want to delete this item?');
                         ?>

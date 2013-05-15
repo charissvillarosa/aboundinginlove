@@ -46,6 +46,15 @@ class SponseesController extends AppController
         $sponsee = $this->Sponsee->read(null, $id);
         if ($sponsee) {
             $this->set("sponsee", $sponsee['Sponsee']);
+        
+            //to get sponsee needs
+            $this->loadModel('SponseeNeeds');
+            $this->SponseeNeeds->id = $id;
+            $sponseeneeds = $this->SponseeNeeds->find('all', array(
+                'conditions' => array('SponseeNeeds.sponsee_id' => $id),
+                'order' => array('SponseeNeeds.category_id')
+            ));
+            $this->set("sponseeneeds", $sponseeneeds);
         }
         else {
             $this->render('/Errors/notFound');
@@ -62,13 +71,12 @@ class SponseesController extends AppController
                 $this->Session->setFlash('Unable to add a new record.');
             }
         }
-        else {
-            //country list
-            $this->loadModel('Country');
-            $this->set('countryList', $this->Country->find('list', array(
-                'fields' => array('name','description')
-            )));
-        }
+
+        //country list
+        $this->loadModel('Country');
+        $this->set('countryList', $this->Country->find('list', array(
+            'fields' => array('name','description')
+        )));
     }
     
     public function edit($id = null){
