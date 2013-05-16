@@ -30,13 +30,23 @@
                     </div>
                     <hr/>
                     <div>
-                        <p><b class="fontcolor1 fontsize1">45%</b> raised</p>
-                        <div class="progress">
-                            <div class="bar" style="width: 45%"></div>
-                        </div>
-                        <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                        <div class="pull-right"><a class="btn btn-info btn-small">Donate</a></div>
-                        <div class="clearfix"></div>
+                        <?php 
+                            $totalneededamount = 0;
+                            $totaldonatedamount = 0;
+                            $percentage = 0;
+                            foreach ($sponseeneeds as $item) :
+                                $need = $item['SponseeNeeds'];
+                                $totalneededamount = $totalneededamount + $need['neededamount'];
+                                $totaldonatedamount = $totaldonatedamount + $need['donatedamount'];
+                            endforeach;
+                            $percentage = ($totaldonatedamount/$totalneededamount)*100;
+                        ?>
+                        <?php
+                            echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($percentage)."</b> raised</div>";
+                            echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage)."'></div></div>";
+                            echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totalneededamount, 'USD')."</b> = Donation needed</div>";
+                            echo $this->Html->link('Donate', array('controller' => 'donate', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info'));
+                        ?>
                     </div>
                     <hr/>
                 </div>
@@ -49,7 +59,6 @@
                         </p>
                         <h4 class="fontcolor1 topmargin2">Needs</h4>
                         <?php
-                            
                             if(empty($sponseeneeds)){
                               echo "<div class='alert alert-info'>
                                 <h4>Not yet specified.</h4> 
@@ -64,7 +73,7 @@
                                     foreach ($sponseeneeds as $item) :
                                         $need = $item['SponseeNeeds'];
                                         $category = $item['SponseeNeeds'];
-
+                                        
                                         if ($prevCat != $category['id']) : ?>
                                             <tr>
                                                 <th bgcolor="#eef6fa" colspan="9">

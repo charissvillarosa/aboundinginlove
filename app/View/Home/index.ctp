@@ -133,19 +133,29 @@
 
                             </div>
                             <div class="rightfloat span2 verticalline">
-                                <p><b class="fontcolor1 fontsize1">45%</b> raised</p>
-                                <div class="progress">
-                                    <div class="bar" style="width: 45%"></div>
-                                </div>
-                                <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                                <div class="rightfloat"><a class="btn btn-info btn-small">Donate</a></div>
+                                <?php 
+                                    $totalneededamount = 0;
+                                    $totaldonatedamount = 0;
+                                    $percentage = 0;
+                                    foreach ($sponseeneeds as $item) :
+                                        $need = $item['SponseeNeeds'];
+                                        $totalneededamount = $totalneededamount + $need['neededamount'];
+                                        $totaldonatedamount = $totaldonatedamount + $need['donatedamount'];
+                                        $percentage = ($totaldonatedamount/$totalneededamount)*100;
+                                    endforeach;
+                                    echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($percentage)."</b> raised</div>";
+                                    echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage)."'></div></div>";
+                                    echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totalneededamount, 'USD')."</b> = Donation needed</div>";
+                                    echo $this->Html->link('Donate', array('controller' => 'donate', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info'));
+                                ?>
+                                <?php
+                                    
+                                ?>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
-
-                <div class="clearfix"></div>
-                
+                <div class="clearfix"></div>              
                 <div class="margin1">
                     <?php echo $this->Html->link('View more', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
                 </div>

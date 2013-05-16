@@ -41,7 +41,9 @@
                             <div class="bar" style="width: 45%"></div>
                         </div>
                         <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                        <div class="rightfloat"><a class="btn btn-info btn-small">Donate</a></div>
+                        <div class="rightfloat">
+                            <?php echo $this->Html->link('Donate', array('controller' => 'donate', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info')); ?>
+                        </div>
                     </div>
                 </div>
             </div>
