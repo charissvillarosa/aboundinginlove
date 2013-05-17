@@ -9,7 +9,10 @@ class SponseesController extends AppController
     var $layout = 'document';
 
     var $paginate = array(
-        'limit' => 5
+        'SponseeListingItem' => array(
+            'limit' => 3,
+            'order' => array('SponseeListingItem.id' => 'desc')
+        )
     );
 
     public function beforeFilter()
@@ -30,7 +33,8 @@ class SponseesController extends AppController
     
     public function index()
     {
-        $this->set("sponseeList", $this->paginate());
+        $this->loadModel('SponseeListingItem');
+        $this->set("sponseeList", $this->paginate('SponseeListingItem'));
 
         $user = $this->Session->read('Auth.User');
         if ($user && $user['role'] == 'admin') {

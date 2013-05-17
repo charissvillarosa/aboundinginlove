@@ -39,13 +39,19 @@
                                 $totalneededamount = $totalneededamount + $need['neededamount'];
                                 $totaldonatedamount = $totaldonatedamount + $need['donatedamount'];
                             endforeach;
-                            $percentage = ($totaldonatedamount/$totalneededamount)*100;
+                            if($totaldonatedamount == 0 or $totalneededamount == 0){
+                                $percentage = 0;
+                            }else {
+                                $percentage = ($totaldonatedamount/$totalneededamount)*100;
+                            }
+                            
                         ?>
                         <?php
                             echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($percentage)."</b> raised</div>";
                             echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage)."'></div></div>";
-                            echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totalneededamount, 'USD')."</b> = Donation needed</div>";
-                            echo $this->Html->link('Donate', array('controller' => 'donate', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info'));
+                            echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totalneededamount, 'USD')."</b> = Needed</div>";
+                            echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totaldonatedamount, 'USD')."</b> = Donated</div>";
+                            echo $this->Html->link('Donate', array('controller' => 'donations', 'action' => 'index', $sponsee['id']), array('class' => 'btn btn-info'));
                         ?>
                     </div>
                     <hr/>
@@ -60,12 +66,21 @@
                         <h4 class="fontcolor1 topmargin2">Needs</h4>
                         <?php
                             if(empty($sponseeneeds)){
-                              echo "<div class='alert alert-info'>
-                                <h4>Not yet specified.</h4> 
-                                <p class='topmargin1'>To add, just click the add button below.</p>";
-                                echo $this->Html->link('Add Sponsee Needs', array('controller' => 'sponseeneeds', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-big'));
-                              echo "</div>";
-                            }
+                                
+                                $user = $this->Session->read('Auth.User');
+                                $controller = $this->name;
+
+                                if ($user && $user['role'] == 'admin'){
+                                    echo "<div class='alert alert-info'>
+                                        <h4>Not yet specified.</h4> 
+                                        <p class='topmargin1'>To add, just click the add button below.</p>";
+                                        echo $this->Html->link('Add Sponsee Needs', array('controller' => 'sponseeneeds', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-big'));
+                                    echo "</div>";
+                                }
+                                else {
+                                    echo "<div class='alert alert-info'><h4>Not yet specified.</h4></div>";
+                                }
+                         }
                             else {
                                 $ctr = 1;
                                 $prevCat = 0;

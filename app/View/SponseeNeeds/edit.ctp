@@ -25,7 +25,7 @@
                 <fieldset>
                     <!--category dropdown / search-->
                     <div>
-                        <?php echo $this->Form->input('category_id', array('type' => 'select', 'label' => 'Category', 'options' => $categories)) ?>
+                        <?php echo $this->Form->input('category_id', array('type' => 'select', 'label' => 'Category', 'class' => 'topmargin4', 'options' => $categories)) ?>
                         <button class="btn btn-medium btn-info" type="button" title="Add New category"><i class="icon-plus icon-white"></i></button>
                         <?php echo $this->Form->input('description', array('label' => 'Description', 'style' => 'width:400px')) ?>
                         <?php echo $this->Form->input('neededamount', array('label' => 'Needed Amount')) ?>

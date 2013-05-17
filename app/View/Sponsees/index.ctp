@@ -3,19 +3,20 @@
         <h4 class="fontcolor1 leftmargin1">Sponsor a child today</h4>
         <?php
         foreach ($sponseeList as $item) :
-            $sponsee = $item['Sponsee'];
+            $sponsee = $item['SponseeListingItem'];
             ?>
             <div class="pull-left topmargin1 leftmargin1 box">
                 <div class="pull-left rightmargin1">
                     <?php
-                    $imageURl;
-                    if ($sponsee['primaryimage']) {
-                        $imageURl = array('controller' => 'sponseeimages', 'action' => 'view', $sponsee['primaryimage']);
-                    } else {
-                        $imageURl = 'sponsees/nophoto.jpg';
-                    }
-                    $attrs = array('alt' => '', 'width' => '170', 'class' => 'img-polaroid');
-                    echo $this->Html->image($imageURl, $attrs);
+                        $imageURl;
+                        if ($sponsee['primaryimage']) {
+                            $imageURl = array('controller' => 'sponseeimages', 'action' => 'view', $sponsee['primaryimage']);
+                        }
+                        else {
+                            $imageURl = 'sponsees/nophoto.jpg';
+                        }
+                        $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
+                        echo $this->Html->image($imageURl, $attrs);
                     ?>
                 </div>
                 <div class="pull-left">
@@ -32,18 +33,16 @@
                             echo $this->Text->truncate($info, 150, array('exact' => false));
                             ?>
                         </p>
-                        <?php echo $this->Html->link('Read more', array('action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-small')); ?>
-
+                        <?php echo $this->Html->link('Read more', array('controller' => 'sponsees', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-small')); ?>
                     </div>
                     <div class="rightfloat span3 verticalline">
-                        <p><b class="fontcolor1 fontsize1">45%</b> raised</p>
-                        <div class="progress">
-                            <div class="bar" style="width: 45%"></div>
-                        </div>
-                        <p><b class="fontcolor1">$ 1,000.00</b> - Donation needed</p>
-                        <div class="rightfloat">
-                            <?php echo $this->Html->link('Donate', array('controller' => 'donate', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info')); ?>
-                        </div>
+                        <?php 
+                            echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
+                            echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
+                            echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
+                            echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
+                            echo $this->Html->link('Donate', array('controller' => 'donations', 'action' => 'index', $sponsee['id']), array('class' => 'btn btn-info'));
+                        ?>
                     </div>
                 </div>
             </div>

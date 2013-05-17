@@ -23,7 +23,7 @@
             $ctr = 1;
             
             foreach ($sponseeList as $item) :
-                $sponsee = $item['Sponsee'];
+                $sponsee = $item['SponseeListingItem'];
                 ?>
                 <tr>
                     <td><?php echo $ctr; ?>

@@ -99,7 +99,7 @@
                 <hr>
                 <?php
                 foreach ($sponseeList as $item) :
-                    $sponsee = $item['Sponsee'];
+                    $sponsee = $item['SponseeListingItem'];
                     ?>
                     <div class="pull-left topmargin1 box">
                         <div class="pull-left">
@@ -130,26 +130,14 @@
                                     ?>
                                 </p>
                                 <?php echo $this->Html->link('Read more', array('controller' => 'sponsees', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-small')); ?>
-
                             </div>
                             <div class="rightfloat span2 verticalline">
                                 <?php 
-                                    $totalneededamount = 0;
-                                    $totaldonatedamount = 0;
-                                    $percentage = 0;
-                                    foreach ($sponseeneeds as $item) :
-                                        $need = $item['SponseeNeeds'];
-                                        $totalneededamount = $totalneededamount + $need['neededamount'];
-                                        $totaldonatedamount = $totaldonatedamount + $need['donatedamount'];
-                                        $percentage = ($totaldonatedamount/$totalneededamount)*100;
-                                    endforeach;
-                                    echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($percentage)."</b> raised</div>";
-                                    echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage)."'></div></div>";
-                                    echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totalneededamount, 'USD')."</b> = Donation needed</div>";
-                                    echo $this->Html->link('Donate', array('controller' => 'donate', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info'));
-                                ?>
-                                <?php
-                                    
+                                    echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
+                                    echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
+                                    echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
+                                    echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
+                                    echo $this->Html->link('Donate', array('controller' => 'donations', 'action' => 'index', $sponsee['id']), array('class' => 'btn btn-info'));
                                 ?>
                             </div>
                         </div>

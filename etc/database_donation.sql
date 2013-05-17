@@ -18,7 +18,7 @@ USE `donation`;
 /*Table structure for table `countries` */
 
 CREATE TABLE `countries` (
-  `name` varchar(50) NOT NULL,
+  `name` varchar(10) NOT NULL,
   `description` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -27,7 +27,20 @@ CREATE TABLE `countries` (
 
 LOCK TABLES `countries` WRITE;
 
-insert  into `countries`(`name`,`description`) values ('AF / AFG ','Afghanistan'),('AL / ALB ','Albania'),('DZ / DZA ','Algeria'),('AS / ASM ','American Samoa'),('AD / AND ','Andorra'),('AO / AGO ','Angola'),('AI / AIA ','Anguilla'),('AQ / ATA ','Antarctica'),('AG / ATG ','Antigua and Barbuda'),('AR / ARG ','Argentina'),('AM / ARM ','Armenia'),('AW / ABW ','Aruba'),('AU / AUS ','Australia'),('AT / AUT ','Austria'),('AZ / AZE ','Azerbaijan'),('BS / BHS ','Bahamas'),('BH / BHR ','Bahrain'),('BD / BGD ','Bangladesh'),('BB / BRB ','Barbados'),('BY / BLR ','Belarus'),('BE / BEL ','Belgium'),('BZ / BLZ ','Belize'),('BJ / BEN ','Benin'),('BM / BMU','Bermuda'),('BT / BTN ','Bhutan'),('BO / BOL ','Bolivia'),('BA / BIH ','Bosnia and Herzegovina'),('BW / BWA ','Botswana'),('BR / BRA ','Brazil'),('IO / IOT ','British Indian Ocean Territory'),('VG / VGB ','British Virgin Islands'),('BN / BRN ','Brunei'),('BG / BGR ','Bulgaria'),('BF / BFA ','Burkina Faso'),('MM / MMR ','Burma (Myanmar)'),('BI / BDI ','Burundi'),('KH / KHM ','Cambodia'),('CM / CMR ','Cameroon'),('CA / CAN ','Canada'),('CV / CPV ','Cape Verde'),('KY / CYM ','Cayman Islands'),('CF / CAF ','Central African Republic'),('TD / TCD ','Chad'),('CL / CHL ','Chile'),('CN / CHN ','China'),('CX / CXR ','Christmas Island'),('CC / CCK ','Cocos (Keeling) Islands'),('CO / COL ','Colombia'),('KM / COM ','Comoros'),('CK / COK ','Cook Islands'),('CR / CRC ','Costa Rica'),('HR / HRV ','Croatia'),('CU / CUB ','Cuba'),('CY / CYP ','Cyprus'),('CZ / CZE','Czech Republic'),('CD / COD ','Democratic Republic of the Congo'),('DK / DNK ','Denmark'),('DJ / DJI ','Djibouti'),('DM / DMA ','Dominica'),('DO / DOM ','Dominican Republic'),('EC / ECU ','Ecuador'),('EG / EGY ','Egypt'),('SV / SLV ','El Salvador'),('GQ / GNQ ','Equatorial Guinea'),('ER / ERI ','Eritrea'),('EE / EST ','Estonia'),('ET / ETH ','Ethiopia'),('FK / FLK ','Falkland Islands'),('FO / FRO ','Faroe Islands'),('FJ / FJI ','Fiji'),('FI / FIN ','Finland'),('FR / FRA ','France'),('PF / PYF ','French Polynesia'),('GA / GAB ','Gabon'),('GM / GMB','Gambia'),('GE / GEO ','Georgia'),('DE / DEU ','Germany'),('GH / GHA ','Ghana'),('GI / GIB ','Gibraltar'),('GR / GRC ','Greece'),('GL / GRL ','Greenland'),('GD / GRD ','Grenada'),('GU / GUM ','Guam'),('GT / GTM ','Guatemala'),('GN / GIN ','Guinea'),('GW / GNB ','Guinea-Bissau'),('GY / GUY ','Guyana'),('HT / HTI ','Haiti'),('VA / VAT ','Holy See (Vatican City)'),('HN / HND ','Honduras'),('HK / HKG ','Hong Kong'),('HU / HUN ','Hungary'),('IS / IS ','Iceland'),('IN / IND ','India'),('ID / IDN ','Indonesia'),('IR / IRN ','Iran'),('IQ / IRQ ','Iraq'),('IE / IRL ','Ireland'),('IM / IMN ','Isle of Man'),('IL / ISR ','Israel'),('IT / ITA ','Italy'),('CI / CIV ','Ivory Coast'),('JM / JAM ','Jamaica'),('JP / JPN ','Japan'),('JE / JEY ','Jersey'),('JO / JOR ','Jordan'),('KZ / KAZ ','Kazakhstan'),('KE / KEN ','Kenya'),('KI / KIR ','Kiribati'),('KW / KWT ','Kuwait'),('KG / KGZ ','Kyrgyzstan'),('LA / LAO ','Laos'),('LV / LVA ','Latvia'),('LB / LBN ','Lebanon'),('LS / LSO ','Lesotho'),('LR / LBR ','Liberia'),('LY / LBY','Libya'),('LI / LIE ','Liechtenstein'),('LT / LTU ','Lithuania'),('LU / LUX ','Luxembourg'),('MO / MAC ','Macau'),('MK / MKD ','Macedonia'),('MG / MDG ','Madagascar'),('MW / MWI ','Malawi'),('MY / MYS ','Malaysia'),('MV / MDV ','Maldives'),('ML / MLI ','Mali'),('MT / MLT ','Malta'),('MH / MHL ','Marshall Islands'),('MR / MRT ','Mauritania'),('MU / MUS','Mauritius'),('YT / MYT ','Mayotte'),('MX / MEX ','Mexico'),('FM / FSM ','Micronesia'),('MD / MDA ','Moldova'),('MC / MCO ','Monaco'),('MN / MNG ','Mongolia'),('ME / MNE ','Montenegro'),('MS / MSR ','Montserrat'),('MA / MAR ','Morocco'),('MZ / MOZ ','Mozambique'),('NA / NAM ','Namibia'),('NR / NRU ','Nauru'),('NP / NPL ','Nepal'),('NL / NLD ','Netherlands'),('AN / ANT ','Netherlands Antilles'),('NC / NCL ','New Caledonia'),('NZ / NZL ','New Zealand'),('NI / NIC ','Nicaragua'),('NE / NER ','Niger'),('NG / NGA ','Nigeria'),('NU / NIU','Niue'),('NFK ','Norfolk Island'),('KP / PRK ','North Korea'),('MP / MNP ','Northern Mariana Islands'),('NO / NOR ','Norway'),('OM / OMN ','Oman'),('PK / PAK ','Pakistan'),('PW / PLW ','Palau'),('PA / PAN ','Panama'),('PG / PNG','Papua New Guinea'),('PY / PRY ','Paraguay'),('PE / PER ','Peru'),('PH / PHL ','Philippines'),('PN / PCN ','Pitcairn Islands'),('PL / POL ','Poland'),('PT / PRT ','Portugal'),('PR / PRI ','Puerto Rico'),('QA / QAT ','Qatar'),('CG / COG ','Republic of the Congo'),('RO / ROU ','Romania'),('RU / RUS ','Russia'),('RW / RWA ','Rwanda'),('BL / BLM ','Saint Barthelemy'),('SH / SHN ','Saint Helena'),('KN / KNA ','Saint Kitts and Nevis'),('LC / LCA ','Saint Lucia'),('MF / MAF ','Saint Martin'),('PM / SPM ','Saint Pierre and Miquelon'),('VC / VCT ','Saint Vincent and the Grenadines'),('WS / WSM ','Samoa'),('SM / SMR ','San Marino'),('ST / STP ','Sao Tome and Principe'),('SA / SAU ','Saudi Arabia'),('SN / SEN ','Senegal'),('RS / SRB ','Serbia'),('SC / SYC ','Seychelles'),('SL / SLE ','Sierra Leone'),('SG / SGP ','Singapore'),('SK / SVK ','Slovakia'),('SI / SVN ','Slovenia'),('SB / SLB','Solomon Islands'),('SO / SOM ','Somalia'),('ZA / ZAF ','South Africa'),('KR / KOR ','South Korea'),('South Korea','Spain'),('LK / LKA ','Sri Lanka'),('SD / SDN ','Sudan'),('SR / SUR ','Suriname'),('SJ / SJM ','Svalbard'),('SZ / SWZ ','Swaziland'),('SE / SWE ','Sweden'),('CH / CHE ','Switzerland'),('SY / SYR ','Syria'),('TW / TWN ','Taiwan'),('TJ / TJK ','Tajikistan'),('TZ / TZA ','Tanzania'),('TH / THA ','Thailand'),('TL / TLS ','Timor-Leste'),('TG / TGO ','Togo'),('TK / TKL ','Tokelau'),('TO / TON ','Tonga'),('TT / TTO ','Trinidad and Tobago'),('TN / TUN ','Tunisia'),('TR / TUR ','Turkey'),('TM / TKM ','Turkmenistan'),('TC / TCA ','Turks and Caicos Islands'),('TV / TUV ','Tuvalu'),('UG / UGA ','Uganda'),('UA / UKR ','Ukraine'),('AE / ARE ','United Arab Emirates'),('GB / GBR ','United Kingdom'),('US / USA ','United States'),('UY / URY ','Uruguay'),('VI / VIR ','US Virgin Islands'),('UZ / UZB ','Uzbekistan'),('VU / VUT ','Vanuatu'),('VE / VEN ','Venezuela'),('VN / VNM ','Vietnam'),('WF / WLF ','Wallis and Futuna'),('EH / ESH ','Western Sahara'),('YE / YEM ','Yemen'),('ZM / ZMB ','Zambia'),('ZW / ZWE','Zimbabwe');
+insert  into `countries`(`name`,`description`) values ('AF','Afghanistan'),('AL','Albania'),('DZ','Algeria'),('AS','American Samoa'),('AD','Andorra'),('AO','Angola'),('AI','Anguilla'),('AQ','Antarctica'),('AG','Antigua and Barbuda'),('AR','Argentina'),('AM','Armenia'),('AW','Aruba'),('AU','Australia'),('AT','Austria'),('AZ','Azerbaijan'),('BS','Bahamas'),('BH','Bahrain'),('BD','Bangladesh'),('BB','Barbados'),('BY','Belarus'),('BE','Belgium'),('BZ','Belize'),('BJ','Benin'),('BM','Bermuda'),('BT','Bhutan'),('BO','Bolivia'),('BA','Bosnia and Herzegovina'),('BW','Botswana'),('BR','Brazil'),('IO','British Indian Ocean Territory'),('VG','British Virgin Islands'),('BN','Brunei'),('BG','Bulgaria'),('BF','Burkina Faso'),('MM','Burma (Myanmar)'),('BI','Burundi'),('KH','Cambodia'),('CM','Cameroon'),('CA','Canada'),('CV','Cape Verde'),('KY','Cayman Islands'),('CF','Central African Republic'),('TD','Chad'),('CL','Chile'),('CN','China'),('CX','Christmas Island'),('CC','Cocos (Keeling) Islands'),('CO','Colombia'),('KM','Comoros'),('CK','Cook Islands'),('CR','Costa Rica'),('HR','Croatia'),('CU','Cuba'),('CY','Cyprus'),('CZ','Czech Republic'),('CD','Democratic Republic of the Congo'),('DK','Denmark'),('DJ','Djibouti'),('DM','Dominica'),('DO','Dominican Republic'),('EC','Ecuador'),('EG','Egypt'),('SV','El Salvador'),('GQ','Equatorial Guinea'),('ER','Eritrea'),('EE','Estonia'),('ET','Ethiopia'),('FK','Falkland Islands'),('FO','Faroe Islands'),('FJ','Fiji'),('FI','Finland'),('FR','France'),('PF','French Polynesia'),('GA','Gabon'),('GM','Gambia'),('GE','Georgia'),('DE','Germany'),('GH','Ghana'),('GI','Gibraltar'),('GR','Greece'),('GL','Greenland'),('GD','Grenada'),('GU','Guam'),('GT','Guatemala'),('GN','Guinea'),('GW','Guinea-Bissau'),('GY','Guyana'),('HT','Haiti'),('VA','Holy See (Vatican City)'),('HN','Honduras'),('HK','Hong Kong'),('HU','Hungary'),('IS','Iceland'),('IN','India'),('ID','Indonesia'),('IR','Iran'),('IQ','Iraq'),('IE','Ireland'),('IM','Isle of Man'),('IL','Israel'),('IT','Italy'),('CI','Ivory Coast'),('JM','Jamaica'),('JP','Japan'),('JE','Jersey'),('JO','Jordan'),('KZ','Kazakhstan'),('KE','Kenya'),('KI','Kiribati'),('KW','Kuwait'),('KG','Kyrgyzstan'),('LA','Laos'),('LV','Latvia'),('LB','Lebanon'),('LS','Lesotho'),('LR','Liberia'),('LY','Libya'),('LI','Liechtenstein'),('LT','Lithuania'),('LU','Luxembourg'),('MO','Macau'),('MK','Macedonia'),('MG','Madagascar'),('MW','Malawi'),('MY','Malaysia'),('MV','Maldives'),('ML','Mali'),('MT','Malta'),('MH','Marshall Islands'),('MR','Mauritania'),('MU','Mauritius'),('YT','Mayotte'),('MX','Mexico'),('FM','Micronesia'),('MD','Moldova'),('MC','Monaco'),('MN','Mongolia'),('ME','Montenegro'),('MS','Montserrat'),('MA','Morocco'),('MZ','Mozambique'),('NA','Namibia'),('NR','Nauru'),('NP','Nepal'),('NL','Netherlands'),('AN','Netherlands Antilles'),('NC','New Caledonia'),('NZ','New Zealand'),('NI','Nicaragua'),('NE','Niger'),('NG','Nigeria'),('NU','Niue'),('NF','Norfolk Island'),('KP','North Korea'),('MP','Northern Mariana Islands'),('NO','Norway'),('OM','Oman'),('PK','Pakistan'),('PW','Palau'),('PA','Panama'),('PG','Papua New Guinea'),('PY','Paraguay'),('PE','Peru'),('PH','Philippines'),('PN','Pitcairn Islands'),('PL','Poland'),('PT','Portugal'),('PR','Puerto Rico'),('QA','Qatar'),('CG','Republic of the Congo'),('RO','Romania'),('RU','Russia'),('RW','Rwanda'),('BL','Saint Barthelemy'),('SH','Saint Helena'),('KN','Saint Kitts and Nevis'),('LC','Saint Lucia'),('MF','Saint Martin'),('PM','Saint Pierre and Miquelon'),('VC','Saint Vincent and the Grenadines'),('WS','Samoa'),('SM','San Marino'),('ST','Sao Tome and Principe'),('SA','Saudi Arabia'),('SN','Senegal'),('RS','Serbia'),('SC','Seychelles'),('SL','Sierra Leone'),('SG','Singapore'),('SK','Slovakia'),('SI','Slovenia'),('SB','Solomon Islands'),('SO','Somalia'),('ZA','South Africa'),('KR','South Korea'),('South Kore','Spain'),('LK / LKA ','Sri Lanka'),('SD / SDN ','Sudan'),('SR / SUR ','Suriname'),('SJ / SJM ','Svalbard'),('SZ / SWZ ','Swaziland'),('SE / SWE ','Sweden'),('CH / CHE ','Switzerland'),('SY / SYR ','Syria'),('TW / TWN ','Taiwan'),('TJ / TJK ','Tajikistan'),('TZ / TZA ','Tanzania'),('TH / THA ','Thailand'),('TL / TLS ','Timor-Leste'),('TG / TGO ','Togo'),('TK / TKL ','Tokelau'),('TO / TON ','Tonga'),('TT / TTO ','Trinidad and Tobago'),('TN / TUN ','Tunisia'),('TR / TUR ','Turkey'),('TM / TKM ','Turkmenistan'),('TC / TCA ','Turks and Caicos Islands'),('TV / TUV ','Tuvalu'),('UG / UGA ','Uganda'),('UA / UKR ','Ukraine'),('AE / ARE ','United Arab Emirates'),('GB / GBR ','United Kingdom'),('US / USA ','United States'),('UY / URY ','Uruguay'),('VI / VIR ','US Virgin Islands'),('UZ / UZB ','Uzbekistan'),('VU / VUT ','Vanuatu'),('VE / VEN ','Venezuela'),('VN / VNM ','Vietnam'),('WF / WLF ','Wallis and Futuna'),('EH / ESH ','Western Sahara'),('YE / YEM ','Yemen'),('ZM / ZMB ','Zambia'),('ZW / ZWE','Zimbabwe');
+
+UNLOCK TABLES;
+
+/*Table structure for table `donations` */
+
+CREATE TABLE `donations` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `donations` */
+
+LOCK TABLES `donations` WRITE;
 
 UNLOCK TABLES;
 
@@ -70,19 +83,42 @@ insert  into `sponsee_images`(`id`,`sponsee_id`,`description`,`date_uploaded`,`i
 
 UNLOCK TABLES;
 
-/*Table structure for table `sponsee_needs_category` */
+/*Table structure for table `sponsee_need_categories` */
 
-CREATE TABLE `sponsee_needs_category` (
+CREATE TABLE `sponsee_need_categories` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
-/*Data for the table `sponsee_needs_category` */
+/*Data for the table `sponsee_need_categories` */
 
-LOCK TABLES `sponsee_needs_category` WRITE;
+LOCK TABLES `sponsee_need_categories` WRITE;
 
-insert  into `sponsee_needs_category`(`id`,`description`) values (1,'Education'),(2,'Health'),(3,'Operation Refinement'),(4,'Operation');
+insert  into `sponsee_need_categories`(`id`,`description`) values (1,'Education'),(2,'Health'),(3,'Operation Refinement'),(7,'etc.');
+
+UNLOCK TABLES;
+
+/*Table structure for table `sponsee_needs` */
+
+CREATE TABLE `sponsee_needs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sponsee_id` bigint(20) DEFAULT NULL,
+  `category_id` bigint(20) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `neededamount` decimal(10,2) DEFAULT NULL,
+  `donatedamount` decimal(10,2) DEFAULT NULL,
+  `added_by` varchar(100) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT NULL,
+  `modified` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
+
+/*Data for the table `sponsee_needs` */
+
+LOCK TABLES `sponsee_needs` WRITE;
+
+insert  into `sponsee_needs`(`id`,`sponsee_id`,`category_id`,`description`,`neededamount`,`donatedamount`,`added_by`,`created`,`modified`) values (1,1,1,'School tuition feeddfd','20000.00','1000.00','4',NULL,'2013-05-15 15:55:07'),(2,2,1,'Operation Fee','10000.00','5000.00','4',NULL,'2013-05-15 15:29:54'),(46,1,1,'fgfgfg','7000.00',NULL,'4','2013-05-15 15:56:17','2013-05-15 16:17:04'),(4,2,3,'Test','200.00','50.00',NULL,NULL,'2013-05-15 15:33:06'),(53,2,1,'School supplies','1000.00',NULL,'4','2013-05-16 13:58:31','2013-05-16 13:58:31'),(44,1,3,'fdf','555.00',NULL,'4','2013-05-15 15:39:50','2013-05-15 16:15:45'),(52,2,2,'School supplies','1000.00',NULL,'4','2013-05-16 13:58:31','2013-05-16 13:58:31');
 
 UNLOCK TABLES;
 
@@ -94,40 +130,19 @@ CREATE TABLE `sponsees` (
   `lastname` varchar(100) DEFAULT NULL,
   `middlename` varchar(100) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `country` varchar(5) DEFAULT NULL,
+  `country` varchar(10) DEFAULT NULL,
   `maplocation` varchar(500) DEFAULT NULL,
   `information` text,
   `birthdate` date DEFAULT NULL,
   `primaryimage` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sponsees` */
 
 LOCK TABLES `sponsees` WRITE;
 
-insert  into `sponsees`(`id`,`firstname`,`lastname`,`middlename`,`address`,`country`,`maplocation`,`information`,`birthdate`,`primaryimage`) values (1,'SAM','CANETE','dsdsd','Philippines','count','http://wikimapia.org/26179511/Pooc','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus vitae lacus ultrices gravida. Nunc non dui nibh. Aliquam erat volutpat. Nunc eget est orci. Nunc sollicitudin nunc mauris, nec gravida justo. Cras in diam eleifend urna fringilla mattis. Praesent turpis sapien, lacinia sed tempor quis, gravida non nibh. Mauris a dui a quam placerat pharetra in vel sapien.\r\n\r\nPellentesque erat nulla, rutrum vitae dictum at, accumsan id magna. Vestibulum lacinia ante vitae est condimentum condimentum. Curabitur sodales orci sed tortor facilisis semper non quis leo. Duis tempus sapien consectetur felis varius in ullamcorper odio lacinia. Cras dui tortor, bibendum sollicitudin mollis nec, pulvinar vel dolor. Morbi blandit malesuada pulvinar. Donec tincidunt risus nec arcu tempor ac semper leo lacinia. Cras feugiat nulla in quam accumsan nec aliquam tortor vulputate. Nunc pharetra eleifend lacus, sed dictum justo tristique sit amet. Curabitur posuere urna et turpis pulvinar id malesuada ligula porttitor. Aliquam pharetra massa et odio accumsan ultrices.\r\n\r\nPhasellus quis ligula eget erat convallis ultricies vel sit amet tortor. Phasellus rutrum feugiat scelerisque. Aliquam erat volutpat. Suspendisse volutpat nibh nec tellus mollis mollis. Curabitur eget nisi mauris. Quisque viverra ipsum ut libero condimentum hendrerit nec et tortor. Donec lectus turpis, feugiat eu bibendum ac, condimentum fringilla libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.','2013-05-08',1),(2,'ROSALIE','ROSELLO',NULL,'Philippines','PH','http://wikimapia.org/26179608/Kinatarkan','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus vitae lacus ultrices gravida. Nunc non dui nibh. Aliquam erat volutpat. Nunc eget est orci. Nunc sollicitudin nunc mauris, nec gravida justo. Cras in diam eleifend urna fringilla mattis. Praesent turpis sapien, lacinia sed tempor quis, gravida non nibh. Mauris a dui a quam placerat pharetra in vel sapien.\r\n\r\nPellentesque erat nulla, rutrum vitae dictum at, accumsan id magna. Vestibulum lacinia ante vitae est condimentum condimentum. Curabitur sodales orci sed tortor facilisis semper non quis leo. Duis tempus sapien consectetur felis varius in ullamcorper odio lacinia. Cras dui tortor, bibendum sollicitudin mollis nec, pulvinar vel dolor. Morbi blandit malesuada pulvinar. Donec tincidunt risus nec arcu tempor ac semper leo lacinia. Cras feugiat nulla in quam accumsan nec aliquam tortor vulputate. Nunc pharetra eleifend lacus, sed dictum justo tristique sit amet. Curabitur posuere urna et turpis pulvinar id malesuada ligula porttitor. Aliquam pharetra massa et odio accumsan ultrices.\r\n\r\nPhasellus quis ligula eget erat convallis ultricies vel sit amet tortor. Phasellus rutrum feugiat scelerisque. Aliquam erat volutpat. Suspendisse volutpat nibh nec tellus mollis mollis. Curabitur eget nisi mauris. Quisque viverra ipsum ut libero condimentum hendrerit nec et tortor. Donec lectus turpis, feugiat eu bibendum ac, condimentum fringilla libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',NULL,2),(5,'Sponsee1','Sponsee1','Sponsee1','Cebu City','count','http://wikimapia.org/26179608/Kinatarkan','test','2013-05-05',NULL),(6,'Sponsee2','Sponsee2','Sponsee2','Cebu City','count','http://wikimapia.org/26179608/Kinatarkan','Test','2013-05-05',NULL),(33,'Jayrome','Vergara','Carreno','Cebu City','count','','adsfasdf','1988-05-24',NULL),(37,'asdf','asdf','asdf','asdf','count','','asdf','2013-05-09',NULL),(38,'s','s','s','s',NULL,'s','s','2013-05-10',NULL);
-
-UNLOCK TABLES;
-
-/*Table structure for table `sponsees_needs` */
-
-CREATE TABLE `sponsees_needs` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `category_id` bigint(20) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `neededamount` decimal(10,2) DEFAULT NULL,
-  `donatedamount` decimal(10,2) DEFAULT NULL,
-  `added_by` varchar(100) DEFAULT NULL,
-  `date_added` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
-/*Data for the table `sponsees_needs` */
-
-LOCK TABLES `sponsees_needs` WRITE;
-
-insert  into `sponsees_needs`(`id`,`category_id`,`description`,`neededamount`,`donatedamount`,`added_by`,`date_added`) values (1,1,'School tuition fee','3000.00',NULL,'4','2005-10-13 00:00:00');
+insert  into `sponsees`(`id`,`firstname`,`lastname`,`middlename`,`address`,`country`,`maplocation`,`information`,`birthdate`,`primaryimage`) values (1,'Sam','Canete','D.','Philippines','PH','http://wikimapia.org/26179511/Pooc','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus vitae lacus ultrices gravida. Nunc non dui nibh. Aliquam erat volutpat. Nunc eget est orci. Nunc sollicitudin nunc mauris, nec gravida justo. Cras in diam eleifend urna fringilla mattis. Praesent turpis sapien, lacinia sed tempor quis, gravida non nibh. Mauris a dui a quam placerat pharetra in vel sapien.\r\n\r\nPellentesque erat nulla, rutrum vitae dictum at, accumsan id magna. Vestibulum lacinia ante vitae est condimentum condimentum. Curabitur sodales orci sed tortor facilisis semper non quis leo. Duis tempus sapien consectetur felis varius in ullamcorper odio lacinia. Cras dui tortor, bibendum sollicitudin mollis nec, pulvinar vel dolor. Morbi blandit malesuada pulvinar. Donec tincidunt risus nec arcu tempor ac semper leo lacinia. Cras feugiat nulla in quam accumsan nec aliquam tortor vulputate. Nunc pharetra eleifend lacus, sed dictum justo tristique sit amet. Curabitur posuere urna et turpis pulvinar id malesuada ligula porttitor. Aliquam pharetra massa et odio accumsan ultrices.\r\n\r\nPhasellus quis ligula eget erat convallis ultricies vel sit amet tortor. Phasellus rutrum feugiat scelerisque. Aliquam erat volutpat. Suspendisse volutpat nibh nec tellus mollis mollis. Curabitur eget nisi mauris. Quisque viverra ipsum ut libero condimentum hendrerit nec et tortor. Donec lectus turpis, feugiat eu bibendum ac, condimentum fringilla libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.','2013-05-08',1),(2,'Rosalie','Rosello','R.','Philippines','PH','http://wikimapia.org/26179608/Kinatarkan','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus vitae lacus ultrices gravida. Nunc non dui nibh. Aliquam erat volutpat. Nunc eget est orci. Nunc sollicitudin nunc mauris, nec gravida justo. Cras in diam eleifend urna fringilla mattis. Praesent turpis sapien, lacinia sed tempor quis, gravida non nibh. Mauris a dui a quam placerat pharetra in vel sapien.\r\n\r\nPellentesque erat nulla, rutrum vitae dictum at, accumsan id magna. Vestibulum lacinia ante vitae est condimentum condimentum. Curabitur sodales orci sed tortor facilisis semper non quis leo. Duis tempus sapien consectetur felis varius in ullamcorper odio lacinia. Cras dui tortor, bibendum sollicitudin mollis nec, pulvinar vel dolor. Morbi blandit malesuada pulvinar. Donec tincidunt risus nec arcu tempor ac semper leo lacinia. Cras feugiat nulla in quam accumsan nec aliquam tortor vulputate. Nunc pharetra eleifend lacus, sed dictum justo tristique sit amet. Curabitur posuere urna et turpis pulvinar id malesuada ligula porttitor. Aliquam pharetra massa et odio accumsan ultrices.\r\n\r\nPhasellus quis ligula eget erat convallis ultricies vel sit amet tortor. Phasellus rutrum feugiat scelerisque. Aliquam erat volutpat. Suspendisse volutpat nibh nec tellus mollis mollis. Curabitur eget nisi mauris. Quisque viverra ipsum ut libero condimentum hendrerit nec et tortor. Donec lectus turpis, feugiat eu bibendum ac, condimentum fringilla libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.','2013-05-16',2),(39,'d','d','d','d','DZ','d','d','2013-05-17',NULL),(40,'d','d','d','d',NULL,'d','d','2013-05-17',NULL);
 
 UNLOCK TABLES;
 
@@ -145,19 +160,44 @@ CREATE TABLE `users` (
   `lastname` varchar(100) DEFAULT NULL,
   `middlename` varchar(100) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
-  `country` varchar(5) DEFAULT NULL,
+  `country` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uix_user_username` (`username`),
   UNIQUE KEY `uix_user_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `users` */
 
 LOCK TABLES `users` WRITE;
 
-insert  into `users`(`id`,`username`,`password`,`email`,`role`,`created`,`modified`,`firstname`,`lastname`,`middlename`,`address`,`country`) values (3,'jay','52f60659ccf071ebca1401b9f8fed8f933e703cd',NULL,'user','2013-04-25 12:24:36','2013-05-09 01:57:26','Jayrome','Vergara','Carreno','','count'),(4,'cha','56c0aa65144cc88dc5171d57fa00547ea87bec50',NULL,'admin','2013-04-25 12:26:15','2013-04-25 12:26:15','Chariss','Villarosa',NULL,NULL,NULL),(7,'gf','3973900c693fbb56fa38909b1f4b2455b6b72410',NULL,'user','2013-05-03 04:48:53','2013-05-08 02:11:37','savghghgh','asas','sasas','asas','count'),(9,'fdfd','e4ca608132c2721e042f232ec459888174f9f95e',NULL,'user','2013-05-08 05:14:05','2013-05-08 05:14:05',NULL,NULL,NULL,NULL,NULL),(15,'xzcv',NULL,'jaycverg@gmail.com','user','2013-05-09 10:20:32','2013-05-09 10:20:32',NULL,NULL,NULL,NULL,NULL),(16,'sfdgsdfgsd',NULL,'dfdf@yahoo.com','user','2013-05-09 10:22:10','2013-05-09 10:22:10',NULL,NULL,NULL,NULL,NULL),(17,'asdfasdf',NULL,'aaaaa@yahoo.com','user','2013-05-09 10:47:16','2013-05-09 10:47:16',NULL,NULL,NULL,NULL,NULL),(19,'aaaaaaaaaaaaaaa',NULL,'bbbbbb@yahoo.com','user','2013-05-09 11:16:01','2013-05-09 11:16:01',NULL,NULL,NULL,NULL,NULL),(20,'dfdf',NULL,'fdfdfdfd@yahoo.com','user','2013-05-10 02:44:50','2013-05-10 02:44:50',NULL,NULL,NULL,NULL,NULL),(21,'gfg',NULL,NULL,'admin','2013-05-10 05:57:34','2013-05-10 05:57:34','fg','fgfg','fg','fgf',NULL),(22,'vcv',NULL,'vcvc@yahoo.com','user','2013-05-10 06:22:15','2013-05-10 06:22:15',NULL,NULL,NULL,NULL,NULL),(23,'g',NULL,'gg@yahoo.com','user','2013-05-10 06:27:42','2013-05-10 06:27:42',NULL,NULL,NULL,NULL,NULL);
+insert  into `users`(`id`,`username`,`password`,`email`,`role`,`created`,`modified`,`firstname`,`lastname`,`middlename`,`address`,`country`) values (3,'jay','52f60659ccf071ebca1401b9f8fed8f933e703cd',NULL,'user','2013-04-25 12:24:36','2013-05-14 03:11:33','Jayrome','Vergara','Carreno','d','AF'),(4,'cha','56c0aa65144cc88dc5171d57fa00547ea87bec50',NULL,'admin','2013-04-25 12:26:15','2013-05-14 03:24:55','Chariss','Villarosa','Rayco','banawa, cebu city','PH');
 
 UNLOCK TABLES;
+
+/*Table structure for table `sponsee_listing` */
+
+DROP TABLE IF EXISTS `sponsee_listing`;
+
+/*!50001 CREATE TABLE `sponsee_listing` (
+  `id` bigint(20) NOT NULL DEFAULT '0',
+  `firstname` varchar(100) DEFAULT NULL,
+  `lastname` varchar(100) DEFAULT NULL,
+  `middlename` varchar(100) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `country` varchar(10) DEFAULT NULL,
+  `maplocation` varchar(500) DEFAULT NULL,
+  `information` text,
+  `birthdate` date DEFAULT NULL,
+  `primaryimage` bigint(20) DEFAULT NULL,
+  `total_neededamount` decimal(32,2) DEFAULT NULL,
+  `total_donatedamount` decimal(32,2) DEFAULT NULL,
+  `percentage` decimal(41,6) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 */;
+
+/*View structure for view sponsee_listing */
+
+/*!50001 DROP TABLE IF EXISTS `sponsee_listing` */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sponsee_listing` AS select `s`.`id` AS `id`,`s`.`firstname` AS `firstname`,`s`.`lastname` AS `lastname`,`s`.`middlename` AS `middlename`,`s`.`address` AS `address`,`s`.`country` AS `country`,`s`.`maplocation` AS `maplocation`,`s`.`information` AS `information`,`s`.`birthdate` AS `birthdate`,`s`.`primaryimage` AS `primaryimage`,sum(coalesce(`sn`.`neededamount`,0)) AS `total_neededamount`,sum(coalesce(`sn`.`donatedamount`,0)) AS `total_donatedamount`,((sum(coalesce(`sn`.`donatedamount`,0)) / sum(coalesce(`sn`.`neededamount`,0))) * 100) AS `percentage` from (`sponsees` `s` left join `sponsee_needs` `sn` on((`sn`.`sponsee_id` = `s`.`id`))) group by `sn`.`sponsee_id` */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

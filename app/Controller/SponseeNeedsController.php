@@ -104,7 +104,7 @@ class SponseeNeedsController extends AppController
     
     public function delete($id, $sponsee_id) {
         if ($this->SponseeNeed->delete($id)) {
-            $this->Session->setFlash('Sponsee need selected has been deleted.');
+            $this->Session->setFlash('Record has been deleted.');
         }
         $this->redirect(array('action' => 'viewlisting', $sponsee_id));
     }
