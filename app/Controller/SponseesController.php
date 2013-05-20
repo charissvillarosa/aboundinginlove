@@ -48,11 +48,11 @@ class SponseesController extends AppController
     public function view($id)
     {
         //to get sponsee needs
-        $this->loadModel('SponseeNeeds');
-        $this->SponseeNeeds->id = $id;
-        $sponseeneeds = $this->SponseeNeeds->find('all', array(
-            'conditions' => array('SponseeNeeds.sponsee_id' => $id),
-            'order' => array('SponseeNeeds.category_id')
+        $this->loadModel('SponseeNeed');
+        $this->SponseeNeed->id = $id;
+        $sponseeneeds = $this->SponseeNeed->find('all', array(
+            'conditions' => array('SponseeNeed.sponsee_id' => $id),
+            'order' => array('SponseeNeed.category_id')
         ));
         $this->set("sponseeneeds", $sponseeneeds);
         

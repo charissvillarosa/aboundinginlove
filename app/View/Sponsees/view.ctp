@@ -35,7 +35,7 @@
                             $totaldonatedamount = 0;
                             $percentage = 0;
                             foreach ($sponseeneeds as $item) :
-                                $need = $item['SponseeNeeds'];
+                                $need = $item['SponseeNeed'];
                                 $totalneededamount = $totalneededamount + $need['neededamount'];
                                 $totaldonatedamount = $totaldonatedamount + $need['donatedamount'];
                             endforeach;
@@ -78,7 +78,7 @@
                                     echo "</div>";
                                 }
                                 else {
-                                    echo "<div class='alert alert-info'><h4>Not yet specified.</h4></div>";
+                                    echo "<div class='al[ert alert-info'><h4>Not yet specified.</h4></div>";
                                 }
                          }
                             else {
@@ -86,8 +86,8 @@
                                 $prevCat = 0;
                                 echo "<table class='table table-hover table-bordered'>";
                                     foreach ($sponseeneeds as $item) :
-                                        $need = $item['SponseeNeeds'];
-                                        $category = $item['SponseeNeeds'];
+                                        $need = $item['SponseeNeed'];
+                                        $category = $item['Category'];
                                         
                                         if ($prevCat != $category['id']) : ?>
                                             <tr>
