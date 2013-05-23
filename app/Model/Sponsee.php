@@ -48,12 +48,6 @@ class Sponsee extends AppModel
                 "rule" => array("notEmpty"),
                 "message" => "A map birth date is required"
             )
-        ),
-        "primaryimage" => array(
-            "valid" => array(
-                "rule" => array("Empty"),
-                "message" => "A primary id is required"
-            )
         )
     ); 
 }

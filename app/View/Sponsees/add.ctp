@@ -9,18 +9,10 @@
             <div style="padding:0 30px 0 50px;">
                 <?php echo $this->Form->create('Sponsee'); ?>
                 <fieldset>
-                    <?php echo $this->Form->create('Sponsee'); ?>
-                    <div class="pull-left">
-                        <?php
-                        $imageURl = 'sponsees/nophoto.jpg';
-                        $attrs = array('alt' => '', 'width' => '250', 'class' => 'img-polaroid');
-                        echo $this->Html->image($imageURl, $attrs);
-                        ?>
-                    </div>
-                    <?php
-                    echo '<div class="pull-left">' . $this->Form->input('firstname', array('class' => 'span2')) . '</div>';
-                    echo '<div class="pull-left">' . $this->Form->input('middlename', array('class' => 'span2')) . '</div>';
-                    echo '<div class="pull-left">' . $this->Form->input('lastname', array('class' => 'span2')) . '</div>';
+                    <?php 
+                    echo '<div class="pull-left">' . $this->Form->input('firstname', array('class' => 'span3')) . '</div>';
+                    echo '<div class="pull-left">' . $this->Form->input('middlename', array('class' => 'span3')) . '</div>';
+                    echo '<div class="pull-left">' . $this->Form->input('lastname', array('class' => 'span3')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('address', array('class' => 'span6')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('Country', array('type'=>'select','options'=>$countryList)) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('maplocation', array('class' => 'span9')) . '</div>';

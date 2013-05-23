@@ -1,7 +1,17 @@
+<?php
+$user = $this->Session->read('Auth.User');
+?>
 <div class="container tabs">
     <div class="span11 margin3 leftmargin1">
         <div class="pull-right">
             <?php echo $this->Html->link('Go back to Sponsee List', array('action' => 'index'), array('class' => 'btn btn-info btn-small')); ?>
+            <?php
+            
+            if (!empty($user) && $user['role'] == 'admin') {
+                echo $this->Html->link('Add New Sponsee', array('action' => 'add'), array('class' => 'btn btn-info btn-small'));
+            }
+            
+            ?>
         </div>
         <div style="background:#f9f9f9;" class="pull-left well leftmargin2 topmargin1">
             <h4 class="fontcolor1"><?php echo __('View Sponsee record'); ?></h4>
@@ -20,6 +30,14 @@
                         echo $this->Html->image($imageURl, $attrs);
                         ?>
                     </div>
+                    <?php if (!empty($user) && $user['role'] == 'admin') : ?>
+                    <div>
+                        <?php
+                        $action = array('controller' => 'sponseeimages', 'action' => 'upload', $sponsee['id']);
+                        echo $this->Html->link('Change Photo', $action);
+                        ?>
+                    </div>
+                    <?php endif; ?>
                     <div class="margin1">
                         <p>
                             <b class="fontcolor1">
@@ -78,7 +96,7 @@
                                     echo "</div>";
                                 }
                                 else {
-                                    echo "<div class='al[ert alert-info'><h4>Not yet specified.</h4></div>";
+                                    echo "<div class='alert alert-info'><h4>Not yet specified.</h4></div>";
                                 }
                          }
                             else {

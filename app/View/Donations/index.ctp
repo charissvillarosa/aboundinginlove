@@ -40,7 +40,6 @@
                     ?>
                 </p>
                 <h3 class="fontcolor1">Needs</h3>
-                <hr>
                 <p>
                     <?php
                     if(empty($sponseeneeds)){
@@ -61,35 +60,42 @@
                     }
                     else {
                         $prevCat = 0;
-
+                        echo "<table class='table table-hover'>";
                         foreach ($sponseeneeds as $item) :
                             $need = $item['SponseeNeed'];
                             $category = $item['Category'];
-
+                            $selected = $item['SponseeNeed']['id'];
+                            $options = $item['SponseeNeed']['description'];
+                            
                             if ($prevCat != $category['id']) : ?>
-                                <div>
-                                    <h4>
+                                <tr>
+                                    <th>
                                         <?php echo $category['description'] ?>
-                                    </h4>
-                                </div>
+                                    </th>
+                                </tr>
                             <?php 
                             $prevCat = $category['id'];
                             endif; 
                             ?>
-                            <div class="leftmargin1">
-                                <p>
+                            <tr>
+                                <td>
                                     <?php echo $this->Form->input('sponsee_need', array(
-                                        'type' => 'checkbox', 
-                                        'label' => $need['description']
+                                        'type' => 'checkbox',
+                                        'label' => $this->Number->currency($need['neededamount'], 'USD').' - '.$need['description'],
+                                        'multiple' => 'checkbox',
+                                        'options' => $options,
+                                        'selected' => $selected,
+                                        'id' => $options,
+                                        'value' => $selected
                                     )); ?>
-                                </p>
-                            </div>
+                                </td>
+                            </tr>
                         <?php
                         endforeach;
+                        echo "</table>";
                     }
                     ?>
                 </p>
-                <hr>
             </div>
         </div>
         <?php
