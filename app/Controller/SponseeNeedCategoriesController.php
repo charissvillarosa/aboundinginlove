@@ -31,7 +31,7 @@ class SponseeNeedCategoriesController extends AppController
     public function listing() 
     {
         $cat = $this->SponseeNeedCategory->find('all');  
-        $this->set("categories", $this->paginate($cat));
+        $this->set("categories", $cat);
 	}
     
     public function add()
