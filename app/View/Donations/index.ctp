@@ -93,6 +93,7 @@
                         <?php
                         endforeach;
                         echo "</table>";
+                        echo $this->paypal->button('Donate', array('type' => 'donate', 'amount' => '60.00'));
                     }
                     ?>
                 </p>

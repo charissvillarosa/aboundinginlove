@@ -7,15 +7,14 @@ class DonationsController extends AppController
 
     var $paginate = array(
         'SponseeListingItem' => array(
-            'limit' => 3,
-            'order' => array('SponseeListingItem.id' => 'desc')
+            'limit' => 3
         )
     );
 
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('index'); // Letting users register themselves
+        $this->Auth->allow('index', 'listing'); // Letting users register themselves
     }
 
     public function index($id)
@@ -24,6 +23,7 @@ class DonationsController extends AppController
         $sponsee = $this->SponseeListingItem->find('all', array(
             'conditions' => array('SponseeListingItem.id' => $id)
         ));
+        
         $this->set("sponseeList", $sponsee);
         
         //to get sponsee needs
@@ -39,5 +39,10 @@ class DonationsController extends AppController
             $this->render('/Errors/notFound');
         }
         
+    }
+    public function listing()
+    {
+        $this->loadModel('SponseeListingItem');
+        $this->set("sponseeList", $this->paginate('SponseeListingItem'));
     }
 }

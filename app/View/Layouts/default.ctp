@@ -69,7 +69,7 @@ echo $this->Html->docType('html5');
                 <div class="container">
                     <div class="pull-right">
                         <div class="btn-group">
-                            <?php echo $this->Html->link('DONATE NOW', array('controller' => 'donations', 'action' => 'index'), array('class' => 'btn btn-info')); ?>
+                            <?php echo $this->Html->link('DONATE NOW', array('controller' => 'donations', 'action' => 'listing'), array('class' => 'btn btn-info')); ?>
                             <!--<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="">
                                 DONATE NOW
                             </a>-->
