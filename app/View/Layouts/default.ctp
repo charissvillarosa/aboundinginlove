@@ -85,10 +85,6 @@ echo $this->Html->docType('html5');
                                     <?php 
                                     echo $this->Html->link('List of Sponsees', array('controller'=>'sponsees')); ?>
                                 </li>
-                                <li class="divider"></li>
-                                <li><a tabindex="-1" href="#">Lorem ipsum dolor sit amet</a></li>
-                                <li><a tabindex="-1" href="#">Urna et risus vitae</a></li>
-                                <li><a tabindex="-1" href="#">Suscipit ligula</a></li>
                             </ul>
                         </div>
                         <div class="btn-group">

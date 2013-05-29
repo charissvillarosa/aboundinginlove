@@ -42,34 +42,33 @@
                 <h3 class="fontcolor1">Needs</h3>
                 <p>
                     <?php
-                    if(empty($sponseeneeds)){
-                                
-                                $user = $this->Session->read('Auth.User');
-                                $controller = $this->name;
+                    if(empty($sponseeneeds)){                                
+                        $user = $this->Session->read('Auth.User');
+                        $controller = $this->name;
 
-                                if ($user && $user['role'] == 'admin'){
-                                    echo "<div class='alert alert-info'>
-                                        <h4>Not yet specified.</h4> 
-                                        <p class='topmargin1'>To add, just click the add button below.</p>";
-                                        echo $this->Html->link('Add Sponsee Needs', array('controller' => 'sponseeneeds', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-big'));
-                                    echo "</div>";
-                                }
-                                else {
-                                    echo "<div class='alert alert-info'><h4>Not yet specified.</h4></div>";
-                                }
+                        if ($user && $user['role'] == 'admin'){
+                            echo "<div class='alert alert-info'>
+                                <h4>Not yet specified.</h4> 
+                                <p class='topmargin1'>To add, just click the add button below.</p>";
+                                echo $this->Html->link('Add Sponsee Needs', array('controller' => 'sponseeneeds', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-big'));
+                            echo "</div>";
+                        }
+                        else {
+                            echo "<div class='alert alert-info'><h4>Not yet specified.</h4></div>";
+                        }
                     }
                     else {
-                        $prevCat = 0;
                         echo "<table class='table table-hover'>";
+
+                        $prevCat = 0;
                         foreach ($sponseeneeds as $item) :
                             $need = $item['SponseeNeed'];
                             $category = $item['Category'];
-                            $selected = $item['SponseeNeed']['id'];
-                            $options = $item['SponseeNeed']['description'];
+                            $amount = $need['neededamount'] - $need['donatedamount'];
                             
                             if ($prevCat != $category['id']) : ?>
                                 <tr>
-                                    <th>
+                                    <th colspan="3">
                                         <?php echo $category['description'] ?>
                                     </th>
                                 </tr>
@@ -78,23 +77,29 @@
                             endif; 
                             ?>
                             <tr>
-                                <td>
-                                    <?php echo $this->Form->input('sponsee_need', array(
-                                        'type' => 'checkbox',
-                                        'label' => $this->Number->currency($need['neededamount'], 'USD').' - '.$need['description'],
-                                        'multiple' => 'checkbox',
-                                        'options' => $options,
-                                        'selected' => $selected,
-                                        'id' => $options,
-                                        'value' => $selected
-                                    )); ?>
+                                <td style="width:30px;">
+                                    <input type="checkbox" name="sponseeneeds" 
+                                           value="<?php echo $amount ?>"
+                                           data-desc="<?php echo $need['description'] ?>"
+                                           data-id="<?php echo $need['id'] ?>"/>
                                 </td>
+                                <td style="width: 50px; text-align: right; font-weight: bold;">
+                                    <?php echo $this->Number->currency($amount) ?>
+                                </td>
+                                <td>
+                                    <?php echo $need['description'] ?>
+                                </td>                                
                             </tr>
                         <?php
                         endforeach;
-                        echo "</table>";
-                        echo $this->paypal->button('Donate', array('type' => 'donate', 'amount' => '60.00'));
+                        
+                        echo "</table>"; 
                     }
+                    
+                    echo '<div id="paypal-btn">';
+                    echo $this->paypal->button('Donate', array('type' => 'donate', 'item_name' => '', 'amount' => ''));
+                    echo '</div>';
+                    echo '<div id="error"></div>';
                     ?>
                 </p>
             </div>
@@ -104,3 +109,55 @@
         ?>
     </div>
 </div>
+
+<div id="alert-tpl" class="alert alert-error hide">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <span class="text"></span>
+</div>
+
+<script>
+    $(function(){
+        $('input[name=sponseeneeds]').click(function(){
+            updateDonationInputs();
+        });
+        
+        $('#paypal-btn form').on('submit', function(){          
+            if (this.amount.value == '0') {
+                showAlert('Please select the amount to donate.');
+                return false;
+            }
+        });
+        
+        // initialize values
+        updateDonationInputs();
+    });
+    
+    function updateDonationInputs()
+    {
+        var total = 0.00;
+        var desc = [];
+        var items = [];
+        $('input[name=sponseeneeds]').each(function(idx,elm) {
+            if (elm.checked) {
+                console.log(elm);
+                total += parseFloat(elm.value);
+                desc.push($(elm).data('desc'));
+                items.push($(elm).data('id')+'='+elm.value);
+            }
+        });
+        
+        var form = $('#paypal-btn form')[0];
+        form.amount.value = total;
+        form.item_name.value = desc.join('/');
+        form.item_number.value = items.join(',');
+    }
+    
+    function showAlert(msg) {
+        $('#error').html('');
+        $('#alert-tpl')
+                .clone()
+                .appendTo('#error')
+                .fadeIn()
+                .find('.text').html(msg);
+    }
+</script>
