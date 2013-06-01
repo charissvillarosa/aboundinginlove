@@ -92,7 +92,7 @@ $user = $this->Session->read('Auth.User');
                                     echo "<div class='alert alert-info'>
                                         <h4>Not yet specified.</h4> 
                                         <p class='topmargin1'>To add, just click the add button below.</p>";
-                                        echo $this->Html->link('Add Sponsee Needs', array('controller' => 'sponseeneeds', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-big'));
+                                        echo $this->Html->link('Add Sponsee Needs', array('controller' => 'SponseeNeeds', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-big'));
                                     echo "</div>";
                                 }
                                 else {

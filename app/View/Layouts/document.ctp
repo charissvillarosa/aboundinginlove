@@ -86,7 +86,7 @@ echo $this->Html->docType('html5');
                             <?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index')); ?>
                         </li>
                         <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Categories', array('controller'=>'sponseeneedcategories', 'action'=>'listing')); ?>
+                            <?php echo $this->Html->link('Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
                         </li>
                     </ul>
                 </div>

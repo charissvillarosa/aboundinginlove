@@ -51,7 +51,7 @@
                     <td><?php echo $sponsee['birthdate'] ?></td>
                     <td><?php echo $sponsee['primaryimage'] ?></td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'sponseeneeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-file')); ?></i>
+                        <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-file')); ?></i>
                     </td>
                     <td>
                        <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'edit', $sponsee['id']), array('class' => 'icon-edit')); ?></i>

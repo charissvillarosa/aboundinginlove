@@ -1,5 +1,12 @@
-<IfModule mod_rewrite.c>
-   RewriteEngine on
-   RewriteRule    ^$ app/webroot/    [L]
-   RewriteRule    (.*) app/webroot/$1 [L]
-</IfModule>
+# -- cakephp configuration --
+#<IfModule mod_rewrite.c>
+#   RewriteEngine on
+#   RewriteRule    ^$ app/webroot/    [L]
+#   RewriteRule    (.*) app/webroot/$1 [L]
+#</IfModule>
+
+# -- custom configuration --
+#<IfModule mod_rewrite.c>
+#   RewriteEngine on
+#   RewriteRule    ^$ index.php/    [L]
+#</IfModule>

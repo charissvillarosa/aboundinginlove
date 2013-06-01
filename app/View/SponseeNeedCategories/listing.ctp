@@ -1,7 +1,7 @@
 <div class="container tabs">
     <div class="span11 margin3">
         <div class="pull-right bottomargin2">
-            <?php echo $this->Html->link('Add New Category', array('controller' => 'sponseeneedcategories', 'action' => 'add'), array('class' => 'btn btn-info btn-small')); ?>
+            <?php echo $this->Html->link('Add New Category', array('controller' => 'SponseeNeedCategories', 'action' => 'add'), array('class' => 'btn btn-info btn-small')); ?>
         </div>
         <table class="leftmargin1 table table-hover table-bordered">
             <tr>
@@ -21,7 +21,7 @@
                     <td bgcolor="#fff"><?php echo $ctr.'.'; ?></td>
                     <td bgcolor="#fff"><?php echo $category['description'] ?></td>
                     <td>
-                       <i><?php echo $this->Html->link('', array('controller' => 'sponseeneedcategories', 'action' => 'edit', $category['id']), array('class' => 'icon-edit')); ?></i>
+                       <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeedCategories', 'action' => 'edit', $category['id']), array('class' => 'icon-edit')); ?></i>
                     </td>
                     <td>
                         <i>
