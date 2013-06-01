@@ -15,7 +15,7 @@
                         $imgId = $this->data['Sponsee']['primaryimage'];
                         
                         if ($imgId) {
-                            $imageURl = array('controller' => 'sponseeimages', 'action' => 'view', $imgId);
+                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $imgId);
                         } else {
                             $imageURl = 'sponsees/nophoto.jpg';
                         }

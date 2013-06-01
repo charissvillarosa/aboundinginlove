@@ -3,6 +3,9 @@
         <div class="pull-right bottomargin2">
             <?php echo $this->Html->link('Add New Category', array('controller' => 'SponseeNeedCategories', 'action' => 'add'), array('class' => 'btn btn-info btn-small')); ?>
         </div>
+        <div class="leftmargin1">
+            <?php echo $this->Session->flash(); ?>
+        </div>
         <table class="leftmargin1 table table-hover table-bordered">
             <tr>
                 <th bgcolor="#f9f9f9">No.</th>

@@ -22,7 +22,7 @@ $user = $this->Session->read('Auth.User');
                         <?php
                         $imageURl;
                         if ($sponsee['primaryimage']) {
-                            $imageURl = array('controller' => 'sponseeimages', 'action' => 'view', $sponsee['primaryimage']);
+                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
                         } else {
                             $imageURl = 'sponsees/nophoto.jpg';
                         }
@@ -33,7 +33,7 @@ $user = $this->Session->read('Auth.User');
                     <?php if (!empty($user) && $user['role'] == 'admin') : ?>
                     <div>
                         <?php
-                        $action = array('controller' => 'sponseeimages', 'action' => 'upload', $sponsee['id']);
+                        $action = array('controller' => 'SponseeImages', 'action' => 'upload', $sponsee['id']);
                         echo $this->Html->link('Change Photo', $action);
                         ?>
                     </div>

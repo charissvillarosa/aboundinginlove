@@ -58,7 +58,7 @@
                         <td bgcolor="#fff"><?php echo $need['created'] ?></td>
                         <td bgcolor="#fff"><?php echo $need['modified'] ?></td>
                         <td>
-                           <i><?php echo $this->Html->link('', array('controller' => 'sponseeneeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit')); ?></i>
+                           <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit')); ?></i>
                         </td>
                         <td>
                             <i>

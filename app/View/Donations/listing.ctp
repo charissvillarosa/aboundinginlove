@@ -9,7 +9,7 @@
             <?php
                     $imageURl;
                     if ($sponsee['primaryimage']) {
-                        $imageURl = array('controller' => 'sponseeimages', 'action' => 'view', $sponsee['primaryimage']);
+                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
                     } else {
                         $imageURl = 'sponsees/nophoto.jpg';
                     }
