@@ -70,9 +70,6 @@ echo $this->Html->docType('html5');
                     <div class="pull-right">
                         <div class="btn-group">
                             <?php echo $this->Html->link('DONATE NOW', array('controller' => 'donations', 'action' => 'listing'), array('class' => 'btn btn-info')); ?>
-                            <!--<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="">
-                                DONATE NOW
-                            </a>-->
                         </div>
                         <div class="btn-group">
                             <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
@@ -98,9 +95,7 @@ echo $this->Html->docType('html5');
                             </a>
                         </div>
                         <div class="btn-group">
-                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                                PORTFOLIO
-                            </a>
+                            <?php echo $this->Html->link('PORTFOLIO', array('controller' => 'portfolios', 'action' => 'index'), array('class' => 'btn btn-info')); ?>
                         </div>
                         <div class="btn-group">
                             <a href="#" class="btn btn-info dropdown-toggle" 

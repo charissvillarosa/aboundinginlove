@@ -95,11 +95,13 @@
                         
                         echo "</table>"; 
                     }
-                    
-                    echo '<div id="paypal-btn">';
-                    echo $this->paypal->button('Donate', array('type' => 'donate', 'item_name' => '', 'amount' => ''));
-                    echo '</div>';
                     echo '<div id="error"></div>';
+                    echo '<div id="paypal-btn">';
+                    echo '<div style="padding:0 0 0 15px; margin:0;">';
+                        echo $this->Html->image('cards.gif');
+                    echo '</div>';
+                        echo $this->paypal->button('Donate through paypal', array('type' => 'donate', 'item_name' => '', 'amount' => ''));
+                    echo '</div>';
                     ?>
                 </p>
             </div>

@@ -89,9 +89,11 @@
             <p>
                 <span class="badge badge-info">1</span> Ipsum purus lobortis porttitor sit. Qui ut orci, suscipit pede vitae suspendisse sociis eu feugiat, sed massa amet, ac orci, posuere felis et. Qui ut orci, suscipit pede vitae suspendisse sociis eu feugiat, sed massa amet, ac orci, posuere felis et.<br><br>
                 <span class="badge badge-info">2</span> Eros integer massa phasellus magna donec neque. A wisi a, lorem venenatis varius malesuada vivamus aliquam.<br><br>
-                <span class="badge badge-info">3</span> Vestibulum mauris dolor, vitae in, nulla vitae nunc quis, vestibulum in, cum odio turpis pede wisi sed nam. <br><br>
-                <span class="badge badge-info">4</span> Tortor in vel. Nibh id. Et ut morbi amet aliquam, sit suspendisse orci, in porta libero orci dolor. Morci, in porta libero orci dolor. Amet aliquam, sit suspendisse orci, in porta libero.<br>
+                <span class="badge badge-info">3</span> Tortor in vel. Nibh id. Et ut morbi amet aliquam, sit suspendisse orci, in porta libero orci dolor. Morci, in porta libero orci dolor. Amet aliquam, sit suspendisse orci, in porta libero.<br>
             </p>
+            <?php
+                echo $this->Html->image('paypal.jpg', array('class' => 'img-polaroid', 'width' => '260px'));
+            ?>
         </div>
         <div class="well span8">
             <div>

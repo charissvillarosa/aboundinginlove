@@ -258,7 +258,7 @@ fieldset fieldset div {
 form div {
     /*clear: both;*/
     /*margin-bottom: 1em;*/
-	padding: .5em;
+	padding-left: .5em;
 	vertical-align: text-top;
 }
 form .input {
