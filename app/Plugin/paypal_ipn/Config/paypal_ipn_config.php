@@ -21,14 +21,14 @@ class PaypalIpnConfig
 //    'lc' => 'US', //Locality
 //    'item_name' => 'Paypal_IPN', //Default item name.
 //    'amount' => '15.00' //Default item amount.
-//  );
+//  ); 
 
     /*     * *********
      * Test settings to test with using a sandbox paypal account.
      */
     
     var $settings = array(
-        'business' => 'sandbox_email@paypal.com', //'sandbox_email@paypal.com',
+        'business' => 'chariss.villarosa@paypal.com', //'sandbox_email@paypal.com',
         'server' => 'https://www.sandbox.paypal.com',
         'notify_url' => 'http://www.yoursite.com/paypal_ipn/process', //'http://www.yoursite.com/paypal_ipn/process',
         'currency_code' => 'USD',

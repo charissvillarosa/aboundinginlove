@@ -2,7 +2,7 @@
 <div class="content-fluid">
     <div class="thumnails_background">
         <div class="pull-left span5">
-            <p class="leftmargin3">
+            <p class="leftmargin3 topmargin2">
                 <?php echo $this->Html->image('logo.png', array('alt' => 'logo')); ?>
             </p>
         </div>

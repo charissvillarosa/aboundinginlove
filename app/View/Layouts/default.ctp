@@ -52,8 +52,8 @@ echo $this->Html->docType('html5');
             $('.message').hide().fadeIn();
             
             //contact us pop up window
-            $('a[rel=popover]').popover({html: 'true'})
-        })
+            $('a[rel=popover]').popover({html: 'true'});
+        });
     </script>
 </head>
 <body>

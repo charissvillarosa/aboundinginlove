@@ -34,7 +34,7 @@ class PortfoliosController extends AppController {
     
     function beforeFilter()
     {
-        $this->Auth->allow('index');
+        $this->Auth->allow('index', 'view', 'gallery');
     }
 
 	public function index() {
@@ -47,4 +47,17 @@ class PortfoliosController extends AppController {
             $this->render('/Errors/notFound');
         }
 	}
+    public function view($id) {
+        $this->loadModel('Sponsee');
+        $sponsee = $this->Sponsee->find('all');
+        if ($sponsee) {
+            $this->set("sponseelist", $sponsee);
+        }
+        else {
+            $this->render('/Errors/notFound');
+        }
+	}
+    public function gallery() {
+    }
+
 }

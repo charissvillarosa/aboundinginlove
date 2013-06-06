@@ -2,7 +2,6 @@
     <div style="margin-bottom:20px; width:550px;" class="pull-left">
         <p>
             <?php echo $this->Html->image('smalllogo.png', array('alt' => 'logo')); ?>
-            <b class="fontcolor1 fontsize2">Lorem ipsum dolor sit</b>
         </p>
         <hr>
         <p class="topmargin1">
