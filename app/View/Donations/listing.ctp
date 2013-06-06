@@ -47,5 +47,11 @@
         <?php
         endforeach;
         ?>
+        <div class="topmargin1">
+            <button class="btn"><?php echo $this->Paginator->numbers(); ?></button>
+            <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+            <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+            <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
+        </div>
     </div>
 </div>

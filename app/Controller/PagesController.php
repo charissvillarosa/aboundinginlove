@@ -30,7 +30,7 @@ App::uses('AppController', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
 class PagesController extends AppController {
-
+    
     function beforeFilter()
     {
         $this->Auth->allow('display', 'index');
@@ -77,4 +77,12 @@ class PagesController extends AppController {
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->render(implode('/', $path));
 	}
+
+    public function aboutus() {
+       
+    }
+
+    public function whatwedo() {
+       
+    }
 }

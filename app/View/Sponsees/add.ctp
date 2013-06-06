@@ -14,7 +14,7 @@
                     echo '<div class="pull-left">' . $this->Form->input('middlename', array('class' => 'span3')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('lastname', array('class' => 'span3')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('address', array('class' => 'span6')) . '</div>';
-                    echo '<div class="pull-left">' . $this->Form->input('Country', array('type'=>'select','options'=>$countryList)) . '</div>';
+                    echo '<div class="pull-left">' . $this->Form->input('country', array('type'=>'select','options'=>$countryList)) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('maplocation', array('class' => 'span9')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('information', array('class' => 'span9', 'rows' => '10')) . '</div>';
                     echo '<div class="pull-left">' . $this->Form->input('birthdate', array('class' => 'span3', 'maxYear' => date('Y'), 'minYear' => 1950)) . '</div>';

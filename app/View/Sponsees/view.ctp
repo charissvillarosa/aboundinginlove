@@ -83,9 +83,10 @@ $user = $this->Session->read('Auth.User');
                         </p>
                         <h4 class="fontcolor1 topmargin2">Needs</h4>
                         <?php
+                            $user = $this->Session->read('Auth.User');
+
                             if(empty($sponseeneeds)){
                                 
-                                $user = $this->Session->read('Auth.User');
                                 $controller = $this->name;
 
                                 if ($user && $user['role'] == 'admin'){
@@ -109,7 +110,7 @@ $user = $this->Session->read('Auth.User');
                                         
                                         if ($prevCat != $category['id']) : ?>
                                             <tr>
-                                                <th bgcolor="#eef6fa" colspan="9">
+                                                <th bgcolor="#eef6fa" colspan="7">
                                                     <?php echo $category['description'] ?>
                                                 </th>
                                             </tr
@@ -118,9 +119,13 @@ $user = $this->Session->read('Auth.User');
                                                 <td bgcolor="#f9f9f9">Description</td>
                                                 <td bgcolor="#f9f9f9">Needed Amount</td>
                                                 <td bgcolor="#f9f9f9">Donated Amount</td>
-                                                <td bgcolor="#f9f9f9">Added By</td>
-                                                <td bgcolor="#f9f9f9">Date Added</td>
-                                                <td bgcolor="#f9f9f9">Date Modified</td>
+                                                <?php if ($user && $user['role'] == 'admin'){
+                                                   echo "
+                                                     <td bgcolor='#f9f9f9'>Added By</td>
+                                                     <td bgcolor='#f9f9f9'>Date Added</td>
+                                                     <td bgcolor='#f9f9f9'>Date Modified</td>
+                                                   ";
+                                                }?>
                                             </tr>
                                         <?php 
                                         $prevCat = $category['id'];
@@ -129,11 +134,13 @@ $user = $this->Session->read('Auth.User');
                                         <tr>
                                             <td bgcolor="#fff"><?php echo $ctr.'.'; ?></td>
                                             <td bgcolor="#fff"><?php echo $need['description'] ?></td>
-                                            <td bgcolor="#fff"><?php echo $need['neededamount'] ?></td>
-                                            <td bgcolor="#fff"><?php echo $need['donatedamount'] ?></td>
-                                            <td bgcolor="#fff"><?php echo $need['added_by'] ?></td>
-                                            <td bgcolor="#fff"><?php echo $need['created'] ?></td>
-                                            <td bgcolor="#fff"><?php echo $need['modified'] ?></td>
+                                            <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['neededamount']) ?></td>
+                                            <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
+                                            <?php if ($user && $user['role'] == 'admin'){
+                                                echo "<td bgcolor='#fff'>".$need['added_by']."</td>";
+                                                echo "<td bgcolor='#fff'>".$need['created']."</td>";
+                                                echo "<td bgcolor='#fff'>".$need['modified']."</td>";
+                                             }?>
                                         </tr>
                                         <?php
                                     $ctr++;

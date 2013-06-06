@@ -11,7 +11,7 @@
             </ul>
         </div>
     </div>
-    <div style="overflow: auto;">
+    <div>
         <?php
             foreach ($sponseelist as $item) :
                $sponsee = $item['Sponsee'];

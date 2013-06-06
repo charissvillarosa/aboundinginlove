@@ -12,7 +12,6 @@
                 <th>Map Location</th>
                 <th>Information / Biography</th>
                 <th>Birtd Date</th>
-                <th>Primary Id</th>
                 <th>View Sponsee Needs</th>
                 <th>Edit</th>
                 <th>View</th>
@@ -49,7 +48,6 @@
                         ?>
                     </td>
                     <td><?php echo $sponsee['birthdate'] ?></td>
-                    <td><?php echo $sponsee['primaryimage'] ?></td>
                     <td>
                         <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-file')); ?></i>
                     </td>

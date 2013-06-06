@@ -85,14 +85,10 @@ echo $this->Html->docType('html5');
                             </ul>
                         </div>
                         <div class="btn-group">
-                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                                ABOUT US
-                            </a>
+                            <?php echo $this->Html->link('ABOUT US', array('controller' => 'pages', 'action' => 'aboutus'), array('class' => 'btn btn-info')); ?>
                         </div>
                         <div class="btn-group">
-                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                                WHAT WE DO?
-                            </a>
+                            <?php echo $this->Html->link("WHAT WE DO?", array('controller' => 'pages', 'action' => 'whatwedo'), array('class' => 'btn btn-info')); ?>
                         </div>
                         <div class="btn-group">
                             <?php echo $this->Html->link('PORTFOLIO', array('controller' => 'portfolios', 'action' => 'index'), array('class' => 'btn btn-info')); ?>
@@ -127,67 +123,10 @@ echo $this->Html->docType('html5');
         </div>
         <div id="footer">
             <div class="container">
-                <div class="span11">
-                    <div class="tree pull-left">
-                        <div class="span2 pull-right topmargin3">
-                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Projects</a></p>
-                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Program</a></p>
-                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Login</a></p>
-                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Register</a></p>
-                        </div>
-                        <div class="span2 pull-right topmargin3">
-                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Donate Now</a></p>
-                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">What we do?</a></p>
-                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Portfolio</a></p>
-                            <p class="fontcolor1 leftmargin1 topmargin1">
-                                <a href="#" 
-                                       rel="popover" 
-                                       data-toggle="popover" 
-                                       data-placement="left" 
-                                       data-toggle="popover"
-                                       data-content="
-                                       <p>Choose from the three options below to contact us online:</p>
-                                       <ul>
-                                       <li><a href='#'>Questions</a></li>
-                                       <li><a href='#'>Feedback</a></li>
-                                       <li><a href='#'>Report Website Problem</a></li>
-                                       </ul>
-                                       <hr>
-                                       <h6>Phone Numbers: </h6>
-                                       <p class='leftmargin1'>(032)438-9390 / (032)438-9390</p>
-                                       <hr>
-                                       <p><b>Email : </b><span class='leftmargin1'>example@yahoo.com</span></p>
-                                       "
-                                       title="CONTACT US">Contact Us
-                                </a>
-                            </p>
-                        </div>
-                        <div class="span3 pull-right topmargin3">
-                            <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Donate Now</a></p>
-                            <p class="fontcolor1 leftmargin1 topmargin1">Sponsor a child</p>
-                            <ul>
-                                <li class="leftmargin1"><a href="#">List of Sponsees</a></li>
-                                <li class="leftmargin2"><a href="#">Lorem ipsum dolor sit amet</a></li>
-                                <li class="leftmargin2"><a href="#">Urna et risus vitae</a></li>
-                                <li class="leftmargin2"><a href="#">Suscipit ligula</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <?php include 'common_footer.php' ?>
             </div>
             <div class="copyright clear leftloat">
-                <div class="pull-left"><p>&copy; Copyright 2013. Charity Name: All Rights Reserved.</p></div>
-                <div class="pull-right">
-                    <p>
-                        Follow Us on :
-                        <?php
-                        echo $this->Html->image('facebook_icon.png', array('url' => 'https://www.facebook.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
-                        echo $this->Html->image('twitter_icon.png', array('url' => 'https://twitter.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
-                        echo $this->Html->image('youtube_icon.png', array('url' => 'http://www.youtube.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
-                        echo $this->Html->image('linkedin_icon.png', array('url' => 'http://www.linkedin.com/', 'class' => 'leftmargin5', 'target' => '_blank', 'escape' => false));
-                        ?>
-                    </p>
-                </div>
+                <?php include 'common_copyright.php' ?>
             </div>
         </div>
     </div>

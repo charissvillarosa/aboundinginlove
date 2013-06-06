@@ -78,7 +78,7 @@
                             ?>
                             <tr>
                                 <td style="width:30px;">
-                                    <input type="checkbox" name="sponseeneeds" 
+                                    <input type="checkbox" name="sponseeneeds"
                                            value="<?php echo $amount ?>"
                                            data-desc="<?php echo $need['description'] ?>"
                                            data-id="<?php echo $need['id'] ?>"/>

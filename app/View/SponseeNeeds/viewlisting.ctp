@@ -52,8 +52,8 @@
                     <tr>
                         <td bgcolor="#fff"><?php echo $ctr.'.'; ?></td>
                         <td bgcolor="#fff"><?php echo $need['description'] ?></td>
-                        <td bgcolor="#fff"><?php echo $need['neededamount'] ?></td>
-                        <td bgcolor="#fff"><?php echo $need['donatedamount'] ?></td>
+                        <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['neededamount']) ?></td>
+                        <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
                         <td bgcolor="#fff"><?php echo $need['added_by'] ?></td>
                         <td bgcolor="#fff"><?php echo $need['created'] ?></td>
                         <td bgcolor="#fff"><?php echo $need['modified'] ?></td>
