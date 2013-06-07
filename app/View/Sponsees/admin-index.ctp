@@ -47,7 +47,7 @@
                             echo $this->Text->truncate($info, 20, array('exact' => false));
                         ?>
                     </td>
-                    <td><?php echo $sponsee['birthdate'] ?></td>
+                    <td><?php echo $this->Time->format($sponsee['birthdate']) ?></td>
                     <td>
                         <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-file')); ?></i>
                     </td>

@@ -34,7 +34,7 @@ class PortfoliosController extends AppController {
     
     function beforeFilter()
     {
-        $this->Auth->allow('index', 'view', 'gallery');
+        $this->Auth->allow('index', 'view', 'gallery', 'portfolioname');
     }
 
 	public function index() {
@@ -58,6 +58,11 @@ class PortfoliosController extends AppController {
         }
 	}
     public function gallery() {
+
     }
 
+    public function portfolioname() {
+        $name = $this->Portfolio->find('all');
+        $this->set("list", $name);
+    }
 }

@@ -95,14 +95,20 @@
                         
                         echo "</table>"; 
                     }
-                    echo '<div id="error"></div>';
-                    echo '<div id="paypal-btn">';
-                    echo '<div style="padding:0 0 0 15px; margin:0;">';
-                        echo $this->Html->image('cards.gif');
-                    echo '</div>';
-                        echo $this->paypal->button('Donate through paypal', array('type' => 'donate', 'item_name' => '', 'amount' => ''));
-                    echo '</div>';
+//                    echo '<div id="error"></div>';
+//                    echo '<div id="paypal-btn">';
+//                    echo '<div style="padding:0 0 0 15px; margin:0;">';
+//                        echo $this->Html->image('cards.gif');
+//                    echo '</div>';
+//                        echo $this->paypal->button('Donate through paypal', array('type' => 'donate', 'item_name' => '', 'amount' => ''));
+//                    echo '</div>';
                     ?>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="Q3QL4BCLGN6SW">
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form>
                 </p>
             </div>
         </div>

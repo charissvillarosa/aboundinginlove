@@ -28,8 +28,8 @@
                     <td><?php echo $ctr; ?>
                     <td><?php echo $user['username'] ?></td>
                     <td><?php echo $user['role'] ?></td>
-                    <td><?php echo $user['created'] ?></td>
-                    <td><?php echo $user['modified'] ?></td>
+                    <td><?php echo $this->Time->format($user['created']) ?></td>
+                    <td><?php echo $this->Time->format($user['modified']) ?></td>
                     <td><?php echo $user['firstname'].' '.$user['middlename'].' '.$user['lastname'] ?></td>
                     <td>
                         <?php 

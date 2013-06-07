@@ -87,6 +87,9 @@ echo $this->Html->docType('html5');
                         <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
                             <?php echo $this->Html->link('Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
                         </li>
+                        <li class="<?php echo $controller == 'Portfolios' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Portfolio', array('controller'=>'Portfolios', 'action'=>'portfolioname')); ?>
+                        </li>
                     </ul>
                 </div>
                 <?php endif; ?>

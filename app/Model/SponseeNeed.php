@@ -12,6 +12,10 @@ class SponseeNeed extends AppModel
         'Category' => array(
             'className' => 'SponseeNeedCategory',
             'foreignKey' => 'category_id'
+        ),
+        'AddedBy' => array(
+            'className' => 'User',
+            'foreignKey' => 'added_by'
         )
     );
     

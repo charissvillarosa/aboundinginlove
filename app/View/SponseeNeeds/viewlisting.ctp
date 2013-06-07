@@ -27,6 +27,7 @@
                 foreach ($sponseeneeds as $item) :
                     $need = $item['SponseeNeed'];
                     $category = $item['Category'];
+                    $addedBy = $item['AddedBy'];
 
                     if ($prevCat != $category['id']) : ?>
                         <tr>
@@ -54,9 +55,9 @@
                         <td bgcolor="#fff"><?php echo $need['description'] ?></td>
                         <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['neededamount']) ?></td>
                         <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
-                        <td bgcolor="#fff"><?php echo $need['added_by'] ?></td>
-                        <td bgcolor="#fff"><?php echo $need['created'] ?></td>
-                        <td bgcolor="#fff"><?php echo $need['modified'] ?></td>
+                        <td bgcolor="#fff"><?php echo $addedBy['firstname'] ?></td>
+                        <td bgcolor="#fff"><?php echo $this->Time->format($need['created']) ?></td>
+                        <td bgcolor="#fff"><?php echo $this->Time->format($need['modified']) ?></td>
                         <td>
                            <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit')); ?></i>
                         </td>

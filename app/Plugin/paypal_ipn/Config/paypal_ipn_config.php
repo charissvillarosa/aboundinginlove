@@ -28,9 +28,9 @@ class PaypalIpnConfig
      */
     
     var $settings = array(
-        'business' => 'chariss.villarosa@paypal.com', //'sandbox_email@paypal.com',
+        'business' => 'chariss.villarosa-facilitator@avare-llc.com ', //'sandbox_email@paypal.com',
         'server' => 'https://www.sandbox.paypal.com',
-        'notify_url' => 'http://www.yoursite.com/paypal_ipn/process', //'http://www.yoursite.com/paypal_ipn/process',
+        'notify_url' => 'http://projects.avare-llc.com/aboundinginlove/index.php/paypal_ipn/process',
         'currency_code' => 'USD',
         'lc' => 'US',
         'name' => '',

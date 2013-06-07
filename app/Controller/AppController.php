@@ -35,7 +35,7 @@ App::uses('Controller', 'Controller');
 
 class AppController extends Controller
 {
-    var $helpers = array('Html','Form','PaypalIpn.Paypal');
+    //var $helpers = array('Html','Form','PaypalIpn.Paypal');
     //public $components = array('DebugKit.Toolbar');
 
     public $components = array(
