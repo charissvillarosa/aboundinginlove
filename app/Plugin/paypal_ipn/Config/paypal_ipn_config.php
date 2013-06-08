@@ -35,7 +35,8 @@ class PaypalIpnConfig
         'lc' => 'US',
         'name' => '',
         'amount' => '',
-        'item_number' => ''
+        'item_number' => '',
+        'return' => 'http://projects.avare-llc.com/aboundinginlove/index.php/'
     );
 
 }
