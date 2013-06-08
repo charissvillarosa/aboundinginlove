@@ -1,7 +1,7 @@
 <div class="container tabs">
     <div class="span11 margin3 leftmargin1">
         <div class="pull-right">
-            <?php echo $this->Html->link('Go back to Sponsee List', array('action' => 'index'), array('class' => 'btn btn-info btn-small')); ?>
+            <?php echo $this->Html->link('<< Back to List', array('action' => 'index'), array('class' => 'btn btn-info btn-small')); ?>
         </div>
         <div style="background:#f9f9f9;" class="pull-left span10 well leftmargin2 topmargin1">
             <h4 class="fontcolor1"><?php echo __('View User record'); ?></h4>
@@ -32,8 +32,7 @@
                     <?php echo $user['username'] ?>
                 </p>
                 <p>
-                    Password : 
-                    <?php echo $user['password'] ?>
+                    Password : *******************
                 </p>
                 <p>
                     Date Created : 

@@ -69,7 +69,7 @@ $user = $this->Session->read('Auth.User');
                             echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage)."'></div></div>";
                             echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totalneededamount, 'USD')."</b> = Needed</div>";
                             echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totaldonatedamount, 'USD')."</b> = Donated</div>";
-                            echo $this->Html->link('Donate', array('controller' => 'donations', 'action' => 'index', $sponsee['id']), array('class' => 'btn btn-info'));
+                            echo $this->Html->link('Donate', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info'));
                         ?>
                     </div>
                     <hr/>

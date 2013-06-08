@@ -14,10 +14,10 @@ class DonationsController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('index', 'listing'); // Letting users register themselves
+        $this->Auth->allow('view', 'listing'); // Letting users register themselves
     }
 
-    public function index($id)
+    public function view($id)
     {
         $this->loadModel('SponseeListingItem');
         $sponsee = $this->SponseeListingItem->find('all', array(

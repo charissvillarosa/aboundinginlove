@@ -3,10 +3,10 @@
 App::uses("AuthComponent ", "Controller/Component");
 
 /**
- * @author chariss
+ * @author jaycverg
  */
-class Country extends AppModel
+class PaypalTxnLog extends AppModel
 {
-    
+
 }
 

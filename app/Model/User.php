@@ -95,11 +95,10 @@ class User extends AppModel
         return true;
     }
 
-    function beforeSave()
+    function beforeSave($options = Array())
     {
         if (isset($this->data[$this->alias]['password'])) {
             $this->data[$this->alias]['password'] = Security::hash($this->data[$this->alias]['password'], null, true);
-            unset($this->data[$this->alias]['password']);
         }
 
         if (isset($this->data[$this->alias]['password_confirm'])) {
