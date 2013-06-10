@@ -13,6 +13,7 @@
                 <th>Information / Biography</th>
                 <th>Birtd Date</th>
                 <th>View Sponsee Needs</th>
+                <th>View Sponsee Portfolio</th>
                 <th>Edit</th>
                 <th>View</th>
                 <th>Delete</th>
@@ -50,6 +51,9 @@
                     <td><?php echo $this->Time->format($sponsee['birthdate']) ?></td>
                     <td>
                         <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-file')); ?></i>
+                    </td>
+                    <td>
+                        <i><?php echo $this->Html->link('', array('controller' => 'PorftfolioImages', 'action' => 'listing', $sponsee['id']), array('class' => 'icon-file')); ?></i>
                     </td>
                     <td>
                        <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'edit', $sponsee['id']), array('class' => 'icon-edit')); ?></i>

@@ -104,7 +104,7 @@
  * thus not recommended for production applications.
  */
 	//Configure::write('App.baseUrl', env('SCRIPT_NAME'));
-	Configure::write('App.baseUrl', '/avare-projects/aboundinginlove/index.php');
+	Configure::write('App.baseUrl', '/aboundinginlove/index.php');
 
 /**
  * Uncomment the define below to use CakePHP prefix routes.

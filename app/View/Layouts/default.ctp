@@ -72,17 +72,7 @@ echo $this->Html->docType('html5');
                             <?php echo $this->Html->link('DONATE NOW', array('controller' => 'donations', 'action' => 'listing'), array('class' => 'btn btn-info')); ?>
                         </div>
                         <div class="btn-group">
-                            <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-                                SPONSOR A CHILD
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- dropdown menu links -->
-                                <li>
-                                    <?php 
-                                    echo $this->Html->link('List of Sponsees', array('controller'=>'sponsees')); ?>
-                                </li>
-                            </ul>
+                            <?php echo $this->Html->link('SPONSOR A CHILD', array('controller'=>'sponsees'), array('class' => 'btn btn-info'));  ?>
                         </div>
                         <div class="btn-group">
                             <?php echo $this->Html->link('ABOUT US', array('controller' => 'pages', 'action' => 'aboutus'), array('class' => 'btn btn-info')); ?>

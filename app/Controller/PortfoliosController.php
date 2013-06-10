@@ -61,8 +61,55 @@ class PortfoliosController extends AppController {
 
     }
 
-    public function portfolioname() {
+    public function listing() {
         $name = $this->Portfolio->find('all');
         $this->set("list", $name);
     }
+
+    public function add()
+    {
+        if ($this->request->is('post')) {
+            $this->Portfolio->create();
+            if ($this->Portfolio->save($this->request->data)) {
+                $this->Session->setFlash(__('The Portfolio Name has been saved'));
+                $this->redirect(array('action' => 'listing'));
+            }
+            else {
+                $this->Session->setFlash(__('The Portfolio Name could not be saved. Please, try again.'));
+            }
+        }
+    }
+
+    public function edit($id){
+        if (!$id) {
+            throw new NotFoundException(__('Invalid input'));
+        }
+
+        $this->Portfolio->id = $id;
+        $portfolioname = $this->Portfolio->read();
+
+        if ($this->request->is('get')) {
+            if (!$portfolioname) {
+                throw new NotFoundException(__('Invalid input'));
+            }
+            $this->request->data = $portfolioname;
+        }
+        else {
+            if ($this->Portfolio->save($this->request->data)) {
+                $this->redirect(array('action' => 'listing', $id));
+            } else {
+                $this->Session->setFlash('Unable to update the record.');
+            }
+        }
+
+        $this->set("list", $portfolioname);
+    }
+
+    public function delete($id) {
+        if ($this->Portfolio->delete($id)) {
+            $this->Session->setFlash('Portfolio Name with id: ' . $id . ' has been deleted.');
+        }
+        $this->redirect(array('action' => 'listing'));
+    }
+    
 }
