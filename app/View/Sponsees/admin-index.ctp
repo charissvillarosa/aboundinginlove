@@ -53,7 +53,7 @@
                         <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-file')); ?></i>
                     </td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'PorftfolioImages', 'action' => 'listing', $sponsee['id']), array('class' => 'icon-file')); ?></i>
+                        <i><?php echo $this->Html->link('', array('controller' => 'PortfolioImages', 'action' => 'listing', $sponsee['id']), array('class' => 'icon-file')); ?></i>
                     </td>
                     <td>
                        <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'edit', $sponsee['id']), array('class' => 'icon-edit')); ?></i>

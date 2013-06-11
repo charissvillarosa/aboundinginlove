@@ -2,9 +2,6 @@
     <div class="tree pull-left">
         <div class="span2 pull-right topmargin3">
             <p class="fontcolor1 leftmargin1 topmargin1">
-                <?php echo $this->Html->link('About Us', array('controller' => 'pages', 'action' => 'aboutus')); ?>
-            </p>
-            <p class="fontcolor1 leftmargin1 topmargin1">
                 <?php echo $this->Html->link("What we do?", array('controller' => 'pages', 'action' => 'whatwedo')); ?>
             </p>
             <p class="fontcolor1 leftmargin1 topmargin1"><a href="#">Portfolio</a></p>
@@ -34,10 +31,10 @@
         <div class="span2 pull-right topmargin3">
             <p class="fontcolor1 leftmargin1 topmargin1"><?php echo $this->Html->link('Register', '/register'); ?></p>
             <p class="fontcolor1 leftmargin1 topmargin1"><?php echo $this->Html->link('Donate Now', array('controller' => 'donations', 'action' => 'listing')); ?></p>
-            <p class="fontcolor2 leftmargin1 topmargin1">Sponsor a child</p>
-            <ul>
-                <li class="leftmargin1"><a href="#">List of Sponsees</a></li>
-            </ul>
+            <p class="fontcolor2 leftmargin1 topmargin1"><?php echo $this->Html->link('Sponsor a child', array('controller'=>'sponsees'));  ?></p>
+            <p class="fontcolor1 leftmargin1 topmargin1">
+                <?php echo $this->Html->link('About Us', array('controller' => 'pages', 'action' => 'aboutus')); ?>
+            </p>
         </div>
         <div class="span2 pull-right topmargin3">
             <p class="fontcolor1 leftmargin1 topmargin1"><?php echo $this->Html->link('Home', '/home'); ?></p>
