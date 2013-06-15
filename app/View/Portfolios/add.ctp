@@ -1,7 +1,7 @@
 <div class="container tabs">
     <div class="span11 margin3 leftmargin1">
         <div class="pull-right">
-            <?php echo $this->Html->link('Go back to Portfolio List', array('controller' => 'Portfolios', 'action' => 'index'), array('class' => 'btn btn-info btn-small')); ?>
+            <?php echo $this->Html->link('Go back to Portfolio List', array('controller' => 'Portfolios', 'action' => 'listing'), array('class' => 'btn btn-info btn-small')); ?>
         </div>
         <div style="background:#f9f9f9;" class="pull-left well leftmargin1 topmargin1 span10">
             <h4 class="fontcolor1">

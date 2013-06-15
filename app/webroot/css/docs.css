@@ -2,6 +2,8 @@
 #program {background: url('../img/program.png') no-repeat left;}
 #projects {background: url('../img/projects.png') no-repeat left;}
 #login {background: url('../img/login.png') no-repeat left;}
+#logout {background: url('../img/login.png') no-repeat left;}
+#dashboard {background: url('../img/dashboard.png') no-repeat left;}
 #register {background: url('../img/register.png') no-repeat left;}
 #slider {
     position:relative;

@@ -11,7 +11,7 @@ class PortfolioImagesController extends AppController
 
     public function beforeFilter()
     {
-        $this->Auth->allow('view');
+        $this->Auth->allow('view', 'upload');
     }
 
     public function view($id)
@@ -20,17 +20,18 @@ class PortfolioImagesController extends AppController
 
         $this->PortfolioImage->id = $id;
         $photo = $this->PortfolioImage->find('all', array(
-                'condition' => $photo[][];
+            'conditions' => array('PortfolioImage.sponsee_id' => $id)
         ));
-//        if ($photo) {
-//            header('Cache-Control: public');
-//            header('Cache-Control: max-age=3600');
-//            header("content-type: $photo[PortfolioImage][image]");
-//            echo $photo['PortfolioImage']['image'];
-//        } else {
-//            header('content-type: image/jpg');
-//            include '../webroot/img/sponsees/nophoto.jpg';
-//        }
+        debug($photo);
+        if ($photo) {
+            header('Cache-Control: public');
+            header('Cache-Control: max-age=3600');
+            header("content-type: $photo[PortfolioImage][image]");
+            echo $photo[PortfolioImage][image];
+        } else {
+            header('content-type: image/jpg');
+            //include '../webroot/img/sponsees/nophoto.jpg';
+        }
     }
 
     function upload($id)
