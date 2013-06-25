@@ -59,7 +59,7 @@ echo $this->Html->docType('html5');
 <body>
     <div>
         <!--thumnails images animation-->
-        <div class="header container margin1">
+        <div class="header container">
             <div class="pull-right">
                 <?php include 'common_header.php' ?>
             </div>

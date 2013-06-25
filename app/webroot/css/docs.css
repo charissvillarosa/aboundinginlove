@@ -2,24 +2,17 @@
 #program {background: url('../img/program.png') no-repeat left;}
 #projects {background: url('../img/projects.png') no-repeat left;}
 #login {background: url('../img/login.png') no-repeat left;}
-#logout {background: url('../img/login.png') no-repeat left;}
-#dashboard {background: url('../img/dashboard.png') no-repeat left;}
 #register {background: url('../img/register.png') no-repeat left;}
 #slider {
     position:relative;
     left:0;
     top:0;
-    height:400px;
-    background: #01789b;
-    border-top:solid 5px #015d78;
-    border-bottom:solid 3px #0299c6;
-    overflow:hidden;
 }
 #menu {
     position:absolute;
     right: 0;
     left: 0;
-    top:80px;
+    top:100px;
     z-index:100;
 }
 #logo {
@@ -71,6 +64,7 @@
 
 .fontsize1 {font-size: 20px;}
 .fontsize2 {font-size: 30px;}
+.fontsize3 {font-size: 12px;}
 
 /** containers **/
 div.centerwrapper {

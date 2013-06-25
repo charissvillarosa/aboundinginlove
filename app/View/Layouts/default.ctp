@@ -58,10 +58,7 @@ echo $this->Html->docType('html5');
 </head>
 <body>
     <div>
-        <div class="header container margin1">
-            <!--<div class="pull-left laftmargin">
-                <p><b>Charity Slogan put here...</b></p>
-            </div>-->
+        <div class="header container">
             <?php include 'common_header.php' ?>
         </div>
         <div class="clearfix">

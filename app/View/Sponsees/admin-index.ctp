@@ -9,6 +9,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Country</th>
+                <th>Gender</th>
                 <th>Map Location</th>
                 <th>Information / Biography</th>
                 <th>Birtd Date</th>
@@ -35,6 +36,7 @@
                         ?>
                     </td>
                     <td><?php echo $sponsee['country'] ?></td>
+                    <td><?php echo $sponsee['gender'] ?></td>
                     <td>
                         <?php 
                         echo  

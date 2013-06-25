@@ -2,7 +2,7 @@
 
 create view sponsee_listing as
 select 
-    s.*,
+    s.*, year(now()) - year(s.birthdate) as age,
     sum(coalesce(sn.neededamount, 0)) as total_neededamount,
     sum(coalesce(sn.donatedamount, 0)) as total_donatedamount,
     coalesce(

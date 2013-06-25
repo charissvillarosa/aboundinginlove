@@ -58,13 +58,8 @@ echo $this->Html->docType('html5');
 </head>
 <body>
     <div>
-        <div class="header container margin2">
-            <div class="pull-left span4">
-                <p class="fontcolor1 fontsize1">
-                    <?php echo $this->Html->image('smalllogo.png', array('alt' => 'logo')); ?>
-                </p>
-            </div>
-            <div class="pull-right" style="margin-top: 30px;">
+        <div class="header container">
+            <div class="pull-right">
                 <?php include 'common_header.php' ?>
             </div>
         </div>

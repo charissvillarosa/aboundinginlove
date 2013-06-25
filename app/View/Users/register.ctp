@@ -1,8 +1,6 @@
 <div class="logincontent">
     <div class="pull-left span5">
-        <p>
-            <?php echo $this->Html->image('smalllogo.png', array('alt' => 'logo')); ?>
-        </p>
+        <h2 class="fontcolor1">Autem enim tellus</h2>
         <hr>
         <p class="topmargin1">
             Vulputate wisi aenean elementum, accumsan nunc cras adipiscing odio, elit arcu ultricies quis,

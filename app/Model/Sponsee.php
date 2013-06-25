@@ -36,6 +36,12 @@ class Sponsee extends AppModel
                 "message" => "A country is required"
             )
         ),
+        "gender" => array(
+            "valid" => array(
+                "rule" => array("notEmpty"),
+                "message" => "A gender is required"
+            )
+        ),
         "maplocation" => array(),
         "information" => array(
             "valid" => array(
