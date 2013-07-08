@@ -6,13 +6,13 @@
         <div style="background:#f9f9f9;" class="pull-left well leftmargin1 topmargin1 span10">
             <h4 class="fontcolor1">
                 <?php
-                echo __('Edit Portfolio Name');
+                echo __('Add New Portfolio Name');
                 ?>
             </h4>
             <hr>
             <div>
                 <?php
-                echo $this->Form->create('Portfolio');
+                echo $this->Form->create('PortfolioCategory');
                 ?>
                 <fieldset>
                     <?php echo $this->Form->input('description', array('label' => 'Description', 'style' => 'width:400px')) ?>

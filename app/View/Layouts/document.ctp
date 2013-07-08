@@ -80,10 +80,10 @@ echo $this->Html->docType('html5');
                             <?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index')); ?>
                         </li>
                         <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
+                            <?php echo $this->Html->link('Need Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
                         </li>
-                        <li class="<?php echo $controller == 'Portfolios' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Portfolio', array('controller'=>'Portfolios', 'action'=>'listing')); ?>
+                        <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Portfolio Categories', array('controller'=>'PortfolioCategories', 'action'=>'listing')); ?>
                         </li>
                     </ul>
                 </div>

@@ -19,18 +19,16 @@ class PortfolioImagesController extends AppController
         $this->autoRender = false;
 
         $this->PortfolioImage->id = $id;
-        $photo = $this->PortfolioImage->find('all', array(
-            'conditions' => array('PortfolioImage.sponsee_id' => $id)
-        ));
-        debug($photo);
+        $photo = $this->PortfolioImage->read();
+
         if ($photo) {
             header('Cache-Control: public');
             header('Cache-Control: max-age=3600');
             header("content-type: $photo[PortfolioImage][image]");
-            echo $photo[PortfolioImage][image];
+            echo $photo['PortfolioImage']['image'];
         } else {
             header('content-type: image/jpg');
-            //include '../webroot/img/sponsees/nophoto.jpg';
+            include 'app/webroot/img/sponsees/nophoto.jpg';
         }
     }
 

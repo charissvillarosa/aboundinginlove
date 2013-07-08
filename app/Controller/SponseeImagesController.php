@@ -20,6 +20,7 @@ class SponseeImagesController extends AppController
 
         $this->SponseeImage->id = $id;
         $photo = $this->SponseeImage->read();
+        
         if ($photo) {
             header('Cache-Control: public');
             header('Cache-Control: max-age=3600');
