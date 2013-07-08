@@ -19,7 +19,6 @@
                     foreach ($listing as $item) :
                         $portfolio = $item['Portfolio'];
                         $category= $item['Category'];
-                        $image= $item['Image'];
                         
                         if ($prevCat != $category['id']) : ?>
                             <tr>
@@ -32,17 +31,23 @@
                                     <?php echo $portfolio['description'] ?>
                                 </td>
                             </tr
-                        <?php 
+                        <?php
                         $prevCat = $category['id'];
-                        endif; 
+                        endif;
                         ?>
                         <tr>
-                            <td bgcolor="#fff"><?php echo $image['image'] ?></td>
-                        </tr>
-                        <?php
+                            <td bgcolor="#fff">
+                            <?php
+                            foreach ($item['Images'] as $image) :
+                                $imageURl = array('controller' => 'PortfolioImages', 'action' => 'view', $image['id']);
+                                $attrs = array('alt' => '', 'width' => '100', 'class' => 'img-polaroid');
+                                echo $this->Html->image($imageURl, $attrs);
+                            endforeach;
                     endforeach;
                 }
             ?>
+                            </td>
+                        </tr>
         </table>
     </div>
 </div>

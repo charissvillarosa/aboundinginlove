@@ -24,10 +24,10 @@ class PortfolioImagesController extends AppController
         if ($photo) {
             header('Cache-Control: public');
             header('Cache-Control: max-age=3600');
-            header("content-type: $photo[PortfolioImage][image]");
+            header('Content-type: ' . $photo['PortfolioImage']['content_type']);
             echo $photo['PortfolioImage']['image'];
         } else {
-            header('content-type: image/jpg');
+            header('Content-type: image/jpg');
             include 'app/webroot/img/sponsees/nophoto.jpg';
         }
     }

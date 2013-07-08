@@ -11,10 +11,18 @@ class Portfolio extends AppModel
         'Category' => array(
             'className' => 'PortfolioCategory',
             'foreignKey' => 'category_id'
-        ),
-        'Image' => array(
+        )
+    );
+
+    // this should be hasMany because
+    // a portfolio can contain many Image
+    var $hasMany = array(
+        'Images' => array(
             'className' => 'PortfolioImage',
-            'foreignKey' => 'category_id'
+            'foreignKey' => 'portfolio_id',
+            
+            // the 'image' field is not required here
+            'fields' => array('id', 'portfolio_id', 'description', 'date_uploaded')
         )
     );
     

@@ -24,11 +24,11 @@ class SponseeImagesController extends AppController
         if ($photo) {
             header('Cache-Control: public');
             header('Cache-Control: max-age=3600');
-            header("content-type: $photo[SponseeImage][image]");
+            header('Content-type: ' . $photo['SponseeImage']['content_type']);
             echo $photo['SponseeImage']['image'];
         } else {
-            header('content-type: image/jpg');
-            include '../webroot/img/sponsees/nophoto.jpg';
+            header('Content-type: image/jpg');
+            include 'app/webroot/img/sponsees/nophoto.jpg';
         }
     }
 
