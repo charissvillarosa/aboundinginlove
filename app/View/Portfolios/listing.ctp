@@ -2,9 +2,10 @@
     <div class="span11 margin3">
         <div class="pull-right bottomargin2">
             <?php
-                if($listing){
-                    echo $this->Html->link('Add New Portfolio', array('controller' => 'Portfolios', 'action' => 'add', $listing['Portfolio']['sponsee_id']), array('class' => 'btn btn-info btn-small'));
-                }
+                echo $this->Html->link(
+                        'Add New Portfolio',
+                        array('controller' => 'Portfolios', 'action' => 'add', $sponsee_id),
+                        array('class' => 'btn btn-info btn-small'));
             ?>
         </div>
         <div class="leftmargin1">

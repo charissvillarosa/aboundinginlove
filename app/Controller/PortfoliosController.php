@@ -21,6 +21,7 @@ class PortfoliosController extends AppController
             'order' => array('Portfolio.category_id')
         ));
 
+        $this->set("sponsee_id", $id);
         $this->set("listing", $portfolio);
     }
     
@@ -40,7 +41,7 @@ class PortfoliosController extends AppController
             'conditions' => array('Portfolio.sponsee_id' => $id),
             'order' => array('Portfolio.category_id')
         ));
-        
+
         $this->set("listing", $portfolio);
     }
     
@@ -59,5 +60,6 @@ class PortfoliosController extends AppController
             }
         }
 
+        $this->set("sponsee_id", $id);
     }
 }
