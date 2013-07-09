@@ -1,12 +1,16 @@
 <div class="container tabs">
     <div class="span11 margin3">
         <div class="pull-right bottomargin2">
-            <?php echo $this->Html->link('Add New Portfolio', array('controller' => 'Portfolio', 'action' => 'add'), array('class' => 'btn btn-info btn-small')); ?>
+            <?php
+                if($listing){
+                    echo $this->Html->link('Add New Portfolio', array('controller' => 'Portfolios', 'action' => 'add', $listing['Portfolio']['sponsee_id']), array('class' => 'btn btn-info btn-small'));
+                }
+            ?>
         </div>
         <div class="leftmargin1">
             <?php echo $this->Session->flash(); ?>
         </div>
-        <table class="leftmargin1 table">
+        <table class="leftmargin1 table table-bordered">
             <?php
                 $prevCat = 0;
 
@@ -17,6 +21,7 @@
                 }
                 else {
                     foreach ($listing as $item) :
+                        $id = $item['Portfolio']['sponsee_id'];
                         $portfolio = $item['Portfolio'];
                         $category= $item['Category'];
                         
