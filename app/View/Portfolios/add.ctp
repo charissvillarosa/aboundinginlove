@@ -20,8 +20,9 @@
                 echo $this->Form->create('Portfolio');
                 ?>
                 <fieldset>
-                    <?php echo $this->Form->input('category', array('label' => 'Description', 'style' => 'width:400px')) ?>
+                    <?php echo $this->Form->input('category_id', array('type'=>'select','options'=>$portfoliolisting)) ?>
                     <?php echo $this->Form->input('description', array('label' => 'Description', 'style' => 'width:400px')) ?>
+                    <?php echo $this->Form->input('sponsee_id', array('type' => 'hidden', 'value'=>$sponsee_id)); ?>
                 </fieldset>
                 <?php echo $this->Form->end('Save Changes') ?>
             </div>

@@ -39,17 +39,17 @@
                     </td>
                     <td><?php echo $user['country'] ?></td>
                     <td>
-                       <i><?php echo $this->Html->link('', array('controller' => 'users', 'action' => 'edit', $user['id']), array('class' => 'icon-edit')); ?></i>
+                       <i><?php echo $this->Html->link('', array('controller' => 'users', 'action' => 'edit', $user['id']), array('class' => 'icon-edit','title' => 'Edit')); ?></i>
                     </td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'users', 'action' => 'view', $user['id']), array('class' => 'icon-list')); ?></i>
+                        <i><?php echo $this->Html->link('', array('controller' => 'users', 'action' => 'view', $user['id']), array('class' => 'icon-list','title' => 'View')); ?></i>
                     </td>
                     <td>
                         <i>
                         <?php echo $this->Html->link(
                             '',
                             array('action' => 'delete', $user['id']),
-                            array('class' => 'icon-trash'),
+                            array('class' => 'icon-trash','title' => 'Delete'),
                             'Are you sure you want to delete this item?');
                         ?>
                         </i>

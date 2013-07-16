@@ -28,27 +28,54 @@
                         
                         if ($prevCat != $category['id']) : ?>
                             <tr>
-                                <th bgcolor="#eef6fa" colspan="9">
+                                <th bgcolor="#eef6fa" colspan="2">
                                     <?php echo $category['description'] ?>
                                 </th>
-                            </tr
-                            <tr>
-                                <td bgcolor="#eef6fa" colspan="9">
-                                    <?php echo $portfolio['description'] ?>
-                                </td>
                             </tr
                         <?php
                         $prevCat = $category['id'];
                         endif;
                         ?>
                         <tr>
-                            <td bgcolor="#fff">
+                            <td bgcolor="#eef6fa">
+                                <?php echo $portfolio['description'] ?>
+                            </td>
+                            <th>
+                                <i>
+                                <?php
+                                    $id = $portfolio['id'];
+                                    $sponsee_id = $portfolio['sponsee_id'];
+
+                                    echo $this->Html->link(
+                                    '',
+                                    array('action' => 'delete', $id, $sponsee_id),
+                                    array('class' => 'icon-trash','title' => 'Delete'),
+                                    'Are you sure you want to delete this item?');
+                                ?>
+                                </i>
+                            </th>
+                        </tr
+                        <tr>
+                            <td bgcolor='#fff' colspan='2'>
                             <?php
-                            foreach ($item['Images'] as $image) :
-                                $imageURl = array('controller' => 'PortfolioImages', 'action' => 'view', $image['id']);
-                                $attrs = array('alt' => '', 'width' => '100', 'class' => 'img-polaroid');
-                                echo $this->Html->image($imageURl, $attrs);
-                            endforeach;
+                                if(empty($item['Images'])){
+                                    echo "<p>No photo uploaded</p><br>";
+                                    echo $this->Html->link(
+                                    'Upload Image',
+                                    array('controller' => 'PortfolioImages', 'action' => 'upload', $sponsee_id, $id),
+                                    array('class' => 'btn btn-info btn-small'));
+                                }
+                                else {
+                                    foreach ($item['Images'] as $image) :
+                                        $imageURl = array('controller' => 'PortfolioImages', 'action' => 'view', $image['id']);
+                                        $attrs = array('alt' => '', 'width' => '100', 'class' => 'leftmargin1 img-polaroid', 'title'=>$image['description']);
+                                        echo $this->Html->image($imageURl, $attrs);
+                                    endforeach;
+                                    echo '<br><br><br>'.$this->Html->link(
+                                    'Upload Image',
+                                    array('controller' => 'PortfolioImages', 'action' => 'upload', $sponsee_id, $id),
+                                    array('class' => 'btn btn-info btn-small'));
+                                }
                     endforeach;
                 }
             ?>

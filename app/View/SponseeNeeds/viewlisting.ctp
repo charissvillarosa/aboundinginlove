@@ -59,14 +59,14 @@
                         <td bgcolor="#fff"><?php echo $this->Time->format($need['created']) ?></td>
                         <td bgcolor="#fff"><?php echo $this->Time->format($need['modified']) ?></td>
                         <td>
-                           <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit')); ?></i>
+                           <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit','title' => 'Edit')); ?></i>
                         </td>
                         <td>
                             <i>
                             <?php echo $this->Html->link(
                                 '',
                                 array('action' => 'delete', $need['id'], $need['sponsee_id']),
-                                array('class' => 'icon-trash'),
+                                array('class' => 'icon-trash','title' => 'Delete'),
                                 'Are you sure you want to delete this item?');
                             ?>
                             </i>

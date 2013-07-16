@@ -54,12 +54,24 @@ class PortfoliosController extends AppController
             $this->Portfolio->create();
             if ($this->Portfolio->save($this->request->data)) {
                 $this->Session->setFlash('New record has been saved.');
-                $this->redirect(array('action' => 'listing'));
+                $this->redirect(array('action' => 'listing', $id));
             } else {
                 $this->Session->setFlash('Unable to add a new record.');
             }
         }
+        //country list
+        $this->loadModel('PortfolioCategory');
+        $this->set('portfoliolisting', $this->PortfolioCategory->find('list', array(
+            'fields' => array('id','description')
+        )));
 
         $this->set("sponsee_id", $id);
+    }
+    
+    public function delete($id, $sponsee_id) {
+        if ($this->Portfolio->delete($id)) {
+            $this->Session->setFlash('Record has been deleted.');
+        }
+        $this->redirect(array('action' => 'listing', $sponsee_id));
     }
 }

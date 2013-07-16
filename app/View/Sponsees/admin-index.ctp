@@ -52,23 +52,23 @@
                     </td>
                     <td><?php echo $this->Time->format($sponsee['birthdate']) ?></td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-file')); ?></i>
+                        <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-file','title' => 'View Sponsee Needs')); ?></i>
                     </td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'Portfolios', 'action' => 'listing', $sponsee['id']), array('class' => 'icon-file')); ?></i>
+                        <i><?php echo $this->Html->link('', array('controller' => 'Portfolios', 'action' => 'listing', $sponsee['id']), array('class' => 'icon-file','title' => 'View Sponsee Portfolio')); ?></i>
                     </td>
                     <td>
-                       <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'edit', $sponsee['id']), array('class' => 'icon-edit')); ?></i>
+                       <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'edit', $sponsee['id']), array('class' => 'icon-edit','title' => 'Edit Sponsee Profile')); ?></i>
                     </td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'view', $sponsee['id']), array('class' => 'icon-list')); ?></i>
+                        <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'view', $sponsee['id']), array('class' => 'icon-list','title' => 'View Sponsee Profile')); ?></i>
                     </td>
                     <td>
                         <i>
                         <?php echo $this->Html->link(
                             '',
                             array('action' => 'delete', $sponsee['id']),
-                            array('class' => 'icon-trash'),
+                            array('class' => 'icon-trash','title' => 'Delete Sponsee'),
                             'Are you sure you want to delete this item?');
                         ?>
                         </i>

@@ -23,14 +23,14 @@
                     <td bgcolor="#fff"><?php echo $ctr.'.'; ?></td>
                     <td bgcolor="#fff"><?php echo $item['PortfolioCategory']['description'] ?></td>
                     <td>
-                       <i><?php echo $this->Html->link('', array('controller' => 'PortfolioCategories', 'action' => 'edit', $item['PortfolioCategory']['id']), array('class' => 'icon-edit')); ?></i>
+                       <i><?php echo $this->Html->link('', array('controller' => 'PortfolioCategories', 'action' => 'edit', $item['PortfolioCategory']['id']), array('class' => 'icon-edit','title' => 'Edit')); ?></i>
                     </td>
                     <td>
                         <i>
                         <?php echo $this->Html->link(
                             '',
                             array('action' => 'delete', $item['PortfolioCategory']['id']),
-                            array('class' => 'icon-trash'),
+                            array('class' => 'icon-trash','title' => 'Delete'),
                             'Are you sure you want to delete this item?');
                         ?>
                         </i>
