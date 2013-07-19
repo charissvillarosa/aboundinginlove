@@ -11,7 +11,7 @@
             </ul>
         </div>
     </div>
-    <div>
+    <div class="well">
         <?php
             foreach ($sponseelist as $item) :
                $sponsee = $item['Sponsee'];

@@ -1,13 +1,13 @@
-<div class="tabs">
-    <div class="span12">
+<div class="tabs well">
+    <div>
         <h3 class="leftmargin2 fontcolor1">Donate Now</h3>
     </div>
-    <div class="span12">
+    <div>
         <?php
         foreach ($sponseeList as $item) :
             $sponsee = $item['SponseeListingItem'];
         ?>
-        <div class="pull-left box span3 topmargin1 rightmargin1">
+        <div class="pull-left box span3 rightmargin1">
             <div class="rightmargin1">
                 <?php
                 $imageURl;
@@ -36,12 +36,10 @@
         endforeach;
         ?>
     </div>
-    <div class="clearfix margin3 span12">
-        <div class="leftmargin2">
-            <button class="btn"><?php echo $this->Paginator->numbers(); ?></button>
+    <div class="clearfix leftmargin2">
+        <h3>
             <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
             <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
-            <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
-        </div>
+        </h3>
     </div>
 </div>

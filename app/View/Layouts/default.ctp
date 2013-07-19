@@ -35,6 +35,7 @@ echo $this->Html->docType('html5');
     echo $this->Html->css('docs');
     echo $this->Html->css('bootstrap');
     echo $this->Html->css('bootstrap-responsive');
+    echo $this->Html->css('background');
 
     echo $this->Html->script('jquery.js');
     echo $this->Html->script('bootstrap.min');
@@ -55,6 +56,9 @@ echo $this->Html->docType('html5');
             $('a[rel=popover]').popover({html: 'true'});
         });
     </script>
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
     <div>
@@ -62,49 +66,16 @@ echo $this->Html->docType('html5');
             <?php include 'common_header.php' ?>
         </div>
         <div class="clearfix">
-            <div id="menu">
+            <div class="clearfix">
                 <div class="container">
-                    <div class="pull-right">
-                        <div class="btn-group">
-                            <?php echo $this->Html->link('DONATE NOW', array('controller' => 'donations', 'action' => 'listing'), array('class' => 'btn btn-info')); ?>
-                        </div>
-                        <div class="btn-group">
-                            <?php echo $this->Html->link('SPONSOR A CHILD', array('controller'=>'sponsees'), array('class' => 'btn btn-info'));  ?>
-                        </div>
-                        <div class="btn-group">
-                            <?php echo $this->Html->link('ABOUT US', array('controller' => 'pages', 'action' => 'aboutus'), array('class' => 'btn btn-info')); ?>
-                        </div>
-                        <div class="btn-group">
-                            <?php echo $this->Html->link("WHAT WE DO?", array('controller' => 'pages', 'action' => 'whatwedo'), array('class' => 'btn btn-info')); ?>
-                        </div>
-                        <div class="btn-group">
-                            <?php echo $this->Html->link('PORTFOLIO', array('controller' => 'portfolios', 'action' => 'index'), array('class' => 'btn btn-info')); ?>
-                        </div>
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-info dropdown-toggle" 
-                               rel="popover" 
-                               data-toggle="popover" 
-                               data-placement="bottom" 
-                               data-toggle="popover"
-                               data-content="
-                               <p>Choose from the three options below to contact us online:</p>
-                               <ul>
-                               <li><a href='#'>Questions</a></li>
-                               <li><a href='#'>Feedback</a></li>
-                               <li><a href='#'>Report Website Problem</a></li>
-                               </ul>
-                               <hr>
-                               <h6>Phone Numbers: </h6>
-                               <p class='leftmargin1'>(032)438-9390 / (032)438-9390</p>
-                               <hr>
-                               <p><b>Email : </b><span class='leftmargin1'>example@yahoo.com</span></p>
-                               "
-                               title="CONTACT US">CONTACT US</a>
+                    <div style="position:fixed; left:126px; top:0; z-index:1040;">
+                        <div>
+                            <?php
+                            echo $this->Html->image('aboundinginlove_logo.png', array('alt'=>'Abounding in Love Organization Logo'));
+                            ?>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="clearfix">
                 <?php echo $this->fetch('content'); ?>
             </div>
         </div>
@@ -123,13 +94,13 @@ echo $this->Html->docType('html5');
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myModalLabel">Login</h3>
         </div>
-        <div class="modal-body leftmargin1">
+        <div class="modal-body">
             <?php echo $this->Session->flash(""); ?>
             <?php echo $this->Form->create("User", array('url' => array('controller' => 'users', 'action' => 'login'))); ?>
             <fieldset>
                 <?php
-                echo $this->Form->input("username");
-                echo $this->Form->input("password");
+                echo $this->Form->input("username", array('class'=>'span5', 'type'=>'text',  'placeholder'=>'Username'));
+                echo $this->Form->input("password", array('class'=>'span5', 'type'=>'text',  'placeholder'=>'Password'));
                 ?>
             </fieldset>
             <?php echo $this->Form->end("Login", array("class" => "btn btn-info")); ?>

@@ -1,8 +1,3 @@
-#home {background: url('../img/home.png') no-repeat left;}
-#program {background: url('../img/program.png') no-repeat left;}
-#projects {background: url('../img/projects.png') no-repeat left;}
-#login {background: url('../img/login.png') no-repeat left;}
-#register {background: url('../img/register.png') no-repeat left;}
 #slider {
     position:relative;
     left:0;
@@ -91,11 +86,9 @@ div.centerwrapper {
     left:0;
 }
 .copyright {
-    background:#0299c6;
     color:#fff;
     margin:0;
     padding:15px 20px 5px 20px;
-    overflow:auto;
 }
 .copyright p{font-size:14px;}
 .position1 {

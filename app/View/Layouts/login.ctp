@@ -35,6 +35,7 @@ echo $this->Html->docType('html5');
     echo $this->Html->css('docs');
     echo $this->Html->css('bootstrap');
     echo $this->Html->css('bootstrap-responsive');
+    echo $this->Html->css('background');
 
     echo $this->Html->script('jquery.js');
     echo $this->Html->script('bootstrap.min');
@@ -65,7 +66,7 @@ echo $this->Html->docType('html5');
             </div>
         </div>
 
-        <div class="clearfix" id="logincontent">
+        <div class="clearfix container">
             <?php echo $this->fetch('content'); ?>
         </div>
     </div>

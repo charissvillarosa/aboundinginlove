@@ -28,9 +28,8 @@
  */
     Router::connect('/', array('controller' => 'home', 'action' => 'index'));
 	Router::connect('/home', array('controller' => 'home', 'action' => 'index'));
-	Router::connect('/projects', array('controller' => 'pages', 'action' => 'display', 'projects'));
-	Router::connect('/programs', array('controller' => 'pages', 'action' => 'display', 'programs'));
-	Router::connect('/donate', array('controller' => 'pages', 'action' => 'display', 'donate'));
+	Router::connect('/projects', array('controller' => 'projects', 'action' => 'display','projects'));
+	Router::connect('/programs', array('controller' => 'programs', 'action' => 'display', 'programs'));
 	Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
 	Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
 	Router::connect('/register', array('controller' => 'users', 'action' => 'register'));

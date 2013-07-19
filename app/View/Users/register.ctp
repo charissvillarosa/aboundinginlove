@@ -1,5 +1,5 @@
-<div class="logincontent">
-    <div class="pull-left span5">
+<div class="topmargin3 span11">
+    <div class="pull-left span7 well">
         <h2 class="fontcolor1">Autem enim tellus</h2>
         <hr>
         <p class="topmargin1">

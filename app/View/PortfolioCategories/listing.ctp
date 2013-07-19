@@ -1,6 +1,9 @@
 <div class="container tabs">
     <div class="span11 margin3">
         <div class="pull-right bottomargin2">
+            <!-- Button to trigger modal -->
+            <a href="#myModal" role="button" class="btn" data-toggle="modal">Add New Category</a>
+
             <?php echo $this->Html->link('Add New Portfolio Name', array('controller' => 'PortfolioCategories', 'action' => 'add'), array('class' => 'btn btn-info btn-small')); ?>
         </div>
         <div class="leftmargin1">
@@ -40,4 +43,25 @@
             endforeach; ?>
         </table>
     </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add Portfolio Category</h3>
+  </div>
+  <div class="modal-body">
+    <div>
+        <?php
+        echo $this->Form->create('PortfolioCategory');
+        ?>
+        <fieldset>
+            <?php echo $this->Form->input('description', array('label' => 'Description', 'style' => 'width:400px')) ?>
+        </fieldset>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <?php echo $this->Form->end('Save Changes') ?>
+  </div>
 </div>

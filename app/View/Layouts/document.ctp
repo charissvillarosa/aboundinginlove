@@ -35,7 +35,8 @@ echo $this->Html->docType('html5');
     echo $this->Html->css('docs');
     echo $this->Html->css('bootstrap');
     echo $this->Html->css('bootstrap-responsive');
-
+    echo $this->Html->css('background');
+    
     echo $this->Html->script('jquery.js');
     echo $this->Html->script('bootstrap.min');
 
@@ -55,6 +56,9 @@ echo $this->Html->docType('html5');
             $('a[rel=popover]').popover({html: 'true'})
         })
     </script>
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
     <div>
@@ -63,8 +67,8 @@ echo $this->Html->docType('html5');
                 <?php include 'common_header.php' ?>
             </div>
         </div>
-        <div id="logincontent" class="clearfix">
-            <div class="clearfix container">
+        <div class="clearfix">
+            <div class="clearfix container topmargin3">
                 <?php
                 $user = $this->Session->read('Auth.User');
                 $controller = $this->name;

@@ -34,10 +34,10 @@ class PortfolioCategoriesController extends AppController {
     
     function beforeFilter()
     {
-        $this->Auth->allow('index', 'view', 'gallery', 'portfolioname');
+        $this->Auth->allow();
     }
 
-	public function index() {
+    public function index() {
         $this->loadModel('Sponsee');
         $sponsee = $this->Sponsee->find('all');
         if ($sponsee) {
@@ -46,7 +46,7 @@ class PortfolioCategoriesController extends AppController {
         else {
             $this->render('/Errors/notFound');
         }
-	}
+    }
     public function view($id) {
         $this->loadModel('Sponsee');
         $sponsee = $this->Sponsee->find('all');

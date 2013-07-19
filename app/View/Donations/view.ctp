@@ -1,5 +1,5 @@
 <div class="container tabs">
-    <div class="span11 margin3 leftmargin1">
+    <div class="margin3">
         <?php
         foreach ($sponseeList as $item) :
             $sponsee = $item['SponseeListingItem'];
@@ -27,7 +27,7 @@
         </div>
         </div>
         <div class="pull-left">
-            <div class="pull-left span7">
+            <div class="pull-left span8">
                 <p>
                     <h2 class="fontcolor1">
                         <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
