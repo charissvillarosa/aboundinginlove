@@ -1,10 +1,8 @@
-<div class="container tabs">
+<div class="container tabs portfolio">
     <div class="span11 margin3">
         <div class="pull-right bottomargin2">
             <!-- Button to trigger modal -->
-            <a href="#myModal" role="button" class="btn" data-toggle="modal">Add New Category</a>
-
-            <?php echo $this->Html->link('Add New Portfolio Name', array('controller' => 'PortfolioCategories', 'action' => 'add'), array('class' => 'btn btn-info btn-small')); ?>
+            <a href="#myModal" role="button" class="btn btn-info add">Add New Category</a>
         </div>
         <div class="leftmargin1">
             <?php echo $this->Session->flash(); ?>
@@ -24,9 +22,14 @@
             ?>
                 <tr>
                     <td bgcolor="#fff"><?php echo $ctr.'.'; ?></td>
-                    <td bgcolor="#fff"><?php echo $item['PortfolioCategory']['description'] ?></td>
+                    <td bgcolor="#fff">
+                        <span class="desc">
+                            <?php echo $item['PortfolioCategory']['description'] ?>
+                        </span>
+                        <input type="hidden" class="id" value="<?php echo $item['PortfolioCategory']['id']; ?>"/>
+                    </td>
                     <td>
-                       <i><?php echo $this->Html->link('', array('controller' => 'PortfolioCategories', 'action' => 'edit', $item['PortfolioCategory']['id']), array('class' => 'icon-edit','title' => 'Edit')); ?></i>
+                        <a href="#" class="edit">Edit</a>
                     </td>
                     <td>
                         <i>
@@ -54,14 +57,46 @@
   <div class="modal-body">
     <div>
         <?php
-        echo $this->Form->create('PortfolioCategory');
+        echo $this->Form->create('PortfolioCategory', array('action' => 'add'));
         ?>
         <fieldset>
             <?php echo $this->Form->input('description', array('label' => 'Description', 'style' => 'width:400px')) ?>
+            <?php echo $this->Form->hidden('id') ?>
         </fieldset>
+        <?php echo $this->Form->end() ?>
     </div>
   </div>
   <div class="modal-footer">
-    <?php echo $this->Form->end('Save Changes') ?>
+      <button class="btn btn-primary save">Save</button>
   </div>
 </div>
+<script>
+    // save handler
+    $('#myModal .save').click(function() {
+        if ($('#myModal input:text').val().length === 0) {
+            alert('Description is required.');
+            $('#myModal input:text').focus();
+            return;
+        }
+        $('#myModal form').submit();
+    });
+    
+    // add handler
+    $('.portfolio .add').click(function(e) {
+        e.preventDefault();
+        var tr = $(this).closest('tr');
+        $('#myModalLabel').val('Add Portfolio Category');
+        $('#myModal fieldset input').val('');
+        $('#myModal').modal('show');
+    });
+
+    // edit handler
+    $('.portfolio .edit').click(function(e) {
+        e.preventDefault();
+        var tr = $(this).closest('tr');
+        $('#myModalLabel').val('Edit Portfolio Category');
+        $('#myModal [id*=CategoryDescription]').val(tr.find('.desc').html().trim());
+        $('#myModal [id*=CategoryId]').val(tr.find('.id').val());
+        $('#myModal').modal('show');
+    });
+</script>

@@ -1,6 +1,6 @@
 <!-- Carousel
 ================================================== -->
-<div id="slider">
+<div id="slider" class="banner">
     <div id="myCarousel" class="carousel slide">
         <div class="carousel-inner">
             <div class="item active">

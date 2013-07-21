@@ -1,5 +1,5 @@
 <!--thumnails images animation-->
-<div class="content-fluid">
+<div class="content-fluid banner">
     <div class="thumnails_background">
         <div class="pull-left span5">
             

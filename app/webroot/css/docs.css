@@ -144,3 +144,14 @@ div.centerwrapper {
     border-bottom:solid 1px #ddd;
     margin-bottom: 30px;
 }
+
+
+/*-- logo --*/
+
+.logo {
+    position:fixed; left:126px; top:0; z-index:1040;
+}
+
+.logo.scroll {
+    position:absolute;
+}
