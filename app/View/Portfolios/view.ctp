@@ -1,5 +1,5 @@
-<div class="pull-left span12 topmargin1">
-    <div class="navbar">
+<div class="pull-left span12">
+    <div class="navbar banner">
         <div class="navbar-inner">
             <ul class="nav">
                 <li class="active">
@@ -11,12 +11,12 @@
             </ul>
         </div>
     </div>
-    <div>
+    <div class="well">
         <?php
             $prevCat = 0;
 
             if(empty($listing)){
-                echo "<div class='alert alert-info'>
+                echo "<div class='topmargin2 alert alert-info'>
                     <p><h3>Not yet specified.</h3></p>
                 </div>";
             }
@@ -26,7 +26,7 @@
                     $category= $item['Category'];
 
                     if ($prevCat != $category['id']) : ?>
-                        <div class="fontcolor1 span11 topmargin1">
+                        <div class="fontcolor1 span11 topmargin2">
                             <h2>
                                 <?php echo $category['description'] ?>
                             </h2>

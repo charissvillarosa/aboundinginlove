@@ -1,6 +1,6 @@
 <div class="container">
     <div style="background: #fff;" class="logincontent well">
-        <h4 class="fontcolor1 leftmargin1">Sponsor a child today</h4>
+        <div class="pull-right rightmargin2 banner"><h4 class="fontcolor1 leftmargin2">Sponsor a child now!</h4></div>
         <?php
         foreach ($sponseeList as $item) :
             $sponsee = $item['SponseeListingItem'];
@@ -47,7 +47,7 @@
                 </div>
             </div>
         <?php endforeach; ?>
-        <div class="leftmargin1">
+        <div class="clear pull-left leftmargin1">
             <button class="btn topmargin1"><?php echo $this->Paginator->numbers(); ?></button>
             <button class="btn topmargin1"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
             <button class="btn topmargin1"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>

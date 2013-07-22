@@ -54,7 +54,32 @@ echo $this->Html->docType('html5');
             
             //contact us pop up window
             $('a[rel=popover]').popover({html: 'true'})
-        })
+            
+            //add event for logo scrolling
+            //apply event when there is a .banner element
+            if ($('.banner').length > 0) 
+            {
+                $(window).scroll(function(e) {
+                    var hHeight = $('.banner').height() + $('.banner').position().top;
+                    var lHeight = $('.logo').height();
+                    var nHeight = $('.navbar').height();
+                    var sTop = $(window).scrollTop();
+                    var bannerViewHeight = hHeight - sTop;
+                    
+                    if (bannerViewHeight < nHeight) {
+                        var top = nHeight - lHeight;
+                        $('.logo').removeClass('scroll').css('top', top + 'px');
+                    }
+                    else if (bannerViewHeight < lHeight) {
+                        var top = hHeight - lHeight;
+                        $('.logo').addClass('scroll').css('top', top + 'px');
+                    }
+                    else if ($('.logo').hasClass('scroll')) {
+                        $('.logo').removeClass('scroll').css('top', '0');
+                    }
+                });
+            }
+        });
     </script>
 </head>
 <body>
@@ -67,6 +92,15 @@ echo $this->Html->docType('html5');
         </div>
 
         <div class="clearfix container">
+            <div class="container">
+                <div class="logo document">
+                    <div>
+                        <?php
+                        echo $this->Html->image('aboundinginlove_logo.png', array('alt'=>'Abounding in Love Organization Logo'));
+                        ?>
+                    </div>
+                </div>
+            </div>
             <?php echo $this->fetch('content'); ?>
         </div>
     </div>

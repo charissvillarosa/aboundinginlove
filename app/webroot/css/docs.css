@@ -77,20 +77,7 @@ div.centerwrapper {
     margin-left:115px;
     border:solid 1px #b3d1dc;
 }
-.tree {
-    background:url('../img/tree.png') no-repeat;
-    height:300px;
-    width:1070px;
-    position:relative;
-    bottom:0;
-    left:0;
-}
-.copyright {
-    color:#fff;
-    margin:0;
-    padding:15px 20px 5px 20px;
-}
-.copyright p{font-size:14px;}
+.copyright p{font-size:14px; color:#fff; text-align: center;}
 .position1 {
     position:relative;
     top:329px;
@@ -125,18 +112,6 @@ div.centerwrapper {
     background: #efefef;
 }
 
-.header span {
-    margin-left: 25px;
-    height: 20px;
-    line-height: 20px;
-    display: inline-block;
-}
-
-.header span a {
-    padding: 0 0 0 25px;
-}
-
-.backgroundcolor1 {background:#fff;}
 .tabs {
     background: #fff;
     border-left:solid 1px #ddd;
@@ -154,4 +129,8 @@ div.centerwrapper {
 
 .logo.scroll {
     position:absolute;
+}
+
+.logo.document {
+    position:fixed; left:250px; top:0; z-index:1040;
 }
