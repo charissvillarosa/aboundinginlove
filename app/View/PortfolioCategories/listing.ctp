@@ -1,8 +1,8 @@
 <div class="container tabs portfolio">
     <div class="span11 margin3">
-        <div class="pull-right bottomargin2">
+        <div class="pull-right bottomargin2 banner">
             <!-- Button to trigger modal -->
-            <a href="#myModal" role="button" class="btn btn-info add">Add New Category</a>
+            <a href="#myModal" role="button" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
         </div>
         <div class="leftmargin1">
             <?php echo $this->Session->flash(); ?>
@@ -21,15 +21,15 @@
             foreach ($list as $item) :
             ?>
                 <tr>
-                    <td bgcolor="#fff"><?php echo $ctr.'.'; ?></td>
-                    <td bgcolor="#fff">
+                    <td><?php echo $ctr.'.'; ?></td>
+                    <td>
                         <span class="desc">
                             <?php echo $item['PortfolioCategory']['description'] ?>
                         </span>
                         <input type="hidden" class="id" value="<?php echo $item['PortfolioCategory']['id']; ?>"/>
                     </td>
                     <td>
-                        <a href="#" class="edit">Edit</a>
+                        <a href="#" class="edit" title="Edit"><i class="icon-edit"></i></a>
                     </td>
                     <td>
                         <i>
@@ -52,22 +52,22 @@
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Add Portfolio Category</h3>
+    <h3 id="myModalLabel" style="margin-left:30px;">PORTFOLIO CATEGORY</h3>
   </div>
   <div class="modal-body">
-    <div>
+    <div class="leftmargin1">
         <?php
         echo $this->Form->create('PortfolioCategory', array('action' => 'add'));
         ?>
         <fieldset>
-            <?php echo $this->Form->input('description', array('label' => 'Description', 'style' => 'width:400px')) ?>
+            <?php echo $this->Form->input('description', array('label' => 'Description', 'class'=>'span5')) ?>
             <?php echo $this->Form->hidden('id') ?>
         </fieldset>
         <?php echo $this->Form->end() ?>
     </div>
   </div>
   <div class="modal-footer">
-      <button class="btn btn-primary save">Save</button>
+      <button class="btn btn-info save rightmargin4"><i class="icon-hdd"></i> Save</button>
   </div>
 </div>
 <script>
@@ -82,7 +82,7 @@
     });
     
     // add handler
-    $('.portfolio .add').click(function(e) {
+    $('.add').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
         $('#myModalLabel').val('Add Portfolio Category');
@@ -91,7 +91,7 @@
     });
 
     // edit handler
-    $('.portfolio .edit').click(function(e) {
+    $('.edit').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
         $('#myModalLabel').val('Edit Portfolio Category');

@@ -18,6 +18,11 @@ class UsersController extends AppController
     public function index()
     {
         $this->set('users', $this->paginate());
+        
+        $this->loadModel('Country');
+        $this->set('countryList', $this->Country->find('list', array(
+            'fields' => array('name','description')
+        )));
     }
 
     public function view($id)

@@ -5,7 +5,7 @@
  */
 class SponseeNeedCategoriesController extends AppController 
 {
-    var $adminActions = array('add', 'edit', 'view');    
+    var $adminActions = array(); // Letting users access the following pages
     var $layout = 'document';
 
     var $paginate = array(
@@ -39,7 +39,7 @@ class SponseeNeedCategoriesController extends AppController
         if ($this->request->is('post')) {
             $this->SponseeNeedCategory->create();
             if ($this->SponseeNeedCategory->save($this->request->data)) {
-                $this->Session->setFlash(__('The Category has been saved'));
+                $this->Session->setFlash(__('Sponsee need has been successfully saved.'));
                 $this->redirect(array('action' => 'listing'));
             }
             else {
@@ -75,7 +75,7 @@ class SponseeNeedCategoriesController extends AppController
     
     public function delete($id) {
         if ($this->SponseeNeedCategory->delete($id)) {
-            $this->Session->setFlash('Category with id: ' . $id . ' has been deleted.');
+            $this->Session->setFlash('Sponsee need has been deleted.');
         }
         $this->redirect(array('action' => 'listing'));
     }

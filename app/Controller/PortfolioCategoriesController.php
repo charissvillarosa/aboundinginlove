@@ -34,7 +34,8 @@ class PortfolioCategoriesController extends AppController {
     
     function beforeFilter()
     {
-        $this->Auth->allow();
+        parent::beforeFilter();
+        $this->Auth->allow('index'); // Letting users access the following pages
     }
 
     public function index() {
@@ -71,7 +72,7 @@ class PortfolioCategoriesController extends AppController {
         if ($this->request->is('post')) {
             $this->PortfolioCategory->create();
             if ($this->PortfolioCategory->save($this->request->data)) {
-                $this->Session->setFlash(__('The Portfolio name has been saved'));
+                $this->Session->setFlash(__('Portfolio name has been successfully saved.'));
                 $this->redirect(array('action' => 'listing'));
             }
             else {
