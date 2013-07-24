@@ -1,39 +1,42 @@
-<div class="container tabs">
-    <div class="margin3">
+<div style="margin-right:145px;" class="container tabs logincontent well span9 pull-right">
+    <div>
         <?php
         foreach ($sponseeList as $item) :
             $sponsee = $item['SponseeListingItem'];
         ?>
-        <div class="pull-left rightmargin1 span3">
-        <?php
-                $imageURl;
-                if ($sponsee['primaryimage']) {
-                    $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
-                } else {
-                    $imageURl = 'sponsees/nophoto.jpg';
-                }
-                $attrs = array('alt' => '', 'width' => '300', 'class' => 'img-polaroid');
-                echo $this->Html->image($imageURl, $attrs);
-        ?>
-        <div class="topmargin1">
-            <hr>
-            <?php 
-                echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
-                echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
-                echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
-                echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
-            ?>
-            <hr>
-        </div>
-        </div>
-        <div class="pull-left">
-            <div class="pull-left span8">
+        <div class="pull-left rightmargin1 topmargin5 box span3">
+            <div class="banner">
                 <p>
                     <h2 class="fontcolor1">
                         <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
                     </h2>
                 </p>
-                <p class="topmargin1">
+            </div>
+            <?php
+                    $imageURl;
+                    if ($sponsee['primaryimage']) {
+                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
+                    } else {
+                        $imageURl = 'sponsees/nophoto.jpg';
+                    }
+                    $attrs = array('alt' => '', 'width' => '300', 'class' => 'img-polaroid');
+                    echo $this->Html->image($imageURl, $attrs);
+            ?>
+            <div class="topmargin1">
+                <hr>
+                <?php 
+                    echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
+                    echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
+                    echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
+                    echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
+                ?>
+                <hr>
+            </div>
+        </div>
+        <div class="pull-left">
+            <div class="pull-left span5 topmargin2">
+                <h3 class="fontcolor1 topmargin1">Biography</h3>
+                <p>
                     <hr>
                     <?php
                     echo $sponsee['information'];

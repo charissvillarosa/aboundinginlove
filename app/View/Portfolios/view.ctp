@@ -1,5 +1,5 @@
 <div class="pull-left span12">
-    <div class="navbar banner">
+    <div class="navbar">
         <div class="navbar-inner">
             <ul class="nav">
                 <li class="active">
@@ -21,6 +21,7 @@
                 </div>";
             }
             else {
+                echo "<div class=\"banner\"></div>";
                 foreach ($listing as $item) :
                     $portfolio = $item['Portfolio'];
                     $category= $item['Category'];

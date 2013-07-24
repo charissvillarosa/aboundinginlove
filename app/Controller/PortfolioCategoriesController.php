@@ -71,11 +71,11 @@ class PortfolioCategoriesController extends AppController {
         if ($this->request->is('post')) {
             $this->PortfolioCategory->create();
             if ($this->PortfolioCategory->save($this->request->data)) {
-                $this->Session->setFlash(__('The Portfolio Name has been saved'));
+                $this->Session->setFlash(__('The Portfolio name has been saved'));
                 $this->redirect(array('action' => 'listing'));
             }
             else {
-                $this->Session->setFlash(__('The Portfolio Name could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The Portfolio name could not be saved. Please, try again.'));
             }
         }
     }
@@ -107,7 +107,7 @@ class PortfolioCategoriesController extends AppController {
 
     public function delete($id) {
         if ($this->PortfolioCategory->delete($id)) {
-            $this->Session->setFlash('Portfolio Name with id: ' . $id . ' has been deleted.');
+            $this->Session->setFlash('Portfolio name has been deleted.');
         }
         $this->redirect(array('action' => 'listing'));
     }

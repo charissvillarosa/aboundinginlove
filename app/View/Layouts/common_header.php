@@ -27,17 +27,13 @@
                        data-placement="bottom" 
                        data-toggle="popover"
                        data-content="
-                       <p>Choose from the three options below to contact us online:</p>
-                       <ul class='leftmargin1'>
-                        <li><a href='#'>Questions</a></li>
-                        <li><a href='#'>Feedback</a></li>
-                        <li><a href='#'>Report Website Problem</a></li>
-                       </ul>
-                       <hr>
-                       <h6>Phone Numbers: </h6>
-                       <p class='leftmargin1'>(032)438-9390 / (032)438-9390</p>
-                       <hr>
-                       <p><b>Email : </b><span class='leftmargin1'>example@yahoo.com</span></p>
+                       <h6>Address: </h6>
+                        <p class='leftmargin1 fontsize3'>0-1765 Chicago Drive Jenison, MI 49428 USA</p>
+                        <h6>Phone Number: </h6>
+                        <p class='leftmargin1 fontsize3'>(616) 669-1640 </p>
+                        <hr>
+                        <h6>Email: </h6>
+                        <p class='fontsize3 leftmargin1'>aboundinginlove@aboundinginlove.org</p>
                        "
                        title="CONTACT US">CONTACT US</a>
                </li>

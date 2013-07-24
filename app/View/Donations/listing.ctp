@@ -1,6 +1,8 @@
 <div class="container">
-    <div style="background: #fff;" class="logincontent well">
-        <div class="pull-right rightmargin2 banner"><h4 class="fontcolor1 leftmargin2">DONATE NOW!</h4></div>
+    <div class="logincontent well">
+        <div class="pull-right rightmargin2">
+            <h3 class="fontcolor1 banner leftmargin2">Donate Now!</h3>
+        </div>
         <?php
         foreach ($sponseeList as $item) :
             $sponsee = $item['SponseeListingItem'];

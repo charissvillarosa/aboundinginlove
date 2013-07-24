@@ -1,5 +1,4 @@
-<div class="topmargin3 span11">
-    
+<div class="topmargin3 span11"> 
     <div class="pull-left span7 well">
         <div class="pull-right rightmargin2 banner"><h1 class="fontcolor1">Autem enim tellus</h1></div>
         <div class="clearfix pull-left">

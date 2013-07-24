@@ -1,8 +1,8 @@
 <?php
 $user = $this->Session->read('Auth.User');
 ?>
-<div class="container tabs">
-    <div class="span11 margin3 leftmargin1">
+<div class="tabs">
+    <div class="pull-right">
         <div class="pull-right">
             <?php echo $this->Html->link('Go back to Sponsee List', array('action' => 'index'), array('class' => 'btn btn-info btn-small')); ?>
             <?php
@@ -13,11 +13,10 @@ $user = $this->Session->read('Auth.User');
             
             ?>
         </div>
-        <div style="background:#f9f9f9;" class="pull-left well leftmargin2 topmargin1">
-            <h4 class="fontcolor1"><?php echo __('View Sponsee record'); ?></h4>
-            <hr>
-            <div>
-                <div class="span2">
+        <div class="pull-right well topmargin1">
+            <div class="topmargin2">
+                <div class="banner"></div>
+                <div class="span2 box">
                     <div>
                         <?php
                         $imageURl;
@@ -74,8 +73,8 @@ $user = $this->Session->read('Auth.User');
                     </div>
                     <hr/>
                 </div>
-                <div class="pull-right span8">
-                    <div class="leftmargin2 bottomargin1">
+                <div class="pull-left span8">
+                    <div class="leftmargin1 bottomargin1">
                         <h4 class="fontcolor1">Biography</h4>
                         <hr/>
                         <p class="">
@@ -152,4 +151,3 @@ $user = $this->Session->read('Auth.User');
             </div>
         </div>
      </div>
-</div>

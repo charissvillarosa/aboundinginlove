@@ -3949,7 +3949,8 @@ input[type="submit"].btn.btn-mini {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
+  background-color: #fff;
+  border-bottom:#fff;
 }
 
 .nav > li > a > img {
@@ -4048,11 +4049,12 @@ input[type="submit"].btn.btn-mini {
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;*/
 }
 
 .nav-tabs > li {
   margin-bottom: -1px;
+  float:right;
 }
 
 .nav-tabs > li > a {
@@ -4063,6 +4065,8 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 4px 4px 0 0;
      -moz-border-radius: 4px 4px 0 0;
           border-radius: 4px 4px 0 0;
+  border-color :#eeeeee #eeeeee #dddddd;
+  background-color: #eeeeee;
 }
 
 .nav-tabs > li > a:hover,

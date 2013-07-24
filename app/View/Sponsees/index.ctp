@@ -1,5 +1,5 @@
 <div class="container">
-    <div style="background: #fff;" class="logincontent well">
+    <div class="logincontent well">
         <div class="pull-right rightmargin2 banner"><h4 class="fontcolor1 leftmargin2">Sponsor a child now!</h4></div>
         <?php
         foreach ($sponseeList as $item) :
