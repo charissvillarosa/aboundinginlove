@@ -2,20 +2,13 @@
 $user = $this->Session->read('Auth.User');
 ?>
 <div class="tabs">
-    <div class="pull-right">
-        <div class="pull-right">
-            <?php echo $this->Html->link('Go back to Sponsee List', array('action' => 'index'), array('class' => 'btn btn-info btn-small')); ?>
-            <?php
-            
-            if (!empty($user) && $user['role'] == 'admin') {
-                echo $this->Html->link('Add New Sponsee', array('action' => 'add'), array('class' => 'btn btn-info btn-small'));
-            }
-            
-            ?>
-        </div>
-        <div class="pull-right well topmargin1">
+    <div style="background: #fff;" class="pull-right">
+        <div class="pull-right rightmargin1 bottomargin1 topmargin1">
             <div class="topmargin2">
                 <div class="banner"></div>
+                <div class="pull-right">
+                    <?php echo $this->Html->link('Go back to Sponsee List', array('action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
+                </div>
                 <div class="span2 box">
                     <div>
                         <?php
@@ -25,7 +18,7 @@ $user = $this->Session->read('Auth.User');
                         } else {
                             $imageURl = 'sponsees/nophoto.jpg';
                         }
-                        $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
+                        $attrs = array('alt' => '', 'width' => '160', 'class' => 'img-polaroid');
                         echo $this->Html->image($imageURl, $attrs);
                         ?>
                     </div>
@@ -33,7 +26,7 @@ $user = $this->Session->read('Auth.User');
                     <div>
                         <?php
                         $action = array('controller' => 'SponseeImages', 'action' => 'upload', $sponsee['id']);
-                        echo $this->Html->link('Change Photo', $action);
+                        echo $this->Html->link('Change Photo', $action, array('class' => 'btn btn-info btn-block'));
                         ?>
                     </div>
                     <?php endif; ?>
@@ -73,11 +66,11 @@ $user = $this->Session->read('Auth.User');
                     </div>
                     <hr/>
                 </div>
-                <div class="pull-left span8">
+                <div class="pull-left span9">
                     <div class="leftmargin1 bottomargin1">
+                        <hr>
                         <h4 class="fontcolor1">Biography</h4>
-                        <hr/>
-                        <p class="">
+                        <p style="text-align: justify;">
                             <?php echo $sponsee['information']; ?>
                         </p>
                         <h4 class="fontcolor1 topmargin2">Needs</h4>

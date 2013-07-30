@@ -6,7 +6,7 @@ class UsersController extends AppController
     var $layout = 'document';
 
     var $paginate = array(
-        'limit' => 5
+        'limit' => 10
     );
 
     public function beforeFilter()
@@ -34,6 +34,11 @@ class UsersController extends AppController
         else {
             $this->render('/Errors/notFound');
         }
+        
+        $this->loadModel('Country');
+        $this->set('countryList', $this->Country->find('list', array(
+            'fields' => array('name','description')
+        )));
     }
 
     public function register()
@@ -57,7 +62,7 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
+                $this->Session->setFlash(__('User record has been saved'));
                 $this->redirect(array('action' => 'index'));
             }
             else {
@@ -70,6 +75,11 @@ class UsersController extends AppController
                 'fields' => array('name','description')
             )));
         }
+        
+        $this->loadModel('Country');
+        $this->set('countryList', $this->Country->find('list', array(
+            'fields' => array('name','description')
+        )));
     }
 
     public function edit($id = null){
@@ -98,12 +108,17 @@ class UsersController extends AppController
                 $this->Session->setFlash('Unable to update the record.');
             }
         }
+        
+        $this->loadModel('Country');
+        $this->set('countryList', $this->Country->find('list', array(
+            'fields' => array('name','description')
+        )));
 
     }
     
     public function delete($id) {
         if ($this->User->delete($id)) {
-            $this->Session->setFlash('User with id: ' . $id . ' has been deleted.');
+            $this->Session->setFlash('User record has been deleted.');
         }
         $this->redirect(array('action' => 'index'));
     }

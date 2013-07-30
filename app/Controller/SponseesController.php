@@ -10,7 +10,7 @@ class SponseesController extends AppController
 
     var $paginate = array(
         'SponseeListingItem' => array(
-            'limit' => 3,
+            'limit' => 5,
             'order' => array('SponseeListingItem.id' => 'desc')
         )
     );
@@ -35,7 +35,12 @@ class SponseesController extends AppController
     {
         $this->loadModel('SponseeListingItem');
         $this->set("sponseeList", $this->paginate('SponseeListingItem'));
-
+        
+        $this->loadModel('Country');
+        $this->set('countryList', $this->Country->find('list', array(
+            'fields' => array('name','description')
+        )));
+        
         $user = $this->Session->read('Auth.User');
         if ($user && $user['role'] == 'admin') {
             $this->render('admin-index');
@@ -69,7 +74,7 @@ class SponseesController extends AppController
         if ($this->request->is('post')) {
             $this->Sponsee->create();
             if ($this->Sponsee->save($this->request->data)) {
-                $this->Session->setFlash('New sponsee record has been saved.');
+                $this->Session->setFlash('Sponsee record has been saved successfully.');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash('Unable to add a new record.');
@@ -114,7 +119,7 @@ class SponseesController extends AppController
     
     public function delete($id) {
         if ($this->Sponsee->delete($id)) {
-            $this->Session->setFlash('Sponsee with id: ' . $id . ' has been deleted.');
+            $this->Session->setFlash('Sponsee record has been deleted.');
         }
         $this->redirect(array('action' => 'index'));
     }

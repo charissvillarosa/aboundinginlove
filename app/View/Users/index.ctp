@@ -4,6 +4,9 @@
             <!-- Button to trigger modal -->
             <a href="#myModal" role="button" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
         </div>
+        <div class="leftmargin1">
+            <?php echo $this->Session->flash(); ?>
+        </div>
         <table class="leftmargin1 table table-hover table-bordered">
             <tr>
                 <th>No.</th>
@@ -26,24 +29,39 @@
                 $user = $item['User'];
                 ?>
                 <tr>
-                    <td><?php echo $ctr; ?>
-                    <td><?php echo $user['username'] ?></td>
-                    <td><?php echo $user['role'] ?></td>
+                    <td>
+                        <?php echo $ctr; ?>
+                        <span class="id" style="display:none;">
+                            <?php echo $user['id'] ?>
+                        </span>
+                        <span class="password" style="display:none;">
+                            <?php echo $user['password'] ?>
+                        </span>
+                        <span class="confirmpassword" style="display:none;">
+                            <?php echo $user['password'] ?>
+                        </span>
+                    </td>
+                    <td><?php echo '<span class="username">'.$user['username'].'</span>'; ?></td>
+                    <td><?php echo '<span class="role">'.$user['role'].'</span>'; ?></td>
                     <td><?php echo $this->Time->format($user['created']) ?></td>
                     <td><?php echo $this->Time->format($user['modified']) ?></td>
-                    <td><?php echo $user['firstname'].' '.$user['middlename'].' '.$user['lastname'] ?></td>
+                    <td>
+                        <?php 
+                            echo '<span class="firstname">'.$user['firstname'].'</span> <span class="middlename">'.$user['middlename'].'</span> <span class="lastname">'.$user['lastname'].'</span>' 
+                        ?>
+                    </td>
                     <td>
                         <?php 
                             $add = $user['address'];
-                            echo $this->Text->truncate($add, 50, array('exact' => false));
+                            echo '<span class="address">'.$this->Text->truncate($add, 50, array('exact' => false)).'</span>';
                         ?>
                     </td>
-                    <td><?php echo $user['country'] ?></td>
+                    <td><?php echo '<span class="country">'.$user['country'].'</span>'; ?></td>
                     <td>
-                       <i><?php echo $this->Html->link('', array('controller' => 'users', 'action' => 'edit', $user['id']), array('class' => 'icon-edit','title' => 'Edit')); ?></i>
+                        <a href="#" class="edit" title="Edit"><i class="icon-edit"></i></a>
                     </td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'users', 'action' => 'view', $user['id']), array('class' => 'icon-list','title' => 'View')); ?></i>
+                        <a href="#" class="view" title="View"><i class="icon-list"></i></a>
                     </td>
                     <td>
                         <i>
@@ -87,7 +105,7 @@
             <?php echo $this->Form->input('country', array('type'=>'select','options'=>$countryList)); ?>
             <?php echo $this->Form->input('username', array('class' => 'span3')); ?>
             <?php echo $this->Form->input('password', array('class' => 'span3')); ?>
-            <?php echo $this->Form->input('confirmpassword', array('class' => 'span3')); ?>
+            <?php echo $this->Form->input('confirmpassword', array('type'=>'password', 'class' => 'span3')); ?>
             <?php echo $this->Form->input('role', array(
                 'class' => 'span3',
                 'options' => array('admin' => 'Admin', 'user' => 'User')
@@ -105,7 +123,7 @@
     // save handler
     $('#myModal .save').click(function() {
         if ($('#myModal input:text').val().length === 0) {
-            alert('Description is required.');
+            alert('Fields with(*) are required.');
             $('#myModal input:text').focus();
             return;
         }
@@ -116,7 +134,7 @@
     $('.add').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('Add Need Category');
+        $('#myModalLabel').val('Add User');
         $('#myModal fieldset input').val('');
         $('#myModal').modal('show');
     });
@@ -125,9 +143,35 @@
     $('.edit').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('Edit Need Category');
-        $('#myModal [id*=CategoryDescription]').val(tr.find('.desc').html().trim());
-        $('#myModal [id*=CategoryId]').val(tr.find('.id').val());
+        $('#myModalLabel').val('Edit User');
+        $('#UserFirstname').val(tr.find('.firstname').html());
+        $('#UserMiddlename').val(tr.find('.middlename').html());
+        $('#UserLastname').val(tr.find('.lastname').html());
+        $('#UserAddress').val(tr.find('.address').html());
+        $('#UserCountry').val(tr.find('.country').html());
+        $('#UserUsername').val(tr.find('.username').html());
+        $('#UserPassword').val(tr.find('.password').html());
+        $('#UserConfirmpassword').val(tr.find('.confirmpassword').html());
+        $('#UserRole').val(tr.find('.role').html());
+        $('#UserId').val(tr.find('.id').html());
+        $('#myModal').modal('show');
+    });
+    
+    // view handler
+    $('.view').click(function(e) {
+        e.preventDefault();
+        var tr = $(this).closest('tr');
+        $('#myModalLabel').val('View User');
+        $('#UserFirstname').val(tr.find('.firstname').html());
+        $('#UserMiddlename').val(tr.find('.middlename').html());
+        $('#UserLastname').val(tr.find('.lastname').html());
+        $('#UserAddress').val(tr.find('.address').html());
+        $('#UserCountry').val(tr.find('.country').html());
+        $('#UserUsername').val(tr.find('.username').html());
+        $('#UserPassword').val(tr.find('.password').html());
+        $('#UserConfirmpassword').val(tr.find('.confirmpassword').html());
+        $('#UserRole').val(tr.find('.role').html());
+        $('#UserId').val(tr.find('.id').html());
         $('#myModal').modal('show');
     });
 </script>
