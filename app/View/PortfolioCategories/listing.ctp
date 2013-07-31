@@ -73,9 +73,11 @@
 <script>
     // save handler
     $('#myModal .save').click(function() {
-        if ($('#myModal input:text').val().length === 0) {
+        var txtDesc = $('#myModal input:text');
+        if (txtDesc.val().trim().length === 0) {
             alert('Description is required.');
-            $('#myModal input:text').focus();
+            txtDesc.val('');
+            txtDesc.focus();
             return;
         }
         $('#myModal form').submit();
@@ -85,7 +87,7 @@
     $('.add').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('Add Portfolio Category');
+        $('#myModalLabel').html('Add Portfolio Category');
         $('#myModal fieldset input').val('');
         $('#myModal').modal('show');
     });
@@ -94,7 +96,7 @@
     $('.edit').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('Edit Portfolio Category');
+        $('#myModalLabel').html('Edit Portfolio Category');
         $('#myModal [id*=CategoryDescription]').val(tr.find('.desc').html().trim());
         $('#myModal [id*=CategoryId]').val(tr.find('.id').val());
         $('#myModal').modal('show');

@@ -100,7 +100,7 @@
             echo $this->Session->flash();
             foreach ($sponseeneeds as $item) :
                 $id =$item['SponseeNeed']['sponsee_id'];
-                echo $this->Form->create('SponseeNeed', array('action' => 'add', $id ));
+                echo $this->Form->create('SponseeNeed', array('action' => "add/$id"));
             endforeach;
         ?>
         <fieldset>
@@ -144,7 +144,7 @@
         $('#myModalLabel').val('Edit Sponsee Need');
         $('#SponseeNeedCategoryid').val(tr.find('.category').html());
         $('#SponseeNeedDescription').val(tr.find('.description').html());
-        $('#SponseeNeedNeededamount').val(tr.find('.neededamount').html());
+        $('#SponseeNeedNeededamount').val(tr.find('.neededamount').html().replace(/[^\d.]/g, ''));
         $('#SponseeNeedId').val(tr.find('.id').html());
         $('#SponseeNeedSponseeid').val(tr.find('.sponseeid').html());
         $('#myModal').modal('show');

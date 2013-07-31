@@ -120,7 +120,7 @@
             )); ?>
             <?php echo $this->Form->input('maplocation', array('class' => 'span5')); ?>
             <?php echo $this->Form->input('information', array('class' => 'span5', 'rows' => '5')); ?>
-            <?php echo $this->Form->input('birthdate', array('class' => 'span3', 'maxYear' => date('Y'), 'minYear' => 1950)); ?>
+            <?php echo $this->Form->input('birthdate', array('style' => 'width:100px;', 'maxYear' => date('Y'), 'minYear' => 1950)); ?>
             <?php echo $this->Form->hidden('id') ?>
         </fieldset>
         <?php echo $this->Form->end() ?>
@@ -163,8 +163,14 @@
         $('#SponseeGender').val(tr.find('.gender').html());
         $('#SponseeMaplocation').val(tr.find('.maplocation').html());
         $('#SponseeInformation').val(tr.find('.information').html());
-        $('#SponseeBirthdate').val(tr.find('.birthdate').html());
         $('#SponseeId').val(tr.find('.id').html());
+        
+        var strDateArr = tr.find('.birthdate').html().split('/');
+        
+        $('#SponseeBirthdateMonth').val(strDateArr[0].length === 1 ? '0' + strDateArr[0] : strDateArr[0]);
+        $('#SponseeBirthdateDay').val(strDateArr[1].length === 1 ? '0' + strDateArr[1] : strDateArr[1]);
+        $('#SponseeBirthdateYear').val(strDateArr[2]);
+        
         $('#myModal').modal('show');
     });
 </script>

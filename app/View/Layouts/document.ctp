@@ -37,8 +37,9 @@ echo $this->Html->docType('html5');
     echo $this->Html->css('bootstrap-responsive');
     echo $this->Html->css('background');
     
-    echo $this->Html->script('jquery.js');
+    echo $this->Html->script('jquery');
     echo $this->Html->script('bootstrap.min');
+    echo $this->Html->script('app');
 
     echo $this->fetch('meta');
     echo $this->fetch('css');

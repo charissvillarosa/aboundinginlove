@@ -122,11 +122,30 @@
 <script>
     // save handler
     $('#myModal .save').click(function() {
-        if ($('#myModal input:text').val().length === 0) {
-            alert('Fields with(*) are required.');
-            $('#myModal input:text').focus();
+        var elems = $('#myModal form [required=required]');
+        var errors = [];
+        var firstError;
+        elems.each(function(idx,elem) {
+            if (elem.value.trim().length === 0) {
+                if (!firstError) firstError = elem;
+                elem.value = '';
+                var lbl = $('label[for=' +elem.id+ ']');
+                errors.push(lbl.html() + ' is required.');
+            }
+        });
+        
+        if (errors.length > 0) {
+            alert(errors.join('\n'));
+            $(firstError).focus();
             return;
         }
+        
+        if ($('#UserPassword').val() !== $('#UserConfirmpassword').val()) {
+            alert('Password and confirm password did not match.');
+            $('#UserConfirmpassword').focus();
+            return;
+        }
+        
         $('#myModal form').submit();
     });
     
@@ -134,16 +153,18 @@
     $('.add').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('Add User');
+        $('#myModalLabel').html('Add User');
         $('#myModal fieldset input').val('');
         $('#myModal').modal('show');
+        
+        $('input, select', '#myModal form').removeAttr('readonly');
     });
 
     // edit handler
     $('.edit').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('Edit User');
+        $('#myModalLabel').html('Edit User');
         $('#UserFirstname').val(tr.find('.firstname').html());
         $('#UserMiddlename').val(tr.find('.middlename').html());
         $('#UserLastname').val(tr.find('.lastname').html());
@@ -155,13 +176,15 @@
         $('#UserRole').val(tr.find('.role').html());
         $('#UserId').val(tr.find('.id').html());
         $('#myModal').modal('show');
+        
+        $('input, select', '#myModal form').removeAttr('readonly');
     });
     
     // view handler
     $('.view').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('View User');
+        $('#myModalLabel').html('View User');
         $('#UserFirstname').val(tr.find('.firstname').html());
         $('#UserMiddlename').val(tr.find('.middlename').html());
         $('#UserLastname').val(tr.find('.lastname').html());
@@ -173,5 +196,7 @@
         $('#UserRole').val(tr.find('.role').html());
         $('#UserId').val(tr.find('.id').html());
         $('#myModal').modal('show');
+        
+        $('input, select', '#myModal form').attr('readonly', 'readonly');
     });
 </script>
