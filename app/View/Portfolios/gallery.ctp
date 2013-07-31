@@ -1,4 +1,4 @@
-<div class="pull-left span12 topmargin1">
+<div class="pull-left span12">
     <div class="navbar">
         <div class="navbar-inner">
             <ul class="nav">

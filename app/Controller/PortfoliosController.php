@@ -23,6 +23,12 @@ class PortfoliosController extends AppController
 
         $this->set("sponsee_id", $id);
         $this->set("listing", $portfolio);
+        
+        //category list
+        $this->loadModel('PortfolioCategory');
+        $this->set('portfoliolisting', $this->PortfolioCategory->find('list', array(
+            'fields' => array('id','description')
+        )));
     }
     
     public function index() {
@@ -59,7 +65,7 @@ class PortfoliosController extends AppController
                 $this->Session->setFlash('Unable to add a new record.');
             }
         }
-        //country list
+        //category list
         $this->loadModel('PortfolioCategory');
         $this->set('portfoliolisting', $this->PortfolioCategory->find('list', array(
             'fields' => array('id','description')

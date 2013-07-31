@@ -1,12 +1,14 @@
 <div class="container tabs">
     <div class="span11 margin3">
-        <div class="pull-right bottomargin2">
+        <div class="pull-right bottomargin2 banner">
             <?php
-                echo $this->Html->link(
-                        'Add New Portfolio',
-                        array('controller' => 'Portfolios', 'action' => 'add', $sponsee_id),
-                        array('class' => 'btn btn-info btn-small'));
+//                echo $this->Html->link(
+//                'Add New Portfolio',
+//                array('controller' => 'Portfolios', 'action' => 'add', $sponsee_id),
+//                array('class' => 'btn btn-info btn-small'));
             ?>
+            <!-- Button to trigger modal -->
+            <a href="#myModal" role="button" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
         </div>
         <div class="leftmargin1">
             <?php echo $this->Session->flash(); ?>
@@ -38,6 +40,8 @@
                         ?>
                         <tr>
                             <td bgcolor="#eef6fa">
+                                <span class="id" style="display:none;"><?php echo $need['id'] ?></span>
+                                <span class="sponseeid" style="display:none;"><?php echo $need['sponsee_id'] ?></span>
                                 <?php echo $portfolio['description'] ?>
                             </td>
                             <th>
@@ -84,3 +88,49 @@
         </table>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel" style="margin-left:30px;">SPONSEE NEED</h3>
+  </div>
+  <div class="modal-body">
+    <div class="leftmargin1">
+        <?php
+            echo $this->Session->flash();
+            echo $this->Form->create('Portfolio', array('action' => 'add'));
+        ?>
+        <fieldset>
+            <?php echo $this->Form->input('category_id', array('type'=>'select','options'=>$portfoliolisting,'class'=>'span4')); ?>
+            <?php echo $this->Form->input('description', array('label' => 'Description','class'=>'span4')); ?>
+            <?php echo $this->Form->input('sponsee_id', array('type' => 'hidden', 'value'=>$sponsee_id)); ?>
+            <?php echo $this->Form->hidden('id') ?>
+        </fieldset>
+        <?php echo $this->Form->end() ?>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-info save rightmargin4"><i class="icon-hdd"></i> Save</button>
+  </div>
+</div>
+<script>
+    // save handler
+    $('#myModal .save').click(function() {
+        if ($('#myModal input:text').val().length === 0) {
+            alert('Fields with(*) are required.');
+            $('#myModal input:text').focus();
+            return;
+        }
+        $('#myModal form').submit();
+    });
+    
+    // add handler
+    $('.add').click(function(e) {
+        e.preventDefault();
+        var tr = $(this).closest('tr');
+        $('#myModalLabel').val('Add User');
+        $('#myModal fieldset input').val('');
+        $('#myModal').modal('show');
+    });
+</script>

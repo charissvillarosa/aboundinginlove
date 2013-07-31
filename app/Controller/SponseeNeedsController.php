@@ -35,6 +35,11 @@ class SponseeNeedsController extends AppController
         $this->Sponsee->id = $id;
         $sponsee = $this->Sponsee->read();
         $this->set("sponsee", $sponsee);
+        
+        //category and needs dropbox value
+        $this->loadModel('SponseeNeedCategory');
+        $categories = $this->SponseeNeedCategory->find('list', array('fields'=>array('id','description')));
+        $this->set('categories', $categories);
 
         $sponseeneeds = $this->SponseeNeed->find('all', array(
             'conditions' => array('SponseeNeed.sponsee_id' => $id),
@@ -54,6 +59,7 @@ class SponseeNeedsController extends AppController
         $sponsee = $this->Sponsee->read();
         $this->set("sponsee", $sponsee);
         
+        debug($id);
         //category and needs dropbox value
         $this->loadModel('SponseeNeedCategory');
         $categories = $this->SponseeNeedCategory->find('list', array('fields'=>array('id','description')));
