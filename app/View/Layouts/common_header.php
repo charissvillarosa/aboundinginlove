@@ -41,7 +41,7 @@
                     <li class="<?php echo $this->name == 'Dashboard' ? 'active' : '' ?>">
                         <?php echo $this->Html->link('DASHBOARD', array('controller'=>'dashboard')); ?>
                     </li>
-                    <li class="<?php echo $this->name == 'Users' ? 'active' : '' ?>">
+                    <li>
                         <?php echo $this->Html->link('LOGOUT', '/logout'); ?>
                     </li>
                 <?php else : ?>

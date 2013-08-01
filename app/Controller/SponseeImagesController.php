@@ -47,6 +47,10 @@ class SponseeImagesController extends AppController
                 $type = $this->request->data['SponseeImage']['image']['type'];
                 $content = file_get_contents($tempName);
             }
+            else {
+                $this->Session->setFlash('Choose an image to upload.');
+                $this->redirect(array('action' => 'upload', $id));
+            }
 
             unlink($tempName);
             
