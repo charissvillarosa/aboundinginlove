@@ -117,6 +117,7 @@
   </div>
   <div class="modal-footer">
       <button class="btn btn-info save rightmargin4"><i class="icon-hdd"></i> Save</button>
+      <button class="btn btn-info ok rightmargin4 hide" data-dismiss="modal">OK</button>
   </div>
 </div>
 <script>
@@ -158,6 +159,8 @@
         $('#myModal').modal('show');
         
         $('input, select', '#myModal form').removeAttr('readonly');
+        $('#myModal button.ok').hide();
+        $('#myModal button.save').show();
     });
 
     // edit handler
@@ -178,6 +181,8 @@
         $('#myModal').modal('show');
         
         $('input, select', '#myModal form').removeAttr('readonly');
+        $('#myModal button.ok').hide();
+        $('#myModal button.save').show();
     });
     
     // view handler
@@ -198,5 +203,7 @@
         $('#myModal').modal('show');
         
         $('input, select', '#myModal form').attr('readonly', 'readonly');
+        $('#myModal button.ok').show();
+        $('#myModal button.save').hide();
     });
 </script>
