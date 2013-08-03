@@ -43,6 +43,13 @@ class SponseeImagesController extends AppController
             $type = null;
             
             if (!empty($tempName) && is_uploaded_file($tempName)) {
+                $size = $this->request->data['SponseeImage']['image']['size'];
+                $maxSize = 1024 * 1024 * 2; // 2 MB
+                if ($size > $maxSize) {
+                    $this->Session->setFlash('Please upload an image not greater than 2MB.');
+                    $this->redirect(array('action' => 'upload', $id));
+                }
+
                 // Strip path information
                 $type = $this->request->data['SponseeImage']['image']['type'];
                 $content = file_get_contents($tempName);
@@ -58,16 +65,21 @@ class SponseeImagesController extends AppController
             $this->SponseeImage->set('sponsee_id', $id);
             $this->SponseeImage->set('content_type', $type);
             $this->SponseeImage->set('image', $content);
-            
-            if ($this->SponseeImage->save()) {
-                $this->loadModel('Sponsee');
-                $this->Sponsee->id = $id;
-                $this->Sponsee->read();
-                $this->Sponsee->set('primaryimage', $this->SponseeImage->id);
-                $this->Sponsee->save();
-                $this->redirect(array('controller'=>'sponsees', 'action'=>'view', $id));
-            } else {
-                $this->Session->setFlash('Please correct errors below.');
+
+            try{
+                if ($this->SponseeImage->save()) {
+                    $this->loadModel('Sponsee');
+                    $this->Sponsee->id = $id;
+                    $this->Sponsee->read();
+                    $this->Sponsee->set('primaryimage', $this->SponseeImage->id);
+                    $this->Sponsee->save();
+                    $this->redirect(array('controller'=>'sponsees', 'action'=>'view', $id));
+                } else {
+                    $this->Session->setFlash('Please correct errors below.');
+                }
+            }
+            catch(Exception $e){
+                $this->Session->setFlash('Please upload an image not greater than 2MB.');
             }
         }
     }

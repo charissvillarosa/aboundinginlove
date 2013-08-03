@@ -32,13 +32,12 @@ class PortfolioImagesController extends AppController
         }
     }
 
-    function upload($sponsee_id, $id)
+    function upload($sponsee_id, $category_id)
     {
         if (empty($this->data)) {
             $this->render();
         } 
         else {
-
             $tempName = $this->request->data['PortfolioImage']['image']['tmp_name'];
             $des = $this->request->data['PortfolioImage']['description'];
             
@@ -57,13 +56,13 @@ class PortfolioImagesController extends AppController
             unlink($tempName);
             
             $this->PortfolioImage->create();
-            $this->PortfolioImage->set('portfolio_id', $id);
+            $this->PortfolioImage->set('portfolio_id', $category_id);
             $this->PortfolioImage->set('description', $des);
             $this->PortfolioImage->set('content_type', $type);
             $this->PortfolioImage->set('image', $content);
             
             if ($this->PortfolioImage->save()) {
-                $this->redirect(array('controller'=>'Portfolios', 'action'=>'listing', $sponsee_id, $id));
+                $this->redirect(array('controller'=>'Portfolios', 'action'=>'listing', $sponsee_id, $category_id));
             } else {
                 $this->Session->setFlash('Please correct errors below.');
             }

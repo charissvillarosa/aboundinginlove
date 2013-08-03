@@ -1,12 +1,6 @@
 <div class="container tabs">
     <div class="span11 margin3">
         <div class="pull-right bottomargin2 banner">
-            <?php
-//                echo $this->Html->link(
-//                'Add New Portfolio',
-//                array('controller' => 'Portfolios', 'action' => 'add', $sponsee_id),
-//                array('class' => 'btn btn-info btn-small'));
-            ?>
             <!-- Button to trigger modal -->
             <a href="#myModal" role="button" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
         </div>
@@ -99,12 +93,11 @@
     <div class="leftmargin1">
         <?php
             echo $this->Session->flash();
-            echo $this->Form->create('Portfolio', array('action' => 'add'));
+            echo $this->Form->create('Portfolio', array('action' => "add/$sponsee_id"));
         ?>
         <fieldset>
             <?php echo $this->Form->input('category_id', array('type'=>'select','options'=>$portfoliolisting,'class'=>'span4')); ?>
             <?php echo $this->Form->input('description', array('label' => 'Description','class'=>'span4')); ?>
-            <?php echo $this->Form->input('sponsee_id', array('type' => 'hidden', 'value'=>$sponsee_id)); ?>
             <?php echo $this->Form->hidden('id') ?>
         </fieldset>
         <?php echo $this->Form->end() ?>
@@ -117,11 +110,24 @@
 <script>
     // save handler
     $('#myModal .save').click(function() {
-        if ($('#myModal input:text').val().length === 0) {
-            alert('Fields with(*) are required.');
-            $('#myModal input:text').focus();
+        var elems = $('input, select, textarea', '#myModal form div.required');
+        var errors = [];
+        var firstError;
+        elems.each(function(idx,elem) {
+            if (elem.value.trim().length === 0) {
+                if (!firstError) firstError = elem;
+                elem.value = '';
+                var lbl = $('label[for=' +elem.id+ ']');
+                errors.push(lbl.html() + ' is required.');
+            }
+        });
+
+        if (errors.length > 0) {
+            alert(errors.join('\n'));
+            $(firstError).focus();
             return;
         }
+
         $('#myModal form').submit();
     });
     
@@ -129,7 +135,7 @@
     $('.add').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('Add User');
+        $('#myModalLabel').html('Add User');
         $('#myModal fieldset input').val('');
         $('#myModal').modal('show');
     });

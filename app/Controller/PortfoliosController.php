@@ -58,6 +58,7 @@ class PortfoliosController extends AppController
     public function add($id) {
         if ($this->request->is('post')) {
             $this->Portfolio->create();
+            $this->Portfolio->set('sponsee_id', $id);
             if ($this->Portfolio->save($this->request->data)) {
                 $this->Session->setFlash('New record has been saved.');
                 $this->redirect(array('action' => 'listing', $id));

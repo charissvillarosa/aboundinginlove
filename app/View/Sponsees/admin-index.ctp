@@ -33,9 +33,7 @@
                 <tr>
                     <td>
                         <?php echo $ctr; ?>
-                        <span class="id" style="display:none;">
-                            <?php echo $sponsee['id'] ?>
-                        </span>
+                        <span class="id" style="display:none;"><?php echo $sponsee['id'] ?></span>
                     </td>
                     <td>
                         <?php echo 
@@ -106,7 +104,7 @@
   <div class="modal-body">
     <div class="leftmargin1">
         <?php
-        echo $this->Form->create('Sponsee', array('action' => 'add'));
+        echo $this->Form->create('Sponsee', array('action' => "add"));
         ?>
         <fieldset>
             <?php echo $this->Form->input('firstname', array('class' => 'span3')); ?>
@@ -133,19 +131,32 @@
 <script>
     // save handler
     $('#myModal .save').click(function() {
-        if ($('#myModal input:text').val().length === 0) {
-            alert('Fields with(*) are required.');
-            $('#myModal input:text').focus();
+        var elems = $('input, select, textarea', '#myModal form div.required');
+        var errors = [];
+        var firstError;
+        elems.each(function(idx,elem) {
+            if (elem.value.trim().length === 0) {
+                if (!firstError) firstError = elem;
+                elem.value = '';
+                var lbl = $('label[for=' +elem.id+ ']');
+                errors.push(lbl.html() + ' is required.');
+            }
+        });
+
+        if (errors.length > 0) {
+            alert(errors.join('\n'));
+            $(firstError).focus();
             return;
         }
+
         $('#myModal form').submit();
     });
-    
+
     // add handler
     $('.add').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('Add User');
+        $('#myModalLabel').html('Add Sponsee');
         $('#myModal fieldset input').val('');
         $('#myModal').modal('show');
     });
@@ -154,7 +165,7 @@
     $('.edit').click(function(e) {
         e.preventDefault();
         var tr = $(this).closest('tr');
-        $('#myModalLabel').val('Edit User');
+        $('#myModalLabel').html('Edit Sponsee');
         $('#SponseeFirstname').val(tr.find('.firstname').html());
         $('#SponseeMiddlename').val(tr.find('.middlename').html());
         $('#SponseeLastname').val(tr.find('.lastname').html());

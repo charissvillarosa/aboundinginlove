@@ -31,15 +31,7 @@
                 <tr>
                     <td>
                         <?php echo $ctr; ?>
-                        <span class="id" style="display:none;">
-                            <?php echo $user['id'] ?>
-                        </span>
-                        <span class="password" style="display:none;">
-                            <?php echo $user['password'] ?>
-                        </span>
-                        <span class="confirmpassword" style="display:none;">
-                            <?php echo $user['password'] ?>
-                        </span>
+                        <span class="id" style="display:none;"><?php echo $user['id'] ?></span>
                     </td>
                     <td><?php echo '<span class="username">'.$user['username'].'</span>'; ?></td>
                     <td><?php echo '<span class="role">'.$user['role'].'</span>'; ?></td>
@@ -88,76 +80,90 @@
 
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel" style="margin-left:30px;">USER</h3>
-  </div>
-  <div class="modal-body">
-    <div class="leftmargin1">
-        <?php
-        echo $this->Form->create('User', array('action' => 'add'));
-        ?>
-        <fieldset>
-            <?php echo $this->Form->input('firstname', array('class' => 'span3')); ?>
-            <?php echo $this->Form->input('middlename', array('class' => 'span3')); ?>
-            <?php echo $this->Form->input('lastname', array('class' => 'span3')); ?>
-            <?php echo $this->Form->input('address', array('class' => 'span3')); ?>
-            <?php echo $this->Form->input('country', array('type'=>'select','options'=>$countryList)); ?>
-            <?php echo $this->Form->input('username', array('class' => 'span3')); ?>
-            <?php echo $this->Form->input('password', array('class' => 'span3')); ?>
-            <?php echo $this->Form->input('confirmpassword', array('type'=>'password', 'class' => 'span3')); ?>
-            <?php echo $this->Form->input('role', array(
-                'class' => 'span3',
-                'options' => array('admin' => 'Admin', 'user' => 'User')
-            )); ?>
-            <?php echo $this->Form->hidden('id') ?>
-        </fieldset>
-        <?php echo $this->Form->end() ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel" style="margin-left:30px;">USER</h3>
     </div>
-  </div>
-  <div class="modal-footer">
-      <button class="btn btn-info save rightmargin4"><i class="icon-hdd"></i> Save</button>
-      <button class="btn btn-info ok rightmargin4 hide" data-dismiss="modal">OK</button>
-  </div>
+    <div class="modal-body">
+        <div class="leftmargin1">
+            <?php
+            echo $this->Form->create('User', array('action' => 'add'));
+            ?>
+            <fieldset>
+                <?php echo $this->Form->input('firstname', array('class' => 'span3')); ?>
+                <?php echo $this->Form->input('middlename', array('class' => 'span3')); ?>
+                <?php echo $this->Form->input('lastname', array('class' => 'span3')); ?>
+                <?php echo $this->Form->input('address', array('class' => 'span3')); ?>
+                <?php echo $this->Form->input('country', array('type' => 'select', 'options' => $countryList)); ?>
+                <?php echo $this->Form->input('username', array('class' => 'span3')); ?>
+                <div class="password" style="padding:0;">
+                    <?php echo $this->Form->input('password', array('class' => 'span3')); ?>
+                    <?php echo $this->Form->input('confirmpassword', array('type' => 'password', 'class' => 'span3')); ?>
+                </div>
+                <?php
+                echo $this->Form->input('role', array(
+                    'class' => 'span3',
+                    'options' => array('admin' => 'Admin', 'user' => 'User')
+                ));
+                ?>
+            <?php echo $this->Form->hidden('id') ?>
+            </fieldset>
+            <?php echo $this->Form->end() ?>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-info save rightmargin4"><i class="icon-hdd"></i> Save</button>
+        <button class="btn btn-info ok rightmargin4 hide" data-dismiss="modal">OK</button>
+    </div>
 </div>
 <script>
     // save handler
     $('#myModal .save').click(function() {
-        var elems = $('#myModal form [required=required]');
+        var elems = $('input, select, textarea', '#myModal form div.required');
         var errors = [];
         var firstError;
-        elems.each(function(idx,elem) {
+        elems.each(function(idx, elem) {
             if (elem.value.trim().length === 0) {
-                if (!firstError) firstError = elem;
+                if (!firstError)
+                    firstError = elem;
                 elem.value = '';
-                var lbl = $('label[for=' +elem.id+ ']');
+                var lbl = $('label[for=' + elem.id + ']');
                 errors.push(lbl.html() + ' is required.');
             }
         });
-        
+
         if (errors.length > 0) {
             alert(errors.join('\n'));
             $(firstError).focus();
             return;
         }
-        
-        if ($('#UserPassword').val() !== $('#UserConfirmpassword').val()) {
-            alert('Password and confirm password did not match.');
-            $('#UserConfirmpassword').focus();
-            return;
+
+        var passDiv = $('#myModal div.password');
+        if (!passDiv.is(':empty')) {
+            if ($('#UserPassword').val() !== $('#UserConfirmpassword').val()) {
+                alert('Password and confirm password did not match.');
+                $('#UserConfirmpassword').focus();
+                return;
+            }
         }
-        
+
         $('#myModal form').submit();
     });
-    
+
     // add handler
     $('.add').click(function(e) {
         e.preventDefault();
+
+        var passDiv = $('#myModal div.password');
+        if (passDiv.is(':empty')) {
+            passDiv.html(passDiv.data('html'));
+        }
+
         var tr = $(this).closest('tr');
         $('#myModalLabel').html('Add User');
         $('#myModal fieldset input').val('');
         $('#myModal').modal('show');
-        
+
         $('input, select', '#myModal form').removeAttr('readonly');
         $('#myModal button.ok').hide();
         $('#myModal button.save').show();
@@ -166,6 +172,13 @@
     // edit handler
     $('.edit').click(function(e) {
         e.preventDefault();
+
+        var passDiv = $('#myModal div.password');
+        if (!passDiv.is(':empty')) {
+            passDiv.data('html', passDiv.html());
+            passDiv.html('');
+        }
+
         var tr = $(this).closest('tr');
         $('#myModalLabel').html('Edit User');
         $('#UserFirstname').val(tr.find('.firstname').html());
@@ -174,17 +187,15 @@
         $('#UserAddress').val(tr.find('.address').html());
         $('#UserCountry').val(tr.find('.country').html());
         $('#UserUsername').val(tr.find('.username').html());
-        $('#UserPassword').val(tr.find('.password').html());
-        $('#UserConfirmpassword').val(tr.find('.confirmpassword').html());
         $('#UserRole').val(tr.find('.role').html());
         $('#UserId').val(tr.find('.id').html());
         $('#myModal').modal('show');
-        
+
         $('input, select', '#myModal form').removeAttr('readonly');
         $('#myModal button.ok').hide();
         $('#myModal button.save').show();
     });
-    
+
     // view handler
     $('.view').click(function(e) {
         e.preventDefault();
@@ -201,7 +212,7 @@
         $('#UserRole').val(tr.find('.role').html());
         $('#UserId').val(tr.find('.id').html());
         $('#myModal').modal('show');
-        
+
         $('input, select', '#myModal form').attr('readonly', 'readonly');
         $('#myModal button.ok').show();
         $('#myModal button.save').hide();

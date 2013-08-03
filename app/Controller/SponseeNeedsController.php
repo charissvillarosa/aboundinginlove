@@ -51,7 +51,7 @@ class SponseeNeedsController extends AppController
         
     }
     
-    public function add($id) 
+    public function add($id)
     {
         //to get fullname of the sponsee
         $this->loadModel('Sponsee');
