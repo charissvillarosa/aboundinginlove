@@ -1,5 +1,5 @@
-<div class="pull-left span12">
-    <div class="navbar">
+<div class="pull-right span11 topmargin1">
+    <div class="navbar banner">
         <div class="navbar-inner">
             <ul class="nav">
                 <li>
@@ -11,7 +11,7 @@
             </ul>
         </div>
     </div>
-    <div style="overflow: auto;">
+    <div class="well">
         
      </div>
 </div>
