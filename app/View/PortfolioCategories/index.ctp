@@ -17,13 +17,7 @@
                $sponsee = $item['Sponsee'];
         ?>
         <?php
-            $imageURl;
-            if ($sponsee['primaryimage']) {
-                $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
-            }
-            else {
-                $imageURl = 'sponsees/nophoto.jpg';
-            }
+            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
             $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
             echo '<div class="pull-left rightmargin2 bottomargin3">
                     <div class="pull-left">'.$this->Html->image($imageURl, $attrs).'</div>';

@@ -12,12 +12,7 @@ $user = $this->Session->read('Auth.User');
                 <div class="span2 box">
                     <div>
                         <?php
-                        $imageURl;
-                        if ($sponsee['primaryimage']) {
-                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
-                        } else {
-                            $imageURl = 'sponsees/nophoto.jpg';
-                        }
+                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
                         $attrs = array('alt' => '', 'width' => '160', 'class' => 'img-polaroid');
                         echo $this->Html->image($imageURl, $attrs);
                         ?>

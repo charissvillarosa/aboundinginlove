@@ -12,11 +12,11 @@ $user = $this->Session->read('Auth.User');
         </ul>
     </div>
     <div class="span9 well" style="background: #fff; margin-top:103px;">
-        <?php //echo $this->Html->image('sponsees/nophoto.jpg', array('class' => 'img-polaroid')) ?>
+        <?php echo $this->Html->image('sponsees/nophoto.jpg', array('class' => 'img-polaroid')) ?>
         <h4>
-            <?php //echo $user['firstname'] . ' ' . $user['lastname'] ?>
+            <?php echo $user['firstname'] . ' ' . $user['lastname'] ?>
         </h4>
-        <h5><?php //echo $user['address'] ?></h5>
-        <h5><?php //echo $user['country'] ?></h5>
+        <h5><?php echo $user['address'] ?></h5>
+        <h5><?php echo $user['country'] ?></h5>
     </div>
 </div>

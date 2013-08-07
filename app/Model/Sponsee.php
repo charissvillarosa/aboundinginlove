@@ -12,12 +12,6 @@ class Sponsee extends AppModel
                 "message" => "A first name is required"
             )
         ),
-        "middlename" => array(
-            "required" => array(
-                "rule" => array("notEmpty"),
-                "message" => "A middle name is required"
-            )
-        ),
         "lastname" => array(
             "valid" => array(
                 "rule" => array("notEmpty"),

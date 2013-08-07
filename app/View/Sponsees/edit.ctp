@@ -11,14 +11,8 @@
                     <?php echo $this->Form->create('Sponsee'); ?>
                     <div class="pull-left">
                         <?php
-                        $imageURl;
-                        $imgId = $this->data['Sponsee']['primaryimage'];
-                        
-                        if ($imgId) {
-                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $imgId);
-                        } else {
-                            $imageURl = 'sponsees/nophoto.jpg';
-                        }
+                        $imgId = $this->data['Sponsee']['id'];
+                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $imgId);
                         
                         $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
                         echo $this->Html->image($imageURl, $attrs);

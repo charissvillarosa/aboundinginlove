@@ -12,7 +12,8 @@ class DashboardController extends AppController
             $this->render('admin-index');
         }
         else {
-            $this->render('index');
+//            $this->render('index');
+            $this->redirect(array('controller'=>'Profile', 'action' => 'index'));
         }
     }
 

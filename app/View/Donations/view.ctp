@@ -13,12 +13,7 @@
                 </p>
             </div>
             <?php
-                    $imageURl;
-                    if ($sponsee['primaryimage']) {
-                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['primaryimage']);
-                    } else {
-                        $imageURl = 'sponsees/nophoto.jpg';
-                    }
+                    $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
                     $attrs = array('alt' => '', 'width' => '300', 'class' => 'img-polaroid');
                     echo $this->Html->image($imageURl, $attrs);
             ?>
