@@ -1,6 +1,6 @@
 <div class="container tabs portfolio">
     <div class="span11 margin3">
-        <div class="pull-right bottomargin2 banner">
+        <div class="pull-right bottommargin2 banner">
             <!-- Button to trigger modal -->
             <a href="#myModal" role="button" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
         </div>

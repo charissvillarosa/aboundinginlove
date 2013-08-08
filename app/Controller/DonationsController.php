@@ -14,7 +14,7 @@ class DonationsController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('view', 'listing'); // Letting users register themselves
+        $this->Auth->allow('listing'); // Letting users register themselves
     }
 
     public function view($id)

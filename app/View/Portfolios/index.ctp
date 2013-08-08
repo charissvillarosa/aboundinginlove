@@ -20,7 +20,7 @@
         <?php
             $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
             $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
-            echo '<div class="pull-left bottomargin3">
+            echo '<div class="pull-left bottommargin3">
                     <div class="pull-left span2">'.$this->Html->image($imageURl, $attrs).'</div>';
                     echo '<div class="pull-left span3">
                         <h4 class="fontcolor1">'.$sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname'].'</h4>

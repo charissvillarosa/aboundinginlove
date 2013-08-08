@@ -69,6 +69,7 @@ class ProfileImagesController extends AppController
 
             try{
                 if ($this->ProfileImage->save()) {
+                    $this->Session->setFlash('Profile Image successfully uploaded.');
                     $this->redirect(array('controller'=>'Profile', 'action'=>'index', $id));
                 } else {
                     $this->Session->setFlash('Please correct errors below.');

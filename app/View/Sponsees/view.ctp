@@ -3,7 +3,7 @@ $user = $this->Session->read('Auth.User');
 ?>
 <div class="tabs">
     <div style="background: #fff;" class="pull-right">
-        <div class="pull-right rightmargin1 bottomargin1 topmargin1">
+        <div class="pull-right rightmargin1 bottommargin1 topmargin1">
             <div class="topmargin2">
                 <div class="banner"></div>
                 <div class="pull-right">
@@ -54,15 +54,15 @@ $user = $this->Session->read('Auth.User');
                         <?php
                             echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($percentage)."</b> raised</div>";
                             echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage)."'></div></div>";
-                            echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totalneededamount, 'USD')."</b> = Needed</div>";
-                            echo "<div class='bottomargin2'><b class='fontcolor1'>".$this->Number->currency($totaldonatedamount, 'USD')."</b> = Donated</div>";
+                            echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($totalneededamount, 'USD')."</b> = Needed</div>";
+                            echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($totaldonatedamount, 'USD')."</b> = Donated</div>";
                             echo $this->Html->link('Donate', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info'));
                         ?>
                     </div>
                     <hr/>
                 </div>
                 <div class="pull-left span9">
-                    <div class="leftmargin1 bottomargin1">
+                    <div class="leftmargin1 bottommargin1">
                         <hr>
                         <h4 class="fontcolor1">Biography</h4>
                         <p style="text-align: justify;">

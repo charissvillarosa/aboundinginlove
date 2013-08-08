@@ -1,4 +1,4 @@
-<div class="leftfloat leftmargin4 position1 bottomargin1 height2">
+<div class="leftfloat leftmargin4 position1 bottommargin1 height2">
     <p>Login Page</p>
     <?php
         if  ($session->check('Message.auth')) $session->flash('auth');  // If authentication message it exist it will be displayed

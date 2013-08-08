@@ -1,12 +1,12 @@
 <div class="container tabs">
     <div class="span11 margin3">
-        <div class="pull-left banner bottomargin2 leftmargin1">
+        <div class="pull-left banner bottommargin2 leftmargin1">
             <?php
             $sponsee = $sponsee['Sponsee'];
             echo "<h4 class='fontcolor1'>".$sponsee['firstname']." ".$sponsee['middlename']." ".$sponsee['lastname']." List of Needs</h4>"
             ?>
         </div>
-        <div class="pull-right bottomargin2">
+        <div class="pull-right bottommargin2">
             <!-- Button to trigger modal -->
             <a href="#myModal" role="button" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
             <?php // echo $this->Html->link('Add New Record', array('action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-small')); ?>

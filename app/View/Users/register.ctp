@@ -28,7 +28,7 @@
             </p>
         </div>
     </div>
-    <div style="background:#fafafa;" class="pull-right well bottomargin1">
+    <div style="background:#fafafa;" class="pull-right well bottommargin1">
         <?php echo $this->Form->create('User'); ?>
         <fieldset>
             <legend class="fontcolor1"><?php echo __('Register User'); ?></legend>
