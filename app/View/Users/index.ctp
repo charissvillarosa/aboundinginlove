@@ -192,6 +192,7 @@
         $('#myModal').modal('show');
 
         $('input, select', '#myModal form').removeAttr('readonly');
+        $('#UserUsername').attr('readonly', 'readonly');
         $('#myModal button.ok').hide();
         $('#myModal button.save').show();
     });
