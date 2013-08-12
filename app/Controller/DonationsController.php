@@ -10,7 +10,10 @@ class DonationsController extends AppController
             'limit' => 3
         )
     );
-
+    public function index(){
+        
+    }
+    
     public function beforeFilter()
     {
         parent::beforeFilter();
@@ -46,4 +49,5 @@ class DonationsController extends AppController
         $this->loadModel('SponseeListingItem');
         $this->set("sponseeList", $this->paginate('SponseeListingItem'));
     }
+    
 }

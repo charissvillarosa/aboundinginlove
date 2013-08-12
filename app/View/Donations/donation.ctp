@@ -36,7 +36,7 @@ $user = $this->Session->read('Auth.User');
                 <div class="pull-left"><h4 class="fontcolor1">Donation Record</h4></div>
                 <div class="pull-right">
                     <?php echo $this->Html->link('Donate a sponsee', array('controller'=>'donations', 'action' => 'listing'), array('class' => 'btn btn-info')); ?>
-                    <?php echo $this->Html->link('Donate any amount', array('controller'=>'donations', 'action' => 'donation'), array('class' => 'btn btn-info')); ?>
+                    <?php echo $this->Html->link('Donate any amount', array('controller'=>'donations', 'action' => 'index'), array('class' => 'btn btn-info')); ?>
                 </div>
             </div>
             <table width="100%" class="table table-hover table-bordered">

@@ -67,6 +67,16 @@ class AppController extends Controller
     // paypal IPN callback function
     function afterPaypalNotification($txnId)
     {
+        //get the login user in the application
+        $this->loadModel('User');
+        $user_id = $this->getCurrentUserId();
+        $this->User->id = $user_id;
+
+        $user = $this->User->findById($user_id);
+        $this->set('user', $user['User']);
+        debug($user);
+        
+        
         $transaction = ClassRegistry::init('PaypalIpn.InstantPaymentNotification')->findById($txnId);
         $ipnTxn = $transaction['InstantPaymentNotification'];
 
@@ -82,9 +92,10 @@ class AppController extends Controller
                 $this->PaypalTxnLog->create();
                 $this->PaypalTxnLog->save(array(
                     'PaypalTxnLog' => array(
-                        'id' => $ipnTxn['txn_id'],
-                        'refno' => $ipnTxn['item_number'],
-                        'first_name' => $ipnTxn['first_name'],
+                        'user' => $user[id], //login user iddf
+                        'txn_id' => $ipnTxn['txn_id'], //from instant_payment_notifications table column txn_id
+                        'refno' => $ipnTxn['item_number'], //from instant_payment_notifications table column item_number
+                        'first_name' => $ipnTxn['first_name'], 
                         'last_name' => $ipnTxn['last_name'],
                         'payer_email' => $ipnTxn['payer_email'],
                         'payer_id' => $ipnTxn['payer_id'],
@@ -92,7 +103,8 @@ class AppController extends Controller
                         'contact_phone' => $ipnTxn['contact_phone'],
                         'payment_fee' => $ipnTxn['payment_fee'],
                         'payment_gross' => $ipnTxn['payment_gross'],
-                        'amount' => $ipnTxn['payment_gross'] - $ipnTxn['payment_fee']
+                        'amount' => $ipnTxn['payment_gross'] - $ipnTxn['payment_fee'],
+                        'payment_date' =>  $ipnTxn['payment_date']
                     )
                 ));
 
