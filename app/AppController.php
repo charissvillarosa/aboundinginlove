@@ -72,6 +72,7 @@ class AppController extends Controller
     // paypal IPN callback function
     function afterPaypalNotification($txnId)
     {
+
         $transaction = ClassRegistry::init('PaypalIpn.InstantPaymentNotification')->findById($txnId);
         $ipnTxn = $transaction['InstantPaymentNotification'];
 

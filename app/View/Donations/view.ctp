@@ -1,8 +1,7 @@
 <div style="margin-right:145px;" class="container tabs logincontent well span9 pull-right">
     <div>
         <?php
-        foreach ($sponseeList as $item) :
-            $sponsee = $item['SponseeListingItem'];
+        $sponsee = $sponsee['SponseeListingItem'];
         ?>
         <div class="pull-left rightmargin1 topmargin5 box span3">
             <div class="banner">
@@ -38,7 +37,7 @@
                     ?>
                 </p>
                 <h3 class="fontcolor1">Needs</h3>
-                <p>
+                <div class="overlayable">
                     <?php
                     if(empty($sponseeneeds)){                                
                         $user = $this->Session->read('Auth.User');
@@ -56,8 +55,15 @@
                         }
                     }
                     else {
-                        echo "<table class='table table-hover'>";
-
+                        echo "<table class='table table-hover table-bordered'>";
+                        echo "
+                            <tr>
+                                <th></th>
+                                <th>Need Amount</th>
+                                <th>Donated Amount</th>
+                                <th>Need</th>
+                            </tr>
+                        ";
                         $prevCat = 0;
                         foreach ($sponseeneeds as $item) :
                             $need = $item['SponseeNeed'];
@@ -66,7 +72,7 @@
                             
                             if ($prevCat != $category['id']) : ?>
                                 <tr>
-                                    <th colspan="3">
+                                    <th colspan="4">
                                         <?php echo $category['description'] ?>
                                     </th>
                                 </tr>
@@ -75,18 +81,27 @@
                             endif; 
                             ?>
                             <tr>
+                                <?php if(!$amount == 0) : ?>
                                 <td style="width:30px;">
                                     <input type="checkbox" name="sponseeneeds"
                                            value="<?php echo $amount ?>"
                                            data-desc="<?php echo $need['description'] ?>"
                                            data-id="<?php echo $need['id'] ?>"/>
                                 </td>
+                                <?php else: ?>
+                                <td style="width:30px;">
+                                    <i class="icon-check"></i>
+                                </td>
+                                <?php endif; ?>
                                 <td style="width: 50px; text-align: right; font-weight: bold;">
-                                    <?php echo $this->Number->currency($amount) ?>
+                                    <?php echo $this->Number->currency($need['neededamount']) ?>
+                                </td>
+                                <td style="width: 50px; text-align: right; font-weight: bold;">
+                                    <?php echo $this->Number->currency($need['donatedamount']) ?>
                                 </td>
                                 <td>
                                     <?php echo $need['description'] ?>
-                                </td>                                
+                                </td>  
                             </tr>
                         <?php
                         endforeach;
@@ -101,18 +116,11 @@
                         echo $this->paypal->button('Donate through paypal', array('type' => 'donate', 'item_name' => '', 'amount' => ''));
                     echo '</div>';
                     ?>
-<!--                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                        <input type="hidden" name="cmd" value="_s-xclick">
-                        <input type="hidden" name="hosted_button_id" value="Q3QL4BCLGN6SW">
-                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                    </form>-->
-                </p>
+                    
+                    <div class="modal-backdrop overlay hide"></div>
+                </div>
             </div>
         </div>
-        <?php
-        endforeach;
-        ?>
     </div>
 </div>
 
@@ -123,47 +131,80 @@
 
 <script>
     $(function(){
+        var forceSubmit = false;
+        
         $('input[name=sponseeneeds]').click(function(){
             updateDonationInputs();
         });
         
-        $('#paypal-btn form').on('submit', function(){          
-            if (this.amount.value == '0') {
+        $('#paypal-btn form').submit(function(){
+            if (forceSubmit) return true;
+            
+            if (this.amount.value === '0') {
                 showAlert('Please select the amount to donate.');
-                return false;
             }
+            else {
+                saveDonationRequest();
+            }
+            
+            return false;
         });
         
         // initialize values
         updateDonationInputs();
+    
+        function saveDonationRequest() {
+            $('.overlayable .overlay').show();
+
+            var form = $('#paypal-btn form')[0];
+            var formData = {
+                'data[DonationRequest][details]' : form.item_number.value,
+                'data[DonationRequest][sponsee_id]' : <?php echo $sponsee['id'] ?>,
+                'data[DonationRequest][type]' : 'sponsee'
+            };
+
+            var url = '<?php echo $this->Html->url(array('action' => 'saveRequest')) ?>';
+            
+            $.post(url, formData)
+            .done(function(args) {
+                args = eval('(' +args+ ')');
+                forceSubmit = true;
+                form.item_number.value = formatNumber('00000000', args.id);
+                $('#paypal-btn form').submit();
+            })
+            .fail(function() {
+                alert('Failed to process request. Try again.');
+                $('.overlayable .overlay').hide();
+            });
+        }
+
+        function updateDonationInputs()
+        {
+            var total = 0.00;
+            var desc = [];
+            var items = [];
+            $('input[name=sponseeneeds]').each(function(idx,elm) {
+                if (elm.checked) {
+                    console.log(elm);
+                    total += parseFloat(elm.value);
+                    desc.push($(elm).data('desc'));
+                    items.push($(elm).data('id')+'='+elm.value);
+                }
+            });
+
+            var form = $('#paypal-btn form')[0];
+            form.amount.value = total;
+            form.item_name.value = 'Donation: ' + desc.join('/');
+            form.item_number.value = items.join(',');
+        }
+
+        function showAlert(msg) {
+            $('#error').html('');
+            $('#alert-tpl')
+                    .clone()
+                    .appendTo('#error')
+                    .fadeIn()
+                    .find('.text').html(msg);
+        }
     });
-    
-    function updateDonationInputs()
-    {
-        var total = 0.00;
-        var desc = [];
-        var items = [];
-        $('input[name=sponseeneeds]').each(function(idx,elm) {
-            if (elm.checked) {
-                console.log(elm);
-                total += parseFloat(elm.value);
-                desc.push($(elm).data('desc'));
-                items.push($(elm).data('id')+'='+elm.value);
-            }
-        });
-        
-        var form = $('#paypal-btn form')[0];
-        form.amount.value = total;
-        form.item_name.value = desc.join('/');
-        form.item_number.value = items.join(',');
-    }
-    
-    function showAlert(msg) {
-        $('#error').html('');
-        $('#alert-tpl')
-                .clone()
-                .appendTo('#error')
-                .fadeIn()
-                .find('.text').html(msg);
-    }
 </script>

@@ -154,3 +154,19 @@ div.centerwrapper {
     width:860px;
     margin:0 0 20px 0;
 }
+
+/*-- overlayable div --*/
+.overlayable {
+    position: relative;
+}
+
+.overlayable .overlay {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+}
+
+.overlayable .overlay.modal-backdrop {
+    background: #fff url(../img/loading.gif) no-repeat center center;
+}
+

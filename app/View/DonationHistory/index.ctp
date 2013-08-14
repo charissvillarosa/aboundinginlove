@@ -35,8 +35,12 @@ $user = $this->Session->read('Auth.User');
             <div>
                 <div class="pull-left"><h4 class="fontcolor1">Donation Record</h4></div>
                 <div class="pull-right">
-                    <?php echo $this->Html->link('Donate a sponsee', array('controller'=>'donations', 'action' => 'listing'), array('class' => 'btn btn-info')); ?>
-                    <?php echo $this->Html->link('Donate any amount', array('controller'=>'donations', 'action' => 'donation'), array('class' => 'btn btn-info')); ?>
+                    <div class="pull-right leftmargin5">
+                        <?php echo $this->Html->link('Donate any amount', array('controller'=>'donations', 'action' => 'donation'), array('class' => 'btn btn-info')); ?>
+                    </div>
+                    <div class="pull-right">
+                        <?php echo $this->Html->link('Donate a sponsee', array('controller'=>'donations', 'action' => 'sponseedonation'), array('class' => 'btn btn-info')); ?>
+                    </div>
                 </div>
             </div>
             <table width="100%" class="table table-hover table-bordered">
@@ -44,6 +48,7 @@ $user = $this->Session->read('Auth.User');
                     <th>No.</th>
                     <th>Date</th>
                     <th>Amount</th>
+                    <th>Sponsee</th>
                 </tr>
                 <?php
                 foreach ($donationitems as $item) :
@@ -52,6 +57,7 @@ $user = $this->Session->read('Auth.User');
                     <tr>
                         <td><?php echo $donation['id'] ?></td>
                         <td><?php echo $this->Time->format($donation['payment_date']) ?></td>
+                        <td><?php echo$this->Number->currency($donation['amount']); ?></td>
                         <td><?php echo$this->Number->currency($donation['amount']); ?></td>
                     </tr>
                 <?php endforeach; ?>

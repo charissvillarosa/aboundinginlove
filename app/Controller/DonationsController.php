@@ -4,6 +4,12 @@ class DonationsController extends AppController
 {
 
     var $layout = 'document';
+    var $uses = array(
+        'User',
+        'DonationRequest',
+        'SponseeListingItem',
+        'SponseeNeed'
+    );
 
     var $paginate = array(
         'SponseeListingItem' => array(
@@ -22,15 +28,10 @@ class DonationsController extends AppController
 
     public function view($id)
     {
-        $this->loadModel('SponseeListingItem');
-        $sponsee = $this->SponseeListingItem->find('all', array(
-            'conditions' => array('SponseeListingItem.id' => $id)
-        ));
-        
-        $this->set("sponseeList", $sponsee);
+        $sponsee = $this->SponseeListingItem->findById($id);
+        $this->set("sponsee", $sponsee);
         
         //to get sponsee needs
-        $this->loadModel('SponseeNeed');
         $sponseeneeds = $this->SponseeNeed->find('all', array(
             'conditions' => array('SponseeNeed.sponsee_id' => $id),
             'order' => array('SponseeNeed.category_id')
@@ -46,8 +47,34 @@ class DonationsController extends AppController
     
     public function listing()
     {
-        $this->loadModel('SponseeListingItem');
         $this->set("sponseeList", $this->paginate('SponseeListingItem'));
     }
     
+    public function sponseedonation()
+    {
+        $this->set("sponseeList", $this->paginate('SponseeListingItem'));
+    }
+    
+    public function donation()
+    {
+        $this->User->id = $this->getCurrentUserId();
+        $user = $this->User->read();
+        $this->set('user', $user['User']);
+    }
+    
+    public function saveRequest()
+    {
+        $this->autoRender = false;
+        $this->DonationRequest->create();
+        $this->DonationRequest->set('user_id', $this->getCurrentUserId());
+        $this->DonationRequest->save($this->request->data);
+        
+        $this->response->body('{"id": ' .$this->DonationRequest->id. '}');
+    }
+    
+    private function getCurrentUserId() {
+        $sessUser = $this->Session->read('Auth.User');
+        $this->loadModel('User');
+        return $sessUser['id'];
+    }
 }

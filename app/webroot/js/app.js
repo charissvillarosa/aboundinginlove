@@ -8,4 +8,8 @@ if (!String.prototype.trim) {
     };
 }
 
+function formatNumber(mask, value) {
+    var strValue = '' + value;
+    return strValue.length > mask.length ? strValue : (mask + value).slice(-mask.length);
+}
 

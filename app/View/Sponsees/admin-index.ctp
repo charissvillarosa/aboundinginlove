@@ -14,8 +14,6 @@
                 <th>Address</th>
                 <th>Country</th>
                 <th>Gender</th>
-                <th>Map Location</th>
-                <th>Biography</th>
                 <th>Birth Date</th>
                 <th>View Sponsee Needs</th>
                 <th>View Sponsee Portfolio</th>
@@ -34,6 +32,8 @@
                     <td>
                         <?php echo $ctr; ?>
                         <span class="id" style="display:none;"><?php echo $sponsee['id'] ?></span>
+                        <span class="maplocation" style="display:none;"><?php echo $sponsee['maplocation'] ?></span>
+                        <span class="information" style="display:none;"><?php echo $sponsee['information'] ?></span>
                     </td>
                     <td>
                         <?php echo 
@@ -42,24 +42,11 @@
                     <td>
                         <?php 
                             $add = $sponsee['address'];
-                            echo '<span class="address">'.$this->Text->truncate($add, 20, array('exact' => false)).'</span>';
+                            echo '<span class="address">'.$add.'</span>';
                         ?>
                     </td>
                     <td><?php echo '<span class="country">'.$sponsee['country'].'</span>'; ?></td>
                     <td><?php echo '<span class="gender">'.$sponsee['gender'].'</span>'; ?></td>
-                    <td>
-                        <?php 
-                        echo  
-                            $maplocation = $sponsee['maplocation'];
-                            echo '<span class="maplocation">'.$this->Text->truncate($maplocation, 5, array('exact' => false)).'</span>';
-                        ?>
-                    </td>
-                    <td>
-                        <?php 
-                            $info = $sponsee['information'];
-                            echo '<span class="information">'.$this->Text->truncate($info, 20, array('exact' => false)).'</span>';
-                        ?>
-                    </td>
                     <td><?php echo '<span class="birthdate">'.$this->Time->format($sponsee['birthdate']).'</span>' ?></td>
                     <td>
                         <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-folder-open','title' => 'View Sponsee Needs')); ?></i>
