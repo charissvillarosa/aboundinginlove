@@ -4021,6 +4021,7 @@ input[type="submit"].btn.btn-mini {
 .nav-tabs,
 .nav-pills {
   *zoom: 1;
+  border-bottom: solid 1px #eee;
 }
 
 .nav-tabs:before,
@@ -4082,7 +4083,7 @@ input[type="submit"].btn.btn-mini {
   color: #555555;
   cursor: default;
   background-color: #ffffff;
-  border: 1px solid #ddd;
+  border: 1px solid #eee;
   border-bottom-color: transparent;
 }
 

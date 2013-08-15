@@ -21,8 +21,26 @@ $user = $this->Session->read('Auth.User');
                 <p class="fontsize1">INVITE FRIENDS</p>
             </div>
         </div>
-        <div class="clearfix pull-left leftmargin2">
-           
+        <div class="clearfix pull-left leftmargin2 span8">
+            <div class="leftmargin2">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">TWEETER</a></li>
+                    <li><a href="#tab2" data-toggle="tab">FACEBOOK</a></li>
+                    <li><a href="#tab3" data-toggle="tab">EMAIL</a></li>
+                </ul>
+                <div class="tab-content topmargin1">
+                    <div class="tab-pane active leftmargin1" id="tab1">
+                        <p>TWEETER</p>
+                    </div>
+                    <div class="tab-pane leftmargin1" id="tab2">
+                        <p>FACEBOOK</p>
+                    </div>
+                    <div class="tab-pane leftmargin1" id="tab3">
+                        <p>EMAIL</p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
         </div>
     </div>
 </div>
