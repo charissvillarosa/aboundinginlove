@@ -34,9 +34,12 @@ class InstantPaymentNotificationsController extends PaypalIpnAppController
      */
     public function process($id = null)
     {
+		$this->log("processing: $id", 'paypal_ipn');
+		
         $debugging = (Configure::read('debug') && !is_null($id));
         if ($debugging) {
-
+			$this->log("processing [using debugging]: $id", 'paypal_ipn');
+			
             if (is_numeric($id)) {
                 $this->loadModel('Transaction');
                 $transaction = $this->Transaction->findById($id);
@@ -52,14 +55,21 @@ class InstantPaymentNotificationsController extends PaypalIpnAppController
             $raw = $ipn['InstantPaymentNotification']['raw'];
         }
         else {
+			$this->log("processing [using php://input]: $id", 'paypal_ipn');
+			
             $raw = file_get_contents("php://input");
         }
 
         if (!empty($raw)) {
             $data = $this->InstantPaymentNotification->parseRaw($raw);
+			
+			$this->log("validating: $id", 'paypal_ipn');
+			
             $data['valid'] = $this->InstantPaymentNotification->is_valid($raw);
             $data['ip'] = remote_ip();
             $data['raw'] = $raw;
+			
+            $this->log("valid: $data[valid], remote_ip, $data[ip]", 'paypal_ipn');
 
             $result = $data['valid'] ? 'Valid' : 'Invalid';
 
