@@ -127,6 +127,19 @@ echo $this->Html->docType('html5');
                     </ul>
                 </div>
                 <?php endif; ?>
+                <?php if (!$user) :?>
+                    <!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_floating_style addthis_32x32_style" style="right:0;bottom:0;">
+                    <a class="addthis_button_preferred_1"></a>
+                    <a class="addthis_button_preferred_2"></a>
+                    <a class="addthis_button_preferred_3"></a>
+                    <a class="addthis_button_preferred_4"></a>
+                    <a class="addthis_button_compact"></a>
+                    </div>
+                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-520a17f6475162a2"></script>
+                    <!-- AddThis Button END -->
+                <?php endif; ?>
                 <?php echo $this->fetch('content'); ?>
             </div>
         </div>

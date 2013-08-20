@@ -40,11 +40,11 @@ CREATE TABLE `donation_requests` (
   `details` text,
   `type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `donation_requests` */
 
-insert  into `donation_requests`(`id`,`user_id`,`sponsee_id`,`details`,`type`) values (1,14,1,'1=20000,46=7000,44=555','sponsee'),(2,14,1,'44=555','sponsee'),(3,14,NULL,'sponsee=50,org=5','organization'),(4,14,NULL,'sponsee=100,org=5','organization'),(5,14,1,'44=555','sponsee'),(7,14,NULL,'sponsee=500,org=10','organization');
+insert  into `donation_requests`(`id`,`user_id`,`sponsee_id`,`details`,`type`) values (1,14,1,'1=20000,46=7000,44=555','sponsee'),(2,14,1,'44=555','sponsee'),(3,14,NULL,'sponsee=50,org=5','organization'),(4,14,NULL,'sponsee=100,org=5','organization'),(5,14,1,'44=555','sponsee'),(7,14,NULL,'sponsee=500,org=10','organization'),(8,14,NULL,'sponsee=10,org=20','organization'),(9,14,1,'46=1','sponsee');
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -52,6 +52,7 @@ DROP TABLE IF EXISTS `instant_payment_notifications`;
 
 CREATE TABLE `instant_payment_notifications` (
   `id` char(36) NOT NULL,
+  `pay_key` varchar(100) DEFAULT NULL,
   `notify_version` varchar(64) DEFAULT NULL COMMENT 'IPN Version Number',
   `verify_sign` varchar(127) DEFAULT NULL COMMENT 'Encrypted string used to verify the authenticityof the tansaction',
   `test_ipn` int(11) DEFAULT NULL,
@@ -144,7 +145,24 @@ CREATE TABLE `instant_payment_notifications` (
 
 /*Data for the table `instant_payment_notifications` */
 
-insert  into `instant_payment_notifications`(`id`,`notify_version`,`verify_sign`,`test_ipn`,`address_city`,`address_country`,`address_country_code`,`address_name`,`address_state`,`address_status`,`address_street`,`address_zip`,`first_name`,`last_name`,`payer_business_name`,`payer_email`,`payer_id`,`payer_status`,`contact_phone`,`residence_country`,`business`,`item_name`,`item_number`,`quantity`,`receiver_email`,`receiver_id`,`custom`,`invoice`,`memo`,`option_name1`,`option_name2`,`option_selection1`,`option_selection2`,`tax`,`auth_id`,`auth_exp`,`auth_amount`,`auth_status`,`num_cart_items`,`parent_txn_id`,`payment_date`,`payment_status`,`payment_type`,`pending_reason`,`reason_code`,`remaining_settle`,`shipping_method`,`shipping`,`transaction_entity`,`txn_id`,`txn_type`,`exchange_rate`,`mc_currency`,`mc_fee`,`mc_gross`,`mc_handling`,`mc_shipping`,`payment_fee`,`payment_gross`,`settle_amount`,`settle_currency`,`auction_buyer_id`,`auction_closing_date`,`auction_multi_item`,`for_auction`,`subscr_date`,`subscr_effective`,`period1`,`period2`,`period3`,`amount1`,`amount2`,`amount3`,`mc_amount1`,`mc_amount2`,`mc_amount3`,`recurring`,`reattempt`,`retry_at`,`recur_times`,`username`,`password`,`subscr_id`,`case_id`,`case_type`,`case_creation_date`,`created`,`modified`) values ('51b2ad92-da1c-4cbb-918f-38a7dd53ddaa','3.7','A7EitPY1tevKQHmpmIIXsO5tbxZ5A8ISrEOj-UlrLjs8pVMcGdPTTLeA',1,'San Jose','United States','US','Chariss Villarosa','CA','confirmed','1 Main St','95131','Chariss','Villarosa',NULL,'chariss.villarosa@gmail.com','3F66RW8KDM5SN','verified',NULL,'US','chariss.villarosa-facilitator@avare-llc.com','Family financial assistance','80=24','0','chariss.villarosa-facilitator@avare-llc.com','RSB6K82AALHW8','',NULL,NULL,NULL,NULL,NULL,NULL,'0.00',NULL,NULL,NULL,NULL,NULL,NULL,'21:05:26 Jun 07, 2013 PDT','Completed','instant','paymentreview',NULL,NULL,NULL,NULL,NULL,'83E24958UV575083K','web_accept',NULL,'USD','1.00','24.00',NULL,NULL,'1.00','24.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2013-06-08 00:05:38','2013-06-08 00:05:38'),('51b2ada1-e24c-4e7a-8e10-39b4dd53ddaa','3.7','A7EitPY1tevKQHmpmIIXsO5tbxZ5A8ISrEOj-UlrLjs8pVMcGdPTTLeA',1,'San Jose','United States','US','Chariss Villarosa','CA','confirmed','1 Main St','95131','Chariss','Villarosa',NULL,'chariss.villarosa@gmail.com','3F66RW8KDM5SN','verified',NULL,'US','chariss.villarosa-facilitator@avare-llc.com','Family financial assistance','80=24','0','chariss.villarosa-facilitator@avare-llc.com','RSB6K82AALHW8','',NULL,NULL,NULL,NULL,NULL,NULL,'0.00',NULL,NULL,NULL,NULL,NULL,NULL,'21:05:26 Jun 07, 2013 PDT','Pending','instant','paymentreview',NULL,NULL,NULL,NULL,NULL,'83E24958UV575083K','web_accept',NULL,'USD','1.00','24.00',NULL,NULL,'1.00','24.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2013-06-08 00:05:53','2013-06-08 00:05:53');
+insert  into `instant_payment_notifications`(`id`,`pay_key`,`notify_version`,`verify_sign`,`test_ipn`,`address_city`,`address_country`,`address_country_code`,`address_name`,`address_state`,`address_status`,`address_street`,`address_zip`,`first_name`,`last_name`,`payer_business_name`,`payer_email`,`payer_id`,`payer_status`,`contact_phone`,`residence_country`,`business`,`item_name`,`item_number`,`quantity`,`receiver_email`,`receiver_id`,`custom`,`invoice`,`memo`,`option_name1`,`option_name2`,`option_selection1`,`option_selection2`,`tax`,`auth_id`,`auth_exp`,`auth_amount`,`auth_status`,`num_cart_items`,`parent_txn_id`,`payment_date`,`payment_status`,`payment_type`,`pending_reason`,`reason_code`,`remaining_settle`,`shipping_method`,`shipping`,`transaction_entity`,`txn_id`,`txn_type`,`exchange_rate`,`mc_currency`,`mc_fee`,`mc_gross`,`mc_handling`,`mc_shipping`,`payment_fee`,`payment_gross`,`settle_amount`,`settle_currency`,`auction_buyer_id`,`auction_closing_date`,`auction_multi_item`,`for_auction`,`subscr_date`,`subscr_effective`,`period1`,`period2`,`period3`,`amount1`,`amount2`,`amount3`,`mc_amount1`,`mc_amount2`,`mc_amount3`,`recurring`,`reattempt`,`retry_at`,`recur_times`,`username`,`password`,`subscr_id`,`case_id`,`case_type`,`case_creation_date`,`created`,`modified`) values ('51b2ad92-da1c-4cbb-918f-38a7dd53ddaa',NULL,'3.7','A7EitPY1tevKQHmpmIIXsO5tbxZ5A8ISrEOj-UlrLjs8pVMcGdPTTLeA',1,'San Jose','United States','US','Chariss Villarosa','CA','confirmed','1 Main St','95131','Chariss','Villarosa',NULL,'chariss.villarosa@gmail.com','3F66RW8KDM5SN','verified',NULL,'US','chariss.villarosa-facilitator@avare-llc.com','Family financial assistance','80=24','0','chariss.villarosa-facilitator@avare-llc.com','RSB6K82AALHW8','',NULL,NULL,NULL,NULL,NULL,NULL,'0.00',NULL,NULL,NULL,NULL,NULL,NULL,'21:05:26 Jun 07, 2013 PDT','Completed','instant','paymentreview',NULL,NULL,NULL,NULL,NULL,'83E24958UV575083K','web_accept',NULL,'USD','1.00','24.00',NULL,NULL,'1.00','24.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2013-06-08 00:05:38','2013-06-08 00:05:38'),('51b2ada1-e24c-4e7a-8e10-39b4dd53ddaa',NULL,'3.7','A7EitPY1tevKQHmpmIIXsO5tbxZ5A8ISrEOj-UlrLjs8pVMcGdPTTLeA',1,'San Jose','United States','US','Chariss Villarosa','CA','confirmed','1 Main St','95131','Chariss','Villarosa',NULL,'chariss.villarosa@gmail.com','3F66RW8KDM5SN','verified',NULL,'US','chariss.villarosa-facilitator@avare-llc.com','Family financial assistance','80=24','0','chariss.villarosa-facilitator@avare-llc.com','RSB6K82AALHW8','',NULL,NULL,NULL,NULL,NULL,NULL,'0.00',NULL,NULL,NULL,NULL,NULL,NULL,'21:05:26 Jun 07, 2013 PDT','Pending','instant','paymentreview',NULL,NULL,NULL,NULL,NULL,'83E24958UV575083K','web_accept',NULL,'USD','1.00','24.00',NULL,NULL,'1.00','24.00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2013-06-08 00:05:53','2013-06-08 00:05:53');
+
+/*Table structure for table `invites` */
+
+DROP TABLE IF EXISTS `invites`;
+
+CREATE TABLE `invites` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `to` text,
+  `from` bigint(20) DEFAULT NULL,
+  `message` text,
+  `date_sent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `category` varchar(100) DEFAULT NULL,
+  `status` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `invites` */
 
 /*Table structure for table `paypal_items` */
 
