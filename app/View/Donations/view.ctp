@@ -60,7 +60,6 @@
                             <tr>
                                 <th></th>
                                 <th>Need Amount</th>
-                                <th>Donated Amount</th>
                                 <th>Need</th>
                             </tr>
                         ";
@@ -68,7 +67,7 @@
                         foreach ($sponseeneeds as $item) :
                             $need = $item['SponseeNeed'];
                             $category = $item['Category'];
-                            $amount = $need['neededamount'] - $need['donatedamount'];
+                            $status = $need['status'];
                             
                             if ($prevCat != $category['id']) : ?>
                                 <tr>
@@ -81,10 +80,10 @@
                             endif; 
                             ?>
                             <tr>
-                                <?php if(!$amount == 0) : ?>
+                                <?php if($status != 'CLOSED') : ?>
                                 <td style="width:30px;">
                                     <input type="checkbox" name="sponseeneeds"
-                                           value="<?php echo $amount ?>"
+                                           value="<?php echo $need['neededamount'] ?>"
                                            data-desc="<?php echo $need['description'] ?>"
                                            data-id="<?php echo $need['id'] ?>"/>
                                 </td>
@@ -95,9 +94,6 @@
                                 <?php endif; ?>
                                 <td style="width: 50px; text-align: right; font-weight: bold;">
                                     <?php echo $this->Number->currency($need['neededamount']) ?>
-                                </td>
-                                <td style="width: 50px; text-align: right; font-weight: bold;">
-                                    <?php echo $this->Number->currency($need['donatedamount']) ?>
                                 </td>
                                 <td>
                                     <?php echo $need['description'] ?>

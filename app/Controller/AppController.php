@@ -81,6 +81,9 @@ class AppController extends Controller
             $txnLog = $this->PaypalTxnLog->findById($ipnTxn['txn_id']);
             $donationReq = $this->DonationRequest->findById($ipnTxn['item_number']);
             
+            // just get the key-value pairs
+            $donationReq = $donationReq['DonationRequest'];
+            
             // let update the info if this $txnId is not yet recorded
             // paypal IPN sends notification multiple times
             if (!$txnLog) {
@@ -139,13 +142,12 @@ class AppController extends Controller
         $this->SponseeNeed->id = $id;
         $need = $this->SponseeNeed->read();
 
-        debug($need);
         $donated = $need['SponseeNeed']['donatedamount'];
         $total = $amount + ($donated ? $donated : 0);
 
-        debug($donated);
-        debug($total);
-        $this->SponseeNeed->saveField('donatedamount', $total);
+        $this->SponseeNeed->set('donatedamount', $total);
+        $this->SponseeNeed->set('status', 'CLOSED');
+        $this->SponseeNeed->save();
     }
 
 }

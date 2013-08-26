@@ -53,12 +53,13 @@ $user = $this->Session->read('Auth.User');
                 <?php
                 foreach ($donationitems as $item) :
                     $donation = $item['DonationHistory'];
+                    $sponsee = $item['Sponsee'];
                     ?>
                     <tr>
                         <td><?php echo $donation['id'] ?></td>
-                        <td><?php echo $this->Time->format($donation['payment_date']) ?></td>
-                        <td><?php echo$this->Number->currency($donation['amount']); ?></td>
-                        <td><?php echo$this->Number->currency($donation['amount']); ?></td>
+                        <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
+                        <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
+                        <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

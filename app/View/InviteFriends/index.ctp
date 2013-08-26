@@ -1,6 +1,3 @@
-<?php
-$user = $this->Session->read('Auth.User');
-?>
 <div class="container">
     <div class="dropdown clearfix span2 topmargin3">
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
@@ -62,7 +59,19 @@ $user = $this->Session->read('Auth.User');
                         </div>
                         <div style="padding-left:7px;">
                             <?php echo $this->Form->label('Message: '); ?>
-                            <?php echo $this->Form->textarea('message', array('class' => 'span5', 'rows' => '8')); ?>
+                            <?php
+                            $defaultMessage = "
+AboundingInLove.org gives chance to children with disabilities to live a normal life.
+
+You can join and sponsor a child or give donation to help the children live a normal life.
+
+Join now!
+
+-- $user[firstname]
+                                ";
+                            
+                            echo $this->Form->textarea('message', array('class' => 'span5', 'rows' => '8', 'value' => trim($defaultMessage))); 
+                            ?>
                         </div>
                         <?php echo $this->Form->end(__('Send invitations')); ?>
                     </div>

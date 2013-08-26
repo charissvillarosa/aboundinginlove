@@ -8,6 +8,8 @@ class InviteFriendsController extends AppController
     
     var $Email = null;
     
+    var $uses = array('User', 'InviteFriend');
+    
     public function __construct($request = null, $response = null)
     {
         parent::__construct($request, $response);
@@ -25,37 +27,53 @@ class InviteFriendsController extends AppController
 
     public function index()
     {
-        
+        $sessUser = $this->Session->read('Auth.User');
+        $user = $this->User->findById($sessUser['id']);
+        $this->set('user', $user['User']);
     }
     
     public function sendMail()
     {
-        $user = $this->Session->read('Auth.User');
-        $postData = $this->request->data['InviteFriend'];
+        if (!$this->request->is('post')) {
+            return;
+        }
         
+        $sessUser = $this->Session->read('Auth.User');
+        $user = $this->User->findById($sessUser['id']);
+        $user = $user['User'];
+        
+        $postData = $this->request->data['InviteFriend'];
+        $tokenId = strtoupper(Security::generateAuthKey());
+
         //sending email
         $this->Email->to($postData['to']);
         $this->Email->subject("$user[firstname] invites you to join AboundingInLove.org");
-//        $this->Email->template($this->request->data['InviteFriend']['to']);
-        $this->Email->send($postData['message']);
-        
+        $this->Email->emailFormat('html');
+        $this->Email->template('invite');
+        $this->Email->viewVars(array(
+            'message' => $postData['message'],
+            'user' => $user,
+            'tokenId' => $tokenId
+        ));
+        $this->Email->send();
+
         //saving email content into invite table
-        if ($this->request->is('post')) {
-            $this->InviteFriend->create();
-            $this->InviteFriend->set('user_id', $user['id']);
-            $this->InviteFriend->set('to', $postData['to']);
-            $this->InviteFriend->set('message', "Invited $postData[to]");
-            $this->InviteFriend->set('type', 'email');
-            $this->InviteFriend->set('status', 'pending');
-            
-            if ($this->InviteFriend->save()) {
-                $this->Session->setFlash('Sponsee record has been saved successfully.');
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash('Unable to add a new record.');
-            }
+        $this->InviteFriend->create();
+        $this->InviteFriend->set('token_id', $tokenId);
+        $this->InviteFriend->set('user_id', $user['id']);
+        $this->InviteFriend->set('to', $postData['to']);
+        $this->InviteFriend->set('message', "Invited $postData[to]");
+        $this->InviteFriend->set('type', 'email');
+        $this->InviteFriend->set('status', 'pending');
+
+        if ($this->InviteFriend->save()) {
+            $this->Session->setFlash('Sponsee record has been saved successfully.');
+            $this->redirect(array('action' => 'index'));
         }
-        
+        else {
+            $this->Session->setFlash('Unable to add a new record.');
+        }
+
         $this->redirect(array('action' => 'index'));
     }
 }
