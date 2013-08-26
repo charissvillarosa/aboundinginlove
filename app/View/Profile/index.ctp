@@ -16,13 +16,13 @@
        <div class="clearfix pull-left headerstyle">
             <div class="pull-left leftmargin2 bottommargin2">
                 <p class="fontsize1">ACCOUNT SETTING</p>
-                <?php echo $this->Session->flash(); ?>
             </div>
             <div class="pull-right leftmargin2 bottommargin2">
                 <?php echo $this->Html->link('Edit Profile', array('action' => 'edit'), array('class' => 'btn btn-info'))?>
             </div>
         </div>
         <div class="clearfix pull-left leftmargin2">
+            <?php echo $this->Session->flash(); ?>
             <div class="pull-left width1">
                 <div>
                     <?php

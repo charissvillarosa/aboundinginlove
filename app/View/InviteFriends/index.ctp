@@ -17,21 +17,6 @@
            <div class="pull-left leftmargin2 bottommargin2 banner">
                <p class="fontsize1">INVITE FRIENDS</p>
            </div>
-           <div class="pull-right span2">
-                <!-- AddThis Button BEGIN -->
-                <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-                <!--<a class="addthis_button_preferred_1"></a>-->
-                <a class="addthis_button_preferred_4"></a>
-                <a class="addthis_button_preferred_2"></a>
-                <a class="addthis_button_preferred_3"></a>
-                <!--<a class="addthis_button_preferred_4"></a>-->
-<!--                <a class="addthis_button_compact"></a>
-                <a class="addthis_counter addthis_bubble_style"></a>-->
-                </div>
-                <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-520a17f6475162a2"></script>
-                <!-- AddThis Button END -->
-             </div>
         </div>
         <div class="clearfix pull-left leftmargin2 span8">
             <div class="leftmargin2">
@@ -48,7 +33,6 @@
                     </div>
                     <div class="tab-pane leftmargin1" id="tab2">
                         <p>FACEBOOK</p>
-                        <a class="addthis_button_facebook_send"></a>
                     </div>
                     <div class="tab-pane active leftmargin1" id="tab3">
                         <?php echo $this->Form->create('InviteFriend', array('action' => 'sendMail')); ?>
