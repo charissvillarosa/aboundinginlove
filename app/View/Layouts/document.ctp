@@ -36,6 +36,7 @@ echo $this->Html->docType('html5');
     echo $this->Html->css('bootstrap');
     echo $this->Html->css('bootstrap-responsive');
     echo $this->Html->css('background');
+    echo $this->Html->css('style');
     
     echo $this->Html->script('jquery');
     echo $this->Html->script('bootstrap.min');

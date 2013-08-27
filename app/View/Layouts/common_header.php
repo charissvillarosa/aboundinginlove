@@ -6,12 +6,12 @@
                     <li class="<?php echo $this->name == 'Home' ? 'active' : '' ?>">
                         <?php echo $this->Html->link('HOME', '/home'); ?>
                     </li>
-                    <li class="<?php echo $this->name == 'Projects' ? 'active' : '' ?>">
-                        <?php echo $this->Html->link('PROJECTS', '/projects'); ?>
+<!--                    <li class="<?php // echo $this->name == 'Projects' ? 'active' : '' ?>">
+                        <?php // echo $this->Html->link('PROJECTS', '/projects'); ?>
                     </li>
-                    <li class="<?php echo $this->name == 'Programs' ? 'active' : '' ?>">
-                        <?php echo $this->Html->link('PROGRAMS', '/programs'); ?>
-                    </li>
+                    <li class="<?php // echo $this->name == 'Programs' ? 'active' : '' ?>">
+                        <?php // echo $this->Html->link('PROGRAMS', '/programs'); ?>
+                    </li>-->
                     <li class="<?php echo $this->name == 'Donations' ? 'active' : '' ?>">
                         <?php echo $this->Html->link('DONATE NOW', array('controller' => 'donations', 'action' => 'listing')); ?>
                     </li>
