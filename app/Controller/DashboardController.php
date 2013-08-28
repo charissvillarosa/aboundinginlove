@@ -9,10 +9,9 @@ class DashboardController extends AppController
     {
         $user = $this->Session->read('Auth.User');
         if ($user && $user['role'] == 'admin') {
-            $this->render('admin-index');
+            $this->redirect(array('controller'=>'InviteFriends', 'action' => 'listing'));
         }
         else {
-//            $this->render('index');
             $this->redirect(array('controller'=>'Profile', 'action' => 'index'));
         }
     }

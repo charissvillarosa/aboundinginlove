@@ -80,7 +80,7 @@ $user = $this->Session->read('Auth.User');
                                     echo "<div class='alert alert-info'>
                                         <h4>Not yet specified.</h4> 
                                         <p class='topmargin1'>To add, just click the add button below.</p>";
-                                        echo $this->Html->link('Add Sponsee Needs', array('controller' => 'SponseeNeeds', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-big'));
+                                    echo "<a href='#myModal' role='button' class='btn btn-info add'><i class='icon-plus'></i> Add Record</a>";
                                     echo "</div>";
                                 }
                                 else {
@@ -139,3 +139,63 @@ $user = $this->Session->read('Auth.User');
             </div>
         </div>
      </div>
+    
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel" style="margin-left:30px;">SPONSEE NEED</h3>
+  </div>
+  <div class="modal-body">
+    <div class="leftmargin1">
+        <?php
+            echo $this->Session->flash();
+            echo $this->Form->create('SponseeNeed', array('action' => "add/$sponsee[id]"));
+        ?>
+        <fieldset>
+            <?php echo $this->Form->input('category_id', array('type' => 'select', 'label' => 'Category', 'class' => 'topmargin4 span4', 'options' => $categories)) ?>
+            <?php echo $this->Form->input('description', array('label' => 'Description', 'class' => 'span4')) ?>
+            <?php echo $this->Form->input('neededamount', array('label' => 'Needed Amount', 'class' => 'span2', 'style'=>'text-align:right;')) ?>
+            <?php echo $this->Form->hidden('id') ?>
+            <?php echo $this->Form->hidden('sponsee_id') ?>
+        </fieldset>
+        <?php echo $this->Form->end() ?>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-info save rightmargin4"><i class="icon-hdd"></i> Save</button>
+  </div>
+</div>
+<script>
+    // save handler
+    $('#myModal .save').click(function() {
+        var elems = $('input, select, textarea', '#myModal form div.required');
+        var errors = [];
+        var firstError;
+        elems.each(function(idx,elem) {
+            if (elem.value.trim().length === 0) {
+                if (!firstError) firstError = elem;
+                elem.value = '';
+                var lbl = $('label[for=' +elem.id+ ']');
+                errors.push(lbl.html() + ' is required.');
+            }
+        });
+
+        if (errors.length > 0) {
+            alert(errors.join('\n'));
+            $(firstError).focus();
+            return;
+        }
+
+        $('#myModal form').submit();
+    });
+    
+    // add handler
+    $('.add').click(function(e) {
+        e.preventDefault();
+        var tr = $(this).closest('tr');
+        $('#myModalLabel').html('Add Sponsee Need');
+        $('#myModal fieldset input').val('');
+        $('#myModal').modal('show');
+    });
+</script>

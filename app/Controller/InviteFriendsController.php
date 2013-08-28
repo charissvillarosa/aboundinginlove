@@ -76,4 +76,9 @@ class InviteFriendsController extends AppController
 
         $this->redirect(array('action' => 'index'));
     }
+    
+    public function listing()
+    {
+        
+    }
 }

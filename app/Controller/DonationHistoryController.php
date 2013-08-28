@@ -19,4 +19,15 @@ class DonationHistoryController extends AppController
             'conditions' => array('DonationHistory.user_id' => $id))
         ));
     }
+    
+    public function listing()
+    {
+        $sessUser = $this->Session->read('Auth.User');
+        $this->loadModel('User');
+        $id = $sessUser['id'];
+
+        $this->set('donationitems', $this->DonationHistory->find('all', array(
+            'conditions' => array('DonationHistory.user_id' => $id))
+        ));
+    }
 }

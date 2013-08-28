@@ -159,7 +159,5 @@
         $('#SponseeNeedSponseeid').val(tr.find('.sponseeid').html());
         $('#myModal').modal('show');
     });
-    
-    // upload profile image
-    
+
 </script>

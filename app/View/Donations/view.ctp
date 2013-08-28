@@ -89,7 +89,7 @@
                                 </td>
                                 <?php else: ?>
                                 <td style="width:30px;">
-                                    <i class="icon-check"></i>
+                                    <?php echo $this->Html->image('check.png'); ?>
                                 </td>
                                 <?php endif; ?>
                                 <td style="width: 50px; text-align: right; font-weight: bold;">

@@ -125,6 +125,12 @@ echo $this->Html->docType('html5');
                         <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
                             <?php echo $this->Html->link('Portfolio Categories', array('controller'=>'PortfolioCategories', 'action'=>'listing')); ?>
                         </li>
+                        <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Donations', array('controller'=>'DonationHistory', 'action'=>'listing')); ?>
+                        </li>
+                        <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Invites', array('controller'=>'InviteFriends', 'action'=>'listing')); ?>
+                        </li>
                     </ul>
                 </div>
                 <?php endif; ?>
