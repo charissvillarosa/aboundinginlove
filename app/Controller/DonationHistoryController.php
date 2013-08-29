@@ -26,8 +26,18 @@ class DonationHistoryController extends AppController
         $this->loadModel('User');
         $id = $sessUser['id'];
 
+        $this->set('donationitems', $this->DonationHistory->find('all'));
+    }
+    
+    public function search()
+    {
+
+        if (!empty($this->data)) {
+            $type = $this->data['Donationrequest']['cat'];
+        }
+
         $this->set('donationitems', $this->DonationHistory->find('all', array(
-            'conditions' => array('DonationHistory.user_id' => $id))
+            'conditions' => array('DonationRequest.type' => $type))
         ));
     }
 }
