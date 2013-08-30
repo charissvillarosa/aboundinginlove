@@ -1,38 +1,47 @@
 <div class="container tabs portfolio">
     <div class="span11 margin3">
-        <div class="pull-left topmargin4">
-            <strong class="fontcolor1">Donation search by: </strong>
+        <?php echo $this->Form->create('', array('type' => 'GET')); ?>
+        <div class="pull-right">
+            <div class="pull-left topmargin7">
+                <p>Donation search by:</p>
+            </div>
+            <div class="pull-left">
+                <?php               
+                    echo $this->Form->input('cat', array(
+                    'label' => '',
+                    'class' => 'span3',
+                    'value' => $category,
+                    'options' => array('' => 'All', 'sponsee' => 'Sponsee', 'organization' => 'Organization' )));
+                ?>     
+            </div>
+            <div class="pull-left topmargin7">
+                <button type="submit" class="btn btn-info"><i class="icon-search"></i> Search</button>
+            </div>
         </div>
-        <div class="pull-left leftmargin1">
-            <?php 
-                echo $this->Form->create('DonationHistory', array('url' => array('controller'=>'DonationHistory', 'action'=>'search')));
-                
-                echo $this->Form->input('cat', array(
-                'label' => '',
-                'class' => 'span3',
-                'options' => array('all' => 'All', 'sponsee' => 'Sponsee', 'organization' => 'Organization' )));
-            ?>     
-        </div>
-        <div class="pull-left topmargin7">
-            <?php echo $this->Form->end(__('Search')); ?>
-        </div>
+        <?php echo $this->Form->end(); ?>
         <table width="100%" class="table table-hover table-bordered">
             <tr>
-                <th>No.</th>
+                <th>Paypal Payers ID</th>
+                <th>Sponsor</th>
                 <th>Date</th>
                 <th>Amount</th>
                 <th>Sponsee</th>
+                <th>Details</th>
             </tr>
             <?php
             foreach ($donationitems as $item) :
+
                 $donation = $item['DonationHistory'];
                 $sponsee = $item['Sponsee'];
+                $user = $item['User'];
                 ?>
                 <tr>
                     <td><?php echo $donation['id'] ?></td>
+                    <td><?php echo $user['firstname'].' '.$user['lastname']; ?></td>
                     <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
                     <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
                     <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></td>
+                    <td><i><?php echo $this->Html->link('', array('action' => 'view', $donation['id']), array('class' => 'icon-folder-open','title' => 'View donation details')); ?></i></td>
                 </tr>
             <?php endforeach; ?>
         </table>
