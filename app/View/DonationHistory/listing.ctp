@@ -1,7 +1,7 @@
 <div class="container tabs portfolio">
     <div class="span11 margin3">
         <?php echo $this->Form->create('', array('type' => 'GET')); ?>
-        <div class="pull-right">
+        <div class="pull-right banner">
             <div class="pull-left topmargin7">
                 <p>Donation search by:</p>
             </div>

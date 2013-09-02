@@ -39,5 +39,14 @@ class DonationHistoryController extends AppController
         }
         
     }
-
+    
+    public function view($id)
+    {
+        $this->DonationHistory->id = $id;
+        $donation = $this->DonationHistory->find('all', array(
+            'conditions' => array('DonationHistory.sponsee_id' => $id),
+            'order' => array('DonationHistory.category_id')
+        ));
+        $this->set("donationdetails", $donation);
+    }
 }

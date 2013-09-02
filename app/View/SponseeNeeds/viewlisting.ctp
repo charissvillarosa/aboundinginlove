@@ -31,7 +31,6 @@
                     $category = $item['Category'];
                     $addedBy = $item['AddedBy'];
 
-//                    debug($need);
                     if ($prevCat != $category['id']) : ?>
                         <tr>
                             <th bgcolor="#eef6fa" colspan="9">
