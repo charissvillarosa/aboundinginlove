@@ -79,30 +79,38 @@ $user = $this->Session->read('Auth.User');
                         <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></td>
                         <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
                     </tr>
-                    <tr>
-                        <th style="text-align: right;" colspan="3"><?php echo 'TOTAL'; ?></th>
-                        <th style="text-align: right;"><?php echo $this->Number->currency($total); ?></th>
-                    </tr>
-                </table>
-                <div>
-                    <h4 class="fontcolor1">Recent Donations</h4>
-                    <div style="width:150px; height:190px; padding-right:30px; text-align: center;" class="box">
-                        <?php
-                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
-                            $attrs = array('alt' => '', 'width' => '150', 'class' => 'img-polaroid');
-                            echo $this->Html->image($imageURl, $attrs);
-                        ?>
-                        <p class="topmargin7">
-                            <strong class="fontcolor1">
-                                <?php echo $sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname']; ?><br>
-                                Raised
-                                <?php echo $this->Number->toPercentage($percentage['percentage']); ?>
-                            </strong>
-                        </p>
-                        <?php echo "<div style='height:10px;' class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage['percentage'])."'></div></div>";?>
-                    </div>
+                    
+                <?php endforeach; ?>
+                <tr>
+                    <th style="text-align: right;" colspan="3"><?php echo 'TOTAL'; ?></th>
+                    <th style="text-align: right;"><?php echo $this->Number->currency($total); ?></th>
+                </tr>
+            </table>
+            <div>
+                <h4 class="fontcolor1">Recent Donations</h4>
+                <?php foreach ($donationitems as $item) : 
+                    $donation = $item['DonationHistory'];
+                    $sponsee = $item['Sponsee'];
+                    $total = $total + $donation['amount'];
+                    $percentage = $item['SponseeListingItem'];
+                ?>
+                <div style="width:100px; height:180px; padding-right:30px; text-align: center;" class="pull-left box rightmargin1">
+                    <?php
+                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+                        $attrs = array('alt' => '', 'width' => '100', 'class' => 'img-polaroid');
+                        echo $this->Html->image($imageURl, $attrs);
+                    ?>
+                    <p class="topmargin7">
+                        <strong class="fontcolor1">
+                            <?php echo $sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname']; ?><br>
+                            Raised
+                            <?php echo $this->Number->toPercentage($percentage['percentage']); ?>
+                        </strong>
+                    </p>
+                    <?php echo "<div style='height:10px;' class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage['percentage'])."'></div></div>";?>
                 </div>
                 <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </div>

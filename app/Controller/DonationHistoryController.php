@@ -19,8 +19,9 @@ class DonationHistoryController extends AppController
             'conditions' => array('DonationHistory.user_id' => $id))
         ));
         
-        $this->set('donationitems', $this->DonationHistory->find('all', array(
-            'conditions' => array('DonationHistory.user_id' => $id))
+        $this->set('list', $this->DonationHistory->find('all', array(
+            'conditions' => array('DonationHistory.user_id' => $id),
+            'group' => array('DonationHistory.sponsee_id'))
         ));
     }
     
