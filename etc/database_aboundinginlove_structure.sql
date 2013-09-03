@@ -35,6 +35,7 @@ CREATE TABLE `donation_requests` (
   `sponsee_id` bigint(20) DEFAULT NULL,
   `details` text,
   `type` varchar(50) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
@@ -149,7 +150,7 @@ CREATE TABLE `invites` (
   `status` varchar(200) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `paypal_items` */
 
@@ -281,7 +282,7 @@ CREATE TABLE `sponsee_needs` (
   `modified` timestamp NULL DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL COMMENT 'OPEN|CLOSED',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsees` */
 
