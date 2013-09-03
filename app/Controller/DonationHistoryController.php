@@ -18,6 +18,10 @@ class DonationHistoryController extends AppController
         $this->set('donationitems', $this->DonationHistory->find('all', array(
             'conditions' => array('DonationHistory.user_id' => $id))
         ));
+        
+        $this->set('donationitems', $this->DonationHistory->find('all', array(
+            'conditions' => array('DonationHistory.user_id' => $id))
+        ));
     }
     
     public function listing()
@@ -44,8 +48,7 @@ class DonationHistoryController extends AppController
     {
         $this->DonationHistory->id = $id;
         $donation = $this->DonationHistory->find('all', array(
-            'conditions' => array('DonationHistory.sponsee_id' => $id),
-            'order' => array('DonationHistory.category_id')
+            'conditions' => array('DonationHistory.id' => $id)
         ));
         $this->set("donationdetails", $donation);
     }

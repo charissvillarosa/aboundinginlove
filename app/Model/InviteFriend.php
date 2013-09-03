@@ -7,7 +7,14 @@
 class InviteFriend extends AppModel
 {
     var $useTable = 'invites';
-
+    
+    var $belongsTo = array(
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'user_id'
+        )
+    );
+    
     public $validate = array(
         "to" => array(
             "required" => array(

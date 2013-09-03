@@ -32,10 +32,11 @@
             <?php
             foreach ($invitelist as $item) :
                 $invite = $item['InviteFriend'];
+                $user = $item['User'];
                 ?>
                 <tr>
                     <td><?php echo $invite['token_id'] ?></td>
-                    <td><?php echo $invite['user_id'] ?></td>
+                    <td><?php echo $user['firstname'].' '.$user['middlename'].' '.$user['lastname'] ?></td>
                     <td><?php echo $invite['to'] ?></td>
                     <td><?php echo $invite['message'] ?></td>
                     <td><?php echo $invite['type'] ?></td>

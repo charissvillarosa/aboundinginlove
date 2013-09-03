@@ -20,7 +20,7 @@
         </div>
         <div class="clearfix pull-left leftmargin2 span8">
             <div class="leftmargin2">
-                <ul class="nav nav-tabs">
+                <ul style="border-bottom:solid 1px #eee;" class="nav nav-tabs">
                     <li><a href="#tab1" data-toggle="tab">TWEETER</a></li>
                     <li>
                         <a href="#tab2" data-toggle="tab">FACEBOOK</a>

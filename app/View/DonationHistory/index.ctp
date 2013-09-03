@@ -25,13 +25,26 @@ $user = $this->Session->read('Auth.User');
             <?php
             $user = $this->Session->read('Auth.User');
             ?>
-            <h3 class="fontcolor1"><?php echo $user['firstname'] . ' ' . $user['lastname']; ?></h3>
-            <p class="topmargin1">
-                Lorem ipsum dolor sit amet, orci sed quisque venenatis eget nullam ut, eget eros bibendum condimentum 
-                tellus suscipit non, eget viverra a pulvinar, wisi fringilla etiam at qui. Risus nullam libero gravida 
-                ligula, diam vivamus ullamcorper sit sapien, nulla id dolor semper nunc, felis nulla enim quam wisi 
-                lorem integer, fringilla sed accumsan mauris. Pellentesque sit.
-            </p>
+            <div>
+                <div class="pull-left">
+                <?php
+                    $imageURl = array('controller' => 'ProfileImages', 'action' => 'view', $user['id']);
+                    $attrs = array('alt' => '', 'width' => '190px', 'class' => 'img-polaroid');
+                    echo $this->Html->image($imageURl, $attrs);
+                ?>
+                </div>
+                <div class="pull-left span6">
+                    <h2 class="fontcolor1"><?php echo $user['firstname'] . ' ' . $user['lastname']; ?></h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, orci sed quisque venenatis eget nullam ut, eget eros bibendum condimentum 
+                        tellus suscipit non, eget viverra a pulvinar, wisi fringilla etiam at qui. Risus nullam libero gravida 
+                        ligula, diam vivamus ullamcorper sit sapien, nulla id dolor semper nunc, felis nulla enim quam wisi 
+                        lorem integer, fringilla sed accumsan mauris. Pellentesque sit.
+                    </p>
+                    <hr>
+                </div>
+                <div class="clearfix"></div>
+            </div>
             <div>
                 <div class="pull-left"><h4 class="fontcolor1">Donation Record</h4></div>
                 <div class="pull-right">
@@ -47,22 +60,49 @@ $user = $this->Session->read('Auth.User');
                 <tr>
                     <th>No.</th>
                     <th>Date</th>
-                    <th>Amount</th>
                     <th>Sponsee</th>
+                    <th>Amount</th>
                 </tr>
                 <?php
+                $total = 0;
+                
                 foreach ($donationitems as $item) :
+                    
                     $donation = $item['DonationHistory'];
                     $sponsee = $item['Sponsee'];
+                    $total = $total + $donation['amount'];
+                    $percentage = $item['SponseeListingItem'];
                     ?>
                     <tr>
                         <td><?php echo $donation['id'] ?></td>
                         <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
-                        <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
                         <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></td>
+                        <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
                     </tr>
+                    <tr>
+                        <th style="text-align: right;" colspan="3"><?php echo 'TOTAL'; ?></th>
+                        <th style="text-align: right;"><?php echo $this->Number->currency($total); ?></th>
+                    </tr>
+                </table>
+                <div>
+                    <h4 class="fontcolor1">Recent Donations</h4>
+                    <div style="width:150px; height:190px; padding-right:30px; text-align: center;" class="box">
+                        <?php
+                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+                            $attrs = array('alt' => '', 'width' => '150', 'class' => 'img-polaroid');
+                            echo $this->Html->image($imageURl, $attrs);
+                        ?>
+                        <p class="topmargin7">
+                            <strong class="fontcolor1">
+                                <?php echo $sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname']; ?><br>
+                                Raised
+                                <?php echo $this->Number->toPercentage($percentage['percentage']); ?>
+                            </strong>
+                        </p>
+                        <?php echo "<div style='height:10px;' class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage['percentage'])."'></div></div>";?>
+                    </div>
+                </div>
                 <?php endforeach; ?>
-            </table>
         </div>
     </div>
 </div>
