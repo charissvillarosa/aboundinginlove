@@ -30,6 +30,10 @@ class InviteFriendsController extends AppController
         $sessUser = $this->Session->read('Auth.User');
         $user = $this->User->findById($sessUser['id']);
         $this->set('user', $user['User']);
+        
+        $this->set('list', $this->InviteFriend->find('all', array(
+            'conditions' => array('InviteFriend.user_id' => $user['User']['id']))
+        ));      
     }
     
     public function sendMail()
@@ -44,7 +48,7 @@ class InviteFriendsController extends AppController
         
         $postData = $this->request->data['InviteFriend'];
         $tokenId = strtoupper(Security::generateAuthKey());
-
+        
         //sending email
         $this->Email->to($postData['to']);
         $this->Email->subject("$user[firstname] invites you to join AboundingInLove.org");
@@ -62,12 +66,12 @@ class InviteFriendsController extends AppController
         $this->InviteFriend->set('token_id', $tokenId);
         $this->InviteFriend->set('user_id', $user['id']);
         $this->InviteFriend->set('to', $postData['to']);
-        $this->InviteFriend->set('message', "Invited $postData[to]");
+        $this->InviteFriend->set('message', $postData['message']);
         $this->InviteFriend->set('type', 'email');
         $this->InviteFriend->set('status', 'pending');
 
         if ($this->InviteFriend->save()) {
-            $this->Session->setFlash('Sponsee record has been saved successfully.');
+            $this->Session->setFlash('Email has been sent successfully.');
             $this->redirect(array('action' => 'index'));
         }
         else {

@@ -20,6 +20,14 @@ class InviteFriend extends AppModel
             "required" => array(
                 "rule" => array("notEmpty"),
                 "message" => "To is required"
+            ),
+            "kosher" => array(
+                "rule" => "email",
+                "message" => "Please make sure your email is entered correctly."
+            ),
+            "required" => array(
+                "rule" => "notEmpty",
+                "message" => "Please Enter your email."
             )
         ),
         "from" => array(

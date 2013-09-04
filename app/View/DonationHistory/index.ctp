@@ -18,7 +18,7 @@ $user = $this->Session->read('Auth.User');
     <div class="span9 well" style="padding:0 0 30px 0; background: #fff; margin-top:103px;">
         <div class="clearfix pull-left headerstyle">
             <div class="pull-left leftmargin2 bottommargin2">
-                <p class="fontsize1">DONATION HISTORY</p>
+                <p class="banner fontsize1">DONATION HISTORY</p>
             </div>
         </div>
         <div class="clearfix pull-left leftmargin2 width2">
@@ -94,10 +94,10 @@ $user = $this->Session->read('Auth.User');
                     $total = $total + $donation['amount'];
                     $percentage = $item['SponseeListingItem'];
                 ?>
-                <div style="width:100px; height:180px; padding-right:30px; text-align: center;" class="pull-left box rightmargin1">
+                <div style="width:150px; padding-right:30px; text-align: center;" class="pull-left rightmargin1">
                     <?php
                         $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
-                        $attrs = array('alt' => '', 'width' => '100', 'class' => 'img-polaroid');
+                        $attrs = array('alt' => '', 'width' => '150', 'class' => 'img-polaroid');
                         echo $this->Html->image($imageURl, $attrs);
                     ?>
                     <p class="topmargin7">

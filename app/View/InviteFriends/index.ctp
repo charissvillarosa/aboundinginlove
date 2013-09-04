@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="dropdown clearfix span2 topmargin3">
+<div class="container topmargin3">
+    <div class="dropdown clearfix span2">
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
             <li class="<?php echo $this->name == 'Profile' ? 'active' : '' ?>">
                 <?php echo $this->Html->link('Account Settings',array('controller'=>'Profile', 'action' => 'index'))?>
@@ -12,8 +12,8 @@
             </li>
         </ul>
     </div>
-    <div class="span9 well" style="padding:0 0 30px 0; background: #fff; margin-top:103px;">
-       <div class="clearfix pull-left headerstyle">
+    <div class="span9 well" style="padding:0 0 30px 0; background: #fff;">
+        <div class="clearfix pull-left headerstyle">
            <div class="pull-left leftmargin2 bottommargin2 banner">
                <p class="fontsize1">INVITE FRIENDS</p>
            </div>
@@ -21,7 +21,7 @@
         <div class="clearfix pull-left leftmargin2 span8">
             <div class="leftmargin2">
                 <ul style="border-bottom:solid 1px #eee;" class="nav nav-tabs">
-                    <li><a href="#tab1" data-toggle="tab">TWEETER</a></li>
+                    <li><a href="#tab1" data-toggle="tab">TWITTER</a></li>
                     <li>
                         <a href="#tab2" data-toggle="tab">FACEBOOK</a>
                     </li>
@@ -29,7 +29,7 @@
                 </ul>
                 <div class="tab-content topmargin1">
                     <div class="tab-pane leftmargin1" id="tab1">
-                        <p>TWEETER</p>
+                        <p>TWITTER</p>
                     </div>
                     <div class="tab-pane leftmargin1" id="tab2">
                         <p>FACEBOOK</p>
@@ -38,6 +38,7 @@
                         <?php echo $this->Form->create('InviteFriend', array('action' => 'sendMail')); ?>
                         <div style="padding-left:7px;">
                             <p class="fontsize1 bottommargin3">Email Friends</p>
+                            <?php echo $this->Session->flash(); ?>
                             <?php echo $this->Form->label('To: *'); ?>
                             <?php echo $this->Form->textarea('to', array('class' => 'span4')); ?>
                         </div>
@@ -60,6 +61,34 @@ Join now!
                         <?php echo $this->Form->end(__('Send invitations')); ?>
                     </div>
                 </div>
+            </div>
+            <div class="leftmargin2">
+                <div>
+                    <h3 class="fontcolor1">Invite Activity</h3>
+                </div>
+                <table class="table table-hover table-bordered topmargin1">
+                    <tr>
+                        <th>No</th>
+                        <th>Date</th>
+                        <th>To</th>
+                        <th>Sent via</th>
+                        <th>Status</th>
+                    </tr>
+                    <?php
+                    $ctr = 1;
+                    foreach ($list as $item) :
+                        $invite = $item['InviteFriend'];
+                    ?>
+                    <tr>
+                        <td><?php echo $ctr; ?></td>
+                        <td><?php echo $invite['created'] ?></td>
+                        <td><?php echo $invite['to'] ?></td>
+                        <td><?php echo $invite['type'] ?></td>
+                        <td><?php echo $invite['status'] ?></td>
+                    </tr>
+                    <?php $ctr++;
+                    endforeach; ?>
+                </table>
             </div>
         </div>
     </div>

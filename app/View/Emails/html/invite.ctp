@@ -25,9 +25,9 @@
                     <td width="150" style="background: #f7f7f7; padding: 20px 10px;" valign="top">
                         <p style="margin-top:20px; text-align:center;"><strong>Invitation From</strong></p>
                         <div style="border: solid 1px #ccc; width:150px; height: 150px;"></div>
-                        <p style="margin-top:20px; text-align:center;"><strong>Caren Carpenter</strong></p>
+                        <p style="margin-top:20px; text-align:center;"><strong><?php echo $user['firstname'].' '.$user['lastname'] ?></strong></p>
                         <p style="text-align:center; width:150px;">
-                            Member since: Jan. 1, 2013
+                            Member since: <?php echo $user['created']; ?>
                         </p>
                     </td>
                     <td  style="background: #f7f7f7; padding: 70px 10px 20px 10px;" valign="top">
@@ -49,8 +49,7 @@
                 <tr>
                     <td style="background: #349bb9;" colspan="2">
                         <p style="color:#fff; text-align: center;">
-                            Abounding in love is a not profit organization located <br>
-                            at 0-1765 Chicago Drive Jenison, MI 49428 USA
+                            Abounding in Love is a 501 (c)(3) nonprofit recognized by the IRS, and all donations to Abounding in Love are tax-deductible in accordance with IRS regulations.
                         </p>
                     </td>
                 </tr>
