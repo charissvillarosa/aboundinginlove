@@ -150,7 +150,7 @@ CREATE TABLE `invites` (
   `status` varchar(200) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `paypal_items` */
 
