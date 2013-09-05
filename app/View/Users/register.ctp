@@ -33,6 +33,9 @@
         <fieldset>
             <legend class="fontcolor1"><?php echo __('Register User'); ?></legend>
             <?php
+            echo $this->Form->input('firstname');
+            echo $this->Form->input('middlename');
+            echo $this->Form->input('lastname');
             echo $this->Form->input('username');
             echo $this->Form->input('password');
             echo $this->Form->input('password_confirm', array('type' => 'password'));

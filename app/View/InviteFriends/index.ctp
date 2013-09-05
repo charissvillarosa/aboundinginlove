@@ -63,8 +63,29 @@ Join now!
                 </div>
             </div>
             <div class="leftmargin2">
-                <div>
-                    <h3 class="fontcolor1">Invite Activity</h3>
+                <div class="topmargin1">
+                    <div style="width:150px;" class="pull-left"><h3 class="fontcolor1">Invite Activity</h3></div>
+                    <div style="width:500px;" class="pull-right topmargin1">
+                        <?php echo $this->Form->create('', array('type' => 'GET')); ?>
+                        <div class="pull-right banner">
+                            <div class="pull-left topmargin7">
+                                <p>Search by:</p>
+                            </div>
+                            <div class="pull-left">
+                                <?php               
+                                    echo $this->Form->input('cat', array(
+                                    'label' => '',
+                                    'class' => 'span3',
+                                    'value' => $category,
+                                    'options' => array('' => 'All', 'email' => 'Email', 'facebook' => 'Facebook', 'twitter' => 'Twitter' )));
+                                ?>     
+                            </div>
+                            <div class="pull-left topmargin7">
+                                <button type="submit" class="btn btn-info"><i class="icon-search"></i> Search</button>
+                            </div>
+                        </div>
+                        <?php echo $this->Form->end(); ?>
+                    </div>
                 </div>
                 <table class="table table-hover table-bordered topmargin1">
                     <tr>

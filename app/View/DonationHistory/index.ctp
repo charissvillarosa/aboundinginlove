@@ -60,7 +60,7 @@ $user = $this->Session->read('Auth.User');
                 <tr>
                     <th>No.</th>
                     <th>Date</th>
-                    <th>Sponsee</th>
+                    <th>Sponsored To</th>
                     <th>Amount</th>
                 </tr>
                 <?php
@@ -76,7 +76,14 @@ $user = $this->Session->read('Auth.User');
                     <tr>
                         <td><?php echo $donation['id'] ?></td>
                         <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
-                        <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></td>
+                        <td>
+                            <?php 
+                            if($donation['donation_type']=='organization')
+                                echo "Organization"; 
+                            else
+                                echo $sponsee['firstname'].' '.$sponsee['lastname']; 
+                            ?>
+                        </td>
                         <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
                     </tr>
                     
@@ -94,22 +101,34 @@ $user = $this->Session->read('Auth.User');
                     $total = $total + $donation['amount'];
                     $percentage = $item['SponseeListingItem'];
                 ?>
-                <div style="width:150px; padding-right:30px; text-align: center;" class="pull-left rightmargin1">
+                
                     <?php
-                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
-                        $attrs = array('alt' => '', 'width' => '150', 'class' => 'img-polaroid');
-                        echo $this->Html->image($imageURl, $attrs);
+                        if($donation['donation_type']!='organization'){
+                            echo '<div style="padding-right:30px; text-align: center;" class="pull-left rightmargin1">';    
+                            
+                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+                            $attrs = array('alt' => '', 'width' => '150', 'class' => 'img-polaroid');
+                            echo $this->Html->image($imageURl, $attrs);
                     ?>
-                    <p class="topmargin7">
-                        <strong class="fontcolor1">
-                            <?php echo $sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname']; ?><br>
-                            Raised
-                            <?php echo $this->Number->toPercentage($percentage['percentage']); ?>
-                        </strong>
-                    </p>
-                    <?php echo "<div style='height:10px;' class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage['percentage'])."'></div></div>";?>
+                        <p class="topmargin7">
+                            <strong class="fontcolor1">
+                                <?php echo $sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname']; ?><br>
+                                Donated: <?php echo $this->Number->currency($donation['amount']); ?><br>
+                                Raised
+                                <?php echo $this->Number->toPercentage($percentage['percentage']); ?>
+                            </strong>
+                        </p>
+                        <?php echo "<div style='height:10px;' class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage['percentage'])."'></div></div>";?>
+                    <?php echo'</div>';}
+                    else {
+                        echo '<div style="padding-right:30px; text-align: center;" class="pull-left rightmargin1">';
+                        echo $this->Html->image('aboundinginlove_logo.png', array('alt' => '', 'width' => '120', 'class' => 'img-polaroid'));
+                        echo "<br><strong class='fontcolor1'> Donated: " .$this->Number->currency($donation['amount']);
+                        echo "</strong>
+                        </div>";
+                    }
+                    endforeach; ?>
                 </div>
-                <?php endforeach; ?>
             </div>
         </div>
     </div>

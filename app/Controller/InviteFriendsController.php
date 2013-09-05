@@ -31,9 +31,27 @@ class InviteFriendsController extends AppController
         $user = $this->User->findById($sessUser['id']);
         $this->set('user', $user['User']);
         
-        $this->set('list', $this->InviteFriend->find('all', array(
-            'conditions' => array('InviteFriend.user_id' => $user['User']['id']))
-        ));      
+        $category = '';
+        if (isset($this->request->query['cat'])) {
+            $category = $this->request->query['cat'];
+        }
+        
+        $this->set('category', $category);
+        
+        if ($category) {
+            $this->set('list', $this->InviteFriend->find('all', array(
+                'conditions' => array(
+                    'AND' => array(
+                    'InviteFriend.type' => $category,
+                    'InviteFriend.user_id' => $user['User']['id'] )))
+                        
+            ));
+        }
+        else {
+            $this->set('list', $this->InviteFriend->find('all', array(
+                'conditions' => array('InviteFriend.user_id' => $user['User']['id']))
+            )); 
+        }
     }
     
     public function sendMail()
