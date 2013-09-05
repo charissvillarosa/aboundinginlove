@@ -4,6 +4,7 @@ class UsersController extends AppController
 {
 
     var $layout = 'document';
+    var $uses = array('User', 'InviteFriend');
 
     var $paginate = array(
         'limit' => 10
@@ -43,16 +44,35 @@ class UsersController extends AppController
 
     public function register()
     {
-        $this->layout = 'login';
+        // check for tokenId
+        $tokenId = $this->request->query('tokenId');
 
+        $this->set('TOKEN_NOT_FOUND', false);
+        
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => 'login'));
+                // update the invites table
+                if ($tokenId) {
+                    $invite = $this->InviteFriend->findByTokenId($tokenId);
+                    if ($invite) {
+                        $this->InviteFriend->id = $invite['InviteFriend']['id'];
+                        $this->InviteFriend->saveField('status', 'joined');
+                    }
+                }
+
+                // login directly
+                $this->login();
             }
             else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+            }
+        }
+        // for get request, check if tokenId exists if it is provided
+        else if ($tokenId) {
+            $invite = $this->InviteFriend->findByTokenId($tokenId);
+            if (!$invite || strtoupper($invite['InviteFriend']['status']) != 'PENDING') {
+                $this->set('TOKEN_NOT_FOUND', true);
             }
         }
     }

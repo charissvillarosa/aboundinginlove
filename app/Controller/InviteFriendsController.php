@@ -101,10 +101,7 @@ class InviteFriendsController extends AppController
     
     public function listing()
     {
-        $category = '';
-        if (isset($this->request->query['cat'])) {
-            $category = $this->request->query['cat'];
-        }
+        $category = $this->request->query('cat');
         
         $this->set('category', $category);
         

@@ -40,7 +40,7 @@
                         endforeach;
                         ?>
                         <p>
-                            <a href="http://aboundinginlove.org/index.php/join/<?php echo $tokenId ?>">
+                            <a href="<?php echo Configure::read('email.join.url'); ?>?tokenId=<?php echo $tokenId ?>">
                                 Join Now!
                             </a>
                         </p>

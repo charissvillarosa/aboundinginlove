@@ -110,3 +110,6 @@ CakeLog::config('error', array(
 
 /*paypal plugin*/
 CakePlugin::load('PaypalIpn', array('bootstrap' => array('paypal_ipn_config'), 'routes' => true));
+
+// load aboundinginlove custom config file
+include_once 'aboundinginlove.php';
