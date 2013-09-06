@@ -21,7 +21,10 @@
         <div class="clearfix pull-left leftmargin2 span8">
             <div class="leftmargin2">
                 <ul style="border-bottom:solid 1px #eee;" class="nav nav-tabs">
-                    <li><a href="#tab1" data-toggle="tab">TWITTER</a></li>
+                    <li>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://projects.avare-llc.com/aboundinginloveorig" data-size="large" data-dnt="true">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </li>
                     <li>
                         <a href="#tab2" data-toggle="tab">FACEBOOK</a>
                     </li>

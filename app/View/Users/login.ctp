@@ -31,7 +31,7 @@
     <div class="span3">
         <?php echo $this->Session->flash(); ?>
         <?php echo $this->Session->flash("auth"); ?>
-        <div style="background:#fafafa;" class="pull-right well bottommargin1">
+        <div style="background:#fafafa; width:230px;" class="pull-right well bottommargin1">
             <?php echo $this->Form->create("User"); ?>
             <div class="modal-header">
                 <h3 id="myModalLabel">Login</h3>
