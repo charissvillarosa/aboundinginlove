@@ -4,7 +4,7 @@ class UsersController extends AppController
 {
 
     var $layout = 'document';
-    var $uses = array('User', 'InviteFriend');
+    var $uses = array('User', 'InviteFriend', 'InviteClick');
 
     var $paginate = array(
         'limit' => 10
@@ -48,14 +48,17 @@ class UsersController extends AppController
         $tokenId = $this->request->query('tokenId');
 
         $this->set('TOKEN_NOT_FOUND', false);
-        
+
+        // handle post registration info
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
                 // update the invites table
                 if ($tokenId) {
                     $invite = $this->InviteFriend->findByTokenId($tokenId);
-                    if ($invite) {
+
+                    // update if type is 'email'
+                    if ($invite && $invite['InviteFriend']['type'] == 'email') {
                         $this->InviteFriend->id = $invite['InviteFriend']['id'];
                         $this->InviteFriend->saveField('status', 'joined');
                     }
@@ -71,9 +74,42 @@ class UsersController extends AppController
         // for get request, check if tokenId exists if it is provided
         else if ($tokenId) {
             $invite = $this->InviteFriend->findByTokenId($tokenId);
-            if (!$invite || strtoupper($invite['InviteFriend']['status']) != 'PENDING') {
+
+            if ($invite) {
+                $invite = $invite['InviteFriend'];
+            }
+            else {
+                $this->set('TOKEN_NOT_FOUND', true);
+                return;
+            }
+
+            // if 'email', check if still pending
+            if ($invite['type'] == 'email' && $invite['status'] != 'PENDING') {
                 $this->set('TOKEN_NOT_FOUND', true);
             }
+            // click based invitations
+            else {
+                $this->processInviteClick($tokenId);
+            }
+        }
+    }
+
+    // helper method to handle invite clicks
+    private function processInviteClick($tokenId)
+    {
+        $appId = $this->getAppId();
+        $inviteClick = $this->InviteClick->find('first', array(
+            'conditions' => array(
+                'InviteClick.app_id' => $appId,
+                'InviteClick.token_id' => $tokenId
+            )
+        ));
+
+        if (!$inviteClick) {
+            $this->InviteClick->create();
+            $this->InviteClick->set('app_id', $appId);
+            $this->InviteClick->set('token_id', $tokenId);
+            $this->InviteClick->save();
         }
     }
     

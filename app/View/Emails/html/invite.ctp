@@ -40,7 +40,7 @@
                         endforeach;
                         ?>
                         <p>
-                            <a href="<?php echo Configure::read('email.join.url'); ?>?tokenId=<?php echo $tokenId ?>">
+                            <a href="<?php echo Configure::read('invite.join.url'); ?>?tokenId=<?php echo $tokenId ?>">
                                 Join Now!
                             </a>
                         </p>

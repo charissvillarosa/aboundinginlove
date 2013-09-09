@@ -44,6 +44,7 @@ class AppController extends Controller
     //public $components = array('DebugKit.Toolbar');
 
     public $components = array(
+        'Cookie',
         'Session',
         'Auth' => array(
             'loginRedirect' => array('controller' => 'dashboard'),
@@ -51,6 +52,28 @@ class AppController extends Controller
             'authorize' => array('Controller')
         )
     );
+
+    /**
+     * default beforeFilter adds cookie for the browser
+     * that never expires for 1 year to serve as its {@link #getAppId()}
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+
+        if (!$this->Cookie->read('_PHP_')) {
+            $key = Security::hash(Security::generateAuthKey(), 'md5');
+            $this->Cookie->write('_PHP_', $key, false, '1 year');
+        }
+    }
+
+    /**
+     * @return the cookie value stored during before filter
+     */
+    public function getAppId()
+    {
+        return $this->Cookie->read('_PHP_');
+    }
 
     /**
      * default value is authorized all

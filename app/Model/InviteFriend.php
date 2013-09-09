@@ -1,7 +1,7 @@
 <?php
 
 /**
- * CakePHP User
+ * CakePHP InviteFriend
  * @author chariss
  */
 class InviteFriend extends AppModel

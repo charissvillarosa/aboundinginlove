@@ -1,6 +1,7 @@
 <?php
 
 Configure::write(array(
-    'email.join.url' => 'http://projects.avare-llc.com/aboundinginloveorig/index.php/register',
-    'App.baseUrl'    => '/aboundinginlove/index.php'
+    'invite.join.url'  => 'http://projects.avare-llc.com/aboundinginloveorig/index.php/register',
+    'facebook.api.key' => '571655656229767',
+    'App.baseUrl'      => '/aboundinginlove/index.php'
 ));
