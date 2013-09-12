@@ -23,7 +23,7 @@
                         </p>
                         <p>
                             <?php
-                            $info = $sponsee['information'];
+                            $info = $sponsee['long_description'];
                             echo $this->Text->truncate($info, 150, array('exact' => false));
                             ?>
                         </p>

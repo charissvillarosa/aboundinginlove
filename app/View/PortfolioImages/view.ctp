@@ -74,7 +74,7 @@ $user = $this->Session->read('Auth.User');
                         <h4 class="fontcolor1">Biography</h4>
                         <hr/>
                         <p class="">
-                            <?php echo $sponsee['information']; ?>
+                            <?php echo $sponsee['long_description']; ?>
                         </p>
                         <h4 class="fontcolor1 topmargin2">Needs</h4>
                         <?php

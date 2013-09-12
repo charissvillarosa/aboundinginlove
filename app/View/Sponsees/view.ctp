@@ -66,7 +66,13 @@ $user = $this->Session->read('Auth.User');
                         <hr>
                         <h4 class="fontcolor1">Biography</h4>
                         <p style="text-align: justify;">
-                            <?php echo $sponsee['information']; ?>
+                           <?php
+                                $information = explode("\n", $sponsee['long_description']);
+
+                                foreach ($information as $line):
+                                    echo '<p> ' . $line . "</p>\n";
+                                endforeach;
+                           ?>
                         </p>
                         <h4 class="fontcolor1 topmargin2">Needs</h4>
                         <?php

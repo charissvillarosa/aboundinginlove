@@ -84,7 +84,7 @@ class UsersController extends AppController
             }
 
             // if 'email', check if still pending
-            if ($invite['type'] == 'email' && $invite['status'] != 'PENDING') {
+            if ($invite['type'] == 'email' && $invite['status'] != 'pending') {
                 $this->set('TOKEN_NOT_FOUND', true);
             }
             // click based invitations

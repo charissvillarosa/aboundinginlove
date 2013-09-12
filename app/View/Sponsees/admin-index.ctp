@@ -33,7 +33,8 @@
                         <?php echo $ctr; ?>
                         <span class="id" style="display:none;"><?php echo $sponsee['id'] ?></span>
                         <span class="maplocation" style="display:none;"><?php echo $sponsee['maplocation'] ?></span>
-                        <span class="information" style="display:none;"><?php echo $sponsee['information'] ?></span>
+                        <span class="short_description" style="display:none;"><?php echo $sponsee['short_description'] ?></span>
+                        <span class="long_description" style="display:none;"><?php echo $sponsee['long_description'] ?></span>
                     </td>
                     <td>
                         <?php echo 
@@ -104,8 +105,9 @@
                 'options' => array('Male' => 'Male', 'Female' => 'Female')
             )); ?>
             <?php echo $this->Form->input('maplocation', array('class' => 'span5')); ?>
-            <?php echo $this->Form->input('information', array('class' => 'span5', 'rows' => '5')); ?>
-            <?php echo $this->Form->input('birthdate', array('style' => 'width:100px;', 'maxYear' => date('Y'), 'minYear' => 1950)); ?>
+            <?php echo $this->Form->input('short_description', array('class' => 'span5', 'rows' => '5')); ?>
+            <?php echo $this->Form->input('long_description', array('class' => 'span5', 'rows' => '5')); ?>
+            <?php echo $this->Form->input('birthdate', array('style' => 'width:150px;', 'maxYear' => date('Y'), 'minYear' => 1950)); ?>
             <?php echo $this->Form->hidden('id') ?>
         </fieldset>
         <?php echo $this->Form->end() ?>
@@ -160,7 +162,9 @@
         $('#SponseeCountry').val(tr.find('.country').html());
         $('#SponseeGender').val(tr.find('.gender').html());
         $('#SponseeMaplocation').val(tr.find('.maplocation').html());
-        $('#SponseeInformation').val(tr.find('.information').html());
+        $('#SponseeShortdescription').val(tr.find('.short_description').html());
+        $('#SponseeLongdescription').val(tr.find('.long_description').html());
+        $('#SponseeInformation').val(tr.find('.shortdescription').html());
         $('#SponseeId').val(tr.find('.id').html());
         
         var strDateArr = tr.find('.birthdate').html().split('/');

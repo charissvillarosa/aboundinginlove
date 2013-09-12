@@ -37,7 +37,13 @@ class Sponsee extends AppModel
             )
         ),
         "maplocation" => array(),
-        "information" => array(
+        "short_description" => array(
+            "valid" => array(
+                "rule" => array("notEmpty"),
+                "message" => "A information is required"
+            )
+        ),
+       "long_description" => array(
             "valid" => array(
                 "rule" => array("notEmpty"),
                 "message" => "A information is required"

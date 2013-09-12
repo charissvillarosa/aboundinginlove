@@ -24,7 +24,8 @@
                 <tr>
                     <td width="150" style="background: #f7f7f7; padding: 20px 10px;" valign="top">
                         <p style="margin-top:20px; text-align:center;"><strong>Invitation From</strong></p>
-                        <div style="border: solid 1px #ccc; width:150px; height: 150px;"></div>
+                        <!--<div style="border: solid 1px #ccc; width:150px; height: 150px;"></div>-->
+                        <img src="<?php echo Configure::read('profile.image.url') . $user['id'] ?>" alt="" width="150px" class="img-polaroid">
                         <p style="margin-top:20px; text-align:center;"><strong><?php echo $user['firstname'].' '.$user['lastname'] ?></strong></p>
                         <p style="text-align:center; width:150px;">
                             Member since: <?php echo $user['created']; ?>

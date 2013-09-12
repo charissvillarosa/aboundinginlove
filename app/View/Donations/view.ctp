@@ -33,7 +33,7 @@
                 <p>
                     <hr>
                     <?php
-                    echo $sponsee['information'];
+                    echo $sponsee['long_description'];
                     ?>
                 </p>
                 <h3 class="fontcolor1">Needs</h3>

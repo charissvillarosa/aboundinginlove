@@ -50,7 +50,7 @@ class InviteFriendsController extends AppController
         else {
             $this->set('list', $this->InviteFriend->find('all', array(
                 'conditions' => array('InviteFriend.user_id' => $user['User']['id']))
-            )); 
+            ));
         }
     }
     

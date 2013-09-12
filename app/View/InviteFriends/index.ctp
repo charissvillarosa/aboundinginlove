@@ -113,7 +113,16 @@ Join now!
                             <td><?php echo $invite['created'] ?></td>
                             <td><?php echo $invite['to'] ?></td>
                             <td><?php echo $invite['type'] ?></td>
-                            <td><?php echo $invite['status'] ?></td>
+                            <td>
+                            <?php 
+                                if($invite['type'] == 'email'){
+                                    echo $invite['status'];
+                                }
+                                else{
+                                    
+                                }
+                            ?>
+                            </td>
                         </tr>
                         <?php
                         $ctr++;
@@ -169,7 +178,7 @@ Join now!
         function shareOnFb() {
             FB.ui({
                 method     : 'feed',
-                name       : 'Facebook Dialogs',
+                name       : 'Abounding in Love Organization',
                 link       : joinLink,
                 picture    : 'http://projects.avare-llc.com/aboundinginloveorig/app/webroot/img/aboundinginlove_logo.png',
                 caption    : 'Join AboundingInLove.org',

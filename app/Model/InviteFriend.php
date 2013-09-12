@@ -12,6 +12,10 @@ class InviteFriend extends AppModel
         'User' => array(
             'className' => 'User',
             'foreignKey' => 'user_id'
+        ),
+        'InviteClick' => array(
+            'className' => 'InviteClick',
+            'foreignKey' => 'token_id'
         )
     );
     

@@ -40,7 +40,12 @@
                     <td><?php echo $user['firstname'].' '.$user['lastname']; ?></td>
                     <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
                     <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
-                    <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></td>
+                    <td>
+                        <?php
+                        if($sponsee['firstname'] != '') echo $sponsee['firstname'].' '.$sponsee['lastname'];
+                        else echo"Organization";
+                        ?>
+                    </td>
                     <td><i><?php echo $this->Html->link('', array('action' => 'view', $donation['id']), array('class' => 'icon-folder-open','title' => 'View donation details')); ?></i></td>
                 </tr>
             <?php endforeach; ?>
