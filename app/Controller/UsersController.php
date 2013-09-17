@@ -22,7 +22,7 @@ class UsersController extends AppController
         
         $this->loadModel('Country');
         $this->set('countryList', $this->Country->find('list', array(
-            'fields' => array('name','description')
+            'fields' => array('id','description')
         )));
     }
 
@@ -38,7 +38,7 @@ class UsersController extends AppController
         
         $this->loadModel('Country');
         $this->set('countryList', $this->Country->find('list', array(
-            'fields' => array('name','description')
+            'fields' => array('id','description')
         )));
     }
 
@@ -128,13 +128,13 @@ class UsersController extends AppController
         else {
             $this->loadModel('Country');
             $this->set('countryList', $this->Country->find('list', array(
-                'fields' => array('name','description')
+                'fields' => array('id','description')
             )));
         }
         
         $this->loadModel('Country');
         $this->set('countryList', $this->Country->find('list', array(
-            'fields' => array('name','description')
+            'fields' => array('id','description')
         )));
     }
 
@@ -153,7 +153,7 @@ class UsersController extends AppController
             //country list
             $this->loadModel('Country');
             $this->set('countryList', $this->Country->find('list', array(
-                'fields' => array('name','description')
+                'fields' => array('id','description')
             )));
         }
         else {
@@ -167,7 +167,7 @@ class UsersController extends AppController
         
         $this->loadModel('Country');
         $this->set('countryList', $this->Country->find('list', array(
-            'fields' => array('name','description')
+            'fields' => array('id','description')
         )));
 
     }

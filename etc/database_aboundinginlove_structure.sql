@@ -20,9 +20,9 @@ USE `aboundinginlove`;
 DROP TABLE IF EXISTS `countries`;
 
 CREATE TABLE `countries` (
-  `name` varchar(10) NOT NULL,
+  `id` varchar(10) NOT NULL,
   `description` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`name`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*Table structure for table `donation_requests` */
@@ -37,7 +37,7 @@ CREATE TABLE `donation_requests` (
   `type` varchar(50) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -135,6 +135,17 @@ CREATE TABLE `instant_payment_notifications` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Table structure for table `invite_clicks` */
+
+DROP TABLE IF EXISTS `invite_clicks`;
+
+CREATE TABLE `invite_clicks` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `app_id` varchar(50) NOT NULL,
+  `token_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `invites` */
 
@@ -297,10 +308,12 @@ CREATE TABLE `sponsees` (
   `address` varchar(255) DEFAULT NULL,
   `country` varchar(10) DEFAULT NULL,
   `maplocation` varchar(500) DEFAULT NULL,
-  `information` text,
+  `videolink` varchar(500) DEFAULT NULL,
+  `long_description` text,
+  `short_description` text,
   `birthdate` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `users` */
 
@@ -322,7 +335,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uix_user_username` (`username`),
   UNIQUE KEY `uix_user_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_listing` */
 
@@ -340,7 +353,9 @@ DROP TABLE IF EXISTS `sponsee_listing`;
   `address` varchar(255) DEFAULT NULL,
   `country` varchar(10) DEFAULT NULL,
   `maplocation` varchar(500) DEFAULT NULL,
-  `information` text,
+  `videolink` varchar(500) DEFAULT NULL,
+  `long_description` text,
+  `short_description` text,
   `birthdate` date DEFAULT NULL,
   `age` int(5) DEFAULT NULL,
   `total_neededamount` decimal(32,2) DEFAULT NULL,
@@ -353,7 +368,7 @@ DROP TABLE IF EXISTS `sponsee_listing`;
 /*!50001 DROP TABLE IF EXISTS `sponsee_listing` */;
 /*!50001 DROP VIEW IF EXISTS `sponsee_listing` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sponsee_listing` AS select `s`.`id` AS `id`,`s`.`firstname` AS `firstname`,`s`.`lastname` AS `lastname`,`s`.`middlename` AS `middlename`,`s`.`gender` AS `gender`,`s`.`address` AS `address`,`s`.`country` AS `country`,`s`.`maplocation` AS `maplocation`,`s`.`information` AS `information`,`s`.`birthdate` AS `birthdate`,(year(now()) - year(`s`.`birthdate`)) AS `age`,sum(coalesce(`sn`.`neededamount`,0)) AS `total_neededamount`,sum(coalesce((case when (`sn`.`status` = 'CLOSED') then `sn`.`neededamount` else `sn`.`donatedamount` end),0)) AS `total_donatedamount`,coalesce(((sum(coalesce((case when (`sn`.`status` = 'CLOSED') then `sn`.`neededamount` else `sn`.`donatedamount` end),0)) / sum(coalesce(`sn`.`neededamount`,0))) * 100),0) AS `percentage` from (`sponsees` `s` left join `sponsee_needs` `sn` on((`sn`.`sponsee_id` = `s`.`id`))) group by `s`.`id` */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sponsee_listing` AS select `s`.`id` AS `id`,`s`.`firstname` AS `firstname`,`s`.`lastname` AS `lastname`,`s`.`middlename` AS `middlename`,`s`.`gender` AS `gender`,`s`.`address` AS `address`,`s`.`country` AS `country`,`s`.`maplocation` AS `maplocation`,`s`.`videolink` AS `videolink`,`s`.`long_description` AS `long_description`,`s`.`short_description` AS `short_description`,`s`.`birthdate` AS `birthdate`,(year(now()) - year(`s`.`birthdate`)) AS `age`,sum(coalesce(`sn`.`neededamount`,0)) AS `total_neededamount`,sum(coalesce((case when (`sn`.`status` = 'CLOSED') then `sn`.`neededamount` else `sn`.`donatedamount` end),0)) AS `total_donatedamount`,coalesce(((sum(coalesce((case when (`sn`.`status` = 'CLOSED') then `sn`.`neededamount` else `sn`.`donatedamount` end),0)) / sum(coalesce(`sn`.`neededamount`,0))) * 100),0) AS `percentage` from (`sponsees` `s` left join `sponsee_needs` `sn` on((`sn`.`sponsee_id` = `s`.`id`))) group by `s`.`id` */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

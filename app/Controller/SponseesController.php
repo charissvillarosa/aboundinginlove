@@ -39,7 +39,7 @@ class SponseesController extends AppController
         
         $this->loadModel('Country');
         $this->set('countryList', $this->Country->find('list', array(
-            'fields' => array('name','description')
+            'fields' => array('id','description')
         )));
         
         $user = $this->Session->read('Auth.User');
@@ -52,6 +52,30 @@ class SponseesController extends AppController
     }
     
     public function view($id)
+    {
+        //to get sponsee needs
+        $this->loadModel('SponseeNeed');
+        $this->SponseeNeed->id = $id;
+        $sponseeneeds = $this->SponseeNeed->find('all', array(
+            'conditions' => array('SponseeNeed.sponsee_id' => $id),
+            'order' => array('SponseeNeed.category_id')
+        ));
+        $this->set("sponseeneeds", $sponseeneeds);
+        
+        //category and needs dropbox value
+        $this->loadModel('SponseeNeedCategory');
+        $categories = $this->SponseeNeedCategory->find('list', array('fields'=>array('id','description')));
+        $this->set('categories', $categories);
+        
+        $sponsee = $this->Sponsee->read(null, $id);
+        if ($sponsee) {
+            $this->set("sponsee", $sponsee['Sponsee']);
+        }
+        else {
+            $this->render('/Errors/notFound');
+        }
+    }
+    public function adminview($id)
     {
         //to get sponsee needs
         $this->loadModel('SponseeNeed');
@@ -90,7 +114,7 @@ class SponseesController extends AppController
         //country list
         $this->loadModel('Country');
         $this->set('countryList', $this->Country->find('list', array(
-            'fields' => array('name','description')
+            'fields' => array('id','description')
         )));
     }
     
@@ -119,7 +143,7 @@ class SponseesController extends AppController
         //country list
         $this->loadModel('Country');
         $this->set('countryList', $this->Country->find('list', array(
-            'fields' => array('name', 'description')
+            'fields' => array('id', 'description')
         )));
     }
     

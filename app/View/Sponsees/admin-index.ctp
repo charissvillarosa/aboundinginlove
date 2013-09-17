@@ -33,6 +33,7 @@
                         <?php echo $ctr; ?>
                         <span class="id" style="display:none;"><?php echo $sponsee['id'] ?></span>
                         <span class="maplocation" style="display:none;"><?php echo $sponsee['maplocation'] ?></span>
+                        <span class="videolink" style="display:none;"><?php echo $sponsee['videolink'] ?></span>
                         <span class="short_description" style="display:none;"><?php echo $sponsee['short_description'] ?></span>
                         <span class="long_description" style="display:none;"><?php echo $sponsee['long_description'] ?></span>
                     </td>
@@ -59,7 +60,7 @@
                         <a href="#" class="edit" title="Edit"><i class="icon-edit"></i></a>
                     </td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'view', $sponsee['id']), array('class' => 'icon-list','title' => 'View Sponsee Profile')); ?></i>
+                        <i><?php echo $this->Html->link('', array('controller' => 'sponsees', 'action' => 'adminview', $sponsee['id']), array('class' => 'icon-list','title' => 'View Sponsee Profile')); ?></i>
                     </td>
                     <td>
                         <i>
@@ -105,6 +106,7 @@
                 'options' => array('Male' => 'Male', 'Female' => 'Female')
             )); ?>
             <?php echo $this->Form->input('maplocation', array('class' => 'span5')); ?>
+            <?php echo $this->Form->input('videolink', array('class' => 'span5')); ?>
             <?php echo $this->Form->input('short_description', array('class' => 'span5', 'rows' => '5')); ?>
             <?php echo $this->Form->input('long_description', array('class' => 'span5', 'rows' => '5')); ?>
             <?php echo $this->Form->input('birthdate', array('style' => 'width:150px;', 'maxYear' => date('Y'), 'minYear' => 1950)); ?>
@@ -162,6 +164,7 @@
         $('#SponseeCountry').val(tr.find('.country').html());
         $('#SponseeGender').val(tr.find('.gender').html());
         $('#SponseeMaplocation').val(tr.find('.maplocation').html());
+        $('#SponseeVideolink').val(tr.find('.videolink').html());
         $('#SponseeShortdescription').val(tr.find('.short_description').html());
         $('#SponseeLongdescription').val(tr.find('.long_description').html());
         $('#SponseeInformation').val(tr.find('.shortdescription').html());
