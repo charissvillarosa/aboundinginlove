@@ -136,7 +136,7 @@ $user = $this->Session->read('Auth.User');
         </h3>
     </div>
     <div style="clear:both;" class="modal-body">
-        <div style="margin-left:0; width:790px;" class="pull-left box">
+        <div style="margin-left:0; width:790px; margin-bottom: 20px;" class="pull-left box">
             <div style="margin-left:0;" class="span3 pull-left">
                 <?php
                 $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
@@ -195,7 +195,7 @@ $user = $this->Session->read('Auth.User');
                 <hr>
             </div>
         </div>
-        <h4 class="fontcolor1">Biography</h4>
+        <h4 class="fontcolor1">BIOGRAPHY</h4>
         <p style="text-align: justify;">
            <?php
                 $information = explode("\n", $sponsee['long_description']);
@@ -205,7 +205,7 @@ $user = $this->Session->read('Auth.User');
                 endforeach;
            ?>
         </p>
-        <h4 class="fontcolor1 topmargin2">Needs</h4>
+        <h4 class="fontcolor1 topmargin2">NEEDS</h4>
         <?php
             $user = $this->Session->read('Auth.User');
 

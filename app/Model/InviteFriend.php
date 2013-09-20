@@ -6,16 +6,12 @@
  */
 class InviteFriend extends AppModel
 {
-    var $useTable = 'invites';
+    var $useTable = 'friend_invites';
     
     var $belongsTo = array(
         'User' => array(
             'className' => 'User',
             'foreignKey' => 'user_id'
-        ),
-        'InviteClick' => array(
-            'className' => 'InviteClick',
-            'foreignKey' => 'token_id'
         )
     );
     

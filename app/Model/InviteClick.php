@@ -6,6 +6,6 @@
  */
 class InviteClick extends AppModel
 {
-    var $useTable = 'invite_clicks';
+    
 }
 

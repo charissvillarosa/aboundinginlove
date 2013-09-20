@@ -45,6 +45,12 @@
                 <?php $ctr++;
             endforeach; ?>
         </table>
+        <div class="leftmargin1">
+            <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+            <?php echo $this->Paginator->numbers(); ?>
+            <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+            <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
+        </div>
     </div>
 </div>
 
@@ -57,7 +63,7 @@
   <div class="modal-body">
     <div class="leftmargin1">
         <?php
-        echo $this->Form->create('PortfolioCategory', array('action' => 'add'));
+        echo $this->Form->create('', array('type' => 'GET', 'url' => array('controller'=>'PortfolioCategory', 'action' => 'add')));
         ?>
         <fieldset>
             <?php echo $this->Form->input('description', array('label' => 'Description', 'class'=>'span5')) ?>

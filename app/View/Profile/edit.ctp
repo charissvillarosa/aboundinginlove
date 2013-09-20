@@ -34,7 +34,7 @@
                 <div>
                     <?php
                     $action = array('controller' => 'ProfileImages', 'action' => 'upload', $user['id']);
-                    echo $this->Html->link('Change Profile Picture', $action, array('class' => 'btn btn-info btn-block'));
+                    echo $this->Html->link('Change Profile Picture', $action, array('class' => 'btn btn-info  btn-block'));
                     ?>
                 </div>
             </div>

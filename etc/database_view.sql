@@ -13,3 +13,14 @@ create view sponsee_listing as
     from sponsees s
     left join sponsee_needs sn on sn.sponsee_id = s.id
     GROUP by s.id;
+
+
+DROP VIEW friend_invites;
+
+CREATE VIEW friend_invites AS
+    SELECT
+        i.*, 
+        sum(coalesce(ic.id, 0)) AS clicks
+    FROM invites i
+    LEFT JOIN invite_clicks ic ON ic.token_id = i.token_id
+    GROUP BY i.id, ic.token_id;

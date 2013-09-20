@@ -32,6 +32,12 @@ App::uses('AppController', 'Controller');
 class PortfolioCategoriesController extends AppController {
     var $layout = 'document';
     
+    var $uses = array('User', 'PortfolioCategory');
+    
+    var $paginate = array(
+        'limit' => 10
+    );
+    
     function beforeFilter()
     {
         parent::beforeFilter();
@@ -63,8 +69,7 @@ class PortfolioCategoriesController extends AppController {
     }
 
     public function listing() {
-        $name = $this->PortfolioCategory->find('all');
-        $this->set("list", $name);
+        $this->set("list", $this->paginate('PortfolioCategory'));
     }
 
     public function add()

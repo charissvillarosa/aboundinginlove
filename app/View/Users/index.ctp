@@ -48,7 +48,15 @@
                             echo '<span class="address">'.$this->Text->truncate($add, 50, array('exact' => false)).'</span>';
                         ?>
                     </td>
-                    <td><?php echo '<span class="country">'.$user['country'].'</span>'; ?></td>
+                    <td>
+                        <?php 
+                        $flag = "/img/flag/".$user['country'].".png"; 
+                        
+                        if($user['country'] != ''){
+                            echo '<span class="country">'. $this->Html->image("$flag") . ' ' . $user['country'].'</span>';
+                        }
+                        ?>
+                    </td>
                     <td>
                         <a href="#" class="edit" title="Edit"><i class="icon-edit"></i></a>
                     </td>
@@ -69,8 +77,8 @@
             <?php $ctr++; endforeach; ?>
         </table>
         <div class="leftmargin1">
-            <button class="btn"><?php echo $this->Paginator->numbers(); ?></button>
             <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+            <?php echo $this->Paginator->numbers(); ?>
             <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
             <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
         </div>

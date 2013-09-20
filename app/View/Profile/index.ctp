@@ -43,7 +43,7 @@
                 <p class="middlename"><?php echo "Middlename : ".$user['middlename']; ?></p>
                 <p class="lastname"><?php echo "Lastname : ".$user['lastname']; ?></p>
                 <p class="address"><?php echo "Address : ".$user['address']; ?></p>
-                <p class="country"><?php echo "Country : ".$user['country']; ?></p>
+                <p class="country"><?php $flag = "/img/flag/".$user['country'].".png"; echo "Country : ". $this->Html->image("$flag") . " ". $user['country']; ?></p>
                 <p class="email"><?php echo "Email : ".$user['email']; ?></p>
             </div>
         </div>

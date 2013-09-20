@@ -15,7 +15,7 @@ $user = $this->Session->read('Auth.User');
             </li>
         </ul>
     </div>
-    <div class="span9 well" style="padding:0 0 30px 0; background: #fff; margin-top:103px;">
+    <div class="span9 well" style="padding:0 0 0 0; background: #fff; margin-top:103px;">
         <div class="clearfix pull-left headerstyle">
             <div class="pull-left leftmargin2 bottommargin2 banner">
                 <p class="fontsize1">DONATE A SPONSEE</p>
@@ -43,20 +43,20 @@ $user = $this->Session->read('Auth.User');
                             <b class="fontcolor1">
                                 <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
                             </b><br>
-                            <b><?php echo $sponsee['country'] ?> : <a href="<?php echo $sponsee['maplocation'] ?>" target="_blank">Map Location</a></b>
+                            <b><?php $flag = "/img/flag/".$sponsee['country'].".png"; echo $this->Html->image("$flag"); echo ' ' . $sponsee['country']; ?> : <a href="<?php echo $sponsee['maplocation'] ?>" target="_blank">Map Location</a></b>
                         </p>
                         <?php 
                             echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
                             echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
                             echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
                             echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
-                            echo $this->Html->link('Donate', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info'));
+                            echo $this->Html->link('Donate Now!', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-large'));
                         ?>
                         </center>
                     </div>
                 </div>
             <?php endforeach; ?>
-            <div class="clearfix pull-left leftmargin2">
+            <div class="clearfix pull-left leftmargin2 footerstyle">
                 <button class="btn topmargin1"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
                 <button class="btn topmargin1"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
             </div>

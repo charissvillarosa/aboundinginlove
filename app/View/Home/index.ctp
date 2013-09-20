@@ -72,8 +72,12 @@
         </div>
         <div class="well span8">
             <div>
-                <h4 class="fontcolor1">Sponsor a child today</h4>
-                <hr>
+                <div>
+                    <div class="pull-left"><h4 class="fontcolor1">SPONSOR A CHILD TODAY</h4></div>
+                    <div class="pull-right">
+                        <?php echo $this->Html->link('View more', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-info btn-large')); ?>
+                    </div>
+                </div>
                 <?php
                 foreach ($sponseeList as $item) :
                     $sponsee = $item['SponseeListingItem'];
@@ -114,10 +118,6 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-                <div class="clearfix"></div>              
-                <div class="margin1">
-                    <?php echo $this->Html->link('View more', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
-                </div>
             </div>
         </div>
     </div>

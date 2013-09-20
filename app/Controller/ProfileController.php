@@ -7,7 +7,7 @@ class ProfileController extends AppController {
     public function index() {
         $this->loadModel('Country');
         $this->set('countryList', $this->Country->find('list', array(
-                    'fields' => array('name', 'description')
+                    'fields' => array('id', 'description')
         )));
 
         $this->loadModel('User');
@@ -19,7 +19,7 @@ class ProfileController extends AppController {
     public function edit() {
         $this->loadModel('Country');
         $this->set('countryList', $this->Country->find('list', array(
-                    'fields' => array('name', 'description')
+                    'fields' => array('id', 'description')
         )));
 
         $this->loadModel('User');

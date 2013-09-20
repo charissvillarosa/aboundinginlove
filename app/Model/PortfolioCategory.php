@@ -7,6 +7,8 @@ App::uses("AuthComponent ", "Controller/Component");
  */
 class PortfolioCategory extends AppModel
 {
+    var $useTable = 'portfolio_categories';
+    
     public $validate = array(
         "description" => array(
             "required" => array(

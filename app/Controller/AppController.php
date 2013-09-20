@@ -49,7 +49,8 @@ class AppController extends Controller
         'Auth' => array(
             'loginRedirect' => array('controller' => 'dashboard'),
             'logoutRedirect' => array('controller' => 'pages', 'action' => 'index'),
-            'authorize' => array('Controller')
+            'authorize' => array('Controller'),
+            'authError' => 'You are not logged in. Please login to continue.'
         )
     );
 

@@ -5,6 +5,8 @@ class DonationHistoryController extends AppController
 
     var $layout = 'document';
 
+    var $uses = array('User', 'DonationHistory','DonationRequest');
+    
     var $paginate = array(
         'limit' => 10
     );
@@ -16,9 +18,7 @@ class DonationHistoryController extends AppController
         $id = $sessUser['id'];
         
         //table display
-        $this->set('donationitems', $this->DonationHistory->find('all', array(
-            'conditions' => array('DonationHistory.user_id' => $id))
-        ));
+        $this->set('donationitems', $this->paginate('DonationHistory', array('DonationHistory.user_id' => $id)));
         
         //thumnail display
         $this->set('list', $this->DonationHistory->find('all', array(
@@ -36,14 +36,14 @@ class DonationHistoryController extends AppController
         }
         
         $this->set('category', $category);
-        
+
         if ($category) {
-            $this->set('donationitems', $this->DonationHistory->find('all', array(
-                'conditions' => array('DonationHistory.donation_type' => $category))
-            ));
+            $this->set('donationitems', $this->paginate('DonationHistory', array(
+                'DonationRequest.type' => $category
+            )));
         }
         else {
-            $this->set('donationitems', $this->DonationHistory->find('all'));
+            $this->set('donationitems', $this->paginate('DonationHistory'));
         }
         
     }

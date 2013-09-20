@@ -29,14 +29,18 @@
         </div>
         <div class="pull-left">
             <div class="pull-left span5 topmargin2">
-                <h3 class="fontcolor1 topmargin1">Biography</h3>
-                <p>
+                <h3 class="fontcolor1 topmargin1">BIOGRAPHY</h3>
+                <p style="text-align: justify;">
                     <hr>
                     <?php
-                    echo $sponsee['long_description'];
+                         $information = explode("\n", $sponsee['long_description']);
+
+                         foreach ($information as $line):
+                             echo '<p style="text-align: justify;"> ' . $line . "</p>\n";
+                         endforeach;
                     ?>
-                </p>
-                <h3 class="fontcolor1">Needs</h3>
+                 </p>
+                <h3 class="fontcolor1">NEEDS</h3>
                 <div class="overlayable">
                     <?php
                     if(empty($sponseeneeds)){                                

@@ -69,11 +69,11 @@ echo $this->Html->docType('html5');
                     var bannerViewHeight = hHeight - sTop;
                     
                     if (bannerViewHeight < nHeight) {
-                        var top = nHeight - lHeight;
+                        var top = Math.min(nHeight, lHeight) - lHeight;
                         $('.logo').removeClass('scroll').css('top', top + 'px');
                     }
                     else if (bannerViewHeight < lHeight) {
-                        var top = hHeight - lHeight;
+                        var top = Math.min(bannerViewHeight, lHeight) - lHeight;
                         $('.logo').addClass('scroll').css('top', top + 'px');
                     }
                     else if ($('.logo').hasClass('scroll')) {

@@ -8,8 +8,10 @@ class SponseeNeedCategoriesController extends AppController
     var $adminActions = array(); // Letting users access the following pages
     var $layout = 'document';
 
+    var $uses = array('User', 'SponseeNeedCategory');
+    
     var $paginate = array(
-        'limit' => 5
+        'limit' => 10
     );
 
     public function beforeFilter()
@@ -31,8 +33,7 @@ class SponseeNeedCategoriesController extends AppController
     
     public function listing() 
     {
-        $cat = $this->SponseeNeedCategory->find('all');  
-        $this->set("categories", $cat);
+        $this->set("categories", $this->paginate('SponseeNeedCategory'));
     }
     
     public function add()

@@ -21,7 +21,7 @@ $user = $this->Session->read('Auth.User');
                     <div>
                         <?php
                         $action = array('controller' => 'SponseeImages', 'action' => 'upload', $sponsee['id']);
-                        echo $this->Html->link('Change Photo', $action, array('class' => 'btn btn-info btn-block'));
+                        echo $this->Html->link('Change Photo', $action, array('class' => 'btn btn-info btn-large btn-block'));
                         ?>
                     </div>
                     <?php endif; ?>
@@ -56,25 +56,24 @@ $user = $this->Session->read('Auth.User');
                             echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage)."'></div></div>";
                             echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($totalneededamount, 'USD')."</b> = Needed</div>";
                             echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($totaldonatedamount, 'USD')."</b> = Donated</div>";
-                            echo $this->Html->link('Donate', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info'));
+                            echo $this->Html->link('Donate Now!', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-large btn-block'));
                         ?>
                     </div>
                     <hr/>
                 </div>
                 <div class="pull-left span9">
                     <div class="leftmargin1 bottommargin1">
-                        <hr>
-                        <h4 class="fontcolor1">Biography</h4>
-                        <p style="text-align: justify;">
+                        <h4 class="fontcolor1">BIOGRAPHY</h4>
+                        <p>
                            <?php
                                 $information = explode("\n", $sponsee['long_description']);
 
                                 foreach ($information as $line):
-                                    echo '<p> ' . $line . "</p>\n";
+                                    echo '<p style="text-align: justify;"> ' . $line . "</p>\n";
                                 endforeach;
                            ?>
                         </p>
-                        <h4 class="fontcolor1 topmargin2">Needs</h4>
+                        <h4 class="fontcolor1 topmargin2">NEEDS</h4>
                         <?php
                             $user = $this->Session->read('Auth.User');
 

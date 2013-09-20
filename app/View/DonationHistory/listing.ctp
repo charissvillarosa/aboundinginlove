@@ -1,6 +1,8 @@
 <div class="container tabs portfolio">
     <div class="span11 margin3">
-        <?php echo $this->Form->create('', array('type' => 'GET')); ?>
+        <?php
+        echo $this->Form->create('', array('type' => 'GET', 'url' => array('controller'=>'DonationHistory', 'action' => 'listing')));
+        ?>
         <div class="pull-right banner">
             <div class="pull-left topmargin7">
                 <p>Donation search by:</p>
@@ -50,5 +52,11 @@
                 </tr>
             <?php endforeach; ?>
         </table>
+        <div>
+            <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+            <?php echo $this->Paginator->numbers(); ?>
+            <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+            <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
+        </div>
     </div>
 </div>

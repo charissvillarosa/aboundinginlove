@@ -98,7 +98,7 @@ Join now!
                 <table class="table table-hover table-bordered topmargin1">
                     <tr>
                         <th>No</th>
-                        <th>Date</th>
+                        <th>Date Invited</th>
                         <th>To</th>
                         <th>Sent via</th>
                         <th>Status</th>
@@ -110,16 +110,15 @@ Join now!
                         ?>
                         <tr>
                             <td><?php echo $ctr; ?></td>
-                            <td><?php echo $invite['created'] ?></td>
+                            <td><?php echo $this->Time->format($invite['created']) ?></td>
                             <td><?php echo $invite['to'] ?></td>
                             <td><?php echo $invite['type'] ?></td>
                             <td>
                             <?php 
-                                if($invite['type'] == 'email'){
-                                    echo $invite['status'];
-                                }
-                                else{
-                                    
+                                if ($invite['type'] == 'email'){ echo $invite['status']; }
+                                else {
+                                    if($invite['clicks'] > 1) echo $invite['clicks'] . ' clicks';
+                                    else echo $invite['clicks'] . ' click';
                                 }
                             ?>
                             </td>
@@ -129,6 +128,12 @@ Join now!
                     endforeach;
                     ?>
                 </table>
+                <div>
+                    <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+                    <?php echo $this->Paginator->numbers(); ?>
+                    <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+                    <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
+                </div>
             </div>
         </div>
     </div>

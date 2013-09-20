@@ -5,10 +5,14 @@ App::uses('CakeEmail', 'Network/Email');
 class InviteFriendsController extends AppController
 {
     var $layout = 'document';
-    
+  
     var $Email = null;
     
     var $uses = array('User', 'InviteFriend');
+    
+    var $paginate = array(
+        'limit' => 10
+    );
     
     public function __construct($request = null, $response = null)
     {
@@ -46,11 +50,13 @@ class InviteFriendsController extends AppController
                     'InviteFriend.user_id' => $user['User']['id'] )))
                         
             ));
+            $this->set('list', $this->paginate('InviteFriend', array(
+                    array(
+                    'InviteFriend.type' => $category,
+                    'InviteFriend.user_id' => $user['User']['id']))));
         }
         else {
-            $this->set('list', $this->InviteFriend->find('all', array(
-                'conditions' => array('InviteFriend.user_id' => $user['User']['id']))
-            ));
+            $this->set('list', $this->paginate('InviteFriend', array('InviteFriend.user_id' => $user['User']['id'])));
         }
     }
     
@@ -138,12 +144,12 @@ class InviteFriendsController extends AppController
         $this->set('category', $category);
         
         if ($category) {
-            $this->set('invitelist', $this->InviteFriend->find('all', array(
-                'conditions' => array('InviteFriend.type' => $category))
-            ));
+            $this->set('invitelist', $this->paginate('InviteFriend', array(
+                'InviteFriend.type' => $category
+            )));
         }
         else {
-            $this->set('invitelist', $this->InviteFriend->find('all'));
+            $this->set('invitelist', $this->paginate('InviteFriend'));
         }
     }
 }

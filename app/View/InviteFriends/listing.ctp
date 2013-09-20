@@ -1,6 +1,6 @@
 <div class="container tabs portfolio">
     <div class="span11 margin3">
-        <?php echo $this->Form->create('', array('type' => 'GET')); ?>
+        <?php echo $this->Form->create('', array('type' => 'GET', 'url' => array('controller'=>'InviteFriends', 'action' => 'listing'))); ?>
         <div class="pull-right banner">
             <div class="pull-left topmargin7">
                 <p>Search by:</p>
@@ -21,13 +21,12 @@
         <?php echo $this->Form->end(); ?>
         <table width="100%" class="table table-hover table-bordered">
             <tr>
-                <th>Token Id</th>
                 <th>User</th>
                 <th>To</th>
                 <th>Message</th>
                 <th>Type</th>
                 <th>Status</th>
-                <th>Created</th>
+                <th>Date Invited</th>
             </tr>
             <?php
             foreach ($invitelist as $item) :
@@ -35,15 +34,28 @@
                 $user = $item['User'];
                 ?>
                 <tr>
-                    <td><?php echo $invite['token_id'] ?></td>
                     <td><?php echo $user['firstname'].' '.$user['middlename'].' '.$user['lastname'] ?></td>
                     <td><?php echo $invite['to'] ?></td>
                     <td><?php echo $invite['message'] ?></td>
                     <td><?php echo $invite['type'] ?></td>
-                    <td><?php echo $invite['status'] ?></td>
-                    <td><?php echo $invite['created'] ?></td>
+                    <td>
+                    <?php
+                        if ($invite['type'] == 'email'){ echo $invite['status']; }
+                        else {
+                            if($invite['clicks'] > 1) echo $invite['clicks'] . ' clicks';
+                            else echo $invite['clicks'] . ' click';
+                        }
+                    ?>
+                    </td>
+                    <td><?php echo $this->Time->format($invite['created']) ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
-    </div>
-</div>`
+        <div>
+            <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+            <?php echo $this->Paginator->numbers(); ?>
+            <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+            <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
+        </div>
+    </div>  
+</div>

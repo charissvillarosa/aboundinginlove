@@ -93,9 +93,15 @@ $user = $this->Session->read('Auth.User');
                     <th style="text-align: right;"><?php echo $this->Number->currency($total); ?></th>
                 </tr>
             </table>
+            <div class="pull-right">
+                <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+                <?php echo $this->Paginator->numbers(); ?>
+                <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+                <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
+            </div>
             <div>
                 <h4 class="fontcolor1">Recent Donations</h4>
-                <?php foreach ($donationitems as $item) : 
+                <?php foreach ($list as $item) : 
                     $donation = $item['DonationHistory'];
                     $sponsee = $item['Sponsee'];
                     $total = $total + $donation['amount'];
