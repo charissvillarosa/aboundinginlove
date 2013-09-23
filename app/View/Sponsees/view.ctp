@@ -10,18 +10,18 @@ $user = $this->Session->read('Auth.User');
         background:#349bb9;
         overflow: auto;
     }
-    
 </style>
-<div class="well span8 pull-right">
+<div class="pull-right">
+    <?php echo $this->Html->link('Go back to Sponsee Listing', array('action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
+</div>
+<div class="clearfix topmargin1 well span8 pull-right">
     <div style="margin-left:0;" class="span2 pull-left">
         <?php
         $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
         $attrs = array('alt' => '', 'width' => '160px', 'class' => 'img-polaroid');
         echo $this->Html->image($imageURl, $attrs);
         ?>
-        <!--Button to trigger modal 
-        <a href="#myModal" role="button" class="btn btn-info btn-block video"><i class="icon-facetime-video"></i> Watch my video</a>
-        <a href="#myModal" role="button" class="btn btn-info btn-block story"><i class="icon-book"></i> Read my story</a>-->
+        <!--Button to trigger modal-->
         <a data-toggle="modal" href="#myVideo" class="btn btn-info btn-medium btn-block"><i class="icon-facetime-video"></i> Watch my Video</a>
         <a data-toggle="modal" href="#myStory" class="btn btn-info btn-medium btn-block"><i class="icon-book"></i> Read my Story</a>
     </div>

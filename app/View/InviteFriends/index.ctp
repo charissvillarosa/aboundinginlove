@@ -1,3 +1,14 @@
+<style>
+    .menulist li.align{
+        position: relative;
+        top: -11px;
+    }
+
+    .menulist li{
+        list-style:none;
+	display:inline;
+    }
+</style>
 <div class="container topmargin3">
     <div class="dropdown clearfix span2">
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
@@ -20,20 +31,20 @@
         </div>
         <div class="clearfix pull-left leftmargin2 span8">
             <div class="leftmargin2">
-                <ul style="border-bottom:solid 1px #eee;" class="nav nav-tabs">
+                <ul class="menulist" style="border-bottom:solid 1px #eee;">
+                    <li class="align"><a href="#"><?php echo $this->Html->image('email.jpg');?></a></li>
+                    <li class="align"><a href="#" id="fb-btn"><?php echo $this->Html->image('fb.jpg');?></a></li>
                     <li>
-                        <a id="twitter-btn"
-                           href="https://twitter.com/share" 
-                           class="twitter-share-button" style="visibility: hidden"
-                           data-text="Join AboundingInLove.org now and make a difference!"
-                           data-size="large" data-dnt="true">
-                            Tweet
-                        </a>
+                        <!--<a id="twitter-btn"
+                            href="https://twitter.com/share" 
+                            class="twitter-share-button" style="visibility: hidden"
+                            data-text="Join AboundingInLove.org now and make a difference!"
+                            data-size="large" data-dnt="true">
+                                 Tweet
+                         </a>-->
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-related="jasoncosta" data-lang="en" data-size="large" data-count="none">Tweet</a>
+                        <!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>-->
                     </li>
-                    <li>
-                        <a href="#" id="fb-btn" style="visibility: hidden">FACEBOOK</a>
-                    </li>
-                    <li class="active"><a href="#tab3" data-toggle="tab">EMAIL</a></li>
                 </ul>
                 <div class="tab-content topmargin1">
                     <div class="tab-pane leftmargin1" id="tab1">
