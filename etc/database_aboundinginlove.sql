@@ -258,11 +258,11 @@ CREATE TABLE `portfolio_images` (
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 /*Data for the table `portfolio_images` */
 
-insert  into `portfolio_images`(`id`,`portfolio_id`,`description`,`date_uploaded`,`image`,`content_type`) values (1,1,'1','2013-08-12 05:04:42',NULL,NULL);
+insert  into `portfolio_images`(`id`,`portfolio_id`,`description`,`date_uploaded`,`image`,`content_type`) values (1,1,'1','2013-08-12 05:04:42',NULL,NULL),(41,4,'','0000-00-00 00:00:00',NULL,NULL),(42,4,'','0000-00-00 00:00:00',NULL,NULL),(43,4,'','0000-00-00 00:00:00',NULL,NULL),(44,4,'','0000-00-00 00:00:00',NULL,NULL),(45,4,'','0000-00-00 00:00:00',NULL,NULL),(46,4,'','0000-00-00 00:00:00',NULL,NULL),(47,4,'','0000-00-00 00:00:00',NULL,NULL),(48,4,'','0000-00-00 00:00:00',NULL,NULL);
 
 /*Table structure for table `portfolios` */
 
@@ -343,11 +343,11 @@ CREATE TABLE `sponsee_needs` (
   `modified` timestamp NULL DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL COMMENT 'OPEN|CLOSED',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sponsee_needs` */
 
-insert  into `sponsee_needs`(`id`,`sponsee_id`,`category_id`,`description`,`neededamount`,`donatedamount`,`added_by`,`created`,`modified`,`status`) values (1,1,1,'School tuition fee','20000.00','18000.00','14',NULL,'2013-05-15 15:55:07','CLOSED'),(46,1,1,'School Supplies','7000.00','6999.00','14','2013-05-15 15:56:17','2013-05-15 16:17:04','CLOSED'),(4,2,3,'Test','200.00',NULL,'14',NULL,'2013-05-15 15:33:06',NULL),(53,2,1,'School supplies','1000.00',NULL,'14','2013-05-16 13:58:31','2013-05-16 13:58:31',NULL),(44,1,3,'Follow up checkup','555.00','0.00','14','2013-05-15 15:39:50','2013-05-15 16:15:45',NULL),(52,2,2,'Follow up checkup','1000.00',NULL,'14','2013-05-16 13:58:31','2013-05-16 13:58:31',NULL),(98,2,1,'asdfasdf','2.00',NULL,'14','2013-07-31 15:28:09','2013-07-31 15:28:09',NULL),(99,2,1,'test','50.00',NULL,'14','2013-07-31 15:29:07','2013-07-31 15:29:07',NULL),(97,NULL,1,'sss','3.00',NULL,'14','2013-07-31 15:24:38','2013-07-31 15:24:38',NULL),(96,NULL,1,'x','1.00',NULL,'14','2013-07-31 07:21:00','2013-07-31 07:21:00',NULL);
+insert  into `sponsee_needs`(`id`,`sponsee_id`,`category_id`,`description`,`neededamount`,`donatedamount`,`added_by`,`created`,`modified`,`status`) values (1,1,1,'School tuition fee','20000.00','18000.00','14',NULL,'2013-05-15 15:55:07','CLOSED'),(46,1,1,'School Supplies','7000.00','6999.00','14','2013-05-15 15:56:17','2013-05-15 16:17:04','CLOSED'),(4,2,3,'Test','200.00',NULL,'14',NULL,'2013-05-15 15:33:06',NULL),(53,2,1,'School supplies','1000.00',NULL,'14','2013-05-16 13:58:31','2013-05-16 13:58:31',NULL),(44,1,3,'Follow up checkup','555.00','0.00','14','2013-05-15 15:39:50','2013-05-15 16:15:45',NULL),(52,2,2,'Follow up checkup','1000.00',NULL,'14','2013-05-16 13:58:31','2013-05-16 13:58:31',NULL),(98,2,1,'asdfasdf','2.00',NULL,'14','2013-07-31 15:28:09','2013-07-31 15:28:09',NULL),(99,2,1,'test','50.00',NULL,'14','2013-07-31 15:29:07','2013-07-31 15:29:07',NULL),(97,NULL,1,'sss','3.00',NULL,'14','2013-07-31 15:24:38','2013-07-31 15:24:38',NULL),(96,NULL,1,'x','1.00',NULL,'14','2013-07-31 07:21:00','2013-07-31 07:21:00',NULL),(101,68,1,'test','10.00',NULL,'13','2013-09-19 16:26:06','2013-09-19 16:26:06',NULL);
 
 /*Table structure for table `sponsees` */
 
@@ -362,16 +362,16 @@ CREATE TABLE `sponsees` (
   `address` varchar(255) DEFAULT NULL,
   `country` varchar(10) DEFAULT NULL,
   `maplocation` varchar(500) DEFAULT NULL,
-  `videolink` varchar(500) DEFAULT NULL,
+  `videolink` text,
   `long_description` text,
   `short_description` text,
   `birthdate` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sponsees` */
 
-insert  into `sponsees`(`id`,`firstname`,`lastname`,`middlename`,`gender`,`address`,`country`,`maplocation`,`videolink`,`long_description`,`short_description`,`birthdate`) values (1,'Sam','Canete','D.','Male','Philippines','PH','http://wikimapia.org/26179511/Pooc',NULL,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus vitae lacus ultrices gravida. Nunc non dui nibh. Aliquam erat volutpat. Nunc eget est orci. Nunc sollicitudin nunc mauris, nec gravida justo. Cras in diam eleifend urna fringilla mattis. Praesent turpis sapien, lacinia sed tempor quis, gravida non nibh. Mauris a dui a quam placerat pharetra in vel sapien.\r\n\r\nPellentesque erat nulla, rutrum vitae dictum at, accumsan id magna. Vestibulum lacinia ante vitae est condimentum condimentum. Curabitur sodales orci sed tortor facilisis semper non quis leo. Duis tempus sapien consectetur felis varius in ullamcorper odio lacinia. Cras dui tortor, bibendum sollicitudin mollis nec, pulvinar vel dolor. Morbi blandit malesuada pulvinar. Donec tincidunt risus nec arcu tempor ac semper leo lacinia. Cras feugiat nulla in quam accumsan nec aliquam tortor vulputate. Nunc pharetra eleifend lacus, sed dictum justo tristique sit amet. Curabitur posuere urna et turpis pulvinar id malesuada ligula porttitor. Aliquam pharetra massa et odio accumsan ultrices.\r\n\r\nPhasellus quis ligula eget erat convallis ultricies vel sit amet tortor. Phasellus rutrum feugiat scelerisque. Aliquam erat volutpat. Suspendisse volutpat nibh nec tellus mollis mollis. Curabitur eget nisi mauris. Quisque viverra ipsum ut libero condimentum hendrerit nec et tortor. Donec lectus turpis, feugiat eu bibendum ac, condimentum fringilla libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.','dsdsds\r\n\r\ndfdfdf\r\n\r\ndfdfdf','2012-05-08'),(2,'Rosalie','Rosello','R.','Female','Philippines','PH','http://wikimapia.org/26179608/Kinatarkan','http://www.youtube.com/watch?v=wlETQybuGQk','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus vitae lacus ultrices gravida. Nunc non dui nibh. Aliquam erat volutpat. Nunc eget est orci. Nunc sollicitudin nunc mauris, nec gravida justo. Cras in diam eleifend urna fringilla mattis. Praesent turpis sapien, lacinia sed tempor quis, gravida non nibh. Mauris a dui a quam placerat pharetra in vel sapien.\r\n\r\nPellentesque erat nulla, rutrum vitae dictum at, accumsan id magna. Vestibulum lacinia ante vitae est condimentum condimentum. Curabitur sodales orci sed tortor facilisis semper non quis leo. Duis tempus sapien consectetur felis varius in ullamcorper odio lacinia. Cras dui tortor, bibendum sollicitudin mollis nec, pulvinar vel dolor. Morbi blandit malesuada pulvinar. Donec tincidunt risus nec arcu tempor ac semper leo lacinia. Cras feugiat nulla in quam accumsan nec aliquam tortor vulputate. Nunc pharetra eleifend lacus, sed dictum justo tristique sit amet. Curabitur posuere urna et turpis pulvinar id malesuada ligula porttitor. Aliquam pharetra massa et odio accumsan ultrices.\r\n\r\nPhasellus quis ligula eget erat convallis ultricies vel sit amet tortor. Phasellus rutrum feugiat scelerisque. Aliquam erat volutpat. Suspendisse volutpat nibh nec tellus mollis mollis. Curabitur eget nisi mauris. Quisque viverra ipsum ut libero condimentum hendrerit nec et tortor. Donec lectus turpis, feugiat eu bibendum ac, condimentum fringilla libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.','dsdsds\r\n\r\ndfdfdf\r\n\r\ndfdfdf','2011-05-16'),(65,'vcv','cvc','vcv','Male','vcv','AF','cvcvkkk',NULL,'cvcvcvkkk','dsdsds\r\n\r\ndfdfdf\r\n\r\ndfdfdf','1970-01-01'),(66,'f','fdf','f','Male','f','AF','',NULL,'dfdfdf\r\n\r\ndfdfdfdfdfdfdfdfd\r\n\r\n\r\nghghghghg\r\n\r\n\r\nghghghghgh','dsdsds\r\n\r\ndfdfdf\r\n\r\ndfdfdf','2013-09-12');
+insert  into `sponsees`(`id`,`firstname`,`lastname`,`middlename`,`gender`,`address`,`country`,`maplocation`,`videolink`,`long_description`,`short_description`,`birthdate`) values (1,'Sam','Canete','D.','Male','Philippines','PH','http://wikimapia.org/26179511/Pooc','<iframe width=\"310\" height=\"300\" src=\"//www.youtube.com/embed/wlETQybuGQk\" frameborder=\"0\" allowfullscreen></iframe>','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus vitae lacus ultrices gravida. Nunc non dui nibh. Aliquam erat volutpat. Nunc eget est orci. Nunc sollicitudin nunc mauris, nec gravida justo. Cras in diam eleifend urna fringilla mattis. Praesent turpis sapien, lacinia sed tempor quis, gravida non nibh. Mauris a dui a quam placerat pharetra in vel sapien.\r\n\r\nPellentesque erat nulla, rutrum vitae dictum at, accumsan id magna. Vestibulum lacinia ante vitae est condimentum condimentum. Curabitur sodales orci sed tortor facilisis semper non quis leo. Duis tempus sapien consectetur felis varius in ullamcorper odio lacinia. Cras dui tortor, bibendum sollicitudin mollis nec, pulvinar vel dolor. Morbi blandit malesuada pulvinar. Donec tincidunt risus nec arcu tempor ac semper leo lacinia. Cras feugiat nulla in quam accumsan nec aliquam tortor vulputate. Nunc pharetra eleifend lacus, sed dictum justo tristique sit amet. Curabitur posuere urna et turpis pulvinar id malesuada ligula porttitor. Aliquam pharetra massa et odio accumsan ultrices.\r\n\r\nPhasellus quis ligula eget erat convallis ultricies vel sit amet tortor. Phasellus rutrum feugiat scelerisque. Aliquam erat volutpat. Suspendisse volutpat nibh nec tellus mollis mollis. Curabitur eget nisi mauris. Quisque viverra ipsum ut libero condimentum hendrerit nec et tortor. Donec lectus turpis, feugiat eu bibendum ac, condimentum fringilla libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.','dsdsds\r\n\r\ndfdfdf\r\n\r\ndfdfdf','2012-05-08'),(2,'Rosalie','Rosello','R.','Female','Philippines','PH','http://wikimapia.org/26179608/Kinatarkan','<iframe width=\"310\" height=\"300\" src=\"//www.youtube.com/embed/wlETQybuGQk\" frameborder=\"0\" allowfullscreen></iframe>','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac risus vitae lacus ultrices gravida. Nunc non dui nibh. Aliquam erat volutpat. Nunc eget est orci. Nunc sollicitudin nunc mauris, nec gravida justo. Cras in diam eleifend urna fringilla mattis. Praesent turpis sapien, lacinia sed tempor quis, gravida non nibh. Mauris a dui a quam placerat pharetra in vel sapien.\r\n\r\nPellentesque erat nulla, rutrum vitae dictum at, accumsan id magna. Vestibulum lacinia ante vitae est condimentum condimentum. Curabitur sodales orci sed tortor facilisis semper non quis leo. Duis tempus sapien consectetur felis varius in ullamcorper odio lacinia. Cras dui tortor, bibendum sollicitudin mollis nec, pulvinar vel dolor. Morbi blandit malesuada pulvinar. Donec tincidunt risus nec arcu tempor ac semper leo lacinia. Cras feugiat nulla in quam accumsan nec aliquam tortor vulputate. Nunc pharetra eleifend lacus, sed dictum justo tristique sit amet. Curabitur posuere urna et turpis pulvinar id malesuada ligula porttitor. Aliquam pharetra massa et odio accumsan ultrices.\r\n\r\nPhasellus quis ligula eget erat convallis ultricies vel sit amet tortor. Phasellus rutrum feugiat scelerisque. Aliquam erat volutpat. Suspendisse volutpat nibh nec tellus mollis mollis. Curabitur eget nisi mauris. Quisque viverra ipsum ut libero condimentum hendrerit nec et tortor. Donec lectus turpis, feugiat eu bibendum ac, condimentum fringilla libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.','dsdsds\r\n\r\ndfdfdf\r\n\r\ndfdfdf','2011-05-16'),(65,'vcv','cvc','vcv','Male','vcv','AF','cvcvkkk','<iframe width=\"310\" height=\"300\" src=\"//www.youtube.com/embed/wlETQybuGQk\" frameborder=\"0\" allowfullscreen></iframe>','cvcvcvkkk','dsdsds\r\n\r\ndfdfdf\r\n\r\ndfdfdf','1970-01-01'),(66,'f','fdf','f','Male','f','AF','','<iframe width=\"300\" height=\"300\" src=\"//www.youtube.com/embed/wlETQybuGQk\" frameborder=\"0\" allowfullscreen></iframe>','dfdfdf\r\n\r\ndfdfdfdfdfdfdfdfd\r\n\r\n\r\nghghghghg\r\n\r\n\r\nghghghghgh','dsdsds\r\n\r\ndfdfdf\r\n\r\ndfdfdf','2013-09-12'),(68,'testd','testd','testd','Female','testd','AL','testd','testd','testd','testfdfdfdfd','2013-01-01');
 
 /*Table structure for table `users` */
 
@@ -397,7 +397,26 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`email`,`role`,`created`,`modified`,`firstname`,`lastname`,`middlename`,`address`,`country`) values (13,'cha','cb00299e6dfd09cfc506963f7c28a07088f65fb0','chariss.villarosa@gmail.com','admin','2013-07-05 04:07:54','2013-07-05 04:07:54',NULL,NULL,NULL,NULL,NULL),(14,'user','cb00299e6dfd09cfc506963f7c28a07088f65fb0','test@gmail.com','user','2013-07-25 02:42:07','2013-08-26 15:54:28','Userreresss','Usererere','Usererer','Cebu City','PH'),(15,'jay','56c0aa65144cc88dc5171d57fa00547ea87bec50','jaycverg@gmail.com','user','2013-08-26 10:08:13','2013-08-26 10:15:03','Jayrome John','Vergara','Carreno','Cebu City','PH'),(16,'f','d622697c6a9435b735ba03dbae840232146124a3','chariss_vllrs18@yahoo.com','user','2013-09-05 12:06:44','2013-09-05 12:06:44','f','f','f',NULL,NULL);
+insert  into `users`(`id`,`username`,`password`,`email`,`role`,`created`,`modified`,`firstname`,`lastname`,`middlename`,`address`,`country`) values (13,'cha','cb00299e6dfd09cfc506963f7c28a07088f65fb0','chariss.villarosa@gmail.com','admin','2013-07-05 04:07:54','2013-07-05 04:07:54',NULL,NULL,NULL,NULL,NULL),(14,'user','cb00299e6dfd09cfc506963f7c28a07088f65fb0','test@gmail.com','user','2013-07-25 02:42:07','2013-09-19 05:05:55','Userreresss','Usererere','Usererer','Cebu City','PH'),(15,'jay','56c0aa65144cc88dc5171d57fa00547ea87bec50','jaycverg@gmail.com','user','2013-08-26 10:08:13','2013-08-26 10:15:03','Jayrome John','Vergara','Carreno','Cebu City','PH'),(16,'f','d622697c6a9435b735ba03dbae840232146124a3','chariss_vllrs18@yahoo.com','user','2013-09-05 12:06:44','2013-09-05 12:06:44','f','f','f',NULL,NULL);
+
+/*Table structure for table `friend_invites` */
+
+DROP TABLE IF EXISTS `friend_invites`;
+
+/*!50001 DROP VIEW IF EXISTS `friend_invites` */;
+/*!50001 DROP TABLE IF EXISTS `friend_invites` */;
+
+/*!50001 CREATE TABLE `friend_invites` (
+  `id` bigint(20) NOT NULL DEFAULT '0',
+  `token_id` varchar(50) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `to` text,
+  `message` text,
+  `type` varchar(100) DEFAULT NULL,
+  `status` varchar(200) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `clicks` decimal(41,0) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 */;
 
 /*Table structure for table `sponsee_listing` */
 
@@ -415,7 +434,7 @@ DROP TABLE IF EXISTS `sponsee_listing`;
   `address` varchar(255) DEFAULT NULL,
   `country` varchar(10) DEFAULT NULL,
   `maplocation` varchar(500) DEFAULT NULL,
-  `videolink` varchar(500) DEFAULT NULL,
+  `videolink` text,
   `long_description` text,
   `short_description` text,
   `birthdate` date DEFAULT NULL,
@@ -424,6 +443,13 @@ DROP TABLE IF EXISTS `sponsee_listing`;
   `total_donatedamount` decimal(32,2) DEFAULT NULL,
   `percentage` decimal(41,6) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 */;
+
+/*View structure for view friend_invites */
+
+/*!50001 DROP TABLE IF EXISTS `friend_invites` */;
+/*!50001 DROP VIEW IF EXISTS `friend_invites` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `friend_invites` AS select `i`.`id` AS `id`,`i`.`token_id` AS `token_id`,`i`.`user_id` AS `user_id`,`i`.`to` AS `to`,`i`.`message` AS `message`,`i`.`type` AS `type`,`i`.`status` AS `status`,`i`.`created` AS `created`,sum(coalesce(`ic`.`id`,0)) AS `clicks` from (`invites` `i` left join `invite_clicks` `ic` on((`ic`.`token_id` = `i`.`token_id`))) group by `i`.`id`,`ic`.`token_id` */;
 
 /*View structure for view sponsee_listing */
 

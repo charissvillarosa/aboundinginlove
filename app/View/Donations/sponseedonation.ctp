@@ -17,8 +17,8 @@ $user = $this->Session->read('Auth.User');
     </div>
     <div class="span9 well" style="padding:0 0 0 0; background: #fff; margin-top:103px;">
         <div class="clearfix pull-left headerstyle">
-            <div class="pull-left leftmargin2 bottommargin2 banner">
-                <p class="fontsize1">DONATE A SPONSEE</p>
+            <div class="pull-left leftmargin2 bottommargin2">
+                <p class="fontsize1 banner">DONATE A SPONSEE</p>
             </div>
         </div>
         <div class="clearfix pull-left width2">

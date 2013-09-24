@@ -99,7 +99,7 @@ $user = $this->Session->read('Auth.User');
                 <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
                 <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
             </div>
-            <div>
+            <div class="clearfix pull-left">
                 <h4 class="fontcolor1">Recent Donations</h4>
                 <?php foreach ($list as $item) : 
                     $donation = $item['DonationHistory'];

@@ -1,89 +1,104 @@
+<style>
+    .headerstyle {
+        width:1130px;
+        padding:40px 10px 10px 30px;
+    }
+    .center {
+        width:910px;
+        margin:30px auto;
+    }
+</style>
 <div class="container tabs">
-    <div class="span11 margin3">
-        <div class="pull-left banner bottommargin2 leftmargin1">
-            <?php
-            $sponsee = $sponsee['Sponsee'];
-            echo "<h4 class='fontcolor1'>".$sponsee['firstname']." ".$sponsee['middlename']." ".$sponsee['lastname']." List of Needs</h4>"
-            ?>
-        </div>
-        <div class="pull-right bottommargin2">
-            <!-- Button to trigger modal -->
-            <a href="#myModal" role="button" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
-            <?php // echo $this->Html->link('Add New Record', array('action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-small')); ?>
-            <?php echo $this->Html->link('Go back to Sponsee List', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-info')); ?>
-        </div>
-        <div class="leftmargin1">
-            <?php echo $this->Session->flash(); ?>
-        </div>
-        <table class="leftmargin1 table table-hover table-bordered">
-            <?php
-            $ctr = 1;
-            $prevCat = 0;
-
-            if(empty($sponseeneeds)){
-                echo "<tr class='alert alert-info'>
-                    <td><h3>Not yet specified.</h3></td>
-                </tr>";
-            }
-            else {
-                foreach ($sponseeneeds as $item) :
-                    $need = $item['SponseeNeed'];
-                    $category = $item['Category'];
-                    $addedBy = $item['AddedBy'];
-
-                    if ($prevCat != $category['id']) : ?>
-                        <tr>
-                            <th bgcolor="#eef6fa" colspan="9">
-                                <?php echo '<span class="category">'.$category['description'].'</span>'; ?>
-                            </th>
-                        </tr
-                        <tr>
-                            <td bgcolor="#f9f9f9">No.</td>
-                            <td bgcolor="#f9f9f9">Description</td>
-                            <td bgcolor="#f9f9f9">Needed Amount</td>
-                            <td bgcolor="#f9f9f9">Donated Amount</td>
-                            <td bgcolor="#f9f9f9">Added By</td>
-                            <td bgcolor="#f9f9f9">Date Added</td>
-                            <td bgcolor="#f9f9f9">Date Modified</td>
-                            <td bgcolor="#f9f9f9">Edit</td>
-                            <td bgcolor="#f9f9f9">Delete</td>
-                        </tr>
-                    <?php 
-                    $prevCat = $category['id'];
-                    endif; 
+    <div>
+        <div class="pull-right headerstyle banner span11">
+            <div class="pull-left">
+                <p class="fontsize1">
+                    <?php
+                    $sponsee = $sponsee['Sponsee'];
+                    echo "<p class='fontsize1'>".$sponsee['firstname']." ".$sponsee['middlename']." ".$sponsee['lastname']." List of Needs</p>"
                     ?>
-                    <tr>
-                        <td bgcolor="#fff">
-                            <?php echo $ctr.'.'; ?>
-                            <span class="id" style="display:none;"><?php echo $need['id'] ?></span>
-                            <span class="sponseeid" style="display:none;"><?php echo $need['sponsee_id'] ?></span> 
-                        </td>
-                        <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
-                        <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
-                        <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
-                        <td bgcolor="#fff"><?php echo $addedBy['firstname'] ?></td>
-                        <td bgcolor="#fff"><?php echo $this->Time->format($need['created']) ?></td>
-                        <td bgcolor="#fff"><?php echo $this->Time->format($need['modified']) ?></td>
-                        <td>
-                            <a href="#" class="edit" title="Edit"><i class="icon-edit"></i></a>
-                           <!--<i><?php // echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit','title' => 'Edit')); ?></i>-->
-                        </td>
-                        <td>
-                            <i>
-                            <?php echo $this->Html->link(
-                                '',
-                                array('action' => 'delete', $need['id'], $need['sponsee_id']),
-                                array('class' => 'icon-trash','title' => 'Delete'),
-                                'Are you sure you want to delete this item?');
-                            ?>
-                            </i>
-                        </td>
-                    </tr>
-                    <?php $ctr++;
-                endforeach;
-            }
-        ?>
-        </table>
+                </p>
+            </div>
+            <div class="pull-right"><?php echo $this->Html->link('Go back to Sponsee List', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?></div>
+        </div>
+        <div class="span11">
+            <div class="pull-right bottommargin2">
+                <!-- Button to trigger modal -->
+                <a href="#myModal" role="button" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
+            </div>
+            <div class="leftmargin1">
+                <?php echo $this->Session->flash(); ?>
+            </div>
+            <table class="leftmargin1 table table-hover table-bordered">
+                <?php
+                $ctr = 1;
+                $prevCat = 0;
+
+                if(empty($sponseeneeds)){
+                    echo "<tr class='alert alert-info'>
+                        <td><h3>Not yet specified.</h3></td>
+                    </tr>";
+                }
+                else {
+                    foreach ($sponseeneeds as $item) :
+                        $need = $item['SponseeNeed'];
+                        $category = $item['Category'];
+                        $addedBy = $item['AddedBy'];
+
+                        if ($prevCat != $category['id']) : ?>
+                            <tr>
+                                <th bgcolor="#eef6fa" colspan="9">
+                                    <?php echo '<span class="category">'.$category['description'].'</span>'; ?>
+                                </th>
+                            </tr
+                            <tr>
+                                <td bgcolor="#f9f9f9">No.</td>
+                                <td bgcolor="#f9f9f9">Description</td>
+                                <td bgcolor="#f9f9f9">Needed Amount</td>
+                                <td bgcolor="#f9f9f9">Donated Amount</td>
+                                <td bgcolor="#f9f9f9">Added By</td>
+                                <td bgcolor="#f9f9f9">Date Added</td>
+                                <td bgcolor="#f9f9f9">Date Modified</td>
+                                <td bgcolor="#f9f9f9">Edit</td>
+                                <td bgcolor="#f9f9f9">Delete</td>
+                            </tr>
+                        <?php 
+                        $prevCat = $category['id'];
+                        endif; 
+                        ?>
+                        <tr>
+                            <td bgcolor="#fff">
+                                <?php echo $ctr.'.'; ?>
+                                <span class="id" style="display:none;"><?php echo $need['id'] ?></span>
+                                <span class="sponseeid" style="display:none;"><?php echo $need['sponsee_id'] ?></span> 
+                            </td>
+                            <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
+                            <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
+                            <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
+                            <td bgcolor="#fff"><?php echo $addedBy['firstname'] ?></td>
+                            <td bgcolor="#fff"><?php echo $this->Time->format($need['created']) ?></td>
+                            <td bgcolor="#fff"><?php echo $this->Time->format($need['modified']) ?></td>
+                            <td>
+                                <a href="#" class="edit" title="Edit"><i class="icon-edit"></i></a>
+                               <!--<i><?php // echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit','title' => 'Edit')); ?></i>-->
+                            </td>
+                            <td>
+                                <i>
+                                <?php echo $this->Html->link(
+                                    '',
+                                    array('action' => 'delete', $need['id'], $need['sponsee_id']),
+                                    array('class' => 'icon-trash','title' => 'Delete'),
+                                    'Are you sure you want to delete this item?');
+                                ?>
+                                </i>
+                            </td>
+                        </tr>
+                        <?php $ctr++;
+                    endforeach;
+                }
+            ?>
+            </table>
+         </div>
     </div>
 </div>
 

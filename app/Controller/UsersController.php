@@ -44,6 +44,11 @@ class UsersController extends AppController
 
     public function register()
     {
+        $this->loadModel('Country');
+        $this->set('countryList', $this->Country->find('list', array(
+            'fields' => array('id','description')
+        )));
+        
         // check for tokenId
         $tokenId = $this->request->query('tokenId');
 

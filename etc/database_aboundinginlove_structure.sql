@@ -228,7 +228,7 @@ CREATE TABLE `portfolio_images` (
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `portfolios` */
 
@@ -293,7 +293,7 @@ CREATE TABLE `sponsee_needs` (
   `modified` timestamp NULL DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL COMMENT 'OPEN|CLOSED',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsees` */
 
@@ -308,12 +308,12 @@ CREATE TABLE `sponsees` (
   `address` varchar(255) DEFAULT NULL,
   `country` varchar(10) DEFAULT NULL,
   `maplocation` varchar(500) DEFAULT NULL,
-  `videolink` varchar(500) DEFAULT NULL,
+  `videolink` text,
   `long_description` text,
   `short_description` text,
   `birthdate` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `users` */
 
@@ -337,6 +337,25 @@ CREATE TABLE `users` (
   UNIQUE KEY `uix_user_email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
+/*Table structure for table `friend_invites` */
+
+DROP TABLE IF EXISTS `friend_invites`;
+
+/*!50001 DROP VIEW IF EXISTS `friend_invites` */;
+/*!50001 DROP TABLE IF EXISTS `friend_invites` */;
+
+/*!50001 CREATE TABLE `friend_invites` (
+  `id` bigint(20) NOT NULL DEFAULT '0',
+  `token_id` varchar(50) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `to` text,
+  `message` text,
+  `type` varchar(100) DEFAULT NULL,
+  `status` varchar(200) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `clicks` decimal(41,0) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 */;
+
 /*Table structure for table `sponsee_listing` */
 
 DROP TABLE IF EXISTS `sponsee_listing`;
@@ -353,7 +372,7 @@ DROP TABLE IF EXISTS `sponsee_listing`;
   `address` varchar(255) DEFAULT NULL,
   `country` varchar(10) DEFAULT NULL,
   `maplocation` varchar(500) DEFAULT NULL,
-  `videolink` varchar(500) DEFAULT NULL,
+  `videolink` text,
   `long_description` text,
   `short_description` text,
   `birthdate` date DEFAULT NULL,
@@ -362,6 +381,13 @@ DROP TABLE IF EXISTS `sponsee_listing`;
   `total_donatedamount` decimal(32,2) DEFAULT NULL,
   `percentage` decimal(41,6) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 */;
+
+/*View structure for view friend_invites */
+
+/*!50001 DROP TABLE IF EXISTS `friend_invites` */;
+/*!50001 DROP VIEW IF EXISTS `friend_invites` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `friend_invites` AS select `i`.`id` AS `id`,`i`.`token_id` AS `token_id`,`i`.`user_id` AS `user_id`,`i`.`to` AS `to`,`i`.`message` AS `message`,`i`.`type` AS `type`,`i`.`status` AS `status`,`i`.`created` AS `created`,sum(coalesce(`ic`.`id`,0)) AS `clicks` from (`invites` `i` left join `invite_clicks` `ic` on((`ic`.`token_id` = `i`.`token_id`))) group by `i`.`id`,`ic`.`token_id` */;
 
 /*View structure for view sponsee_listing */
 

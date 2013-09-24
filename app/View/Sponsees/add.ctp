@@ -1,12 +1,21 @@
+<style>
+    .headerstyle {
+        width:1130px;
+        padding:40px 10px 10px 30px;
+    }
+    .center {
+        width:910px;
+        margin:30px auto;
+    }
+</style>
 <div class="container tabs">
-    <div class="span11 margin3 leftmargin1">
-        <div class="pull-right">
-            <?php echo $this->Html->link('Go back to Sponsee List', array('action' => 'index'), array('class' => 'btn btn-info btn-small')); ?>
+    <div class="leftmargin1">
+        <div class="pull-right headerstyle banner span11">
+            <div class="pull-left"><p class="fontsize1">NEW SPONSEE RECORD</p></div>
+            <div class="pull-right"><?php echo $this->Html->link('Go back to Sponsee List', array('action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?></div>
         </div>
-        <div class="leftmargin2 topmargin1">
-            <h4 class="fontcolor1 banner"><?php echo __('New Sponsee Record'); ?></h4>
-            <hr>
-            <div>
+        <div class="clearfix pull-left span11">
+            <div class="center">
                 <?php
                 echo $this->Form->create('Sponsee', array('action' => "add"));
                 ?>
@@ -23,13 +32,13 @@
                     ));
                     ?></div>
                      <div class="pull-left"><?php echo $this->Form->input('birthdate', array('style' => 'width:150px;', 'maxYear' => date('Y'), 'minYear' => 1950)); ?></div>
-                    <div class="pull-left"><?php echo $this->Form->input('maplocation', array('class' => 'span8')); ?></div>
-                    <div class="pull-left"><?php echo $this->Form->input('videolink', array('class' => 'span8')); ?></div>
-                    <div class="pull-left"><?php echo $this->Form->input('short_description', array('class' => 'span8', 'rows' => '15')); ?></div>
-                    <div class="pull-left"><?php echo $this->Form->input('long_description', array('class' => 'span8', 'rows' => '15')); ?></div>
+                    <div class="pull-left"><?php echo $this->Form->input('maplocation', array('class' => 'span9')); ?></div>
+                    <div class="pull-left"><?php echo $this->Form->input('videolink', array('class' => 'span9', 'rows' => '10')); ?></div>
+                    <div class="pull-left"><?php echo $this->Form->input('short_description', array('class' => 'span9', 'rows' => '15')); ?></div>
+                    <div class="pull-left"><?php echo $this->Form->input('long_description', array('class' => 'span9', 'rows' => '15')); ?></div>
                     <?php echo $this->Form->hidden('id') ?>
                 </fieldset>
-                <?php echo $this->Form->end('Save') ?>
+                <div class="leftmargin5"><?php echo $this->Form->end('Save') ?></div>
             </div>
         </div>
     </div>
