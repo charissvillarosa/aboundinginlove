@@ -9,6 +9,12 @@ class PortfoliosController extends AppController
 
     var $layout = 'document';
     
+    var $uses = array('User', 'Sponsee', 'Portfolio');
+    
+    var $paginate = array(
+        'limit' => 4
+    );
+    
     public function beforeFilter()
     {
         parent::beforeFilter();
@@ -36,7 +42,7 @@ class PortfoliosController extends AppController
         $this->loadModel('Sponsee');
         $sponsee = $this->Sponsee->find('all');
         if ($sponsee) {
-            $this->set("sponseelist", $sponsee);
+            $this->set('sponseelist', $this->paginate('Sponsee'));
         }
         else {
             $this->render('/Errors/notFound');
@@ -49,7 +55,7 @@ class PortfoliosController extends AppController
             'order' => array('Portfolio.category_id')
         ));
 
-        $this->set("listing", $portfolio);
+        $this->set("listing", $this->paginate('Portfolio'));
     }
     
     public function gallery() {

@@ -94,7 +94,8 @@ $user = $this->Session->read('Auth.User');
                     <h4 class="fontcolor1 topmargin2">NEEDS</h4>
                     <?php
                         $user = $this->Session->read('Auth.User');
-
+                        $addbutton = $this->Html->url(array('controller'=>'Sponsees', 'action' => 'add'));
+                        
                         if(empty($sponseeneeds)){
 
                             $controller = $this->name;
@@ -103,7 +104,7 @@ $user = $this->Session->read('Auth.User');
                                 echo "<div class='alert alert-info'>
                                     <h4>Not yet specified.</h4> 
                                     <p class='topmargin1'>To add, just click the add button below.</p>";
-                                echo "<a href='#myModal' role='button' class='btn btn-info add'><i class='icon-plus'></i> Add Record</a>";
+                                echo "<a href=\"$addbutton\" class=\"btn btn-info add\"><i class=\"icon-plus\"></i> Add Record</a>";
                                 echo "</div>";
                             }
                             else {
@@ -117,7 +118,8 @@ $user = $this->Session->read('Auth.User');
                                 foreach ($sponseeneeds as $item) :
                                     $need = $item['SponseeNeed'];
                                     $category = $item['Category'];
-
+                                    $addedby = $item['AddedBy'];
+ 
                                     if ($prevCat != $category['id']) : ?>
                                         <tr>
                                             <th bgcolor="#eef6fa" colspan="7">
@@ -132,7 +134,7 @@ $user = $this->Session->read('Auth.User');
                                             <?php if ($user && $user['role'] == 'admin'){
                                                echo "
                                                  <td bgcolor='#f9f9f9'>Added By</td>
-                                                 <td bgcolor='#f9f9f9'>Date Added</td>
+                                                 <td bgcolor='#f9f9f9'>Date Created</td>
                                                  <td bgcolor='#f9f9f9'>Date Modified</td>
                                                ";
                                             }?>
@@ -147,9 +149,9 @@ $user = $this->Session->read('Auth.User');
                                         <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['neededamount']) ?></td>
                                         <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
                                         <?php if ($user && $user['role'] == 'admin'){
-                                            echo "<td bgcolor='#fff'>".$need['added_by']."</td>";
-                                            echo "<td bgcolor='#fff'>".$need['created']."</td>";
-                                            echo "<td bgcolor='#fff'>".$need['modified']."</td>";
+                                            echo "<td bgcolor='#fff'>".$addedby['firstname'].' '.$addedby['lastname']."</td>";
+                                            echo "<td bgcolor='#fff'>".$this->Time->format($need['created'])."</td>";
+                                            echo "<td bgcolor='#fff'>".$this->Time->format($need['modified'])."</td>";
                                          }?>
                                     </tr>
                                     <?php

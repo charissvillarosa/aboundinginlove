@@ -1,7 +1,6 @@
 <div class="container tabs">
     <div class="span11 margin3">
         <div class="pull-right bottommargin2 banner">
-            <!-- Button to trigger modal -->
             <a href="<?php echo $this->Html->url(array('controller'=>'Sponsees', 'action' => 'add')) ?>" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
         </div>
         <div class="leftmargin1">

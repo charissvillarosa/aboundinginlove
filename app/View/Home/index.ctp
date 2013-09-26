@@ -104,7 +104,14 @@
                                     echo $this->Text->truncate($info, 150, array('exact' => false));
                                     ?>
                                 </p>
-                                <?php echo $this->Html->link('Read more', array('controller' => 'sponsees', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-small')); ?>
+                                <?php
+                                $user = $this->Session->read('Auth.User');
+
+                                if ($user && $user['role'] == 'admin') $value = "adminview";
+                                else $value = "view";
+                                
+                                echo $this->Html->link('Read more', array('controller' => 'sponsees', 'action' => $value, $sponsee['id']), array('class' => 'btn btn-info btn-small'));
+                                ?>
                             </div>
                             <div class="rightfloat span2 verticalline">
                                 <?php 

@@ -15,7 +15,7 @@
                 <p class="fontsize1">
                     <?php
                     $sponsee = $sponsee['Sponsee'];
-                    echo "<p class='fontsize1'>".$sponsee['firstname']." ".$sponsee['middlename']." ".$sponsee['lastname']." List of Needs</p>"
+                    echo "<p class='fontsize1'>".$sponsee['firstname']." ".$sponsee['middlename']." ".$sponsee['lastname']." Needs</p>"
                     ?>
                 </p>
             </div>

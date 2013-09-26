@@ -9,7 +9,7 @@ class SponseeNeedsController extends AppController
     var $layout = 'document';
 
     var $paginate = array(
-        'limit' => 5
+        'limit' => 10
     );
 
     public function beforeFilter()

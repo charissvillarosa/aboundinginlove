@@ -1,4 +1,4 @@
-<div class="pull-right span11 topmargin1">
+<div class="pull-right span11">
     <div class="navbar banner">
         <div class="navbar-inner">
             <ul class="nav">
@@ -37,6 +37,12 @@
         <?php
             endforeach;
         ?>
+        </div>
+        <div>
+            <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+            <?php echo $this->Paginator->numbers(); ?>
+            <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+            <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
         </div>
      </div>
 </div>

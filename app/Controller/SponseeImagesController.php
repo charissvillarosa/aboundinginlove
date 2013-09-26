@@ -68,7 +68,7 @@ class SponseeImagesController extends AppController
 
             try{
                 if ($this->SponseeImage->save()) {
-                    $this->redirect(array('controller'=>'sponsees', 'action'=>'view', $id));
+                    $this->redirect(array('controller'=>'sponsees', 'action'=>'adminview', $id));
                 } else {
                     $this->Session->setFlash('Please correct errors below.');
                 }

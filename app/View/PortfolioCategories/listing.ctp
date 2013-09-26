@@ -63,7 +63,7 @@
   <div class="modal-body">
     <div class="leftmargin1">
         <?php
-        echo $this->Form->create('', array('type' => 'GET', 'url' => array('controller'=>'PortfolioCategory', 'action' => 'add')));
+        echo $this->Form->create('', array('type' => 'GET', 'url' => array('controller'=>'PortfolioCategories', 'action' => 'add')));
         ?>
         <fieldset>
             <?php echo $this->Form->input('description', array('label' => 'Description', 'class'=>'span5')) ?>
