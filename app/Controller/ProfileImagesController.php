@@ -15,7 +15,7 @@ class ProfileImagesController extends AppController
         $this->Auth->allow('view');
     }
     
-    public function view($id)
+    public function view($id, $hashKey = null)
     {
         $this->autoRender = false;
         
@@ -67,6 +67,10 @@ class ProfileImagesController extends AppController
             $this->ProfileImage->set('id', $id);
             $this->ProfileImage->set('content_type', $type);
             $this->ProfileImage->set('image', $content);
+
+            $randomKey = Security::generateAuthKey();
+            $hashKey = Security::hash($randomKey, 'sha1');
+            $this->ProfileImage->set('hash_key', $hashKey);
 
             try{
                 if ($this->ProfileImage->save()) {

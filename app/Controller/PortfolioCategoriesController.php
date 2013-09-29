@@ -32,7 +32,7 @@ App::uses('AppController', 'Controller');
 class PortfolioCategoriesController extends AppController {
     var $layout = 'document';
     
-    var $uses = array('User', 'PortfolioCategory');
+    var $uses = array('PortfolioCategory', 'User');
     
     var $paginate = array(
         'limit' => 10
@@ -78,11 +78,11 @@ class PortfolioCategoriesController extends AppController {
             $this->PortfolioCategory->create();
             if ($this->PortfolioCategory->save($this->request->data)) {
                 $this->Session->setFlash(__('Portfolio name has been successfully saved.'));
-                $this->redirect(array('action' => 'listing'));
             }
             else {
                 $this->Session->setFlash(__('The Portfolio name could not be saved. Please, try again.'));
             }
+            $this->redirect(array('action' => 'listing'));
         }
     }
 

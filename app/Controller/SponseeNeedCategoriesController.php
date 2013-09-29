@@ -8,7 +8,7 @@ class SponseeNeedCategoriesController extends AppController
     var $adminActions = array(); // Letting users access the following pages
     var $layout = 'document';
 
-    var $uses = array('User', 'SponseeNeedCategory');
+    var $uses = array('SponseeNeedCategory', 'User');
     
     var $paginate = array(
         'limit' => 10
@@ -42,11 +42,11 @@ class SponseeNeedCategoriesController extends AppController
             $this->SponseeNeedCategory->create();
             if ($this->SponseeNeedCategory->save($this->request->data)) {
                 $this->Session->setFlash(__('Sponsee need has been successfully saved.'));
-                $this->redirect(array('action' => 'listing'));
             }
             else {
                 $this->Session->setFlash(__('The Category could not be saved. Please, try again.'));
             }
+            $this->redirect(array('action' => 'listing'));
         }
     }
     

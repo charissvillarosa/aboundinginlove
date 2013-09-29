@@ -8,6 +8,15 @@ App::uses("AuthComponent ", "Controller/Component");
  */
 class User extends AppModel
 {
+    var $hasOne = array(
+        'Image' => array(
+            'className' => 'ProfileImage',
+            'foreignKey' => 'id',
+            'dependent' => true,
+            // the 'image' field is not required here
+            'fields' => array('hash_key')
+        )
+    );
 
     public $validate = array(
         "firstname" => array(

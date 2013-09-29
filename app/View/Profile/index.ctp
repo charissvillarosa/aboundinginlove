@@ -26,7 +26,7 @@
             <div class="pull-left width1">
                 <div>
                     <?php
-                        $imageURl = array('controller' => 'ProfileImages', 'action' => 'view', $user['id']);
+                        $imageURl = array('controller' => 'ProfileImages', 'action' => 'view', $user['id'], $userImage['hash_key']);
                         $attrs = array('alt' => '', 'width' => '190px', 'class' => 'img-polaroid');
                         echo $this->Html->image($imageURl, $attrs);
                     ?>

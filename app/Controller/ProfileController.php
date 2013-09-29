@@ -14,6 +14,7 @@ class ProfileController extends AppController {
         $this->User->id = $this->getCurrentUserId();
         $user = $this->User->read();
         $this->set('user', $user['User']);
+        $this->set('userImage', $user['Image']);
     }
 
     public function edit() {
