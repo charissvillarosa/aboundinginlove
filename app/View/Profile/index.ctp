@@ -2,7 +2,7 @@
     <div class="dropdown clearfix span2 topmargin3">
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
             <li class="<?php echo $this->name == 'Profile' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Account Settings',array('controller'=>'Profile', 'action' => 'index'))?>
+                <?php echo $this->Html->link('Donor Profile',array('controller'=>'Profile', 'action' => 'index'))?>
             </li>
             <li class="<?php echo $this->name == 'DonationHistory' ? 'active' : '' ?>">
                 <?php echo $this->Html->link('Donation History',array('controller'=>'DonationHistory', 'action' => 'index'))?>
@@ -15,7 +15,7 @@
     <div class="span9 well" style="padding:0 0 30px 0; background: #fff; margin-top:103px;">
        <div class="clearfix pull-left headerstyle">
             <div class="pull-left leftmargin2 bottommargin2">
-                <p class="fontsize1">ACCOUNT SETTING</p>
+                <p class="fontsize1">DONOR PROFILE</p>
             </div>
             <div class="pull-right leftmargin2 bottommargin2">
                 <?php echo $this->Html->link('Edit Profile', array('action' => 'edit'), array('class' => 'btn btn-info'))?>

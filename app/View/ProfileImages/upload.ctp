@@ -5,7 +5,7 @@ $user = $this->Session->read('Auth.User');
     <div class="dropdown clearfix span2 topmargin3">
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
             <li class="active">
-                <?php echo $this->Html->link('Account Setting',array('controller'=>'Profile', 'action' => 'index'))?>
+                <?php echo $this->Html->link('Donor Profile',array('controller'=>'Profile', 'action' => 'index'))?>
             </li>
             <li class="<?php echo $this->name == 'DonationHistory' ? 'active' : '' ?>">
                 <?php echo $this->Html->link('Donation History',array('controller'=>'DonationHistory', 'action' => 'index'))?>
@@ -16,25 +16,27 @@ $user = $this->Session->read('Auth.User');
         </ul>
     </div>
     <div class="span9 well" style="padding:0 0 30px 0; background: #fff; margin-top:103px;">
-        <div class="clearfix pull-left headerstyle">
-            <div class="pull-left leftmargin2 bottommargin2">
-                <p class="fontsize1">CHANGE PROFILE IMAGE</p>
+        <div>
+            <div class="pull-right headerstyle banner">
+                <div class="pull-left leftmargin1"><p class="fontsize1">UPLOAD DONOR PROFILE IMAGE</p></div>
+                <div class="pull-right"><?php echo $this->Html->link('Go back', array('controller' => 'profile','action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?></div>
             </div>
-        </div>
-        <div class="width:900px; margin:10px auto;" class="clearfix pull-left leftmargin2">
-            <div style="width:500px; height:300px; border:dashed 4px #ddd; margin:100px auto 20px auto; padding:20px;">
-                <div style="text-align: center; width:380px; margin:100px auto;">
-                    <?php echo $this->Session->flash(); ?>
-                    <p>File must be less than 2 megabytes.</p>
-                    <?php echo $this->Form->create('ProfileImage', array('type'=>'file'));?>
-                    <fieldset>
-                        <?php
-                        echo $this->Form->input('image', array('type' => 'file', 'label'=>'', 'class' => 'btn btn-large'));
-                        ?>
-                    </fieldset>
+            <div class="clearfix topmargin1">
+                <div class="box" style="width:393px; padding: 20px; margin: 30px auto; overflow: auto;">
+                    <div class="clearfix pull-left">
+                        <?php echo $this->Session->flash(); ?>
+                        <p class="leftmargin1">File must be less than 2 megabytes.</p>
+                        <?php echo $this->Form->create('ProfileImage', array('type'=>'file'));?>
+                        <fieldset>
+                            <?php
+                            echo $this->Form->input('image', array('type' => 'file', 'label'=>'', 'class' => 'btn btn-large'));
+                            ?>
+                        </fieldset>
+                        <hr style="margin-left:10px;">
+                        <span style="text-align: right;"><?php echo $this->Form->end(__('UPLOAD IMAGE')); ?></span>
+                    </div>
                 </div>
-            </div>
-            <div style="width:710px;"><div class="pull-right"><?php echo $this->Form->end(__('Upload Image')); ?></div></div>
+             </div>
         </div>
     </div>
 </div>
