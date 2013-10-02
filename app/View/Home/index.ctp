@@ -81,6 +81,8 @@
                 <?php
                 foreach ($sponseeList as $item) :
                     $sponsee = $item['SponseeListingItem'];
+                    $sponseeImage = $item['Image'];
+
                     ?>
                     <div class="pull-left topmargin1 box">
                         <div class="pull-left">
