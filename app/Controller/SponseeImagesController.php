@@ -20,10 +20,11 @@ class SponseeImagesController extends AppController
 
         $this->SponseeImage->id = $id;
         $photo = $this->SponseeImage->read();
+
+        // let browser cache it for 1 year
+        header('Cache-Control: public, max-age=31536000');
         
         if ($photo) {
-            header('Cache-Control: public');
-            header('Cache-Control: max-age=3600');
             header('Content-type: ' . $photo['SponseeImage']['content_type']);
             echo $photo['SponseeImage']['image'];
         } else {
@@ -65,6 +66,10 @@ class SponseeImagesController extends AppController
             $this->SponseeImage->set('id', $id);
             $this->SponseeImage->set('content_type', $type);
             $this->SponseeImage->set('image', $content);
+
+            $randomKey = Security::generateAuthKey();
+            $hashKey = Security::hash($randomKey, 'sha1');
+            $this->SponseeImage->set('hash_key', $hashKey);
 
             try{
                 if ($this->SponseeImage->save()) {

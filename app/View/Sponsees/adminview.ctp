@@ -31,7 +31,12 @@ $user = $this->Session->read('Auth.User');
             <div class="span2 box bottommargin1">
                 <div>
                     <?php
-                    $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+                    $imageURl = array(
+                        'controller' => 'SponseeImages',
+                        'action' => 'view',
+                        $sponsee['id'], $sponseeImage['hash_key']
+                    );
+                    
                     $attrs = array('alt' => '', 'width' => '160', 'class' => 'img-polaroid');
                     echo $this->Html->image($imageURl, $attrs);
                     ?>

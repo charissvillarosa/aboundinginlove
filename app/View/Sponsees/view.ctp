@@ -17,7 +17,7 @@ $user = $this->Session->read('Auth.User');
 <div class="clearfix topmargin1 well span8 pull-right">
     <div style="margin-left:0;" class="span2 pull-left">
         <?php
-        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
         $attrs = array('alt' => '', 'width' => '160px', 'class' => 'img-polaroid');
         echo $this->Html->image($imageURl, $attrs);
         ?>
@@ -86,7 +86,7 @@ $user = $this->Session->read('Auth.User');
         <div style="margin-left:0; width:810px;" class="pull-left box">
             <div style="margin-left:0;" class="span3 pull-left">
                 <?php
-                $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+                $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
                 $attrs = array('alt' => '', 'width' => '260px', 'class' => 'img-polaroid');
                 echo $this->Html->image($imageURl, $attrs);
                 ?>
@@ -139,7 +139,7 @@ $user = $this->Session->read('Auth.User');
         <div style="margin-left:0; width:790px; margin-bottom: 20px;" class="pull-left box">
             <div style="margin-left:0;" class="span3 pull-left">
                 <?php
-                $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+                $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
                 $attrs = array('alt' => '', 'width' => '260px', 'class' => 'img-polaroid');
                 echo $this->Html->image($imageURl, $attrs);
                 ?>

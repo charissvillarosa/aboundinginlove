@@ -85,7 +85,11 @@
                     <div class="pull-left topmargin1 box">
                         <div class="pull-left">
                             <?php
-                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+                            $imageURl = array(
+                                'controller' => 'SponseeImages',
+                                'action' => 'view',
+                                $sponsee['id'], $sponseeImage['hash_key']
+                            );
                             $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
                             echo $this->Html->image($imageURl, $attrs);
                             ?>

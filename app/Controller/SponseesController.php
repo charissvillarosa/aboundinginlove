@@ -70,6 +70,7 @@ class SponseesController extends AppController
         $sponsee = $this->Sponsee->read(null, $id);
         if ($sponsee) {
             $this->set("sponsee", $sponsee['Sponsee']);
+            $this->set("sponseeImage", $sponsee['Image']);
         }
         else {
             $this->render('/Errors/notFound');
@@ -94,6 +95,7 @@ class SponseesController extends AppController
         $sponsee = $this->Sponsee->read(null, $id);
         if ($sponsee) {
             $this->set("sponsee", $sponsee['Sponsee']);
+            $this->set("sponseeImage", $sponsee['Image']);
         }
         else {
             $this->render('/Errors/notFound');

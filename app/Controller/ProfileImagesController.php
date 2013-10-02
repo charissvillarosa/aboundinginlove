@@ -23,9 +23,10 @@ class ProfileImagesController extends AppController
         $this->ProfileImage->id = $id;
         $photo = $this->ProfileImage->read();
 
+        // let browser cache it for 1 year
+        header('Cache-Control: public, max-age=31536000');
+
         if ($photo) {
-            header('Cache-Control: public');
-            header('Cache-Control: max-age=3600');
             header('Content-type: ' . $photo['ProfileImage']['content_type']);
             echo $photo['ProfileImage']['image'];
         } else {

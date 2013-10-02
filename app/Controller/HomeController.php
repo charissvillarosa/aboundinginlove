@@ -21,6 +21,10 @@ class HomeController extends AppController
     {
         $this->loadModel('SponseeListingItem');
         $this->set("sponseeList", $this->paginate('SponseeListingItem'));
+
+        //to get sponsee image
+        $this->loadModel('Sponsee');
+        $this->set("sponseeImage", $sponsee['Image']);
     }
 
 }

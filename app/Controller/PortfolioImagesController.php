@@ -21,9 +21,10 @@ class PortfolioImagesController extends AppController
         $this->PortfolioImage->id = $id;
         $photo = $this->PortfolioImage->read();
 
+        // let browser cache it for 1 year
+        header('Cache-Control: public, max-age=31536000');
+
         if ($photo) {
-            header('Cache-Control: public');
-            header('Cache-Control: max-age=3600');
             header('Content-type: ' . $photo['PortfolioImage']['content_type']);
             echo $photo['PortfolioImage']['image'];
         } else {
@@ -51,6 +52,7 @@ class PortfolioImagesController extends AppController
             }
             else {
                 $this->Session->setFlash('Please choose an image to be uploaded.');
+                $this->redirect(array('action' => 'upload', $sponsee_id, $category_id));
             }
 
             unlink($tempName);
