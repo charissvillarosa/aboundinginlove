@@ -16,9 +16,10 @@
         <?php
             foreach ($sponseelist as $item) :
                $sponsee = $item['Sponsee'];
+               $sponseeImage = $item['Image'];
         ?>
         <?php
-            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
             $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
             echo '<div class="pull-left bottommargin3">
                     <div class="pull-left box">

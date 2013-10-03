@@ -41,7 +41,7 @@ class SponseesController extends AppController
         $this->set('countryList', $this->Country->find('list', array(
             'fields' => array('id','description')
         )));
-        
+
         $user = $this->Session->read('Auth.User');
         if ($user && $user['role'] == 'admin') {
             $this->render('admin-index');

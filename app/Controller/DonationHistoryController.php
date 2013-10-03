@@ -16,7 +16,10 @@ class DonationHistoryController extends AppController
         $sessUser = $this->Session->read('Auth.User');
         $this->loadModel('User');
         $id = $sessUser['id'];
-        
+
+        $this->loadModel('SponseeListingItem');
+        $this->set("sponseeList", $this->paginate('SponseeListingItem'));
+
         //table display
         $this->set('donationitems', $this->paginate('DonationHistory', array('DonationHistory.user_id' => $id)));
         

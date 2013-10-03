@@ -4,11 +4,12 @@
         <?php
         foreach ($sponseeList as $item) :
             $sponsee = $item['SponseeListingItem'];
+            $sponseeImage = $item['Image'];
             ?>
             <div class="pull-left topmargin1 leftmargin1 box">
                 <div class="pull-left rightmargin1">
                     <?php
-                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
                         $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
                         echo $this->Html->image($imageURl, $attrs);
                     ?>

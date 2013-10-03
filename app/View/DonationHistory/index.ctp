@@ -28,9 +28,13 @@ $user = $this->Session->read('Auth.User');
             <div>
                 <div class="pull-left">
                 <?php
-                    $imageURl = array('controller' => 'ProfileImages', 'action' => 'view', $user['id']);
-                    $attrs = array('alt' => '', 'width' => '190px', 'class' => 'img-polaroid');
-                    echo $this->Html->image($imageURl, $attrs);
+                foreach ($sponseeList as $item) :
+                    $sponseeImage = $item['Image'];
+                endforeach;
+
+                $imageURl = array('controller' => 'ProfileImages', 'action' => 'view', $user['id'], $sponseeImage['hash_key']);
+                $attrs = array('alt' => '', 'width' => '190px', 'class' => 'img-polaroid');
+                echo $this->Html->image($imageURl, $attrs);
                 ?>
                 </div>
                 <div class="pull-left span6">
@@ -78,10 +82,12 @@ $user = $this->Session->read('Auth.User');
                         <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
                         <td>
                             <?php 
-                            if($donation['donation_type']=='organization')
-                                echo "Organization"; 
-                            else
-                                echo $sponsee['firstname'].' '.$sponsee['lastname']; 
+                            if($donation['donation_type']=='organization'){
+                                echo "Organization";
+                            }
+                            else{
+                                echo $sponsee['firstname'].' '.$sponsee['lastname'];
+                            }
                             ?>
                         </td>
                         <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
@@ -112,7 +118,7 @@ $user = $this->Session->read('Auth.User');
                         if($donation['donation_type']!='organization'){
                             echo '<div style="padding-right:30px; text-align: center;" class="pull-left rightmargin1">';    
                             
-                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id']);
+                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
                             $attrs = array('alt' => '', 'width' => '150', 'class' => 'img-polaroid');
                             echo $this->Html->image($imageURl, $attrs);
                     ?>
