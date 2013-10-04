@@ -81,11 +81,44 @@ class PortfoliosController extends AppController
 
         $this->set("sponsee_id", $id);
     }
+
+    public function edit($id){
+        if (!$id) {
+            throw new NotFoundException(__('Invalid input'));
+        }
+
+        $this->Portfolio->id = $id;
+        $portfolioname = $this->Portfolio->read();
+
+        if ($this->request->is('get')) {
+            if (!$portfolioname) {
+                throw new NotFoundException(__('Invalid input'));
+            }
+            $this->request->data = $portfolioname;
+        }
+        else {
+            if ($this->Portfolio->save($this->request->data)) {
+                $this->redirect(array('action' => 'listing', $id));
+            } else {
+                $this->Session->setFlash('Unable to update the record.');
+            }
+        }
+
+        $this->set("list", $portfolioname);
+    }
     
     public function delete($id, $sponsee_id) {
         if ($this->Portfolio->delete($id)) {
-            $this->Session->setFlash('Record has been deleted.');
+            $this->Session->setFlash('Record has been successfully deleted.');
         }
         $this->redirect(array('action' => 'listing', $sponsee_id));
+    }
+
+    public function itemdelete($id, $sponsee_id) {
+        $this->loadModel('PortfolioImage');
+        if ($this->PortfolioImage->delete($id)){
+            $this->Session->setFlash('Image has been deleted.');
+        }
+        $this->redirect(array('controller' => 'portfolios', 'action' => 'listing', $sponsee_id));
     }
 }

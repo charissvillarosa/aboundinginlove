@@ -24,8 +24,8 @@
                         
                         if ($prevCat != $category['id']) : ?>
                             <tr>
-                                <th bgcolor="#eef6fa" colspan="2">
-                                    <?php echo $category['description'] ?>
+                                <th bgcolor="#eef6fa" colspan="3">
+                                    <span class="cat"><?php echo $category['description'] ?></div>
                                 </th>
                             </tr
                         <?php
@@ -36,9 +36,12 @@
                             <td bgcolor="#eef6fa">
                                 <span class="id" style="display:none;"><?php echo $need['id'] ?></span>
                                 <span class="sponseeid" style="display:none;"><?php echo $need['sponsee_id'] ?></span>
-                                <?php echo $portfolio['description'] ?>
+                                <span class="desc"><?php echo $portfolio['description'] ?></span>
                             </td>
-                            <th>
+                            <td>
+                                <a href="#" class="edit" title="Edit"><i class="icon-edit"></i></a>
+                            </td>
+                            <td>
                                 <i>
                                 <?php
                                     $id = $portfolio['id'];
@@ -51,28 +54,39 @@
                                     'Are you sure you want to delete this item?');
                                 ?>
                                 </i>
-                            </th>
+                            </td>
                         </tr
                         <tr>
                             <td bgcolor='#fff' colspan='2'>
                             <?php
                                 if(empty($item['Images'])){
                                     echo "<p>No photo uploaded</p><br>";
-                                    echo $this->Html->link(
+                                    echo '<div class="clearfix"><div class="pull-right">'.$this->Html->link(
                                     'Upload Image',
                                     array('controller' => 'PortfolioImages', 'action' => 'upload', $sponsee_id, $id),
-                                    array('class' => 'btn btn-info btn-small'));
+                                    array('class' => 'btn btn-info btn-large'));
+                                    echo '</div>';
                                 }
                                 else {
                                     foreach ($item['Images'] as $image) :
+                                        $imageid = $image['id'];
+
                                         $imageURl = array('controller' => 'PortfolioImages', 'action' => 'view', $image['id']);
-                                        $attrs = array('alt' => '', 'width' => '100', 'class' => 'leftmargin1 img-polaroid', 'title'=>$image['description']);
-                                        echo $this->Html->image($imageURl, $attrs);
+                                        $attrs = array('alt' => '', 'width' => '160', 'class' => 'leftmargin1 img-polaroid', 'title'=>$image['description']);
+                                        echo '<div style="padding:0; margin:0 20px 0 0;" class="span2">'.$this->Html->image($imageURl, $attrs);
+                                        echo $this->Html->link(
+                                            'Delete this image?',
+                                            array('action' => 'itemdelete', $imageid, $sponsee_id),
+                                            array('class' => 'btn btn-info btn-block leftmargin1'),
+                                            'Are you sure you want to delete this image?');
+                                        echo '</div>';
                                     endforeach;
-                                    echo '<br><br><br>'.$this->Html->link(
+                                    
+                                    echo '<div class="clearfix"><hr><div class="pull-right">'.$this->Html->link(
                                     'Upload Image',
                                     array('controller' => 'PortfolioImages', 'action' => 'upload', $sponsee_id, $id),
-                                    array('class' => 'btn btn-info btn-small'));
+                                    array('class' => 'btn btn-info btn-large leftmargin1'));
+                                    echo '</div></div>';
                                 }
                     endforeach;
                 }
@@ -97,7 +111,7 @@
         ?>
         <fieldset>
             <?php echo $this->Form->input('category_id', array('type'=>'select','options'=>$portfoliolisting,'class'=>'span4')); ?>
-            <?php echo $this->Form->input('description', array('label' => 'Description','class'=>'span4')); ?>
+            <?php echo $this->Form->input('description', array('label' => 'Description','class'=>'span5', 'rows' =>'10')); ?>
             <?php echo $this->Form->hidden('id') ?>
         </fieldset>
         <?php echo $this->Form->end() ?>
@@ -137,6 +151,16 @@
         var tr = $(this).closest('tr');
         $('#myModalLabel').html('Add User');
         $('#myModal fieldset input').val('');
+        $('#myModal').modal('show');
+    });
+
+    // edit handler
+    $('.edit').click(function(e) {
+        e.preventDefault();
+        var tr = $(this).closest('tr');
+        $('#myModalLabel').html('Edit Portfolio');
+        $('#myModal [id*=Description]').val(tr.find('.desc').html().trim());
+        $('#myModal [id*=Id]').val(tr.find('.id').val());
         $('#myModal').modal('show');
     });
 </script>
