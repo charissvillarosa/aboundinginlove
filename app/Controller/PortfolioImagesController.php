@@ -64,7 +64,7 @@ class PortfolioImagesController extends AppController
             $this->PortfolioImage->set('image', $content);
             
             if ($this->PortfolioImage->save()) {
-                $this->redirect(array('controller'=>'Portfolios', 'action'=>'listing', $sponsee_id, $category_id));
+                $this->redirect(array('controller'=>'Portfolios', 'action'=>'listing', $sponsee_id));
             } else {
                 $this->Session->setFlash('Please correct errors below.');
             }

@@ -18,7 +18,6 @@
                 }
                 else {
                     foreach ($listing as $item) :
-                        $id = $item['Portfolio']['sponsee_id'];
                         $portfolio = $item['Portfolio'];
                         $category= $item['Category'];
                         
@@ -34,8 +33,9 @@
                         ?>
                         <tr>
                             <td bgcolor="#eef6fa">
-                                <span class="id" style="display:none;"><?php echo $need['id'] ?></span>
-                                <span class="sponseeid" style="display:none;"><?php echo $need['sponsee_id'] ?></span>
+                                <span class="cat-id" style="display:none;"><?php echo $category['id'] ?></span>
+                                <span class="id" style="display:none;"><?php echo $portfolio['id'] ?></span>
+                                <span class="sponseeid" style="display:none;"><?php echo $portfolio['sponsee_id'] ?></span>
                                 <span class="desc"><?php echo $portfolio['description'] ?></span>
                             </td>
                             <td>
@@ -55,7 +55,7 @@
                                 ?>
                                 </i>
                             </td>
-                        </tr
+                        </tr>
                         <tr>
                             <td bgcolor='#fff' colspan='2'>
                             <?php
@@ -159,8 +159,9 @@
         e.preventDefault();
         var tr = $(this).closest('tr');
         $('#myModalLabel').html('Edit Portfolio');
+        $('#myModal [id*=CategoryId]').val(tr.find('.cat-id').html().trim());
         $('#myModal [id*=Description]').val(tr.find('.desc').html().trim());
-        $('#myModal [id*=Id]').val(tr.find('.id').val());
+        $('#myModal [id*=Id]').val(tr.find('.id').html());
         $('#myModal').modal('show');
     });
 </script>
