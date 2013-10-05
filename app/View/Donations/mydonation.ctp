@@ -1,6 +1,11 @@
 <?php
+// ----- LOAD OBJECTS ------
 $user = $this->Session->read('Auth.User');
+$sponsee = $donation['Sponsee'];
+$sponseeImage = $sponsee['Image'];
+$sponseeneeds = $donation['Items'];
 ?>
+
 <div class="container">
     <div class="dropdown clearfix span2 topmargin3">
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
@@ -20,48 +25,21 @@ $user = $this->Session->read('Auth.User');
     </div>
     <div class="span9 well" style="padding:0 0 0 0; background: #fff; margin-top:103px;">
         <div class="clearfix pull-left headerstyle">
-            <?php
-            $sponsee = $sponsee['SponseeListingItem'];
-            ?>
             <div class="pull-left leftmargin2 bottommargin2">
-                <p class="fontsize1 banner">DONATE FOR <?php echo strtoupper($sponsee['firstname'] . ' ' . $sponsee['lastname']) ?></p>
+                <p class="fontsize1 banner">DONATIONS</p>
             </div>
         </div>
         <div class="clearfix pull-left">
-            <div class="pull-left box topmargin1 span3">
+            <div class="pull-left topmargin1 span3">
                 <?php
                         $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
                         $attrs = array('alt' => '', 'width' => '300', 'class' => 'img-polaroid');
                         echo $this->Html->image($imageURl, $attrs);
                 ?>
-                <div class="topmargin1">
-                    <hr>
-                    <?php
-                        echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
-                        echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
-                        echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
-                        echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
-                    ?>
-                    <hr>
-                </div>
             </div>
-            <?php
-            // ----- FORM BLOCK ---------
-            echo $this->Form->create('SponseeDonation', array('url' => array('controller' => 'donations', 'action' => 'mydonation', $sponsee['id'])));
-            ?>
             <div class="pull-left">
                 <div class="pull-left span5">
-                    <h3 class="fontcolor1">BIOGRAPHY</h3>
-                    <p style="text-align: justify;">
-                        <?php
-                             $information = explode("\n", $sponsee['long_description']);
-
-                             foreach ($information as $line):
-                                 echo '<p style="text-align: justify;"> ' . $line . "</p>\n";
-                             endforeach;
-                        ?>
-                     </p>
-                    <h3 class="fontcolor1">NEEDS</h3>
+                    <h3 class="fontcolor1"><?php echo strtoupper($sponsee['firstname'] . ' ' . $sponsee['lastname']) ?></h3>
                     <div class="overlayable">
                         <?php
                         if(empty($sponseeneeds)){
@@ -81,17 +59,10 @@ $user = $this->Session->read('Auth.User');
                         }
                         else {
                             echo "<table class='table table-hover table-bordered'>";
-                            echo "
-                                <tr>
-                                    <th></th>
-                                    <th>Need Amount</th>
-                                    <th>Need</th>
-                                </tr>
-                            ";
                             $prevCat = 0;
                             foreach ($sponseeneeds as $item) :
                                 $need = $item['SponseeNeed'];
-                                $category = $item['Category'];
+                                $category = $need['Category'];
                                 $status = $need['status'];
 
                                 if ($prevCat != $category['id']) : ?>
@@ -107,8 +78,10 @@ $user = $this->Session->read('Auth.User');
                                 <tr>
                                     <?php if($status != 'CLOSED') : ?>
                                     <td style="width:30px;">
-                                        <input type="checkbox" name="data[Items][][sponsee_need_id]"
-                                               value="<?php echo $need['id'] ?>"/>
+                                        <input type="checkbox" name="sponseeneeds"
+                                               value="<?php echo $need['neededamount'] ?>"
+                                               data-desc="<?php echo $need['description'] ?>"
+                                               data-id="<?php echo $need['id'] ?>"/>
                                     </td>
                                     <?php else: ?>
                                     <td style="width:30px;">
@@ -135,12 +108,9 @@ $user = $this->Session->read('Auth.User');
                 </div>
             </div>
             <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
-                <?php echo $this->Form->button('Proceed', array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
+                <?php echo $this->Html->link('Proceed', array('controller' => 'donations', 'action' => 'mydonations', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
+                <?php echo $this->Html->link('Cancel', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
             </div>
-            <?php
-            // ------- CLOSING FORM ------
-            $this->Form->end();
-            ?>
         </div>
     </div>
 </div>

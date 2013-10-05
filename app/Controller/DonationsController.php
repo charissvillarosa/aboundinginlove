@@ -8,7 +8,9 @@ class DonationsController extends AppController
         'User',
         'DonationRequest',
         'SponseeListingItem',
-        'SponseeNeed'
+        'SponseeNeed',
+        'SponseeDonation',
+        'SponseeDonationItem'
     );
 
     var $paginate = array(
@@ -16,6 +18,7 @@ class DonationsController extends AppController
             'limit' => 3
         )
     );
+
     public function index(){
         
     }
@@ -48,7 +51,7 @@ class DonationsController extends AppController
     
     public function listing()
     {
-        $this->set("sponseeList", $this->paginate('SponseeListingItem'));
+        
     }
     
     public function sponseedonation()
@@ -62,7 +65,45 @@ class DonationsController extends AppController
         $user = $this->User->read();
         $this->set('user', $user['User']);
     }
-    
+
+    public function mydonation($id)
+    {
+        if ($this->request->isPost()) {
+            // clean previous pending (cascaded delete)
+            $this->SponseeDonation->deleteAll(array(
+                'SponseeDonation.sponsee_id' => $id,
+                'SponseeDonation.status' => 'pending'
+            ), true);
+
+            $data = $this->request->data;
+            $data['SponseeDonation'] = array(
+                'sponsee_id' => $id,
+                'status' => 'pending'
+            );
+
+            $this->SponseeDonation->saveAssociated($data);
+            $this->redirect(array('action'=>'mydonation', $id));
+        }
+        else {
+            // set recursive to 3 to also load the 3rd level associations
+            // (i.e SponseeDonation->Item->SponseeNeed->Category)
+            $this->SponseeDonation->recursive = 3;
+            
+            $donation = $this->SponseeDonation->find('first', array(
+                'conditions' => array(
+                    'SponseeDonation.sponsee_id' => $id,
+                    'SponseeDonation.status' => 'pending'
+                 )
+            ));
+
+            $this->set('donation', $donation);
+        }
+    }
+
+    /**
+     * AJAX request handler for the action prior to
+     * redirecting to the Paypal Website
+     */
     public function saveRequest()
     {
         $this->autoRender = false;
@@ -72,7 +113,7 @@ class DonationsController extends AppController
         
         $this->response->body('{"id": ' .$this->DonationRequest->id. '}');
     }
-    
+
     private function getCurrentUserId() {
         $sessUser = $this->Session->read('Auth.User');
         $this->loadModel('User');
