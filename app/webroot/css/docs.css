@@ -35,6 +35,22 @@
     padding:3px 0;
 }
 
+#mydonation {
+    background:url('../img/mydonation.jpg');
+    width:422px;
+    height:66px;
+}
+#donationmethod {
+    background:url('../img/donationmethod.jpg');
+    width:422px;
+    height:66px;
+}
+#confirmdonation {
+    background:url('../img/confirmdonation.jpg');
+    width:422px;
+    height:66px;
+}
+
 .topmargin1 {margin-top:20px;}
 .topmargin2 {margin-top:30px;}
 .topmargin3 {margin-top:100px;}

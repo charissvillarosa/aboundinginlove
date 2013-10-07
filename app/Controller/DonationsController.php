@@ -76,19 +76,64 @@ class DonationsController extends AppController
             ), true);
 
             $data = $this->request->data;
-            $data['SponseeDonation'] = array(
-                'sponsee_id' => $id,
-                'status' => 'pending'
-            );
 
-            $this->SponseeDonation->saveAssociated($data);
-            $this->redirect(array('action'=>'mydonation', $id));
+            if(empty($data)){
+                 $this->Session->setFlash('Please select the amount to donate.');
+                 $this->redirect(array('action'=>'view', $id));
+            }
+            else{
+                    $data['SponseeDonation'] = array(
+                    'sponsee_id' => $id,
+                    'status' => 'pending'
+                );
+
+                $this->SponseeDonation->saveAssociated($data);
+                $this->redirect(array('action'=>'mydonation', $id));
+            }
         }
         else {
             // set recursive to 3 to also load the 3rd level associations
             // (i.e SponseeDonation->Item->SponseeNeed->Category)
             $this->SponseeDonation->recursive = 3;
             
+            $donation = $this->SponseeDonation->find('first', array(
+                'conditions' => array(
+                    'SponseeDonation.sponsee_id' => $id,
+                    'SponseeDonation.status' => 'pending'
+                 )
+            ));
+
+            $this->set('donation', $donation);
+        }
+    }
+    public function donationmethod($id)
+    {
+        if ($this->request->isPost()) {
+            // clean previous pending (cascaded delete)
+            $this->SponseeDonation->deleteAll(array(
+                'SponseeDonation.sponsee_id' => $id,
+                'SponseeDonation.status' => 'pending'
+            ), true);
+
+            if(empty($data)){
+                 $this->Session->setFlash('Please select the amount to donate.');
+                 $this->redirect(array('action'=>'view', $id));
+            }
+            else{
+                    $data['SponseeDonation'] = array(
+                    'sponsee_id' => $id,
+                    'status' => 'pending'
+                );
+
+                $this->SponseeDonation->saveAssociated($data);
+                $this->redirect(array('action'=>'mydonation', $id));
+            }
+        }
+        else {
+            // set recursive to 3 to also load the 3rd level associations
+            // (i.e SponseeDonation->Item->SponseeNeed->Category)
+            $this->SponseeDonation->recursive = 3;
+
             $donation = $this->SponseeDonation->find('first', array(
                 'conditions' => array(
                     'SponseeDonation.sponsee_id' => $id,

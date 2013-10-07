@@ -24,9 +24,14 @@ $sponseeneeds = $donation['Items'];
         </ul>
     </div>
     <div class="span9 well" style="padding:0 0 0 0; background: #fff; margin-top:103px;">
-        <div class="clearfix pull-left headerstyle">
+        <div style="padding:0 10px 0 0;" class="clearfix pull-left headerstyle">
             <div class="pull-left leftmargin2 bottommargin2">
-                <p class="fontsize1 banner">DONATIONS</p>
+                <p class="fontsize1 banner topmargin1">DONATIONS</p>
+            </div>
+            <div class="pull-right">
+                <div style="position:relative; top:0px; right:0;">
+                    <div id="mydonation"></div>
+                </div>
             </div>
         </div>
         <div class="clearfix pull-left">
@@ -108,7 +113,7 @@ $sponseeneeds = $donation['Items'];
                 </div>
             </div>
             <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
-                <?php echo $this->Html->link('Proceed', array('controller' => 'donations', 'action' => 'mydonations', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
+                <?php echo $this->Html->link('Proceed', array('controller' => 'donations', 'action' => 'donationmethod', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
                 <?php echo $this->Html->link('Cancel', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
             </div>
         </div>
