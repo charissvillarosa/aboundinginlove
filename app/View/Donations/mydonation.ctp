@@ -43,6 +43,10 @@ $sponseeneeds = $donation['Items'];
                 ?>
             </div>
             <div class="pull-left">
+                <?php
+                // ----- FORM BLOCK ---------
+                echo $this->Form->create('SponseeDonation', array('url' => array('controller' => 'donations', 'action' => 'mydonation', $sponsee['id'])));
+                ?>
                 <div class="pull-left span5">
                     <h3 class="fontcolor1"><?php echo strtoupper($sponsee['firstname'] . ' ' . $sponsee['lastname']) ?></h3>
                     <div class="overlayable">
@@ -65,6 +69,7 @@ $sponseeneeds = $donation['Items'];
                         else {
                             echo "<table class='table table-hover table-bordered'>";
                             $prevCat = 0;
+                            $ctr = 1;
                             foreach ($sponseeneeds as $item) :
                                 $need = $item['SponseeNeed'];
                                 $category = $need['Category'];
@@ -81,26 +86,14 @@ $sponseeneeds = $donation['Items'];
                                 endif;
                                 ?>
                                 <tr>
-                                    <?php if($status != 'CLOSED') : ?>
-                                    <td style="width:30px;">
-                                        <input type="checkbox" name="sponseeneeds"
-                                               value="<?php echo $need['neededamount'] ?>"
-                                               data-desc="<?php echo $need['description'] ?>"
-                                               data-id="<?php echo $need['id'] ?>"/>
-                                    </td>
-                                    <?php else: ?>
-                                    <td style="width:30px;">
-                                        <?php echo $this->Html->image('check.png'); ?>
-                                    </td>
-                                    <?php endif; ?>
-                                    <td style="width: 50px; text-align: right; font-weight: bold;">
-                                        <?php echo $this->Number->currency($need['neededamount']) ?>
-                                    </td>
                                     <td>
-                                        <?php echo $need['description'] ?>
+                                        <span class="pull-left rightmargin1"><?php echo $ctr.'.'; ?></span>
+                                        <span class="pull-left"><?php echo $need['description'] ?></span>
+                                        <span class="pull-right"><?php echo $this->Number->currency($need['neededamount']) ?></span>
                                     </td>
                                 </tr>
                             <?php
+                            $ctr++;
                             endforeach;
 
                             echo "</table>";
@@ -116,6 +109,10 @@ $sponseeneeds = $donation['Items'];
                 <?php echo $this->Html->link('Proceed', array('controller' => 'donations', 'action' => 'donationmethod', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
                 <?php echo $this->Html->link('Cancel', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
             </div>
+            <?php
+            // ------- CLOSING FORM ------
+            $this->Form->end();
+            ?>
         </div>
     </div>
 </div>

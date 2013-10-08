@@ -6,6 +6,29 @@ $sponseeImage = $sponsee['Image'];
 $sponseeneeds = $donation['Items'];
 ?>
 
+<style>
+    .container form {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .container form div {
+        padding-left: 0;
+    }
+
+    .container form div.message {
+        padding-left: .5em;
+    }
+
+    .container form .monthly-opt select[id*=Day]  { width: 60px; }
+    .container form .monthly-opt select[id*=Year] { width: 70px; }
+
+    .container form .monthly-opt select {
+        width: 120px;
+    }
+</style>
+
 <div class="container">
     <div class="dropdown clearfix span2 topmargin3">
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
@@ -35,6 +58,10 @@ $sponseeneeds = $donation['Items'];
             </div>
         </div>
         <div class="clearfix pull-left">
+            <?php
+            // ----- FORM BLOCK ---------
+            echo $this->Form->create('SponseeDonation', array('url' => array('controller' => 'donations', 'action' => 'donationmethod', $sponsee['id'])));
+            ?>
             <div class="pull-left topmargin1 span3">
                 <?php
                         $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
@@ -46,12 +73,20 @@ $sponseeneeds = $donation['Items'];
             <div class="pull-left">
                 <div class="pull-left span5 topmargin1">
                     <div>
+                        <?php echo $this->Session->flash(); ?>
                         <p class="fontcolor1"><b>Donation Method</b></p>
                         <?php
-                            echo $this->Form->input('', array(
+                            echo $this->Form->input('donation_method', array(
+                                'label' => '',
                                 'options' => array('onetime' => 'One Time Donation', 'monthly' => 'Monthly Donation')
                             ));
                         ?>
+                        <div class="monthly-opt hide">
+                            <label>From:</label>
+                            <?php echo $this->Form->dateTime('from', 'DMY', null);?>
+                            <label>To:</label>
+                            <?php echo $this->Form->dateTime('to', 'DMY', null);?>
+                        </div>
                     </div>
                     <div class="topmargin1">
                         <div class="pull-left"><p class="fontcolor1"><b>Categories</b></p></div>
@@ -120,9 +155,29 @@ $sponseeneeds = $donation['Items'];
                 </div>
             </div>
             <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
-                <?php echo $this->Html->link('Proceed', array('controller' => 'donations', 'action' => 'donationmethod', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
+                <?php echo $this->Form->button('Proceed', array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
                 <?php echo $this->Html->link('Cancel', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
             </div>
+            <?php
+            // ------- CLOSING FORM ------
+            $this->Form->end();
+            ?>
         </div>
     </div>
 </div>
+
+<script>
+    // this script handles event when
+    // the DonationMethod's value is changed
+    $('[id*=DonationMethod]').click(function() {
+        if ($(this).val() === 'monthly') {
+            $('.monthly-opt').fadeIn();
+        }
+        else {
+            $('.monthly-opt')
+                    .fadeOut()
+                    .find('select')
+                    .val('');
+        }
+    }).trigger('click');
+</script>

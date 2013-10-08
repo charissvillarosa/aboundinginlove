@@ -108,6 +108,54 @@ class DonationsController extends AppController
     }
     public function donationmethod($id)
     {
+        if (!$this->request->isGet()) {
+            // validate
+            $methodType = $this->request->data['SponseeDonation']['donation_method'];
+            if ('monthly' == $methodType) {
+                $from = $this->request->data['SponseeDonation']['from'];
+                $to = $this->request->data['SponseeDonation']['from'];
+
+                if (!$from['day'] && !$from['month'] && !$from['year']
+                        && !$to['day'] && !$to['month'] && !$to['year'])
+                {
+                    $this->Session->setFlash('Date from and date to is required.');
+                    $this->redirect(array('action' => 'donationmethod', $id));
+                }
+            }
+
+            // find the pending and update
+            $donation = $this->SponseeDonation->find('first', array(
+                'conditions' => array(
+                    'SponseeDonation.sponsee_id' => $id,
+                    'SponseeDonation.status' => 'pending'
+                 )
+            ));
+
+            $this->SponseeDonation->set($donation);
+            $this->SponseeDonation->set($this->request->data);
+
+            $this->SponseeDonation->save();
+            $this->redirect(array('action' => 'confirmdonation', $id));
+        }
+        else {
+            // set recursive to 3 to also load the 3rd level associations
+            // (i.e SponseeDonation->Item->SponseeNeed->Category)
+            $this->SponseeDonation->recursive = 3;
+
+            $donation = $this->SponseeDonation->find('first', array(
+                'conditions' => array(
+                    'SponseeDonation.sponsee_id' => $id,
+                    'SponseeDonation.status' => 'pending'
+                 )
+            ));
+
+            $this->request->data = $donation;
+            $this->set('donation', $donation);
+        }
+    }
+
+    public function confirmdonation($id)
+    {
         if ($this->request->isPost()) {
             // clean previous pending (cascaded delete)
             $this->SponseeDonation->deleteAll(array(
@@ -115,9 +163,11 @@ class DonationsController extends AppController
                 'SponseeDonation.status' => 'pending'
             ), true);
 
+            $data = $this->request->data;
+
             if(empty($data)){
                  $this->Session->setFlash('Please select the amount to donate.');
-                 $this->redirect(array('action'=>'view', $id));
+                 $this->redirect(array('action'=>'donationmethod', $id));
             }
             else{
                     $data['SponseeDonation'] = array(
