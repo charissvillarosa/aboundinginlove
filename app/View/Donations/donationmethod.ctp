@@ -74,21 +74,24 @@ $sponseeneeds = $donation['Items'];
                 <div class="pull-left span5 topmargin1">
                     <div>
                         <?php echo $this->Session->flash(); ?>
-                        <p class="fontcolor1"><b>Donation Method</b></p>
-                        <?php
-                            echo $this->Form->input('donation_method', array(
-                                'label' => '',
-                                'options' => array('onetime' => 'One Time Donation', 'monthly' => 'Monthly Donation')
-                            ));
-                        ?>
-                        <div class="monthly-opt hide">
-                            <label>From:</label>
+                        <div class="pull-left">
+                            <p class="fontcolor1"><b>Donation Method</b></p>
+                            <?php
+                                echo $this->Form->input('donation_method', array(
+                                    'label' => '',
+                                    'class' => 'span2',
+                                    'options' => array('onetime' => 'One Time Donation', 'monthly' => 'Monthly Donation')
+                                ));
+                            ?>
+                        </div>
+                        <div class="pull-right monthly-opt hide">
+                            <label class="fontcolor1"><strong>From:</strong></label>
                             <?php echo $this->Form->dateTime('from', 'DMY', null);?>
-                            <label>To:</label>
+                            <label class="fontcolor1"><strong>To:</strong></label>
                             <?php echo $this->Form->dateTime('to', 'DMY', null);?>
                         </div>
                     </div>
-                    <div class="topmargin1">
+                    <div class="clearfix topmargin1">
                         <div class="pull-left"><p class="fontcolor1"><b>Categories</b></p></div>
                         <div class="pull-right"><p class="fontcolor1"><b>Donated Amount</b></p></div>
                     </div>
@@ -156,7 +159,12 @@ $sponseeneeds = $donation['Items'];
             </div>
             <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
                 <?php echo $this->Form->button('Proceed', array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
-                <?php echo $this->Html->link('Cancel', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
+                <?php echo $this->Html->link('Cancel', array(
+                    'controller' => 'donations',
+                    'action' => 'view', $sponsee['id']),
+                    array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
+                    'Sorry to see you go. Are you sure you want to cancel this donation?');
+                ?>
             </div>
             <?php
             // ------- CLOSING FORM ------

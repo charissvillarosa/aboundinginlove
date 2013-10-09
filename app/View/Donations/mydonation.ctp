@@ -107,7 +107,12 @@ $sponseeneeds = $donation['Items'];
             </div>
             <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
                 <?php echo $this->Html->link('Proceed', array('controller' => 'donations', 'action' => 'donationmethod', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
-                <?php echo $this->Html->link('Cancel', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
+                <?php echo $this->Html->link('Cancel', array(
+                    'controller' => 'donations',
+                    'action' => 'view', $sponsee['id']),
+                    array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
+                    'Sorry to see you go. Are you sure you want to cancel this donation?');
+                ?>
             </div>
             <?php
             // ------- CLOSING FORM ------

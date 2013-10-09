@@ -46,21 +46,23 @@ $user = $this->Session->read('Auth.User');
             echo $this->Form->create('SponseeDonation', array('url' => array('controller' => 'donations', 'action' => 'mydonation', $sponsee['id'])));
             ?>
             <div class="pull-left box topmargin1 span3">
-                <?php
-                        $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
-                        $attrs = array('alt' => '', 'width' => '300', 'class' => 'img-polaroid');
-                        echo $this->Html->image($imageURl, $attrs);
-                ?>
-                <div class="topmargin1">
-                    <hr>
+                <div style="margin-right:10px;" class="leftmargin1">
                     <?php
-                        echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
-                        echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
-                        echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
-                        echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
+                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
+                            $attrs = array('alt' => '', 'width' => '300', 'class' => 'img-polaroid');
+                            echo $this->Html->image($imageURl, $attrs);
                     ?>
-                    <hr>
-                </div>
+                    <div class="topmargin1">
+                        <hr>
+                        <?php
+                            echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
+                            echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
+                            echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
+                            echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
+                        ?>
+                        <hr>
+                    </div>
+                 </div>
             </div>
             <div class="pull-left">
                 <div class="pull-left span5">
@@ -147,7 +149,7 @@ $user = $this->Session->read('Auth.User');
                     </div>
                 </div>
             </div>
-            <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
+            <div style="width:870px;" class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
                 <?php echo $this->Form->button('Proceed', array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
             </div>
             <?php
