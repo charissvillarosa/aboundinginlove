@@ -124,6 +124,12 @@ $sponseeneeds = $donation['Items'];
                                         <span class="pull-left rightmargin1"><?php echo $ctr.'.'; ?></span>
                                         <span class="pull-left"><?php echo $need['description'] ?></span>
                                         <span class="pull-right"><?php echo $this->Number->currency($need['neededamount']) ?></span>
+                                        <input type="hidden"
+                                               name="sponseeneeds"
+                                               value="<?php echo $need['neededamount']?>"
+                                               data-id="<?php echo $need['id']?>"
+                                               data-desc="<?php echo $need['description']?>"/>
+
                                     </td>
                                 </tr>
                             <?php
@@ -167,10 +173,6 @@ $sponseeneeds = $donation['Items'];
                     'Sorry to see you go. Are you sure you want to cancel this donation?');
                 ?>
             </div>
-            <?php
-            // ------- CLOSING FORM ------
-            $this->Form->end();
-            ?>
         </div>
     </div>
 </div>
@@ -221,27 +223,16 @@ $sponseeneeds = $donation['Items'];
             var desc = [];
             var items = [];
             $('input[name=sponseeneeds]').each(function(idx,elm) {
-                if (elm.checked) {
-                    console.log(elm);
-                    total += parseFloat(elm.value);
-                    desc.push($(elm).data('desc'));
-                    items.push($(elm).data('id')+'='+elm.value);
-                }
+                console.log(elm);
+                total += parseFloat(elm.value);
+                desc.push($(elm).data('desc'));
+                items.push($(elm).data('id')+'='+elm.value);
             });
 
             var form = $('#paypal-btn form')[0];
             form.amount.value = total;
             form.item_name.value = 'Donation: ' + desc.join('/');
             form.item_number.value = items.join(',');
-        }
-
-        function showAlert(msg) {
-            $('#error').html('');
-            $('#alert-tpl')
-                    .clone()
-                    .appendTo('#error')
-                    .fadeIn()
-                    .find('.text').html(msg);
         }
     });
 </script>
