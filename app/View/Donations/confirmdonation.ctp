@@ -163,14 +163,14 @@ $sponseeneeds = $donation['Items'];
                     }
                 ?>
                 <?php echo $this->Html->link('Pause this donation', 
-                        array('controller' => 'donations',
-                            'action' => 'view', $sponsee['id']),
+                        array('controller' => 'donations', 'action' => 'view', $sponsee['id']),
                         array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
                         'This process are saved on your pending donations record. This is valid only within 6 months prior from the date of your donation process. If in case you want to proceed this donation in the future, please check your pending donation history in your account.');
                 ?>
-                <?php echo $this->Form->button('Cancel',
-                    array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
-                    'Sorry to see you go. Are you sure you want to cancel this donation?');
+                <?php echo $this->Html->link('Cancel',
+                        array('controller'=>'Donations', 'action'=>'cancel', $sponsee['id']),
+                        array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
+                        'Sorry to see you go. Are you sure you want to cancel this donation?');
                 ?>
             </div>
         </div>

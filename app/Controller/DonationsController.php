@@ -68,15 +68,13 @@ class DonationsController extends AppController
 
     public function cancel($id)
     {
-        if ($this->request->isPost()) {
-            // clean previous pending (cascaded delete)
-            $this->SponseeDonation->deleteAll(array(
-                'SponseeDonation.sponsee_id' => $id,
-                'SponseeDonation.status' => 'pending'
-            ), true);
-           
-            $this->redirect(array('action'=>'view', $id));
-        }
+        // clean previous pending (cascaded delete)
+        $this->SponseeDonation->deleteAll(array(
+            'SponseeDonation.sponsee_id' => $id,
+            'SponseeDonation.status' => 'pending'
+        ), true);
+
+        $this->redirect(array('action'=>'view', $id));
     }
 
     public function mydonation($id)
