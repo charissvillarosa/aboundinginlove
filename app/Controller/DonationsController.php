@@ -66,6 +66,19 @@ class DonationsController extends AppController
         $this->set('user', $user['User']);
     }
 
+    public function cancel($id)
+    {
+        if ($this->request->isPost()) {
+            // clean previous pending (cascaded delete)
+            $this->SponseeDonation->deleteAll(array(
+                'SponseeDonation.sponsee_id' => $id,
+                'SponseeDonation.status' => 'pending'
+            ), true);
+           
+            $this->redirect(array('action'=>'view', $id));
+        }
+    }
+
     public function mydonation($id)
     {
         if ($this->request->isPost()) {
@@ -157,12 +170,6 @@ class DonationsController extends AppController
     public function confirmdonation($id)
     {
         if ($this->request->isPost()) {
-            // clean previous pending (cascaded delete)
-            $this->SponseeDonation->deleteAll(array(
-                'SponseeDonation.sponsee_id' => $id,
-                'SponseeDonation.status' => 'pending'
-            ), true);
-
             $data = $this->request->data;
 
             if(empty($data)){

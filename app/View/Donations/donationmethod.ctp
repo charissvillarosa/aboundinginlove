@@ -85,10 +85,10 @@ $sponseeneeds = $donation['Items'];
                             ?>
                         </div>
                         <div class="pull-right monthly-opt hide">
-                            <label class="fontcolor1"><strong>From:</strong></label>
-                            <?php echo $this->Form->dateTime('from', 'DMY', null);?>
-                            <label class="fontcolor1"><strong>To:</strong></label>
-                            <?php echo $this->Form->dateTime('to', 'DMY', null);?>
+                            <label class="fontcolor1"><strong>From:</strong> [ month - day - year ]</label>
+                            <?php echo $this->Form->dateTime('from', 'MDY', null);?>
+                            <label class="fontcolor1"><strong>To:</strong> [ month - day - year ]</label>
+                            <?php echo $this->Form->dateTime('to', 'MDY', null);?>
                         </div>
                     </div>
                     <div class="clearfix topmargin1">
@@ -159,9 +159,7 @@ $sponseeneeds = $donation['Items'];
             </div>
             <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
                 <?php echo $this->Form->button('Proceed', array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
-                <?php echo $this->Html->link('Cancel', array(
-                    'controller' => 'donations',
-                    'action' => 'view', $sponsee['id']),
+                <?php echo $this->Form->button('Cancel',
                     array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
                     'Sorry to see you go. Are you sure you want to cancel this donation?');
                 ?>

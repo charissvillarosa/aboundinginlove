@@ -131,7 +131,7 @@ $user = $this->Session->read('Auth.User');
                                     </td>
                                     <?php endif; ?>
                                     <td style="width: 50px; text-align: right; font-weight: bold;">
-                                        <?php echo $this->Number->currency($need['neededamount']) ?>
+                                        <?php echo $this->Number->currency($need['neededamount']); ?>
                                     </td>
                                     <td>
                                         <?php echo $need['description'] ?>

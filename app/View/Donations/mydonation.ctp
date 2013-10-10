@@ -89,7 +89,7 @@ $sponseeneeds = $donation['Items'];
                                     <td>
                                         <span class="pull-left rightmargin1"><?php echo $ctr.'.'; ?></span>
                                         <span class="pull-left"><?php echo $need['description'] ?></span>
-                                        <span class="pull-right"><?php echo $this->Number->currency($need['neededamount']) ?></span>
+                                        <span class="pull-right"><?php echo $this->Number->currency($need['neededamount']); ?></span>
                                     </td>
                                 </tr>
                             <?php
@@ -107,9 +107,7 @@ $sponseeneeds = $donation['Items'];
             </div>
             <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
                 <?php echo $this->Html->link('Proceed', array('controller' => 'donations', 'action' => 'donationmethod', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
-                <?php echo $this->Html->link('Cancel', array(
-                    'controller' => 'donations',
-                    'action' => 'view', $sponsee['id']),
+                <?php echo $this->Form->button('Cancel', 
                     array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
                     'Sorry to see you go. Are you sure you want to cancel this donation?');
                 ?>
