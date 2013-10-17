@@ -79,6 +79,11 @@ class DonationsController extends AppController
 
     public function mydonation($id)
     {
+        //userid
+        $sessUser = $this->Session->read('Auth.User');
+        $this->loadModel('User');
+        $userid = $sessUser['id'];
+
         if ($this->request->isPost()) {
             // clean previous pending (cascaded delete)
             $this->SponseeDonation->deleteAll(array(
@@ -94,6 +99,7 @@ class DonationsController extends AppController
             }
             else{
                     $data['SponseeDonation'] = array(
+                    'user_id' => $userid,
                     'sponsee_id' => $id,
                     'status' => 'pending'
                 );
@@ -109,6 +115,7 @@ class DonationsController extends AppController
             
             $donation = $this->SponseeDonation->find('first', array(
                 'conditions' => array(
+                    'SponseeDonation.user_id' => $userid,
                     'SponseeDonation.sponsee_id' => $id,
                     'SponseeDonation.status' => 'pending'
                  )
@@ -119,6 +126,11 @@ class DonationsController extends AppController
     }
     public function donationmethod($id)
     {
+        //userid
+        $sessUser = $this->Session->read('Auth.User');
+        $this->loadModel('User');
+        $userid = $sessUser['id'];
+
         if (!$this->request->isGet()) {
             // validate
             $methodType = $this->request->data['SponseeDonation']['donation_method'];
@@ -137,6 +149,7 @@ class DonationsController extends AppController
             // find the pending and update
             $donation = $this->SponseeDonation->find('first', array(
                 'conditions' => array(
+                    'SponseeDonation.user_id' => $userid,
                     'SponseeDonation.sponsee_id' => $id,
                     'SponseeDonation.status' => 'pending'
                  )
@@ -155,6 +168,7 @@ class DonationsController extends AppController
 
             $donation = $this->SponseeDonation->find('first', array(
                 'conditions' => array(
+                    'SponseeDonation.user_id' => $userid,
                     'SponseeDonation.sponsee_id' => $id,
                     'SponseeDonation.status' => 'pending'
                  )
@@ -167,6 +181,11 @@ class DonationsController extends AppController
 
     public function confirmdonation($id)
     {
+        //userid
+        $sessUser = $this->Session->read('Auth.User');
+        $this->loadModel('User');
+        $userid = $sessUser['id'];
+        
         if ($this->request->isPost()) {
             $data = $this->request->data;
 
@@ -176,8 +195,9 @@ class DonationsController extends AppController
             }
             else{
                     $data['SponseeDonation'] = array(
+                    'SponseeDonation.user_id' => $userid,
                     'sponsee_id' => $id,
-                    'status' => 'pending'
+                    'status' => 'complete'
                 );
 
                 $this->SponseeDonation->saveAssociated($data);
@@ -191,6 +211,7 @@ class DonationsController extends AppController
 
             $donation = $this->SponseeDonation->find('first', array(
                 'conditions' => array(
+                    'SponseeDonation.user_id' => $userid,
                     'SponseeDonation.sponsee_id' => $id,
                     'SponseeDonation.status' => 'pending'
                  )
@@ -218,5 +239,27 @@ class DonationsController extends AppController
         $sessUser = $this->Session->read('Auth.User');
         $this->loadModel('User');
         return $sessUser['id'];
+    }
+
+    public function pendingdonation()
+    {
+        $sessUser = $this->Session->read('Auth.User');
+        $this->loadModel('User');
+        $id = $sessUser['id'];
+           
+        // set recursive to 3 to also load the 3rd level associations
+        // (i.e SponseeDonation->Item->SponseeNeed->Category)
+        $this->SponseeDonation->recursive = 3;
+
+        $donation = $this->SponseeDonation->find('first', array(
+            'conditions' => array(
+                'SponseeDonation.user_id' => $id,
+                'SponseeDonation.status' => 'pending'
+             )
+        ));
+
+        $this->request->data = $donation;
+        $this->set('donation', $donation);
+
     }
 }
