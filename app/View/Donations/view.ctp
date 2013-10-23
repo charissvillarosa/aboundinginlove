@@ -150,7 +150,7 @@ $user = $this->Session->read('Auth.User');
                 </div>
             </div>
             <div style="width:870px;" class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
-                <?php echo $this->Form->button('Proceed', array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
+                <?php echo $this->Form->button('Proceed', array('type' => 'submit', 'class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
             </div>
             <?php
             // ------- CLOSING FORM ------

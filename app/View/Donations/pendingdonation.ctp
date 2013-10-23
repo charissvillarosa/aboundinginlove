@@ -1,10 +1,6 @@
 <?php
 // ----- LOAD OBJECTS ------
 $user = $this->Session->read('Auth.User');
-$sponseeDonation = $donation['SponseeDonation'];
-$sponsee = $donation['Sponsee'];
-$sponseeImage = $sponsee['Image'];
-$sponseeneeds = $donation['Items'];
 ?>
 
 <div class="container">
@@ -36,31 +32,62 @@ $sponseeneeds = $donation['Items'];
                     <th>Created</th>
                     <th>Sponsee</th>
                     <th>Donation Method</th>
-                    <th>Total Amount</th>
+                    <th>Sponsee Needs = Needed Amount</th>
                     <th>Status</th>
                     <th>View</th>
                 </tr>
+                <?php
+                    if(empty($donation)){
+                        echo"
+                            <tr>
+                                <td colspan='6'>No pending donation records.</td>
+                            </tr>
+                        ";
+                    }else{
+                ?>
+                <?php
+                    foreach ($donation as $item) :
+                        $sponseeDonation = $item['SponseeDonation'];
+                        $sponsee = $item['Sponsee'];
+                        $sponseeneeds = $item['Items'];
+                ?>
                 <tr>
                     <td><?php echo $this->Time->format($sponseeDonation['created'])?></td>
                     <td><?php echo $sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname']?></td>
                     <td>
                     <?php
                         if($sponseeDonation['donation_method'] == 'onetime'){echo "One Time Donation";}
-                        else{
+                        elseif($sponseeDonation['donation_method'] == 'monthly'){
                             echo "Monthly Donation";
                             echo "<br>From: ".$this->Time->format($sponseeDonation['from']);
                             echo "<br>To: ".$this->Time->format($sponseeDonation['to']);
                         }
+                        else{echo "Not yet specified";}
                     ?>
                     </td>
                     <td>
-                        total amount
+                        <?php
+                            foreach ($sponseeneeds as $items) :
+                                $need = $items['SponseeNeed'];
+                                echo $need['description'].' = '.$this->Number->currency($need['neededamount']).'<br>';
+                            endforeach;
+                        ?>
                     </td>
-                    <td><?php echo $sponseeDonation['status'] ?></td>
+                    <td><?php if($sponseeDonation['status'] == 'pending') {echo "Pending";} ?></td>
                     <td>
-                        <i><?php echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']), array('class' => 'icon-folder-open','title' => 'View Sponsee Needs')); ?></i>
+                        <i>
+                            <?php
+                                if($sponseeDonation['donation_method'] != ''){
+                                    echo $this->Html->link('', array('action' => 'confirmdonation', $sponsee['id']), array('class' => 'icon-folder-open','title' => 'View Details'));
+                                }
+                                else{
+                                    echo $this->Html->link('', array('action' => 'donationmethod', $sponsee['id']), array('class' => 'icon-folder-open','title' => 'View Details'));
+                                }
+                            ?>
+                        </i>
                     </td>
                 </tr>
+                <?php endforeach; }?>
             </table>
         </div>
     </div>

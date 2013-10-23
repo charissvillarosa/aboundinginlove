@@ -146,23 +146,5 @@ echo $this->Html->docType('html5');
             </div>
         </div>
     </div>
-<!--     login modal-->
-    <div style="width:310px; left:60%;" id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Login</h3>
-        </div>
-        <div class="modal-body leftmargin1">
-            <?php echo $this->Session->flash(""); ?>
-            <?php echo $this->Form->create("User", array('url' => array('controller' => 'users', 'action' => 'login'))); ?>
-            <fieldset>
-                <?php
-                echo $this->Form->input("username");
-                echo $this->Form->input("password");
-                ?>
-            </fieldset>
-            <?php echo $this->Form->end("Login", array("class" => "btn btn-info")); ?>
-        </div>
-    </div>
 </body>
 </html>

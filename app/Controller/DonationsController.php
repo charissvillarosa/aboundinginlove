@@ -3,7 +3,7 @@
 class DonationsController extends AppController
 {
 
-    var $layout = 'document';
+    var $layout = 'donation';
     var $uses = array(
         'User',
         'DonationRequest',
@@ -39,10 +39,10 @@ class DonationsController extends AppController
             'conditions' => array('SponseeNeed.sponsee_id' => $id),
             'order' => array('SponseeNeed.category_id')
         ));
-        
+
         $this->set("sponseeneeds", $sponseeneeds);
         $this->set("sponseeImage", $sponsee['Image']);
- 
+
         if ($sponseeneeds == '') {
             $this->render('/Errors/notFound');
         }
@@ -83,7 +83,7 @@ class DonationsController extends AppController
         $sessUser = $this->Session->read('Auth.User');
         $this->loadModel('User');
         $userid = $sessUser['id'];
-
+        
         if ($this->request->isPost()) {
             // clean previous pending (cascaded delete)
             $this->SponseeDonation->deleteAll(array(
@@ -251,11 +251,12 @@ class DonationsController extends AppController
         // (i.e SponseeDonation->Item->SponseeNeed->Category)
         $this->SponseeDonation->recursive = 3;
 
-        $donation = $this->SponseeDonation->find('first', array(
+        $donation = $this->SponseeDonation->find('all', array(
             'conditions' => array(
                 'SponseeDonation.user_id' => $id,
                 'SponseeDonation.status' => 'pending'
-             )
+             ),
+            'group' => 'SponseeDonation.sponsee_id'
         ));
 
         $this->request->data = $donation;

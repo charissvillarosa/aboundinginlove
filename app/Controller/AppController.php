@@ -172,6 +172,11 @@ class AppController extends Controller
         $this->SponseeNeed->set('donatedamount', $total);
         $this->SponseeNeed->set('status', 'CLOSED');
         $this->SponseeNeed->save();
+
+        //update pending donation status
+        $this->loadModel('SponseeDonation');
+        $this->SponseeDonation->set('status', 'CLOSED');
+        $this->SponseeDonation->save();
     }
 
 }

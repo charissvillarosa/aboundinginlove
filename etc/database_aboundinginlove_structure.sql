@@ -37,7 +37,7 @@ CREATE TABLE `donation_requests` (
   `type` varchar(50) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -228,7 +228,7 @@ CREATE TABLE `portfolio_images` (
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `portfolios` */
 
@@ -240,7 +240,7 @@ CREATE TABLE `portfolios` (
   `category_id` bigint(20) DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `profile_images` */
 
@@ -251,8 +251,36 @@ CREATE TABLE `profile_images` (
   `date_uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
+  `hash_key` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `sponsee_donation_items` */
+
+DROP TABLE IF EXISTS `sponsee_donation_items`;
+
+CREATE TABLE `sponsee_donation_items` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `parent_id` bigint(20) DEFAULT NULL,
+  `sponsee_need_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=164 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `sponsee_donations` */
+
+DROP TABLE IF EXISTS `sponsee_donations`;
+
+CREATE TABLE `sponsee_donations` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  `sponsee_id` bigint(20) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `donation_method` varchar(50) DEFAULT NULL,
+  `from` datetime DEFAULT NULL,
+  `to` datetime DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_images` */
 
@@ -264,6 +292,7 @@ CREATE TABLE `sponsee_images` (
   `date_uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
+  `hash_key` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -275,7 +304,7 @@ CREATE TABLE `sponsee_need_categories` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_needs` */
 
@@ -313,7 +342,7 @@ CREATE TABLE `sponsees` (
   `short_description` text,
   `birthdate` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `users` */
 
