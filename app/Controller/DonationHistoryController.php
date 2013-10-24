@@ -39,10 +39,11 @@ class DonationHistoryController extends AppController
         }
         
         $this->set('category', $category);
-
+        
         if ($category) {
+
             $this->set('donationitems', $this->paginate('DonationHistory', array(
-                'DonationRequest.type' => $category
+                'DonationHistory.donation_type' => $category
             )));
         }
         else {

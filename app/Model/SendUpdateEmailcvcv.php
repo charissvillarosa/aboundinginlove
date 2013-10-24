@@ -3,7 +3,7 @@
 /*
  * @author Chariss
  */
-class DonationHistory extends AppModel
+class SendUpdateEmail extends AppModel
 {
    var $useTable = 'paypal_txn_logs';
    

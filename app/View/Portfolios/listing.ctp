@@ -23,7 +23,7 @@
                         
                         if ($prevCat != $category['id']) : ?>
                             <tr>
-                                <th bgcolor="#eef6fa" colspan="3">
+                                <th bgcolor="#eef6fa" colspan="4">
                                     <span class="cat"><?php echo $category['description'] ?></div>
                                 </th>
                             </tr
@@ -32,7 +32,7 @@
                         endif;
                         ?>
                         <tr>
-                            <td bgcolor="#eef6fa">
+                            <td>
                                 <span class="cat-id" style="display:none;"><?php echo $category['id'] ?></span>
                                 <span class="id" style="display:none;"><?php echo $portfolio['id'] ?></span>
                                 <span class="sponseeid" style="display:none;"><?php echo $portfolio['sponsee_id'] ?></span>
@@ -55,17 +55,21 @@
                                 ?>
                                 </i>
                             </td>
+                            <td>
+                                <?php
+                                echo '<div class="clearfix"><div class="pull-right">'.$this->Html->link(
+                                'Upload Image',
+                                array('controller' => 'PortfolioImages', 'action' => 'upload', $sponsee_id, $id),
+                                array('class' => 'btn btn-info btn-large leftmargin1'));
+                                echo '</div></div>';
+                                ?>
+                            </td>
                         </tr>
                         <tr>
-                            <td bgcolor='#fff' colspan='2'>
+                            <td bgcolor='#fff' colspan='4'>
                             <?php
                                 if(empty($item['Images'])){
                                     echo "<p>No photo uploaded</p><br>";
-                                    echo '<div class="clearfix"><div class="pull-right">'.$this->Html->link(
-                                    'Upload Image',
-                                    array('controller' => 'PortfolioImages', 'action' => 'upload', $sponsee_id, $id),
-                                    array('class' => 'btn btn-info btn-large'));
-                                    echo '</div>';
                                 }
                                 else {
                                     foreach ($item['Images'] as $image) :
@@ -81,12 +85,6 @@
                                             'Are you sure you want to delete this image?');
                                         echo '</div>';
                                     endforeach;
-                                    
-                                    echo '<div class="clearfix"><hr><div class="pull-right">'.$this->Html->link(
-                                    'Upload Image',
-                                    array('controller' => 'PortfolioImages', 'action' => 'upload', $sponsee_id, $id),
-                                    array('class' => 'btn btn-info btn-large leftmargin1'));
-                                    echo '</div></div>';
                                 }
                     endforeach;
                 }
