@@ -29,6 +29,8 @@
                 <th>Amount</th>
                 <th>Sponsee</th>
                 <th>Details</th>
+                <th>Email Record</th>
+                <th>Send Update</th>
             </tr>
             <?php
             foreach ($donationitems as $item) :
@@ -49,6 +51,8 @@
                         ?>
                     </td>
                     <td><i><?php echo $this->Html->link('', array('controller' => 'DonationHistory', 'action' => 'view', $donation['id']), array('class' => 'icon-folder-open','title' => 'View donation details')); ?></i></td>
+                    <td><i><?php echo $this->Html->link('', array('controller' => 'SendUpdateEmail', 'action' => 'index', $donation['id']), array('class' => 'icon-folder-open','title' => 'View emails')); ?></i></td>
+                    <td><i><?php echo $this->Html->link('', array('controller' => 'Send', 'action' => 'index', $donation['id']), array('class' => ' icon-envelope','title' => 'Send update emails')); ?></i></td>
                 </tr>
             <?php endforeach; ?>
         </table>

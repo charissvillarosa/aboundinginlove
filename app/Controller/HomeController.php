@@ -8,7 +8,7 @@ class HomeController extends AppController
     var $paginate = array(
         'SponseeListingItem' => array(
             'limit' => 3,
-            'order' => array('SponseeListingItem.id' => 'desc')
+            'order' => array('SponseeListingItem.id' => 'asc')
         )
     );
 

@@ -152,28 +152,13 @@ $sponseeneeds = $donation['Items'];
             <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
                 <?php
                     if($sponseeDonation['donation_method'] == 'monthly'){
-                        echo '<div class="pull-right topmargin8" id="paypal-btn">';
-                        echo $this->paypal->button('Recurring Donation through paypal', array('type' => 'donate', 'item_name' => '', 'amount' => ''), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'));
+                        echo '<div class="pull-right topmargin8" id="paypal-btn" data-type="monthly">';
+                        echo $this->paypal->button('Recurring Donation through paypal', array('type' => 'subscribe', 'item_name' => '', 'amount' => $total, 'term' => 'month', 'period' => '2'), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'));
                         echo '</div>';
-//                        echo '
-//                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-//                        <input type="hidden" name="cmd" value="_s-xclick">
-//                        <input type="hidden" name="hosted_button_id" value="R2Y8VMBD86KUW">
-//                        <table>
-//                        <tr><td><input type="hidden" name="on0" value="Donation amount">Donation amount</td></tr><tr><td><select name="os0">
-//                                <option value="$10.00/monthly">$10.00/monthly </option>
-//                                <option value="$20.00/monthly">$20.00/monthly </option>
-//                                <option value="$30.00/monthly">$30.00/monthly </option>
-//                        </select> </td></tr>
-//                        </table>
-//                        <input type="image" src="http://beta.aboundinginlove.org/app/webroot/img/donate.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-//                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-//                        </form>';
-
                     }
                     else{
                         echo '<div class="pull-right topmargin8" id="paypal-btn">';
-                        echo $this->paypal->button('Donate through paypal', array('type' => 'donate', 'item_name' => '', 'amount' => ''), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'));
+                        echo $this->paypal->button('Donate through paypal', array('type' => 'donate', 'item_name' => '', 'amount' => $total), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'));
                         echo '</div>';
                     }
                 ?>
@@ -245,7 +230,6 @@ $sponseeneeds = $donation['Items'];
             });
 
             var form = $('#paypal-btn form')[0];
-            form.amount.value = total;
             form.item_name.value = 'Donation: ' + desc.join('/');
             form.item_number.value = items.join(',');
         }

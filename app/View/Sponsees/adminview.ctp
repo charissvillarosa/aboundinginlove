@@ -11,16 +11,6 @@ $user = $this->Session->read('Auth.User');
         margin:30px auto;
     }
 </style>
-<style>
-    .headerstyle {
-        width:1130px;
-        padding:40px 10px 10px 30px;
-    }
-    .center {
-        width:910px;
-        margin:30px auto;
-    }
-</style>
 <div class="container tabs">
     <div>
         <div class="pull-right headerstyle banner span11">

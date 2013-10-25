@@ -4,12 +4,16 @@ class SendUpdateEmailController extends AppController
 {
 
     var $layout = 'document';
-
+    var $adminActions = array('listing', 'index');
     var $uses = array('User', 'DonationHistory','DonationRequest');
     
     var $paginate = array(
         'limit' => 10
     );
+    
+    public function index(){
+
+    }
     
     public function listing()
     {
@@ -28,7 +32,6 @@ class SendUpdateEmailController extends AppController
         else {
             $this->set('donationitems', $this->paginate('DonationHistory'));
         }
-        
-        
+         
     }
  }
