@@ -43,6 +43,12 @@ class User extends AppModel
                 "message" => "A country is required"
             )
         ),
+        "purpose_of_donation" => array(
+            "valid" => array(
+                "rule" => array("notEmpty"),
+                "message" => "A Purpose of donation is required"
+            )
+        ),
         "email" => array(
             "kosher" => array(
                 "rule" => "email",

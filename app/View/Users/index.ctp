@@ -17,6 +17,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Country</th>
+                <th>Purpose of Donation</th>
                 <th>Edit</th>
                 <th>View</th>
                 <th>Delete</th>
@@ -55,6 +56,11 @@
                         if($user['country'] != ''){
                             echo '<span class="country">'. $this->Html->image("$flag") . ' ' . $user['country'].'</span>';
                         }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            echo '<span class="purpose">'.$user['purpose_of_donation'].'</span>';
                         ?>
                     </td>
                     <td>
@@ -103,6 +109,7 @@
                 <?php echo $this->Form->input('lastname', array('class' => 'span3')); ?>
                 <?php echo $this->Form->input('address', array('class' => 'span3')); ?>
                 <?php echo $this->Form->input('country', array('type' => 'select', 'options' => $countryList)); ?>
+                <?php echo $this->Form->input('purpose_of_donation', array('class' => 'span4')); ?>
                 <?php echo $this->Form->input('username', array('class' => 'span3')); ?>
                 <div class="password" style="padding:0;">
                     <?php echo $this->Form->input('password', array('class' => 'span3')); ?>
@@ -194,6 +201,7 @@
         $('#UserLastname').val(tr.find('.lastname').html());
         $('#UserAddress').val(tr.find('.address').html());
         $('#UserCountry').val(tr.find('.country').html());
+        $('#UserPurposeofDonation').val(tr.find('.purpose').html());
         $('#UserUsername').val(tr.find('.username').html());
         $('#UserRole').val(tr.find('.role').html());
         $('#UserId').val(tr.find('.id').html());
@@ -215,6 +223,7 @@
         $('#UserLastname').val(tr.find('.lastname').html());
         $('#UserAddress').val(tr.find('.address').html());
         $('#UserCountry').val(tr.find('.country').html());
+        $('#UserPurposeofDonation').val(tr.find('.purpose').html());
         $('#UserUsername').val(tr.find('.username').html());
         $('#UserPassword').val(tr.find('.password').html());
         $('#UserConfirmpassword').val(tr.find('.confirmpassword').html());

@@ -23,9 +23,6 @@ $user = $this->Session->read('Auth.User');
             <li class="<?php echo $this->name == 'DonationHistory' ? 'active' : '' ?>">
                 <?php echo $this->Html->link('Donation History', array('controller' => 'DonationHistory', 'action' => 'index')) ?>
             </li>
-            <li class="">
-                <?php echo $this->Html->link('Pending Donations', array('controller' => 'Donations', 'action' => 'pendingdonation')) ?>
-            </li>
             <li class="<?php echo $this->name == 'InviteFriends' ? 'active' : '' ?>">
                 <?php echo $this->Html->link('Invite Friends', array('controller' => 'InviteFriends', 'action' => 'index')) ?>
             </li>

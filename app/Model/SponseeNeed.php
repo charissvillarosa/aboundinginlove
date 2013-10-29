@@ -25,6 +25,12 @@ class SponseeNeed extends AppModel
                 "message" => "A description is required"
             )
         ),
+        "donationmethod" => array(
+            "valid" => array(
+                "rule" => array("notEmpty"),
+                "message" => "A Donation method is required"
+            )
+        ),
         "neededamount" => array(
             "valid" => array(
                 "rule" => array("notEmpty"),
