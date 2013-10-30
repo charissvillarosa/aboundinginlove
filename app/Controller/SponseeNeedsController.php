@@ -46,7 +46,30 @@ class SponseeNeedsController extends AppController
             'conditions' => array('SponseeNeed.sponsee_id' => $id),
             'order' => array('SponseeNeed.category_id')
         ));
+
         if ($sponseeneeds) {
+            $oneTimeArr = array();
+            $monthlyArr = array();
+
+            foreach ($sponseeneeds as $need) {
+                $dn = $need['SponseeNeed']['donation_method'];
+                if ($dn == 'monthly') {
+                    array_push($monthlyArr, $need);
+                }
+                else {
+                    array_push($oneTimeArr, $need);
+                }
+            }
+
+            $sponseeneeds = array();
+            if (count($oneTimeArr) > 0) {
+                $sponseeneeds['One Time'] = $oneTimeArr;
+            }
+
+            if (count($monthlyArr) > 0) {
+                $sponseeneeds['Monthly'] = $monthlyArr;
+            }
+
             $this->set("sponseeneeds", $sponseeneeds);
         }
         

@@ -201,13 +201,13 @@
         $('#UserLastname').val(tr.find('.lastname').html());
         $('#UserAddress').val(tr.find('.address').html());
         $('#UserCountry').val(tr.find('.country').html());
-        $('#UserPurposeofDonation').val(tr.find('.purpose').html());
+        $('#UserPurposeOfDonation').text(tr.find('.purpose').html());
         $('#UserUsername').val(tr.find('.username').html());
         $('#UserRole').val(tr.find('.role').html());
         $('#UserId').val(tr.find('.id').html());
         $('#myModal').modal('show');
 
-        $('input, select', '#myModal form').removeAttr('readonly');
+        $('input, select, textarea', '#myModal form').removeAttr('readonly');
         $('#UserUsername').attr('readonly', 'readonly');
         $('#myModal button.ok').hide();
         $('#myModal button.save').show();
@@ -223,7 +223,7 @@
         $('#UserLastname').val(tr.find('.lastname').html());
         $('#UserAddress').val(tr.find('.address').html());
         $('#UserCountry').val(tr.find('.country').html());
-        $('#UserPurposeofDonation').val(tr.find('.purpose').html());
+        $('#UserPurposeOfDonation').text(tr.find('.purpose').html());
         $('#UserUsername').val(tr.find('.username').html());
         $('#UserPassword').val(tr.find('.password').html());
         $('#UserConfirmpassword').val(tr.find('.confirmpassword').html());
@@ -231,7 +231,7 @@
         $('#UserId').val(tr.find('.id').html());
         $('#myModal').modal('show');
 
-        $('input, select', '#myModal form').attr('readonly', 'readonly');
+        $('input, select, textarea', '#myModal form').attr('readonly', 'readonly');
         $('#myModal button.ok').show();
         $('#myModal button.save').hide();
     });

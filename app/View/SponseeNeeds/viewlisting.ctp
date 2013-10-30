@@ -29,75 +29,86 @@
             <div class="leftmargin1">
                 <?php echo $this->Session->flash(); ?>
             </div>
-            <table class="leftmargin1 table table-hover table-bordered">
-                <?php
-                $ctr = 1;
-                $prevCat = 0;
-
+            <?php
                 if(empty($sponseeneeds)){
-                    echo "<tr class='alert alert-info'>
-                        <td><h3>Not yet specified.</h3></td>
-                    </tr>";
+                    echo '
+                        <table class="leftmargin1 table table-hover table-bordered">
+                            <tr class="alert alert-info">
+                            <td><h3>Not yet specified.</h3></td>
+                        </tr>';
                 }
                 else {
-                    foreach ($sponseeneeds as $item) :
-                        $need = $item['SponseeNeed'];
-                        $category = $item['Category'];
-                        $addedBy = $item['AddedBy'];
+                    foreach ($sponseeneeds as $itemLabel=>$itemArray) :
 
-                        if ($prevCat != $category['id']) : ?>
+                        $ctr = 1;
+                        $prevCat = 0;
+
+                        echo "<h3 class='fontcolor1 leftmargin1'>$itemLabel</h3>";
+                        echo '<table class="leftmargin1 table table-hover table-bordered">';
+
+                        foreach ($itemArray as $item) :
+                        
+                            $need = $item['SponseeNeed'];
+                            $category = $item['Category'];
+                            $addedBy = $item['AddedBy'];
+
+                            if ($prevCat != $category['id']) : ?>
+                                <tr>
+                                    <th bgcolor="#eef6fa" colspan="9">
+                                        <?php echo '<span class="category">'.$category['description'].'</span>'; ?>
+                                    </th>
+                                </tr
+                                <tr>
+                                    <td bgcolor="#f9f9f9">No.</td>
+                                    <td bgcolor="#f9f9f9">Description</td>
+                                    <td bgcolor="#f9f9f9">Needed Amount</td>
+                                    <td bgcolor="#f9f9f9">Donated Amount</td>
+                                    <td bgcolor="#f9f9f9">Added By</td>
+                                    <td bgcolor="#f9f9f9">Date Added</td>
+                                    <td bgcolor="#f9f9f9">Date Modified</td>
+                                    <td bgcolor="#f9f9f9">Edit</td>
+                                    <td bgcolor="#f9f9f9">Delete</td>
+                                </tr>
+                            <?php
+                            $prevCat = $category['id'];
+                            endif;
+                            ?>
                             <tr>
-                                <th bgcolor="#eef6fa" colspan="9">
-                                    <?php echo '<span class="category">'.$category['description'].'</span>'; ?>
-                                </th>
-                            </tr
-                            <tr>
-                                <td bgcolor="#f9f9f9">No.</td>
-                                <td bgcolor="#f9f9f9">Description</td>
-                                <td bgcolor="#f9f9f9">Needed Amount</td>
-                                <td bgcolor="#f9f9f9">Donated Amount</td>
-                                <td bgcolor="#f9f9f9">Added By</td>
-                                <td bgcolor="#f9f9f9">Date Added</td>
-                                <td bgcolor="#f9f9f9">Date Modified</td>
-                                <td bgcolor="#f9f9f9">Edit</td>
-                                <td bgcolor="#f9f9f9">Delete</td>
+                                <td bgcolor="#fff">
+                                    <?php echo $ctr.'.'; ?>
+                                    <span class="id" style="display:none;"><?php echo $need['id'] ?></span>
+                                    <span class="sponseeid" style="display:none;"><?php echo $need['sponsee_id'] ?></span>
+                                    <span class="donationmethod" style="display:none;"><?php echo $need['donation_method'] ?></span>
+                                </td>
+                                <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
+                                <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
+                                <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
+                                <td bgcolor="#fff"><?php echo $addedBy['firstname'] ?></td>
+                                <td bgcolor="#fff"><?php echo $this->Time->format($need['created']) ?></td>
+                                <td bgcolor="#fff"><?php echo $this->Time->format($need['modified']) ?></td>
+                                <td>
+                                    <a href="#" class="edit" title="Edit"><i class="icon-edit"></i></a>
+                                   <!--<i><?php // echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit','title' => 'Edit')); ?></i>-->
+                                </td>
+                                <td>
+                                    <i>
+                                    <?php echo $this->Html->link(
+                                        '',
+                                        array('action' => 'delete', $need['id'], $need['sponsee_id']),
+                                        array('class' => 'icon-trash','title' => 'Delete'),
+                                        'Are you sure you want to delete this item?');
+                                    ?>
+                                    </i>
+                                </td>
                             </tr>
-                        <?php 
-                        $prevCat = $category['id'];
-                        endif; 
-                        ?>
-                        <tr>
-                            <td bgcolor="#fff">
-                                <?php echo $ctr.'.'; ?>
-                                <span class="id" style="display:none;"><?php echo $need['id'] ?></span>
-                                <span class="sponseeid" style="display:none;"><?php echo $need['sponsee_id'] ?></span> 
-                            </td>
-                            <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
-                            <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
-                            <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
-                            <td bgcolor="#fff"><?php echo $addedBy['firstname'] ?></td>
-                            <td bgcolor="#fff"><?php echo $this->Time->format($need['created']) ?></td>
-                            <td bgcolor="#fff"><?php echo $this->Time->format($need['modified']) ?></td>
-                            <td>
-                                <a href="#" class="edit" title="Edit"><i class="icon-edit"></i></a>
-                               <!--<i><?php // echo $this->Html->link('', array('controller' => 'SponseeNeeds', 'action' => 'edit', $need['id'], $need['sponsee_id']), array('class' => 'icon-edit','title' => 'Edit')); ?></i>-->
-                            </td>
-                            <td>
-                                <i>
-                                <?php echo $this->Html->link(
-                                    '',
-                                    array('action' => 'delete', $need['id'], $need['sponsee_id']),
-                                    array('class' => 'icon-trash','title' => 'Delete'),
-                                    'Are you sure you want to delete this item?');
-                                ?>
-                                </i>
-                            </td>
-                        </tr>
-                        <?php $ctr++;
+                            <?php $ctr++;
+                        endforeach;
+
+                        echo '</table>';
+
                     endforeach;
                 }
             ?>
-            </table>
          </div>
     </div>
 </div>
@@ -117,7 +128,16 @@
         <fieldset>
             <?php echo $this->Form->input('category_id', array('type' => 'select', 'label' => 'Category', 'class' => 'topmargin4 span4', 'options' => $categories)) ?>
             <?php echo $this->Form->input('description', array('label' => 'Description', 'class' => 'span4')) ?>
-            <?php echo $this->Form->input('neededamount', array('label' => 'Needed Amount', 'class' => 'span2', 'style'=>'text-align:right;')) ?>
+            <?php
+                echo '<div style="padding-left:0; margin-left:0;">';
+                echo '<div style="padding-left:0; margin-left:0;" class="pull-left">'.$this->Form->input('neededamount', array('label' => 'Needed Amount', 'class' => 'span2', 'style'=>'text-align:right;')).'</div>';
+                echo '<div class="pull-left">'. $this->Form->input('donation_method', array(
+                    'label' => 'Donation Method',
+                    'class' => 'span2',
+                    'options' => array('onetime' => 'Once Time Donation', 'monthly' => 'Monthly Donation')
+                )).'</div>';
+                echo '</div>';
+            ?>
             <?php echo $this->Form->hidden('id') ?>
             <?php echo $this->Form->hidden('sponsee_id') ?>
         </fieldset>
@@ -168,6 +188,7 @@
         $('#myModalLabel').html('Edit Sponsee Need');
         $('#SponseeNeedCategoryid').val(tr.find('.category').html());
         $('#SponseeNeedDescription').val(tr.find('.description').html());
+        $('#SponseeNeedDonationMethod').val(tr.find('.donationmethod').html());
         $('#SponseeNeedNeededamount').val(tr.find('.neededamount').html().replace(/[^\d.]/g, ''));
         $('#SponseeNeedId').val(tr.find('.id').html());
         $('#SponseeNeedSponseeid').val(tr.find('.sponseeid').html());
