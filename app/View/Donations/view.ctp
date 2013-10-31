@@ -55,7 +55,6 @@ $user = $this->Session->read('Auth.User');
                             echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
                             echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
                             echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
-                            echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
                         ?>
                         <hr>
                     </div>
@@ -73,77 +72,74 @@ $user = $this->Session->read('Auth.User');
                              endforeach;
                         ?>
                      </p>
-                    <h3 class="fontcolor1">NEEDS</h3>
-                    <div class="overlayable">
-                        <?php
-                        if(empty($sponseeneeds)){
-                            $user = $this->Session->read('Auth.User');
-                            $controller = $this->name;
+                     <h3 class="fontcolor1">SPONSEE NEEDS</h3>
+                     <p class="bottommargin3">
+                        By selecting the recurring or monthly support payments,
+                        at abounding in love you may pause or cancel your support at any time for any reason.
+                     </p>
+                     <?php
+                        foreach ($sponseeneeds as $itemLabel=>$itemArray) :
 
-                            if ($user && $user['role'] == 'admin'){
-                                echo "<div class='alert alert-info'>
-                                    <h4>Not yet specified.</h4>
-                                    <p class='topmargin1'>To add, just click the add button below.</p>";
-                                    echo $this->Html->link('Add Sponsee Needs', array('controller' => 'sponseeneeds', 'action' => 'add', $sponsee['id']), array('class' => 'btn btn-info btn-big'));
-                                echo "</div>";
-                            }
-                            else {
-                                echo "<div class='alert alert-info'><h4>Not yet specified.</h4></div>";
-                            }
-                        }
-                        else {
-                            echo "<table class='table table-hover table-bordered'>";
-                            echo "
-                                <tr>
-                                    <th></th>
-                                    <th>Need Amount</th>
-                                    <th>Need</th>
-                                </tr>
-                            ";
+                            $ctr = 1;
                             $prevCat = 0;
-                            foreach ($sponseeneeds as $item) :
+
+                            echo "<h4 class='fontcolor1'>$itemLabel</h4>";
+                            echo "<table class='table table-hover table-bordered'>";
+                            echo "<tr>
+                                <th colspan='2' bgcolor='#f9f9f9'>Needed Amount</th>
+                                <th colspan='2' bgcolor='#f9f9f9'>Description</th>
+                            </tr>";
+                            
+                            foreach ($itemArray as $item) :
                                 $need = $item['SponseeNeed'];
+                                $status = $item['SponseeNeed']['status'];
                                 $category = $item['Category'];
-                                $status = $need['status'];
+                                $addedBy = $item['AddedBy'];
 
                                 if ($prevCat != $category['id']) : ?>
                                     <tr>
-                                        <th colspan="4">
-                                            <?php echo $category['description'] ?>
+                                        <th bgcolor="#eef6fa" colspan="9">
+                                            <?php echo '<span class="category leftmargin1">'.$category['description'].'</span>'; ?>
                                         </th>
-                                    </tr>
+                                    </tr
                                 <?php
                                 $prevCat = $category['id'];
                                 endif;
                                 ?>
                                 <tr>
                                     <?php if($status != 'CLOSED') : ?>
-                                    <td style="width:30px;">
-                                        <input type="checkbox" name="data[Items][][sponsee_need_id]"
-                                               value="<?php echo $need['id'] ?>"/>
-                                    </td>
-                                    <?php else: ?>
-                                    <td style="width:30px;">
-                                        <?php echo $this->Html->image('check.png'); ?>
-                                    </td>
+                                        <td style="width:30px; padding-left:30px;">
+                                            <input type="checkbox" name="data[Items][][sponsee_need_id]"
+                                                   value="<?php echo $need['id'] ?>"/>
+                                        </td>
+                                        <?php else: ?>
+                                        <td style="width:30px; padding-left:30px;">
+                                            <?php echo $this->Html->image('check.png'); ?>
+                                        </td>
                                     <?php endif; ?>
-                                    <td style="width: 50px; text-align: right; font-weight: bold;">
-                                        <?php echo $this->Number->currency($need['neededamount']); ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $need['description'] ?>
-                                    </td>
+                                    <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
+                                    <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
+                                    <?php if($status != 'CLOSED') : ?>
+                                        <td style="padding-left:30px;">
+                                            <?php echo "<div class='pull-left'>For how long?</div>"; ?>
+                                            <?php echo "<div class='clear'></div>"; ?>
+                                            <?php echo "<div class='pull-left'>".$this->Form->input('month', array('label' => '', 'class' => 'span1', 'style'=>'text-align:right;'))."</div>"; ?>
+                                            <?php echo "<div class='pull-left topmargin4 leftmargin1'>Months</div>"; ?>
+                                        </td>
+                                        <?php else: ?>
+                                        <td>
+                                            Date of donation
+                                            Donor
+                                        </td>
+                                    <?php endif; ?>
                                 </tr>
-                            <?php
+                                <?php $ctr++;
                             endforeach;
 
-                            echo "</table>";
-                        }
-                        echo '<div id="error"></div>';
+                            echo '</table>';
+
+                        endforeach;
                         ?>
-                        <?php echo $this->Session->flash(); ?>
-                        <div class="modal-backdrop overlay hide"></div>
-                    </div>
                 </div>
             </div>
             <div style="width:870px;" class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
