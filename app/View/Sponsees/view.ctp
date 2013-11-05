@@ -14,19 +14,19 @@ $user = $this->Session->read('Auth.User');
 <div class="pull-right">
     <?php echo $this->Html->link('Go back to Sponsee Listing', array('action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
 </div>
-<div class="clearfix topmargin1 well span8 pull-right">
-    <div style="margin-left:0;" class="span2 pull-left">
+<div class="clearfix topmargin1 well span11 pull-right bottommargin2">
+    <div style="margin-left:0;" class="span3 pull-left topmargin1 bottommargin2">
         <?php
         $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
-        $attrs = array('alt' => '', 'width' => '160px', 'class' => 'img-polaroid');
+        $attrs = array('alt' => '', 'width' => '260px', 'class' => 'img-polaroid');
         echo $this->Html->image($imageURl, $attrs);
         ?>
         <!--Button to trigger modal-->
-        <a data-toggle="modal" href="#myVideo" class="btn btn-info btn-medium btn-block"><i class="icon-facetime-video"></i> Watch my Video</a>
-        <a data-toggle="modal" href="#myStory" class="btn btn-info btn-medium btn-block"><i class="icon-book"></i> Read my Story</a>
+        <a data-toggle="modal" href="#myVideo" class="btn btn-info btn-large btn-block">Watch my Video</a>
+        <a data-toggle="modal" href="#myStory" class="btn btn-info btn-large btn-block">Read my Story</a>
     </div>
-    <div style="width:515px;" class="span6 pull-right box">
-        <div style="margin-left:0;" class="span2 pull-left">
+    <div style="width:720px;" class="span7 pull-right box topmargin1">
+        <div style="margin-left:0;" class="span3 pull-left">
             <table style="border:none;">
                 <tr>
                     <td><strong>Name: </strong></td>
@@ -51,14 +51,13 @@ $user = $this->Session->read('Auth.User');
                 </tr>
             </table>
         </div>
-        <div style="border-left:solid 1px #e3e3e3; padding-left:20px;" class="span3 pull-left">
-            <h5>Short Story</h5>
-            <p style="text-align: justify;">
+        <div style="border-left:solid 1px #e3e3e3; padding-left:40px;" class="span4 pull-left">
+            <p>
                 <?php
                      $information = explode("\n", $sponsee['short_description']);
 
                      foreach ($information as $line):
-                         echo '<p> ' . $line . "</p>\n";
+                         echo '<p style="text-align: justify;">' . $line . "</p>\n";
                      endforeach;
                 ?>
              </p>
@@ -173,11 +172,18 @@ $user = $this->Session->read('Auth.User');
                     $totalneededamount = 0;
                     $totaldonatedamount = 0;
                     $percentage = 0;
-                    foreach ($sponseeneeds as $item) :
-                        $need = $item['SponseeNeed'];
-                        $totalneededamount = $totalneededamount + $need['neededamount'];
-                        $totaldonatedamount = $totaldonatedamount + $need['donatedamount'];
-                    endforeach;
+                    if(empty($sponseeneeds)){
+                        
+                    }
+                    else{
+                        foreach ($sponseeneeds as $itemLabel=>$itemArray) :
+                            foreach ($itemArray as $item) :
+                                $need = $item['SponseeNeed'];
+                                $totalneededamount = $totalneededamount + $need['neededamount'];
+                                $totaldonatedamount = $totaldonatedamount + $need['donatedamount'];
+                            endforeach;
+                        endforeach;
+                    }
                     if ($totaldonatedamount == 0 or $totalneededamount == 0) {
                         $percentage = 0;
                     }
@@ -196,16 +202,15 @@ $user = $this->Session->read('Auth.User');
             </div>
         </div>
         <h4 class="fontcolor1">BIOGRAPHY</h4>
-        <p style="text-align: justify;">
+        <p>
            <?php
                 $information = explode("\n", $sponsee['long_description']);
 
                 foreach ($information as $line):
-                    echo '<p> ' . $line . "</p>\n";
+                    echo '<p style="text-align: justify;"> ' . $line . "</p>\n";
                 endforeach;
            ?>
         </p>
-        <h4 class="fontcolor1 topmargin2">NEEDS</h4>
         <?php
             $user = $this->Session->read('Auth.User');
 
@@ -225,17 +230,24 @@ $user = $this->Session->read('Auth.User');
                 }
          }
             else {
-                $ctr = 1;
-                $prevCat = 0;
-                echo "<table class='table table-hover table-bordered'>";
-                    foreach ($sponseeneeds as $item) :
+                foreach ($sponseeneeds as $itemLabel=>$itemArray) :
+
+                    $ctr = 1;
+                    $prevCat = 0;
+
+                    echo "<h3 class='fontcolor1'>$itemLabel</h3>";
+                    echo '<table class="table table-hover table-bordered">';
+
+                    foreach ($itemArray as $item) :
+
                         $need = $item['SponseeNeed'];
                         $category = $item['Category'];
+                        $addedBy = $item['AddedBy'];
 
                         if ($prevCat != $category['id']) : ?>
                             <tr>
-                                <th bgcolor="#eef6fa" colspan="7">
-                                    <?php echo $category['description'] ?>
+                                <th bgcolor="#eef6fa" colspan="9">
+                                    <?php echo '<span class="category">'.$category['description'].'</span>'; ?>
                                 </th>
                             </tr
                             <tr>
@@ -243,33 +255,32 @@ $user = $this->Session->read('Auth.User');
                                 <td bgcolor="#f9f9f9">Description</td>
                                 <td bgcolor="#f9f9f9">Needed Amount</td>
                                 <td bgcolor="#f9f9f9">Donated Amount</td>
-                                <?php if ($user && $user['role'] == 'admin'){
-                                   echo "
-                                     <td bgcolor='#f9f9f9'>Added By</td>
-                                     <td bgcolor='#f9f9f9'>Date Added</td>
-                                     <td bgcolor='#f9f9f9'>Date Modified</td>
-                                   ";
-                                }?>
+                                <td bgcolor="#f9f9f9">Date of Donation</td>
+                                <td bgcolor="#f9f9f9">Donor</td>
                             </tr>
-                        <?php 
+                        <?php
                         $prevCat = $category['id'];
-                        endif; 
+                        endif;
                         ?>
                         <tr>
-                            <td bgcolor="#fff"><?php echo $ctr.'.'; ?></td>
-                            <td bgcolor="#fff"><?php echo $need['description'] ?></td>
-                            <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['neededamount']) ?></td>
+                            <td bgcolor="#fff">
+                                <?php echo $ctr.'.'; ?>
+                                <span class="id" style="display:none;"><?php echo $need['id'] ?></span>
+                                <span class="sponseeid" style="display:none;"><?php echo $need['sponsee_id'] ?></span>
+                                <span class="donationmethod" style="display:none;"><?php echo $need['donation_method'] ?></span>
+                            </td>
+                            <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
+                            <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
                             <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
-                            <?php if ($user && $user['role'] == 'admin'){
-                                echo "<td bgcolor='#fff'>".$need['added_by']."</td>";
-                                echo "<td bgcolor='#fff'>".$need['created']."</td>";
-                                echo "<td bgcolor='#fff'>".$need['modified']."</td>";
-                             }?>
+                            <td bgcolor="#fff"><?php echo 'date'; ?></td>
+                            <td bgcolor="#fff"><?php echo 'donor'; ?></td>
                         </tr>
-                        <?php
-                    $ctr++;
+                        <?php $ctr++;
                     endforeach;
-               echo "</table>";
+
+                    echo '</table>';
+
+                endforeach;
             }?>
     </div>
     <div class="modal-footer">

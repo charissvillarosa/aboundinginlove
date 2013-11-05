@@ -60,7 +60,40 @@ class SponseesController extends AppController
             'conditions' => array('SponseeNeed.sponsee_id' => $id),
             'order' => array('SponseeNeed.category_id')
         ));
-        $this->set("sponseeneeds", $sponseeneeds);
+
+        if ($sponseeneeds) {
+            $oneTimeArr = array();
+            $monthlyArr = array();
+
+            foreach ($sponseeneeds as $need) {
+                $dn = $need['SponseeNeed']['donation_method'];
+                if ($dn == 'monthly') {
+                    array_push($monthlyArr, $need);
+                }
+                else {
+                    array_push($oneTimeArr, $need);
+                }
+            }
+
+            $sponseeneeds = array();
+            if (count($oneTimeArr) > 0) {
+                $sponseeneeds['One Time'] = $oneTimeArr;
+            }
+
+            if (count($monthlyArr) > 0) {
+                $sponseeneeds['Monthly'] = $monthlyArr;
+            }
+
+            $this->set("sponseeneeds", $sponseeneeds);
+        }
+
+        
+        $this->set("sponseeImage", $sponsee['Image']);
+
+        if ($sponseeneeds == '') {
+            $this->render('/Errors/notFound');
+        }
+
         
         //category and needs dropbox value
         $this->loadModel('SponseeNeedCategory');
@@ -75,6 +108,7 @@ class SponseesController extends AppController
         else {
             $this->render('/Errors/notFound');
         }
+
     }
     public function adminview($id)
     {

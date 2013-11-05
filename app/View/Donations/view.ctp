@@ -87,14 +87,18 @@ $user = $this->Session->read('Auth.User');
                             echo "<table class='table table-hover table-bordered'>";
                             echo "<tr>
                                 <th colspan='2' bgcolor='#f9f9f9'>Needed Amount</th>
-                                <th colspan='2' bgcolor='#f9f9f9'>Description</th>
+                                <th bgcolor='#f9f9f9'>Description</th>
+                                <th bgcolor='#f9f9f9'>Date of Donation</th>
+                                <th bgcolor='#f9f9f9'>Donor</th>
                             </tr>";
                             
                             foreach ($itemArray as $item) :
+
                                 $need = $item['SponseeNeed'];
                                 $status = $item['SponseeNeed']['status'];
                                 $category = $item['Category'];
                                 $addedBy = $item['AddedBy'];
+                                $donation = $item['Donation'];
 
                                 if ($prevCat != $category['id']) : ?>
                                     <tr>
@@ -120,16 +124,17 @@ $user = $this->Session->read('Auth.User');
                                     <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
                                     <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
                                     <?php if($status != 'CLOSED') : ?>
-                                        <td style="padding-left:30px;">
-                                            <?php echo "<div class='pull-left'>For how long?</div>"; ?>
-                                            <?php echo "<div class='clear'></div>"; ?>
-                                            <?php echo "<div class='pull-left'>".$this->Form->input('month', array('label' => '', 'class' => 'span1', 'style'=>'text-align:right;'))."</div>"; ?>
-                                            <?php echo "<div class='pull-left topmargin4 leftmargin1'>Months</div>"; ?>
+                                        <td style="padding-left:30px;" colspan="2">
+                                            <?php echo "<div>For how long?</div>"; ?>
+                                            <?php echo "<div><div class='pull-left'>".$this->Form->input('month', array('label' => '', 'class' => 'span1', 'style'=>'text-align:right;'))."</div>"; ?>
+                                            <?php echo "<div class='pull-left topmargin4 leftmargin1'>Months</div></div>"; ?>
                                         </td>
                                         <?php else: ?>
                                         <td>
-                                            Date of donation
-                                            Donor
+                                            <?php echo $this->Time->format($donation['payment_date']); ?>
+                                        </td>
+                                        <td>
+                                            <a href="#"><?php echo $donation['first_name'].' '.$donation['last_name']; ?></a>
                                         </td>
                                     <?php endif; ?>
                                 </tr>
