@@ -12,6 +12,9 @@ $user = $this->Session->read('Auth.User');
     .container form div {
         padding-left: 0;
     }
+
+    a {color:#333333;}
+    a:hover {color:#4385ce; text-decoration:none;}
 </style>
 
 <div class="container">
@@ -93,7 +96,7 @@ $user = $this->Session->read('Auth.User');
                             </tr>";
                             
                             foreach ($itemArray as $item) :
-
+                                
                                 $need = $item['SponseeNeed'];
                                 $status = $item['SponseeNeed']['status'];
                                 $category = $item['Category'];
@@ -134,7 +137,7 @@ $user = $this->Session->read('Auth.User');
                                             <?php echo $this->Time->format($donation['payment_date']); ?>
                                         </td>
                                         <td>
-                                            <a href="#"><?php echo $donation['first_name'].' '.$donation['last_name']; ?></a>
+                                            <a data-toggle="modal" href="<?php echo $this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php echo $donation['first_name'].' '.$donation['last_name']; ?></a>
                                         </td>
                                     <?php endif; ?>
                                 </tr>
@@ -155,5 +158,16 @@ $user = $this->Session->read('Auth.User');
             $this->Form->end();
             ?>
         </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">DONOR INFORMATION</h3>
+    </div>
+    <div class="modal-body">
+
     </div>
 </div>

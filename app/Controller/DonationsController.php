@@ -288,4 +288,10 @@ class DonationsController extends AppController
         $this->set('donation', $donation);
 
     }
+
+    public function donor($user_id){
+        $this->layout = null;
+
+        
+    }
 }

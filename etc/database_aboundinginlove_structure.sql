@@ -37,7 +37,7 @@ CREATE TABLE `donation_requests` (
   `type` varchar(50) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -228,7 +228,7 @@ CREATE TABLE `portfolio_images` (
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `portfolios` */
 
@@ -264,7 +264,7 @@ CREATE TABLE `sponsee_donation_items` (
   `parent_id` bigint(20) DEFAULT NULL,
   `sponsee_need_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=164 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=201 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_donations` */
 
@@ -280,7 +280,7 @@ CREATE TABLE `sponsee_donations` (
   `to` datetime DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1131 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_images` */
 
@@ -320,9 +320,11 @@ CREATE TABLE `sponsee_needs` (
   `added_by` varchar(100) DEFAULT NULL,
   `created` timestamp NULL DEFAULT NULL,
   `modified` timestamp NULL DEFAULT NULL,
+  `donation_method` varchar(20) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL COMMENT 'OPEN|CLOSED',
+  `payer_id` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsees` */
 
@@ -361,10 +363,39 @@ CREATE TABLE `users` (
   `middlename` varchar(100) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `country` varchar(10) DEFAULT NULL,
+  `purpose_of_donation` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uix_user_username` (`username`),
   UNIQUE KEY `uix_user_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+/*!50106 set global event_scheduler = 1*/;
+
+/* Event structure for event `donation_request_cleaner` */
+
+/*!50106 DROP EVENT IF EXISTS `donation_request_cleaner`*/;
+
+DELIMITER $$
+
+/*!50106 CREATE EVENT `donation_request_cleaner` ON SCHEDULE EVERY 1 DAY STARTS '2013-10-25 09:45:48' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+	    Delete from donation_requests where date_add(created, interval 6 month) < now();
+	END */$$
+DELIMITER ;
+
+/* Event structure for event `pending_donation_cleaner` */
+
+/*!50106 DROP EVENT IF EXISTS `pending_donation_cleaner`*/;
+
+DELIMITER $$
+
+/*!50106 CREATE EVENT `pending_donation_cleaner` ON SCHEDULE EVERY 1 DAY STARTS '2013-10-24 12:02:02' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+		DELETE sponsee_donations, sponsee_donation_items
+		FROM sponsee_donations
+		LEFT JOIN sponsee_donation_items
+		ON sponsee_donations.id = sponsee_donation_items.parent_id
+		WHERE  date_add(created, interval 6 month) < now();
+	END */$$
+DELIMITER ;
 
 /*Table structure for table `friend_invites` */
 
