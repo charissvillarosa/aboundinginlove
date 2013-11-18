@@ -280,7 +280,7 @@ CREATE TABLE `sponsee_donations` (
   `to` datetime DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1131 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1132 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_images` */
 

@@ -81,72 +81,83 @@ $user = $this->Session->read('Auth.User');
                         at abounding in love you may pause or cancel your support at any time for any reason.
                      </p>
                      <?php
-                        foreach ($sponseeneeds as $itemLabel=>$itemArray) :
+                        if(empty($sponseeneeds)){
+                            echo "<table class='table table-hover table-bordered'>
+                               <tr>
+                                    <td>
+                                       No record found.
+                                    </td>
+                               </tr>
+                            </table>";
+                        }
+                        else{
+                            foreach ($sponseeneeds as $itemLabel=>$itemArray) :
 
-                            $ctr = 1;
-                            $prevCat = 0;
+                                $ctr = 1;
+                                $prevCat = 0;
 
-                            echo "<h4 class='fontcolor1'>$itemLabel</h4>";
-                            echo "<table class='table table-hover table-bordered'>";
-                            echo "<tr>
-                                <th colspan='2' bgcolor='#f9f9f9'>Needed Amount</th>
-                                <th bgcolor='#f9f9f9'>Description</th>
-                                <th bgcolor='#f9f9f9'>Date of Donation</th>
-                                <th bgcolor='#f9f9f9'>Donor</th>
-                            </tr>";
-                            
-                            foreach ($itemArray as $item) :
-                                
-                                $need = $item['SponseeNeed'];
-                                $status = $item['SponseeNeed']['status'];
-                                $category = $item['Category'];
-                                $addedBy = $item['AddedBy'];
-                                $donation = $item['Donation'];
+                                echo "<h4 class='fontcolor1'>$itemLabel</h4>";
+                                echo "<table class='table table-hover table-bordered'>";
+                                echo "<tr>
+                                    <th colspan='2' bgcolor='#f9f9f9'>Needed Amount</th>
+                                    <th bgcolor='#f9f9f9'>Description</th>
+                                    <th bgcolor='#f9f9f9'>Date of Donation</th>
+                                    <th bgcolor='#f9f9f9'>Donor</th>
+                                </tr>";
 
-                                if ($prevCat != $category['id']) : ?>
+                                foreach ($itemArray as $item) :
+
+                                    $need = $item['SponseeNeed'];
+                                    $status = $item['SponseeNeed']['status'];
+                                    $category = $item['Category'];
+                                    $addedBy = $item['AddedBy'];
+                                    $donation = $item['Donation'];
+
+                                    if ($prevCat != $category['id']) : ?>
+                                        <tr>
+                                            <th bgcolor="#eef6fa" colspan="9">
+                                                <?php echo '<span class="category leftmargin1">'.$category['description'].'</span>'; ?>
+                                            </th>
+                                        </tr
+                                    <?php
+                                    $prevCat = $category['id'];
+                                    endif;
+                                    ?>
                                     <tr>
-                                        <th bgcolor="#eef6fa" colspan="9">
-                                            <?php echo '<span class="category leftmargin1">'.$category['description'].'</span>'; ?>
-                                        </th>
-                                    </tr
-                                <?php
-                                $prevCat = $category['id'];
-                                endif;
-                                ?>
-                                <tr>
-                                    <?php if($status != 'CLOSED') : ?>
-                                        <td style="width:30px; padding-left:30px;">
-                                            <input type="checkbox" name="data[Items][][sponsee_need_id]"
-                                                   value="<?php echo $need['id'] ?>"/>
-                                        </td>
-                                        <?php else: ?>
-                                        <td style="width:30px; padding-left:30px;">
-                                            <?php echo $this->Html->image('check.png'); ?>
-                                        </td>
-                                    <?php endif; ?>
-                                    <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
-                                    <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
-                                    <?php if($status != 'CLOSED') : ?>
-                                        <td style="padding-left:30px;" colspan="2">
-                                            <?php echo "<div>For how long?</div>"; ?>
-                                            <?php echo "<div><div class='pull-left'>".$this->Form->input('month', array('label' => '', 'class' => 'span1', 'style'=>'text-align:right;'))."</div>"; ?>
-                                            <?php echo "<div class='pull-left topmargin4 leftmargin1'>Months</div></div>"; ?>
-                                        </td>
-                                        <?php else: ?>
-                                        <td>
-                                            <?php echo $this->Time->format($donation['payment_date']); ?>
-                                        </td>
-                                        <td>
-                                            <a data-toggle="modal" href="<?php echo $this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php echo $donation['first_name'].' '.$donation['last_name']; ?></a>
-                                        </td>
-                                    <?php endif; ?>
-                                </tr>
-                                <?php $ctr++;
+                                        <?php if($status != 'CLOSED') : ?>
+                                            <td style="width:30px; padding-left:30px;">
+                                                <input type="checkbox" name="data[Items][][sponsee_need_id]"
+                                                       value="<?php echo $need['id'] ?>"/>
+                                            </td>
+                                            <?php else: ?>
+                                            <td style="width:30px; padding-left:30px;">
+                                                <?php echo $this->Html->image('check.png'); ?>
+                                            </td>
+                                        <?php endif; ?>
+                                        <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
+                                        <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
+                                        <?php if($status != 'CLOSED') : ?>
+                                            <td style="padding-left:30px;" colspan="2">
+                                                <?php echo "<div>For how long?</div>"; ?>
+                                                <?php echo "<div><div class='pull-left'>".$this->Form->input('month', array('label' => '', 'class' => 'span1', 'style'=>'text-align:right;'))."</div>"; ?>
+                                                <?php echo "<div class='pull-left topmargin4 leftmargin1'>Months</div></div>"; ?>
+                                            </td>
+                                            <?php else: ?>
+                                            <td>
+                                                <?php echo $this->Time->format($donation['payment_date']); ?>
+                                            </td>
+                                            <td>
+                                                <a data-toggle="modal" href="<?php echo $this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php echo $donation['first_name'].' '.$donation['last_name']; ?></a>
+                                            </td>
+                                        <?php endif; ?>
+                                    </tr>
+                                    <?php $ctr++;
+                                endforeach;
+
+                                echo '</table>';
+
                             endforeach;
-
-                            echo '</table>';
-
-                        endforeach;
+                        }
                         ?>
                 </div>
             </div>
