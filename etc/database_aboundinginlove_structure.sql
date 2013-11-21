@@ -224,7 +224,7 @@ CREATE TABLE `portfolio_images` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `portfolio_id` bigint(20) DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL,
-  `date_uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -248,7 +248,7 @@ DROP TABLE IF EXISTS `profile_images`;
 
 CREATE TABLE `profile_images` (
   `id` bigint(20) NOT NULL,
-  `date_uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created` datetime DEFAULT NULL,
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
   `hash_key` varchar(50) DEFAULT NULL,
@@ -264,7 +264,7 @@ CREATE TABLE `sponsee_donation_items` (
   `parent_id` bigint(20) DEFAULT NULL,
   `sponsee_need_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=201 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=204 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_donations` */
 
@@ -280,7 +280,7 @@ CREATE TABLE `sponsee_donations` (
   `to` datetime DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1132 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1135 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_images` */
 
@@ -367,7 +367,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uix_user_username` (`username`),
   UNIQUE KEY `uix_user_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*!50106 set global event_scheduler = 1*/;
 

@@ -22,7 +22,7 @@ class Portfolio extends AppModel
             'foreignKey' => 'portfolio_id',
             'dependent' => true,
             // the 'image' field is not required here
-            'fields' => array('id', 'portfolio_id', 'description', 'date_uploaded')
+            'fields' => array('id', 'portfolio_id', 'description', 'created')
         )
     );
     

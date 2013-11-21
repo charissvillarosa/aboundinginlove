@@ -33,6 +33,7 @@ class ProfileImagesController extends AppController
             header('Content-type: image/jpg');
             include 'app/webroot/img/sponsees/nophoto.jpg';
         }
+        $this->ProfileImage->set('image', $photo);
     }
     
     function upload($id)

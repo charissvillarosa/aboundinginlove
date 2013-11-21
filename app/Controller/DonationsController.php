@@ -71,7 +71,6 @@ class DonationsController extends AppController
         if ($sponseeneeds == '') {
             $this->render('/Errors/notFound');
         }
-
     }
     
     public function listing()
@@ -289,9 +288,16 @@ class DonationsController extends AppController
 
     }
 
-    public function donor($user_id){
+    public function donor($donor_id){
         $this->layout = null;
 
-        
+        $this->loadModel('User');
+        $user = $this->User->read(null, $donor_id);
+        if ($user) {
+            $this->set("donor", $user['User']);
+        }
+        else {
+            $this->render('/Errors/notFound');
+        }
     }
 }
