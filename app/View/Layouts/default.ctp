@@ -36,10 +36,15 @@ echo $this->Html->docType('html5');
     echo $this->Html->css('bootstrap');
     echo $this->Html->css('bootstrap-responsive');
     echo $this->Html->css('background');
+    //anythingslider css
+    echo $this->Html->css('anythingslider');
+    echo $this->Html->css('theme-metallic');
 
     echo $this->Html->script('jquery');
     echo $this->Html->script('bootstrap.min');
     echo $this->Html->script('app');
+    //anythingslider jquery
+    echo $this->Html->script('jquery.anythingslider');
 
     echo $this->fetch('meta');
     echo $this->fetch('css');
@@ -47,6 +52,13 @@ echo $this->Html->docType('html5');
     ?>
     <script>
         $(function() {
+            //anythingslider
+            $('#slider1').anythingSlider({
+                theme : 'mitallic',
+                expand       : true,
+                autoPlay     : true
+            });
+            
             //for menu style and listing
             $('.dropdown-toggle').dropdown();
             

@@ -1,48 +1,43 @@
-<!-- Carousel
-================================================== -->
 <div id="slider" class="banner">
-    <div id="myCarousel" class="carousel slide">
-        <div class="carousel-inner">
-            <div class="item active">
-                <?php
-                echo $this->Html->image('slide-01.jpg');
-                ?>
-                <div class="container">
-                    <!--<div class="carousel-caption">
-                      <h1></h1>
-                      <p class="lead"></p>
-                      <a class="btn btn-large btn-primary" href="#">Sign up today</a>
-                    </div>-->
-                </div>
+    <ul id="slider1">
+        <li>
+            <?php
+            echo $this->Html->image('sliders/image1.png');
+            ?>
+        </li>
+        <li style="background:blue;">
+            <?php
+            echo $this->Html->image('sliders/image2.png');
+            ?>
+            <div>
+                
             </div>
-            <div class="item">
-                <?php
-                echo $this->Html->image('slide-02.jpg');
-                ?>
-                <div class="container">
-                    <!--<div class="carousel-caption">
-                      <h1></h1>
-                      <p class="lead"></p>
-                      <a class="btn btn-large btn-primary" href="#">Sign up today</a>
-                    </div>-->
-                </div>
+        </li>
+        <li style="background:yellow;">
+            <?php
+            echo $this->Html->image('slide-03.jpg');
+            ?>
+        </li>
+        <li style="background:white;">
+            <div class="textSlide">
+                <img src="demos/images/251356.jpg" alt="tomato sandwich" style="float: right; margin: 0 0 2px 10px;" />
+                <h3>Queenie's Killer Tomato Bagel Sandwich</h3>
+                <h4>Ingredients</h4>
+                <ul>
+                    <li>1 bagel, split and toasted</li>
+                    <li>2 tablespoons cream cheese</li>
+                    <li>1 roma (plum) tomatoes, thinly sliced</li>
+                    <li>salt and pepper to taste</li>
+                    <li>4 leaves fresh basil</li>
+                </ul>
             </div>
-            <div class="item">
-                <?php
-                echo $this->Html->image('slide-03.jpg');
-                ?>
-                <div class="container">
-                    <!--<div class="carousel-caption">
-                      <h1></h1>
-                      <p class="lead"></p>
-                      <a class="btn btn-large btn-primary" href="#">Sign up today</a>
-                    </div>-->
-                </div>
+        </li>
+        <li style="background:green;">
+            <div class="quoteSlide">
+                <blockquote>In awe I watched the waxing moon ride across the zenith of the heavens like an ambered chariot towards the ebon void of infinite space wherein the tethered belts of Jupiter and Mars hang forever festooned in their orbital majesty. And as I looked at all this I thought... I must put a roof on this lavatory.<p>~ Les Dawson</p></blockquote>
             </div>
-        </div>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-    </div><!-- /.carousel -->
+        </li>
+    </ul>
 </div>
 <div class="container">
     <div class="row margin1">
