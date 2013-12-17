@@ -91,6 +91,10 @@ $user = $this->Session->read('Auth.User');
                             </table>";
                         }
                         else{
+                            echo "<tr><td>";
+                               echo $this->Session->flash();
+                            echo "</td></tr>";
+                            $itemIndex = 0;
                             foreach ($sponseeneeds as $itemLabel=>$itemArray) :
 
                                 $ctr = 1;
@@ -126,7 +130,7 @@ $user = $this->Session->read('Auth.User');
                                     <tr>
                                         <?php if($status != 'CLOSED') : ?>
                                             <td style="width:30px; padding-left:30px;">
-                                                <input type="checkbox" name="data[Items][][sponsee_need_id]"
+                                                <input type="checkbox" name="data[Items][<?php echo $itemIndex ?>][sponsee_need_id]"
                                                        value="<?php echo $need['id'] ?>"/>
                                             </td>
                                             <?php else: ?>
@@ -138,9 +142,13 @@ $user = $this->Session->read('Auth.User');
                                         <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
                                         <?php if($status != 'CLOSED') : ?>
                                             <td style="padding-left:30px;" colspan="2">
-                                                <?php echo "<div>For how long?</div>"; ?>
-                                                <?php echo "<div><div class='pull-left'>".$this->Form->input('month', array('label' => '', 'class' => 'span1', 'style'=>'text-align:right;'))."</div>"; ?>
-                                                <?php echo "<div class='pull-left topmargin4 leftmargin1'>Months</div></div>"; ?>
+                                                <div>For how long?</div>
+                                                <div>
+                                                    <div class='pull-left'>
+                                                        <input type="number" name="data[Items][<?php echo $itemIndex ?>][no_of_months]" class="span1"/>
+                                                    </div>
+                                                    <div class='pull-left topmargin4 leftmargin1'>Months</div>
+                                                </div>
                                             </td>
                                             <?php else: ?>
                                             <td>
@@ -151,7 +159,11 @@ $user = $this->Session->read('Auth.User');
                                             </td>
                                         <?php endif; ?>
                                     </tr>
-                                    <?php $ctr++;
+                                    <?php
+                                    
+                                    $ctr++;
+                                    $itemIndex++;
+
                                 endforeach;
 
                                 echo '</table>';

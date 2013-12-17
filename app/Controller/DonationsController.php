@@ -114,53 +114,80 @@ class DonationsController extends AppController
         $this->redirect(array('action'=>'view', $id));
     }
 
-//    public function mydonation($id)
-//    {
-//        //userid
-//        $sessUser = $this->Session->read('Auth.User');
-//        $this->loadModel('User');
-//        $userid = $sessUser['id'];
-//
-//        if ($this->request->isPost()) {
-//            // clean previous pending (cascaded delete)
-//            $this->SponseeDonation->deleteAll(array(
-//                'SponseeDonation.sponsee_id' => $id,
-//                'SponseeDonation.status' => 'pending'
-//            ), true);
-//
-//            $data = $this->request->data;
-//
-//            if(empty($data)){
-//                 $this->Session->setFlash('Please select the amount to donate.');
-//                 $this->redirect(array('action'=>'view', $id));
-//            }
-//            else{
-//                    $data['SponseeDonation'] = array(
-//                    'user_id' => $userid,
-//                    'sponsee_id' => $id,
-//                    'status' => 'pending'
-//                );
-//
-//                $this->SponseeDonation->saveAssociated($data);
-//                $this->redirect(array('action'=>'mydonation', $id));
-//            }
-//        }
-//        else {
-//            // set recursive to 3 to also load the 3rd level associations
-//            // (i.e SponseeDonation->Item->SponseeNeed->Category)
-//            $this->SponseeDonation->recursive = 3;
-//
-//            $donation = $this->SponseeDonation->find('first', array(
-//                'conditions' => array(
-//                    'SponseeDonation.user_id' => $userid,
-//                    'SponseeDonation.sponsee_id' => $id,
-//                    'SponseeDonation.status' => 'pending'
-//                 )
-//            ));
-//
-//            $this->set('donation', $donation);
-//        }
-//    }
+    public function mydonation($id)
+    {
+        //userid
+        $sessUser = $this->Session->read('Auth.User');
+        $this->loadModel('User');
+        $userid = $sessUser['id'];
+
+        $this->loadModel('User');
+        $userid = $sessUser['id'];
+        $fromdate = date("Y/m/d h:i:s");//get current date
+
+        if ($this->request->isPost()) {
+            
+            // clean previous pending (cascaded delete)
+            $this->SponseeDonation->deleteAll(array(
+                    'SponseeDonation.sponsee_id' => $id,
+                    'SponseeDonation.status' => 'pending'
+            ), true);
+
+            $data = $this->request->data;
+
+            // remove non-selected items
+            $selectedItems = array();
+            foreach ($data['Items'] as $item) {
+                if (isset($item['sponsee_need_id'])) {
+                    array_push($selectedItems, $item);
+                }
+            }
+
+            if(sizeof($selectedItems) === 0){
+                $this->Session->setFlash('Please select the amount and no. of months for the donation.');
+                $this->redirect(array('action'=>'view', $id));
+            }
+
+            foreach ($selectedItems as &$item) {
+
+                if($item['no_of_months'] === ''){
+                     $this->Session->setFlash('Please select the amount and no. of months for the donation.');
+                     $this->redirect(array('action'=>'view', $id));
+                }
+                
+                //calculate the to value of donation take place
+                $month = "+".$item['no_of_months']." month";
+                $todate = strtotime(date("Y/m/d", strtotime($fromdate)) . $month);
+
+                $item['date_from'] = $fromdate;
+                $item['date_to'] = date("Y/m/d h:i:s",$todate);
+            }
+
+            $data['Items'] = $selectedItems;
+            $data['SponseeDonation']['sponsee_id'] = $id;
+            $data['SponseeDonation']['user_id'] = $userid;
+            $data['SponseeDonation']['status'] = 'pending';
+
+            $this->SponseeDonation->saveAssociated($data);
+            $this->redirect(array('action'=>'mydonation', $id));
+        }
+        else {
+            // set recursive to 3 to also load the 3rd level associations
+            // (i.e SponseeDonation->Item->SponseeNeed->Category)
+            $this->SponseeDonation->recursive = 3;
+
+            $donation = $this->SponseeDonation->find('first', array(
+                'conditions' => array(
+                    'SponseeDonation.user_id' => $userid,
+                    'SponseeDonation.sponsee_id' => $id,
+                    'SponseeDonation.status' => 'pending'
+                 )
+            ));
+
+            $this->set('donation', $donation);
+        }
+    }
+    
 //    public function donationmethod($id)
 //    {
 //        //userid

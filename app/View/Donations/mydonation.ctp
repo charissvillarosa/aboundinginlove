@@ -35,10 +35,6 @@ $sponseeneeds = $donation['Items'];
                 ?>
             </div>
             <div class="pull-left">
-                <?php
-                // ----- FORM BLOCK ---------
-                echo $this->Form->create('SponseeDonation', array('url' => array('controller' => 'donations', 'action' => 'mydonation', $sponsee['id'])));
-                ?>
                 <div class="pull-left span5">
                     <h3 class="fontcolor1"><?php echo strtoupper($sponsee['firstname'] . ' ' . $sponsee['lastname']) ?></h3>
                     <div class="overlayable">
@@ -62,14 +58,18 @@ $sponseeneeds = $donation['Items'];
                             echo "<table class='table table-hover table-bordered'>";
                             $prevCat = 0;
                             $ctr = 1;
+                            $total = 0;
+                            $formattotal = 0;
+                            
                             foreach ($sponseeneeds as $item) :
                                 $need = $item['SponseeNeed'];
                                 $category = $need['Category'];
                                 $status = $need['status'];
+                                $total = $total + $need['neededamount'];
 
                                 if ($prevCat != $category['id']) : ?>
                                     <tr>
-                                        <th colspan="4">
+                                        <th colspan="2">
                                             <?php echo $category['description'] ?>
                                         </th>
                                     </tr>
@@ -83,12 +83,20 @@ $sponseeneeds = $donation['Items'];
                                         <span class="pull-left"><?php echo $need['description'] ?></span>
                                         <span class="pull-right"><?php echo $this->Number->currency($need['neededamount']); ?></span>
                                     </td>
+                                    <td>
+                                        <span class="pull-left"><?php echo 'How long?<br>'.$item['no_of_months']; if($item['no_of_months'] > 1){echo ' months';} else {echo ' month';} ?></span>
+                                    </td>
                                 </tr>
                             <?php
                             $ctr++;
                             endforeach;
+                            $formattotal = $this->Number->currency($total);
 
-                            echo "</table>";
+                            echo "
+                                <tr>
+                                    <td style='text-align:right'; colspan='4'><span class='rightmargin1'><strong>TOTAL DONATION:</strong></span><strong>$formattotal<strong></td>
+                                </tr>
+                            </table>";
                         }
                         echo '<div id="error"></div>';
                         ?>
@@ -98,17 +106,76 @@ $sponseeneeds = $donation['Items'];
                 </div>
             </div>
             <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
-                <?php echo $this->Html->link('Proceed', array('controller' => 'donations', 'action' => 'donationmethod', $sponsee['id']), array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large')); ?>
+                <?php
+                    echo '<div id="btn btn-info btn-large paypal-btn" data-type="monthly">';
+                    echo $this->paypal->button('Donate through paypal', array('type' => 'subscribe', 'item_name' => '', 'amount' => $formattotal, 'term' => 'month', 'period' => '2'), array('class' => 'pull-right topmargin1 rightmargin1'));
+                    echo '</div>';
+                ?>
                 <?php echo $this->Html->link('Cancel',
-                        array('controller'=>'Donations', 'action'=>'cancel', $sponsee['id']),
-                        array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
-                        'Sorry to see you go. Are you sure you want to cancel this donation?');
+                    array('controller'=>'Donations', 'action'=>'cancel', $sponsee['id']),
+                    array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
+                    'Sorry to see you go. Are you sure you want to cancel this donation?');
                 ?>
             </div>
-            <?php
-            // ------- CLOSING FORM ------
-            $this->Form->end();
-            ?>
         </div>
     </div>
 </div>
+
+<script>
+    $(function(){
+        var forceSubmit = false;
+
+        $('#paypal-btn form').submit(function(){
+            if (forceSubmit) return true;
+
+            saveDonationRequest();
+
+            return false;
+        });
+
+        // initialize values
+        updateDonationInputs();
+
+        function saveDonationRequest() {
+            $('.overlayable .overlay').show();
+
+            var form = $('#paypal-btn form')[0];
+            var formData = {
+                'data[DonationRequest][details]' : form.item_number.value,
+                'data[DonationRequest][sponsee_id]' : <?php echo $sponsee['id'] ?>,
+                'data[DonationRequest][type]' : 'sponsee'
+            };
+
+            var url = '<?php echo $this->Html->url(array('action' => 'saveRequest')) ?>';
+
+            $.post(url, formData)
+            .done(function(args) {
+                args = eval('(' +args+ ')');
+                forceSubmit = true;
+                form.item_number.value = formatNumber('00000000', args.id);
+                $('#paypal-btn form').submit();
+            })
+            .fail(function() {
+                alert('Failed to process request. Try again.');
+                $('.overlayable .overlay').hide();
+            });
+        }
+
+        function updateDonationInputs()
+        {
+            var total = 0.00;
+            var desc = [];
+            var items = [];
+            $('input[name=sponseeneeds]').each(function(idx,elm) {
+                console.log(elm);
+                total += parseFloat(elm.value);
+                desc.push($(elm).data('desc'));
+                items.push($(elm).data('id')+'='+elm.value);
+            });
+
+            var form = $('#paypal-btn form')[0];
+            form.item_name.value = 'Donation: ' + desc.join('/');
+            form.item_number.value = items.join(',');
+        }
+    });
+</script>
