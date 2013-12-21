@@ -40,12 +40,13 @@ CREATE TABLE `donation_requests` (
   `details` text,
   `type` varchar(50) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
+  `no_of_months` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 /*Data for the table `donation_requests` */
 
-insert  into `donation_requests`(`id`,`user_id`,`sponsee_id`,`details`,`type`,`created`) values (41,14,2,'52=1000.00','sponsee','2013-12-09 06:34:35');
+insert  into `donation_requests`(`id`,`user_id`,`sponsee_id`,`details`,`type`,`created`,`no_of_months`) values (47,14,2,'','sponsee','2013-12-21 03:02:18',NULL),(46,14,2,'','sponsee','2013-12-20 12:43:05',NULL),(45,14,2,'','sponsee','2013-12-20 12:42:28',NULL),(44,14,2,'00000043','sponsee','2013-12-20 12:40:37',NULL),(42,14,2,'','sponsee','2013-12-20 12:24:27',NULL),(43,14,2,'','sponsee','2013-12-20 12:40:27',NULL),(41,14,2,'52=1000.00','sponsee','2013-12-09 06:34:35',NULL),(48,14,2,'52=1000.00','sponsee','2013-12-21 04:25:18',2),(49,14,2,'99=50.00','sponsee','2013-12-21 04:31:39',2),(50,14,2,'99=50.00','sponsee','2013-12-21 04:34:16',2),(51,14,2,'99=50.00','sponsee','2013-12-21 04:38:18',2),(52,14,2,'52=1000.00','sponsee','2013-12-21 04:38:35',5),(53,14,2,'99=50.00','sponsee','2013-12-21 04:41:17',2),(54,14,2,'99=50.00','sponsee','2013-12-21 04:42:31',2),(55,14,2,'99=50.00','sponsee','2013-12-21 04:42:46',2),(56,14,2,'53=1000.00','sponsee','2013-12-21 04:43:02',1);
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -310,11 +311,11 @@ CREATE TABLE `sponsee_donation_items` (
   `date_to` date DEFAULT NULL,
   `no_of_months` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=217 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=223 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sponsee_donation_items` */
 
-insert  into `sponsee_donation_items`(`id`,`parent_id`,`sponsee_need_id`,`date_from`,`date_to`,`no_of_months`) values (203,1134,53,NULL,NULL,NULL),(165,106,44,NULL,NULL,NULL),(205,8,107,'2013-12-17','2014-01-17',1),(216,36,52,'2013-12-17','2014-02-17',2),(215,36,99,'2013-12-17','2014-01-17',1);
+insert  into `sponsee_donation_items`(`id`,`parent_id`,`sponsee_need_id`,`date_from`,`date_to`,`no_of_months`) values (203,1134,53,NULL,NULL,NULL),(165,106,44,NULL,NULL,NULL),(205,8,107,'2013-12-17','2014-01-17',1);
 
 /*Table structure for table `sponsee_donations` */
 
@@ -327,11 +328,11 @@ CREATE TABLE `sponsee_donations` (
   `created` datetime DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sponsee_donations` */
 
-insert  into `sponsee_donations`(`id`,`user_id`,`sponsee_id`,`created`,`status`) values (8,14,1,'2013-12-17 08:03:05','pending'),(36,14,2,'2013-12-17 15:44:27','pending');
+insert  into `sponsee_donations`(`id`,`user_id`,`sponsee_id`,`created`,`status`) values (8,14,1,'2013-12-17 08:03:05','pending');
 
 /*Table structure for table `sponsee_images` */
 

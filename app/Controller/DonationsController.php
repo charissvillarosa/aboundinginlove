@@ -142,7 +142,7 @@ class DonationsController extends AppController
                     array_push($selectedItems, $item);
                 }
             }
-
+            //check empty data
             if(sizeof($selectedItems) === 0){
                 $this->Session->setFlash('Please select the amount and no. of months for the donation.');
                 $this->redirect(array('action'=>'view', $id));

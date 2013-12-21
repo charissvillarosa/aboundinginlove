@@ -69,7 +69,7 @@ $sponseeneeds = $donation['Items'];
 
                                 if ($prevCat != $category['id']) : ?>
                                     <tr>
-                                        <th colspan="2">
+                                        <th colspan="3">
                                             <?php echo $category['description'] ?>
                                         </th>
                                     </tr>
@@ -81,10 +81,12 @@ $sponseeneeds = $donation['Items'];
                                     <td>
                                         <span class="pull-left rightmargin1"><?php echo $ctr.'.'; ?></span>
                                         <span class="pull-left"><?php echo $need['description'] ?></span>
-                                        <span class="pull-right"><?php echo $this->Number->currency($need['neededamount']); ?></span>
                                     </td>
                                     <td>
                                         <span class="pull-left"><?php echo 'How long?<br>'.$item['no_of_months']; if($item['no_of_months'] > 1){echo ' months';} else {echo ' month';} ?></span>
+                                    </td>
+                                    <td>
+                                        <span class="pull-right"><?php echo $this->Number->currency($need['neededamount']); ?></span>
                                     </td>
                                 </tr>
                             <?php
@@ -105,15 +107,15 @@ $sponseeneeds = $donation['Items'];
                     </div>
                 </div>
             </div>
-            <div class="clearfix pull-left leftmargin2 topmargin1 footerstyle">
+            <div class="clearfix footerstyle">
                 <?php
-                    echo '<div id="btn btn-info btn-large paypal-btn" data-type="monthly">';
-                    echo $this->paypal->button('Donate through paypal', array('type' => 'subscribe', 'item_name' => '', 'amount' => $formattotal, 'term' => 'month', 'period' => '2'), array('class' => 'pull-right topmargin1 rightmargin1'));
+                    echo '<div id="btn btn-info btn-large paypal-btn" class="pull-right" data-type="monthly">';
+                    echo $this->paypal->button('Donate through paypal', array('type' => 'subscribe', 'item_name' => '', 'amount' => $formattotal, 'term' => 'month', 'period' => '2'));
                     echo '</div>';
                 ?>
                 <?php echo $this->Html->link('Cancel',
-                    array('controller'=>'Donations', 'action'=>'cancel', $sponsee['id']),
-                    array('class' => 'pull-right btn btn-info topmargin1 rightmargin1 btn-large'),
+                    array('type' => 'button', 'controller'=>'Donations', 'action'=>'cancel', $sponsee['id']),
+                    array('class' => 'btn btn-info btn-large pull-right topmargin7', 'style' => 'height:20px;'),
                     'Sorry to see you go. Are you sure you want to cancel this donation?');
                 ?>
             </div>

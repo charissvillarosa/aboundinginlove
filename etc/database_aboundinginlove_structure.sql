@@ -36,8 +36,9 @@ CREATE TABLE `donation_requests` (
   `details` text,
   `type` varchar(50) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
+  `no_of_months` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -267,7 +268,7 @@ CREATE TABLE `sponsee_donation_items` (
   `date_to` date DEFAULT NULL,
   `no_of_months` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=217 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=223 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_donations` */
 
@@ -280,7 +281,7 @@ CREATE TABLE `sponsee_donations` (
   `created` datetime DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsee_images` */
 
