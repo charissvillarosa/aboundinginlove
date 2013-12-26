@@ -95,15 +95,15 @@ echo $this->Html->docType('html5');
             </div>
         </div>
         <div class="clearfix">
-            <div class="container">
+<!--            <div class="container">
                 <div class="logo document">
                     <div>
                         <?php
-                        echo $this->Html->image('aboundinginlove_logo.png', array('alt'=>'Abounding in Love Organization Logo'));
+//                        echo $this->Html->image('aboundinginlove_logo.png', array('alt'=>'Abounding in Love Organization Logo'));
                         ?>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="clearfix container topmargin3">
                 <?php
                 $user = $this->Session->read('Auth.User');
@@ -112,29 +112,43 @@ echo $this->Html->docType('html5');
                 if ($user && $user['role'] == 'admin') :
                 ?>
                 <div>
-                    <ul class="nav nav-tabs">
-                        <li class="<?php echo $controller == 'Sponsees' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Sponsees', array('controller'=>'sponsees', 'action'=>'index')); ?>
-                        </li>
-                        <li class="<?php echo $controller == 'Users' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index')); ?>
-                        </li>
-                        <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Need Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
-                        </li>
-                        <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Portfolio Categories', array('controller'=>'PortfolioCategories', 'action'=>'listing')); ?>
-                        </li>
-                        <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Donations', array('controller'=>'DonationHistory', 'action'=>'listing')); ?>
-                        </li>
-                        <li class="<?php echo $controller == 'SendUpdateEmail' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Send Update Email', array('controller'=>'SendUpdateEmail', 'action'=>'listing')); ?>
-                        </li>
-                        <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Invites', array('controller'=>'InviteFriends', 'action'=>'listing')); ?>
-                        </li>
-                    </ul>
+                    <div class="navbar navbar-static-top" style="margin: -1px -1px 0;">
+                        <div class="navbar-inner">
+                            <div class="container" style="width: auto; padding: 0 20px;">
+                                <ul class="nav">
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'Sponsees' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Sponsees', array('controller'=>'sponsees', 'action'=>'index')); ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'Users' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index')); ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Need Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Portfolio Categories', array('controller'=>'PortfolioCategories', 'action'=>'listing')); ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Donations', array('controller'=>'DonationHistory', 'action'=>'listing')); ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'SendUpdateEmail' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Send Update Email', array('controller'=>'SendUpdateEmail', 'action'=>'listing')); ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Invites', array('controller'=>'InviteFriends', 'action'=>'listing')); ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <?php endif; ?>
                 <?php echo $this->fetch('content'); ?>

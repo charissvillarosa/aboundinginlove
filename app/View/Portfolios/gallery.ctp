@@ -1,4 +1,4 @@
-<div class="pull-right span11">
+<div class="pull-right span12">
     <div class="navbar banner">
         <div class="navbar-inner">
             <ul class="nav">

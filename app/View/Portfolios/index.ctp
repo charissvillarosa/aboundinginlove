@@ -1,4 +1,4 @@
-<div class="pull-right span11">
+<div class="pull-right span12">
     <div class="navbar banner">
         <div class="navbar-inner">
             <ul class="nav">
@@ -22,7 +22,7 @@
             $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
             $attrs = array('alt' => '', 'width' => '165', 'class' => 'img-polaroid');
             echo '<div class="pull-left bottommargin3">
-                    <div class="pull-left box">
+                    <div class="pull-left box leftmargin2">
                         <div style="margin-left:0;" class="pull-left span2">'.$this->Html->image($imageURl, $attrs).'</div>';
                     echo '<div class="pull-left span3">
                             <h4 class="fontcolor1">'.$sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname'].'</h4>
@@ -39,7 +39,7 @@
             endforeach;
         ?>
         </div>
-        <div>
+        <div class="leftmargin2">
             <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
             <?php echo $this->Paginator->numbers(); ?>
             <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
