@@ -66,17 +66,20 @@ $user = $this->Session->read('Auth.User');
                     <th>Date</th>
                     <th>Sponsored To</th>
                     <th>Amount</th>
+                    <th>Status</th>
                 </tr>
+                <tr><th colspan="4">One Time Donation<th></tr>
                 <?php
-                $total = 0;
                 
                 foreach ($donationitems as $item) :
-                    
+    
                     $donation = $item['DonationHistory'];
                     $sponsee = $item['Sponsee'];
-                    $total = $total + $donation['amount'];
                     $percentage = $item['SponseeListingItem'];
+                    $need = $item['SponseeNeed'];
+               
                     ?>
+                    <?php if($need['donation_method'] != 'monthly') : ?>
                     <tr>
                         <td><?php echo $donation['id'] ?></td>
                         <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
@@ -91,13 +94,39 @@ $user = $this->Session->read('Auth.User');
                             ?>
                         </td>
                         <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
+                        <td><?php if($need['status']){ echo 'Completed'; } else{ echo $need['donation_method']; } ?></td>
                     </tr>
-                    
+                    <?php endif; ?>
                 <?php endforeach; ?>
-                <tr>
-                    <th style="text-align: right;" colspan="3"><?php echo 'TOTAL'; ?></th>
-                    <th style="text-align: right;"><?php echo $this->Number->currency($total); ?></th>
-                </tr>
+                <tr><th colspan="4">Monthly Donation<th></tr>
+                <?php
+                foreach ($donationitems as $item) :
+                
+                    $donation = $item['DonationHistory'];
+                    $sponsee = $item['Sponsee'];
+                    $percentage = $item['SponseeListingItem'];
+                    $need = $item['SponseeNeed'];
+
+                    ?>
+                    <?php if($need['donation_method'] == 'monthly') : ?>
+                    <tr>
+                        <td><?php echo $donation['id'] ?></td>
+                        <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
+                        <td>
+                            <?php
+                            if($donation['donation_type']=='organization'){
+                                echo "Organization";
+                            }
+                            else{
+                                echo $sponsee['firstname'].' '.$sponsee['lastname'];
+                            }
+                            ?>
+                        </td>
+                        <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
+                        <td><?php if($need['status']){ echo 'Completed'; } else{ echo $need['donation_method']; } ?></td>
+                    </tr>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </table>
             <div class="pull-right">
                 <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
@@ -105,42 +134,19 @@ $user = $this->Session->read('Auth.User');
                 <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
                 <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
             </div>
-            <div class="clearfix pull-left">
-                <h4 class="fontcolor1">Recent Donations</h4>
-                <?php foreach ($list as $item) : 
-                    $donation = $item['DonationHistory'];
-                    $sponsee = $item['Sponsee'];
-                    $total = $total + $donation['amount'];
-                    $percentage = $item['SponseeListingItem'];
-                ?>
-                
-                    <?php
-                        if($donation['donation_type']!='organization'){
-                            echo '<div style="padding-right:30px; text-align: center;" class="pull-left rightmargin1">';    
-                            
-                            $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
-                            $attrs = array('alt' => '', 'width' => '150', 'class' => 'img-polaroid');
-                            echo $this->Html->image($imageURl, $attrs);
-                    ?>
-                        <p class="topmargin7">
-                            <strong class="fontcolor1">
-                                <?php echo $sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname']; ?><br>
-                                Donated: <?php echo $this->Number->currency($donation['amount']); ?><br>
-                                Raised
-                                <?php echo $this->Number->toPercentage($percentage['percentage']); ?>
-                            </strong>
-                        </p>
-                        <?php echo "<div style='height:10px;' class='progress'><div class='bar' style='width:".$this->Number->toPercentage($percentage['percentage'])."'></div></div>";?>
-                    <?php echo'</div>';}
-                    else {
-                        echo '<div style="padding-right:30px; text-align: center;" class="pull-left rightmargin1">';
-                        echo $this->Html->image('aboundinginlove_logo.png', array('alt' => '', 'width' => '120', 'class' => 'img-polaroid'));
-                        echo "<br><strong class='fontcolor1'> Donated: " .$this->Number->currency($donation['amount']);
-                        echo "</strong>
-                        </div>";
-                    }
-                    endforeach; ?>
-                </div>
+        </div>
+        <div>
+            <div class="leftmargin2 width2">
+                <h4 class="fontcolor1">Queued Donation</h4>
+                <table width="100%" class="table table-hover table-bordered">
+                    <tr>
+                        <th>No.</th>
+                        <th>Date</th>
+                        <th>Sponsored To</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

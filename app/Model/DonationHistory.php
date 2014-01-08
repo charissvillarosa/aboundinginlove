@@ -18,7 +18,7 @@ class DonationHistory extends AppModel
     );
 
    var $belongsTo = array(
-        'Sponsee' => array(
+       'Sponsee' => array(
             'className' => 'Sponsee',
             'foreignKey' => 'sponsee_id'
         ),
@@ -33,6 +33,10 @@ class DonationHistory extends AppModel
        'SponseeListingItem' => array(
             'className' => 'SponseeListingItem',
             'foreignKey' => 'sponsee_id'
+        ),
+       'SponseeNeed' => array(
+            'className' => 'SponseeNeed',
+            'foreignKey' => 'sponsee_id',
         )
     );
 }

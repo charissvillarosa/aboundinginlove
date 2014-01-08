@@ -17,17 +17,13 @@ class DonationHistoryController extends AppController
         $this->loadModel('User');
         $id = $sessUser['id'];
 
+        $this->loadModel('SponseeNeed');
+
         $this->loadModel('SponseeListingItem');
         $this->set("sponseeList", $this->paginate('SponseeListingItem'));
 
         //table display
         $this->set('donationitems', $this->paginate('DonationHistory', array('DonationHistory.user_id' => $id)));
-        
-        //thumnail display
-        $this->set('list', $this->DonationHistory->find('all', array(
-            'conditions' => array('DonationHistory.user_id' => $id),
-            'group' => array('DonationHistory.sponsee_id'))
-        ));
         
     }
     
