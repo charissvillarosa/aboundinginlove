@@ -24,7 +24,14 @@ class DonationHistoryController extends AppController
 
         //table display
         $this->set('donationitems', $this->paginate('DonationHistory', array('DonationHistory.user_id' => $id)));
-        
+
+        //for loop value on queued table
+        $this->set('queueditems', $this->paginate('DonationRequest', array(
+            'DonationRequest.user_id' => $id,
+            'DonationRequest.months_completed >' => 0,
+            'DonationRequest.months_completed < DonationRequest.no_of_months'
+        )));
+
     }
     
     public function listing()

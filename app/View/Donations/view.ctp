@@ -167,7 +167,7 @@ $user = $this->Session->read('Auth.User');
                                                 <?php echo $this->Time->format($donation['payment_date']); ?>
                                             </td>
                                             <td>
-                                                <a data-toggle="modal" href="<?php echo $this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php echo $donation['first_name'].' '.$donation['last_name']; ?></a>
+                                                <a data-toggle="modal" href="<?php echo $this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php if($donation['first_name'] === '' and $donation['last_name'] === ''){ echo 'Anonymous'; } else{ echo $donation['first_name'].' '.$donation['last_name']; } ?></a>
                                             </td>
                                         <?php endif; ?>
                                     </tr>

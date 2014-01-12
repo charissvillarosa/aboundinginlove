@@ -39,9 +39,14 @@ DO
 
 DELIMITER ;
 
+/*Alter*/
+DELIMITER $$
 
+ALTER EVENT `donation_request_cleaner` ON SCHEDULE EVERY 1 DAY STARTS '2013-10-25 09:45:48' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+	    Delete from donation_requests where months_completed = 0 and date_add(created, interval 6 month) < now();
+	END$$
 
-
+DELIMITER ;
 
 
 --Pending Donation

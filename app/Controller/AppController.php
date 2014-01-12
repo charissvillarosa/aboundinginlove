@@ -133,6 +133,12 @@ class AppController extends Controller
                     )
                 ));
 
+                //update donation_request table
+                $this->DonationRequest->id = $donationReq['id'];
+                $this->DonationRequest->set('months_completed', $donationReq['months_completed'] + 1);
+                $this->DonationRequest->set('last_month_completed', date_parse($ipnTxn['payment_date']));
+                $this->DonationRequest->save();
+
                 // update sponsee_needs table if donation_type is 'sponsee'
                 if ($donationReq['type'] == 'sponsee') {
                     $items = explode(',', $donationReq['details']);
@@ -174,11 +180,6 @@ class AppController extends Controller
         $this->SponseeNeed->set('status', 'CLOSED');
         $this->SponseeNeed->set('paypal_id', $paypal_id);
         $this->SponseeNeed->save();
-
-        //update pending donation status
-        $this->loadModel('SponseeDonation');
-        $this->SponseeDonation->set('status', 'CLOSED');
-        $this->SponseeDonation->save();
     }
 
 }

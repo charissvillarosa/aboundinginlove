@@ -62,13 +62,14 @@ $user = $this->Session->read('Auth.User');
             </div>
             <table width="100%" class="table table-hover table-bordered">
                 <tr>
-                    <th>No.</th>
+                    <th>Reference No.</th>
                     <th>Date</th>
                     <th>Sponsored To</th>
+                    <th>Sponsee Need</th>
                     <th>Amount</th>
                     <th>Status</th>
                 </tr>
-                <tr><th colspan="4">One Time Donation<th></tr>
+                <tr><th colspan="5">One Time Donation<th></tr>
                 <?php
                 
                 foreach ($donationitems as $item) :
@@ -77,7 +78,7 @@ $user = $this->Session->read('Auth.User');
                     $sponsee = $item['Sponsee'];
                     $percentage = $item['SponseeListingItem'];
                     $need = $item['SponseeNeed'];
-               
+
                     ?>
                     <?php if($need['donation_method'] != 'monthly') : ?>
                     <tr>
@@ -93,12 +94,13 @@ $user = $this->Session->read('Auth.User');
                             }
                             ?>
                         </td>
+                        <td><?php echo $need['description'] ?></td>
                         <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
-                        <td><?php if($need['status']){ echo 'Completed'; } else{ echo $need['donation_method']; } ?></td>
+                        <td><?php echo 'Completed'; ?></td>
                     </tr>
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <tr><th colspan="4">Monthly Donation<th></tr>
+                <tr><th colspan="5">Monthly Donation<th></tr>
                 <?php
                 foreach ($donationitems as $item) :
                 
@@ -122,8 +124,9 @@ $user = $this->Session->read('Auth.User');
                             }
                             ?>
                         </td>
+                        <td><?php echo $need['description'] ?></td>
                         <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
-                        <td><?php if($need['status']){ echo 'Completed'; } else{ echo $need['donation_method']; } ?></td>
+                        <td><?php echo 'Completed'; ?></td>
                     </tr>
                     <?php endif; ?>
                 <?php endforeach; ?>
@@ -140,13 +143,40 @@ $user = $this->Session->read('Auth.User');
                 <h4 class="fontcolor1">Queued Donation</h4>
                 <table width="100%" class="table table-hover table-bordered">
                     <tr>
-                        <th>No.</th>
-                        <th>Date</th>
-                        <th>Sponsored To</th>
-                        <th>Amount</th>
+                        <th>Months to Donate</th>
+                        <th>Months Donated</th>
+                        <th>Last Donation Date</th>
+                        <th>Sponsee</th>
+                        <th>Sponsee Need</th>
                         <th>Status</th>
+                        <th></th>
                     </tr>
+                    <?php foreach ($queueditems as $item) :
+                        $donreq = $item['DonationRequest'];
+                        $sponsee = $item['Sponsee'];
+                        $need = $item['SponseeNeed'];
+
+                    ?>
+                        <tr>
+                            <td><?php echo $donreq['no_of_months']; if($donreq['no_of_months'] > 1){echo " Months";} else{echo " Month";} ?></td>
+                            <td><?php echo $donreq['months_completed']; if($donreq['months_completed'] > 1){echo " Months Completed";} else{echo " Month Completed";} ?></td>
+                            <td><?php echo $this->Time->format($donreq['last_month_completed']); ?></td>
+                            <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname'];?></td>
+                            <td><?php echo $need['description'] ?></td>
+                            <td><?php echo 'Ongoing'; ?></td>
+                            <td>
+                                <?php echo $this->Html->link('Cancel', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
+                                <?php echo $this->Html->link('Pause', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </table>
+                <div class="pull-right">
+                    <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+                    <?php echo $this->Paginator->numbers(); ?>
+                    <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+                    <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
+                </div>
             </div>
         </div>
     </div>
