@@ -22,8 +22,16 @@ class DonationHistoryController extends AppController
         $this->loadModel('SponseeListingItem');
         $this->set("sponseeList", $this->paginate('SponseeListingItem'));
 
-        //table display
-        $this->set('donationitems', $this->paginate('DonationHistory', array('DonationHistory.user_id' => $id)));
+        //table display onetime donations
+        $this->set('onetimedonationitems', $this->paginate('DonationHistory', array(
+            'DonationHistory.user_id' => $id,
+            'DonationRequest.no_of_months <=' => 1
+        )));
+        //table display monthly donations
+        $this->set('monthlydonationitems', $this->paginate('DonationHistory', array(
+            'DonationHistory.user_id' => $id,
+            'DonationRequest.no_of_months >' => 1
+        )));
 
         //for loop value on queued table
         $this->set('queueditems', $this->paginate('DonationRequest', array(

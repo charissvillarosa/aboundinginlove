@@ -115,6 +115,7 @@ class AppController extends Controller
                 $this->PaypalTxnLog->save(array(
                     'PaypalTxnLog' => array(
                         'id' => $ipnTxn['txn_id'], //from instant_payment_notifications table column txn_id
+                        'item_number' => $ipnTxn['item_number'],
                         'user_id' => $donationReq['user_id'],
                         'sponsee_id' => $donationReq['sponsee_id'],
                         'details' => $donationReq['details'],

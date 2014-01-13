@@ -18,13 +18,9 @@ class DonationHistory extends AppModel
     );
 
    var $belongsTo = array(
-       'Sponsee' => array(
-            'className' => 'Sponsee',
-            'foreignKey' => 'sponsee_id'
-        ),
-       'Donationrequest' => array(
+       'DonationRequest' => array(
             'className' => 'DonationRequest',
-            'foreignKey' => 'sponsee_id'
+            'foreignKey' => 'item_number'
         ),
        'User' => array(
             'className' => 'User',
@@ -36,7 +32,8 @@ class DonationHistory extends AppModel
         ),
        'SponseeNeed' => array(
             'className' => 'SponseeNeed',
-            'foreignKey' => 'sponsee_id',
-        )
+            'conditions' => array('SponseeNeed.id = DonationRequest.sponsee_need_id'),
+            'foreignKey' => ''
+       )
     );
 }

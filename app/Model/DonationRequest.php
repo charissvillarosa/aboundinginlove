@@ -12,7 +12,7 @@ class DonationRequest extends AppModel
         ),
        'SponseeNeed' => array(
             'className' => 'SponseeNeed',
-            'foreignKey' => 'sponsee_id',
+            'foreignKey' => 'sponsee_need_id',
         )
     );
 }

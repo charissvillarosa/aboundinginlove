@@ -102,6 +102,7 @@ $user = $this->Session->read('Auth.User');
             
             var formData = {
                 'data[DonationRequest][details]' : details.join(','),
+                'data[DonationRequest][total]' : getSponseeDonation() + getOrgDonation(),
                 'data[DonationRequest][type]' : 'organization'
             };
             

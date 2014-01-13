@@ -244,6 +244,8 @@ $user = $this->Session->read('Auth.User');
 
             var formData = {
                 'data[DonationRequest][details]' : needId + '=' + needAmt,
+                'data[DonationRequest][sponsee_need_id]' : needId,
+                'data[DonationRequest][total]' : needAmt,
                 'data[DonationRequest][sponsee_id]' : <?php echo $sponsee['id'] ?>,
                 'data[DonationRequest][type]' : 'sponsee',
                 'data[DonationRequest][no_of_months]' : noOfMonths
