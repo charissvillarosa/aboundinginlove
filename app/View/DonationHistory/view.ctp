@@ -18,7 +18,7 @@
                 foreach ($donationdetails as $item) :
 
                     $donation = $item['DonationHistory'];
-                    $sponsee = $item['Sponsee'];
+                    $sponsee = $item['SponseeListingItem'];
                     $user = $item['User'];
                     ?>
                     <tr>
@@ -48,7 +48,7 @@
                 foreach ($donationdetails as $item) :
 
                     $donation = $item['DonationHistory'];
-                    $sponsee = $item['Sponsee'];
+                    $sponsee = $item['SponseeListingItem'];
                     $user = $item['User'];
                     ?>
                     <tr>

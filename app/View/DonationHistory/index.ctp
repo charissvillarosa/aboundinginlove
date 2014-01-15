@@ -62,6 +62,8 @@ $user = $this->Session->read('Auth.User');
             </div>
             <div>
                 <table width="100%" class="table table-hover table-bordered">
+                    
+                    <tr><th colspan="5">One Time Donation<th></tr>
                     <tr>
                         <th>Reference No.</th>
                         <th>Date</th>
@@ -70,7 +72,6 @@ $user = $this->Session->read('Auth.User');
                         <th>Amount</th>
                         <th>Status</th>
                     </tr>
-                    <tr><th colspan="5">One Time Donation<th></tr>
                     <?php
 
                     foreach ($onetimedonationitems as $item) :
@@ -94,7 +95,7 @@ $user = $this->Session->read('Auth.User');
                                 ?>
                             </td>
                             <td><?php echo $need['description']; ?></td>
-                            <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
+                            <td style="text-align: right;"><?php echo $this->Number->currency($donation['payment_gross']); ?></td>
                             <td><?php echo 'Completed'; ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -110,7 +111,17 @@ $user = $this->Session->read('Auth.User');
             </div>
             <div class="topmargin3">
                 <table width="100%" class="table table-hover table-bordered">
+
                     <tr><th colspan="5">Monthly Donation<th></tr>
+                    <tr>
+                        <th>Reference No.</th>
+                        <th>Date</th>
+                        <th>Sponsored To</th>
+                        <th>Sponsee Need</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+
                     <?php
                     foreach ($monthlydonationitems as $item) :
 
@@ -133,7 +144,7 @@ $user = $this->Session->read('Auth.User');
                                 ?>
                             </td>
                             <td><?php echo $need['description']; ?></td>
-                            <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
+                            <td style="text-align: right;"><?php echo $this->Number->currency($donation['payment_gross']); ?></td>
                             <td><?php echo 'Completed'; ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -156,7 +167,7 @@ $user = $this->Session->read('Auth.User');
                         <tr>
                             <th>Months to Donate</th>
                             <th>Months Donated</th>
-                            <th>Last Donation Date</th>
+                            <th>Reference No. - Last Donation Date</th>
                             <th>Sponsee</th>
                             <th>Sponsee Need</th>
                             <th>Amount</th>

@@ -77,7 +77,7 @@
 
                                         $imageURl = array('controller' => 'PortfolioImages', 'action' => 'view', $image['id']);
                                         $attrs = array('alt' => '', 'width' => '160', 'class' => 'leftmargin1 img-polaroid', 'title'=>$image['description']);
-                                        echo '<div style="padding:0; margin:0 20px 0 0;" class="span2">'.$this->Html->image($imageURl, $attrs);
+                                        echo '<div style="padding:0; margin:20px 20px 0 0;" class="span2">'.$this->Html->image($imageURl, $attrs);
                                         echo $this->Html->link(
                                             'Delete this image?',
                                             array('action' => 'itemdelete', $imageid, $sponsee_id),

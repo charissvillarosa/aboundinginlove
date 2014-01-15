@@ -26,7 +26,9 @@
                 <th>Paypal Payers ID</th>
                 <th>Sponsor</th>
                 <th>Date</th>
+                <th>Payment Fee</th>
                 <th>Amount</th>
+                <th>Payment Gross</th>
                 <th>Sponsee</th>
                 <th>Details</th>
             </tr>
@@ -34,14 +36,17 @@
             foreach ($donationitems as $item) :
 
                 $donation = $item['DonationHistory'];
-                $sponsee = $item['Sponsee'];
+                $sponsee = $item['SponseeListingItem'];
                 $user = $item['User'];
+
                 ?>
                 <tr>
                     <td><?php echo $donation['id'] ?></td>
                     <td><?php echo $user['firstname'].' '.$user['lastname']; ?></td>
                     <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
+                    <td style="text-align: right;"><?php echo $this->Number->currency($donation['payment_fee']); ?></td>
                     <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
+                    <td style="text-align: right;"><?php echo $this->Number->currency($donation['payment_gross']); ?></td>
                     <td>
                         <?php
                         if($sponsee['firstname'] != '') echo $sponsee['firstname'].' '.$sponsee['lastname'];

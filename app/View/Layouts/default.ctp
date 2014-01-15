@@ -43,6 +43,7 @@ echo $this->Html->docType('html5');
     echo $this->Html->script('jquery');
     echo $this->Html->script('bootstrap.min');
     echo $this->Html->script('app');
+
     //anythingslider jquery
     echo $this->Html->script('jquery.anythingslider');
 

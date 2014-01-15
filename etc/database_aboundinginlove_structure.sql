@@ -35,10 +35,14 @@ CREATE TABLE `donation_requests` (
   `sponsee_id` bigint(20) DEFAULT NULL,
   `details` text,
   `type` varchar(50) DEFAULT NULL,
+  `sponsee_need_id` bigint(20) DEFAULT NULL,
+  `total` decimal(10,2) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
-  `no_of_months` int(11) DEFAULT NULL,
+  `no_of_months` int(11) DEFAULT '0',
+  `months_completed` int(11) DEFAULT '0',
+  `last_month_completed` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -189,6 +193,7 @@ DROP TABLE IF EXISTS `paypal_txn_logs`;
 
 CREATE TABLE `paypal_txn_logs` (
   `id` varchar(20) NOT NULL,
+  `item_number` bigint(20) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   `sponsee_id` bigint(20) DEFAULT NULL,
   `donation_type` varchar(50) DEFAULT NULL,
@@ -203,7 +208,7 @@ CREATE TABLE `paypal_txn_logs` (
   `payment_fee` decimal(10,2) DEFAULT NULL,
   `payment_gross` decimal(10,2) DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
-  `payment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `payment_date` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -325,7 +330,7 @@ CREATE TABLE `sponsee_needs` (
   `status` varchar(30) DEFAULT NULL COMMENT 'OPEN|CLOSED',
   `payer_id` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsees` */
 
@@ -379,22 +384,7 @@ CREATE TABLE `users` (
 DELIMITER $$
 
 /*!50106 CREATE EVENT `donation_request_cleaner` ON SCHEDULE EVERY 1 DAY STARTS '2013-10-25 09:45:48' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
-	    Delete from donation_requests where date_add(created, interval 6 month) < now();
-	END */$$
-DELIMITER ;
-
-/* Event structure for event `pending_donation_cleaner` */
-
-/*!50106 DROP EVENT IF EXISTS `pending_donation_cleaner`*/;
-
-DELIMITER $$
-
-/*!50106 CREATE EVENT `pending_donation_cleaner` ON SCHEDULE EVERY 1 DAY STARTS '2013-10-24 12:02:02' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
-		DELETE sponsee_donations, sponsee_donation_items
-		FROM sponsee_donations
-		LEFT JOIN sponsee_donation_items
-		ON sponsee_donations.id = sponsee_donation_items.parent_id
-		WHERE  date_add(created, interval 6 month) < now();
+	    Delete from donation_requests where months_completed = 0 and date_add(created, interval 6 month) < now();
 	END */$$
 DELIMITER ;
 

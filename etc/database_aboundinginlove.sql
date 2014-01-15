@@ -39,14 +39,18 @@ CREATE TABLE `donation_requests` (
   `sponsee_id` bigint(20) DEFAULT NULL,
   `details` text,
   `type` varchar(50) DEFAULT NULL,
+  `sponsee_need_id` bigint(20) DEFAULT NULL,
+  `total` decimal(10,2) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
-  `no_of_months` int(11) DEFAULT NULL,
+  `no_of_months` int(11) DEFAULT '0',
+  `months_completed` int(11) DEFAULT '0',
+  `last_month_completed` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 /*Data for the table `donation_requests` */
 
-insert  into `donation_requests`(`id`,`user_id`,`sponsee_id`,`details`,`type`,`created`,`no_of_months`) values (47,14,2,'','sponsee','2013-12-21 03:02:18',NULL),(46,14,2,'','sponsee','2013-12-20 12:43:05',NULL),(45,14,2,'','sponsee','2013-12-20 12:42:28',NULL),(44,14,2,'00000043','sponsee','2013-12-20 12:40:37',NULL),(42,14,2,'','sponsee','2013-12-20 12:24:27',NULL),(43,14,2,'','sponsee','2013-12-20 12:40:27',NULL),(41,14,2,'52=1000.00','sponsee','2013-12-09 06:34:35',NULL),(48,14,2,'52=1000.00','sponsee','2013-12-21 04:25:18',2),(49,14,2,'99=50.00','sponsee','2013-12-21 04:31:39',2),(50,14,2,'99=50.00','sponsee','2013-12-21 04:34:16',2),(51,14,2,'99=50.00','sponsee','2013-12-21 04:38:18',2),(52,14,2,'52=1000.00','sponsee','2013-12-21 04:38:35',5),(53,14,2,'99=50.00','sponsee','2013-12-21 04:41:17',2),(54,14,2,'99=50.00','sponsee','2013-12-21 04:42:31',2),(55,14,2,'99=50.00','sponsee','2013-12-21 04:42:46',2),(56,14,2,'53=1000.00','sponsee','2013-12-21 04:43:02',1);
+insert  into `donation_requests`(`id`,`user_id`,`sponsee_id`,`details`,`type`,`sponsee_need_id`,`total`,`created`,`no_of_months`,`months_completed`,`last_month_completed`) values (63,14,2,'11=50.00','sponsee',11,'50.00','2014-01-13 10:24:41',1,1,'2014-01-13'),(61,14,1,'1=5.00','sponsee',1,'5.00','2014-01-13 10:24:19',3,1,'2014-01-13'),(60,14,1,'4=20.00','sponsee',4,'20.00','2014-01-13 10:24:11',1,1,'2014-01-13'),(65,14,2,'10=10.00','sponsee',10,'10.00','2014-01-13 10:24:55',3,1,'2014-01-13'),(64,14,2,'12=15.00','sponsee',12,'15.00','2014-01-13 10:24:44',1,1,'2014-01-13'),(62,14,2,'9=20.00','sponsee',9,'20.00','2014-01-13 10:24:35',5,1,'2014-01-13'),(59,14,1,'3=20.00','sponsee',3,'20.00','2014-01-13 10:23:24',1,1,'2014-01-13'),(66,14,NULL,'sponsee=10,org=20','organization',NULL,'30.00','2014-01-13 11:23:05',0,0,NULL),(67,14,2,'10=10.00','sponsee',10,'10.00','2014-01-13 11:24:10',10,1,'2014-01-13');
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -211,6 +215,7 @@ DROP TABLE IF EXISTS `paypal_txn_logs`;
 
 CREATE TABLE `paypal_txn_logs` (
   `id` varchar(20) NOT NULL,
+  `item_number` bigint(20) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   `sponsee_id` bigint(20) DEFAULT NULL,
   `donation_type` varchar(50) DEFAULT NULL,
@@ -225,13 +230,13 @@ CREATE TABLE `paypal_txn_logs` (
   `payment_fee` decimal(10,2) DEFAULT NULL,
   `payment_gross` decimal(10,2) DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
-  `payment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `payment_date` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `paypal_txn_logs` */
 
-insert  into `paypal_txn_logs`(`id`,`user_id`,`sponsee_id`,`donation_type`,`refno`,`details`,`first_name`,`last_name`,`payer_email`,`payer_id`,`payer_status`,`contact_phone`,`payment_fee`,`payment_gross`,`amount`,`payment_date`) values ('14lh569huyjh',14,1,'sponsee','98=2',NULL,'Chariss','Villarosa','chariss.villarosa@avare-llc.com','14lh569huyjh','Completed',NULL,'0.00','2.00','2.00','2013-11-04 11:00:00'),('3F66RW8KDM5SN',14,1,'sponsee','44=555',NULL,'Chariss','Villarosa','chariss.villarosa@avare-llc.com','3F66RW8KDM5SN','Completed',NULL,'1.00','24.00','23.00','2013-08-12 06:58:20'),('sds',14,1,'sponsee','23=56',NULL,'Chariss','Chariss','chariss.villarosa@avare-llc.com','sds','Completed',NULL,'5.00','30.00','25.00','2013-08-12 08:58:20'),('sdsghgh',14,0,'organization',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1.00','5.00','6.00','2013-09-03 13:26:20');
+insert  into `paypal_txn_logs`(`id`,`item_number`,`user_id`,`sponsee_id`,`donation_type`,`refno`,`details`,`first_name`,`last_name`,`payer_email`,`payer_id`,`payer_status`,`contact_phone`,`payment_fee`,`payment_gross`,`amount`,`payment_date`) values ('14lh569huyjh',59,14,1,'sponsee','3=20.00',NULL,'Chariss','Villarosa','chariss.villarosa@avare-llc.com','14lh569huyjh','Completed',NULL,'2.00','18.00','20.00','2014-01-13'),('3F66RW8KDM5SN',60,14,1,'sponsee','4=20.00',NULL,'Chariss','Villarosa','chariss.villarosa@avare-llc.com','3F66RW8KDM5SN','Completed',NULL,'2.00','18.00','20.00','2014-01-13'),('dfdg78dfdf',65,14,2,'sponsee','10=10.00',NULL,'Chariss','Villarosa','chariss.villarosa@avare-llc.com','dfdg78dfdf','Completed',NULL,'2.00','8.00','10.00','2014-01-13'),('hjwy783dcjregvb',63,14,2,'sponsee','11=50.00',NULL,'Chariss','Villarosa','chariss.villarosa@avare-llc.com','hjwy783dcjreg','Completed',NULL,'5.00','45.00','50.00','2014-01-13'),('ljk5624kldfndnf',64,14,2,'sponsee','112=15.00',NULL,'Chariss','villarosa','chariss.villarosa@acare-llc.com','ljk5624kldfnd','Completed',NULL,'3.00','12.00','15.00','2014-01-13'),('sd3F66RW8KDM5SNsghgh',61,14,1,'sponsee','1=5.00',NULL,'Chariss','Villarosa','chariss.villarosa@avare-llc.com','sd3F66RW8KDM5','Completed',NULL,'0.00','5.00','5.00','2014-01-13'),('sdssds3F66RW8KDM5SN',62,14,2,'sponsee','9=20.00',NULL,'Chariss','Chariss','chariss.villarosa@avare-llc.com','sdssds3F66RW8','Completed',NULL,'2.00','18.00','20.00','2014-01-13');
 
 /*Table structure for table `portfolio_categories` */
 
@@ -384,11 +389,11 @@ CREATE TABLE `sponsee_needs` (
   `status` varchar(30) DEFAULT NULL COMMENT 'OPEN|CLOSED',
   `payer_id` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sponsee_needs` */
 
-insert  into `sponsee_needs`(`id`,`sponsee_id`,`category_id`,`description`,`neededamount`,`donatedamount`,`added_by`,`created`,`modified`,`donation_method`,`status`,`payer_id`) values (1,1,1,'School tuition fee','20000.00','18000.00','14',NULL,'2013-05-15 15:55:07','monthly','CLOSED',NULL),(46,1,1,'School Supplies','7000.00','6999.00','14','2013-05-15 15:56:17','2013-05-15 16:17:04','onetime','CLOSED',NULL),(4,2,3,'Dentures','200.00',NULL,'13',NULL,'2013-09-26 12:21:36','onetime',NULL,NULL),(53,2,1,'School supplies','1000.00',NULL,'14','2013-05-16 13:58:31','2013-05-16 13:58:31','onetime',NULL,NULL),(44,1,3,'Follow up checkup','555.00','0.00','14','2013-05-15 15:39:50','2013-05-15 16:15:45','monthly',NULL,NULL),(52,2,2,'Follow up checkup','1000.00',NULL,'14','2013-05-16 13:58:31','2013-05-16 13:58:31','monthly',NULL,NULL),(98,2,1,'Travel Expenses','2.00','2.00','13','2013-07-31 15:28:09','2013-09-26 12:17:47','monthly','CLOSED','14lh569huyjh'),(99,2,1,'Tuition fee','50.00',NULL,'13','2013-07-31 15:29:07','2013-09-26 12:17:29','monthly',NULL,NULL),(97,NULL,1,'sss','3.00',NULL,'14','2013-07-31 15:24:38','2013-07-31 15:24:38','onetime',NULL,NULL),(96,NULL,1,'x','1.00',NULL,'14','2013-07-31 07:21:00','2013-07-31 07:21:00','onetime',NULL,NULL),(101,68,1,'test','10.00',NULL,'13','2013-09-19 16:26:06','2013-09-19 16:26:06','onetime',NULL,NULL),(107,1,1,'hh','4.00',NULL,'13','2013-10-30 16:35:40','2013-10-30 16:35:40','monthly',NULL,NULL),(106,1,1,'r','5.00',NULL,'13','2013-10-30 16:35:30','2013-10-30 16:35:30','onetime',NULL,NULL),(108,1,3,'h','5.00',NULL,'13','2013-10-30 16:35:49','2013-10-30 16:35:49','onetime',NULL,NULL);
+insert  into `sponsee_needs`(`id`,`sponsee_id`,`category_id`,`description`,`neededamount`,`donatedamount`,`added_by`,`created`,`modified`,`donation_method`,`status`,`payer_id`) values (1,1,2,'Milk Allowance','5.00',NULL,'13','2014-01-13 10:18:50','2014-01-13 10:18:50','monthly',NULL,NULL),(2,1,2,'Clothing Allowance','10.00',NULL,'13','2014-01-13 10:19:06','2014-01-13 10:19:06','monthly',NULL,NULL),(3,1,3,'Check Up','20.00',NULL,'13','2014-01-13 10:19:29','2014-01-13 10:19:29','onetime',NULL,NULL),(4,1,3,'Post Operation Check Up','20.00',NULL,'13','2014-01-13 10:19:48','2014-01-13 10:19:48','onetime',NULL,NULL),(5,1,2,'Vitamins Allowance','10.00',NULL,'13','2014-01-13 10:20:28','2014-01-13 10:20:28','monthly',NULL,NULL),(6,1,2,'Food Allowance','20.00',NULL,'13','2014-01-13 10:20:43','2014-01-13 10:20:43','monthly',NULL,NULL),(7,2,1,'School Supplies','10.00',NULL,'13','2014-01-13 10:21:29','2014-01-13 10:21:29','onetime',NULL,NULL),(8,2,1,'Tuition fee','50.00',NULL,'13','2014-01-13 10:21:45','2014-01-13 10:21:45','onetime',NULL,NULL),(9,2,2,'Food Allowance','20.00',NULL,'13','2014-01-13 10:21:59','2014-01-13 10:21:59','monthly',NULL,NULL),(10,2,2,'Clothing Allowance','10.00',NULL,'13','2014-01-13 10:22:17','2014-01-13 10:22:17','monthly',NULL,NULL),(11,2,3,'Check Up','50.00',NULL,'13','2014-01-13 10:22:37','2014-01-13 10:22:37','onetime',NULL,NULL),(12,2,3,'Follow up check up','15.00',NULL,'13','2014-01-13 10:22:52','2014-01-13 10:22:52','onetime',NULL,NULL);
 
 /*Table structure for table `sponsees` */
 
@@ -450,22 +455,7 @@ insert  into `users`(`id`,`username`,`password`,`email`,`role`,`created`,`modifi
 DELIMITER $$
 
 /*!50106 CREATE EVENT `donation_request_cleaner` ON SCHEDULE EVERY 1 DAY STARTS '2013-10-25 09:45:48' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
-	    Delete from donation_requests where date_add(created, interval 6 month) < now();
-	END */$$
-DELIMITER ;
-
-/* Event structure for event `pending_donation_cleaner` */
-
-/*!50106 DROP EVENT IF EXISTS `pending_donation_cleaner`*/;
-
-DELIMITER $$
-
-/*!50106 CREATE EVENT `pending_donation_cleaner` ON SCHEDULE EVERY 1 DAY STARTS '2013-10-24 12:02:02' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
-		DELETE sponsee_donations, sponsee_donation_items
-		FROM sponsee_donations
-		LEFT JOIN sponsee_donation_items
-		ON sponsee_donations.id = sponsee_donation_items.parent_id
-		WHERE  date_add(created, interval 6 month) < now();
+	    Delete from donation_requests where months_completed = 0 and date_add(created, interval 6 month) < now();
 	END */$$
 DELIMITER ;
 

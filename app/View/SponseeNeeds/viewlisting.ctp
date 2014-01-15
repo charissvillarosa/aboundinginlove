@@ -83,7 +83,7 @@
                                 <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
                                 <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
                                 <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
-                                <td bgcolor="#fff"><?php echo $addedBy['firstname'] ?></td>
+                                <td bgcolor="#fff"><?php echo $addedBy['firstname'].' '.$addedBy['middlename'].' '.$addedBy['lastname'] ?></td>
                                 <td bgcolor="#fff"><?php echo $this->Time->format($need['created']) ?></td>
                                 <td bgcolor="#fff"><?php echo $this->Time->format($need['modified']) ?></td>
                                 <td>

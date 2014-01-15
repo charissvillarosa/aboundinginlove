@@ -1,4 +1,4 @@
-<div class="pull-left span12">
+<div style="margin-left:0;" class="pull-left span12">
     <div class="navbar">
         <div class="navbar-inner">
             <ul class="nav">
@@ -27,14 +27,13 @@
                     $category= $item['Category'];
 
                     if ($prevCat != $category['id']) : ?>
-                        <div class="fontcolor1 span11 topmargin2">
+                        <div class="fontcolor1 span11 topmargin1">
                             <h2>
                                 <?php echo $category['description'] ?>
                             </h2>
                         </div>
                         <div class="span11">
-                            <hr>
-                            <p>
+                            <p style="text-align:justify;">
                                 <?php echo $portfolio['description'] ?>
                             </p>
                         </div>
@@ -42,12 +41,12 @@
                     $prevCat = $category['id'];
                     endif;
                     ?>
-                    <div class="span11 margin3">
+                    <div style="margin-left:32px;" class="span11">
                         <?php
                         foreach ($item['Images'] as $image) :
                             $imageURl = array('controller' => 'PortfolioImages', 'action' => 'view', $image['id']);
-                            $attrs = array('alt' => '', 'class' => 'img-polaroid');
-                            echo '<div class="span2">'.$this->Html->image($imageURl, $attrs).'</div>';
+                            $attrs = array('alt' => '');
+                            echo '<div style="margin-left:0; width:203px;" class="span2 img-polaroid">'.$this->Html->image($imageURl, $attrs).'</div>';
                         endforeach;
                         ?>
                      </div>

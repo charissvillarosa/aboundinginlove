@@ -115,7 +115,7 @@ $user = $this->Session->read('Auth.User');
 
                                     if ($prevCat != $category['id']) : ?>
                                         <tr>
-                                            <th bgcolor="#eef6fa" colspan="9">
+                                            <th bgcolor="#eef6fa" colspan="4">
                                                 <?php echo '<span class="category leftmargin1">'.$category['description'].'</span>'; ?>
                                             </th>
                                         </tr
@@ -124,52 +124,52 @@ $user = $this->Session->read('Auth.User');
                                     endif;
                                     ?>
                                     <tr>
-                                        <td bgcolor="#fff" style="text-align: right;">
-                                            <?php if($status == 'CLOSED') : ?>
-                                                    <?php echo $this->Html->image('check.png'); ?>
-                                            <?php endif; ?>
-                                            <?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?>
+                                         <td bgcolor="#fff" style="text-align: right;">
+                                                <?php if($status == 'CLOSED') : ?>
+                                                                <?php echo $this->Html->image('check.png'); ?>
+                                                <?php endif; ?>
+                                                <?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?>
                                         </td>
-                                        <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
-                                        <?php if($status != 'CLOSED') : ?>
-                                            <td style="padding-left:30px;" colspan="3">
-                                                <div>
-                                                    <input type="hidden" name="sponseeneed_id" value="<?php echo $need['id']; ?>">
-                                                    <input type="hidden" name="sponseeneed_amount" value="<?php echo $need['neededamount']; ?>">
-                                                    <?php if($need['donation_method'] === 'onetime') : ?>
-                                                        <div class='pull-left paypal-btn' data-type="monthly">
-                                                            <?php echo $this->paypal->button('Donate through paypal', array(
-                                                                'type' => 'subscribe',
-                                                                'item_name' => $need['description'],
-                                                                'amount' => $need['neededamount'],
-                                                                'term' => 'month', 'period' => '1'
-                                                                ), array('class' => 'pull-right btn btn-info')); ?>
+                                        <td <?php if($need['donation_method'] === 'onetime'){ echo'colspan="3"'; } else { echo'colspan="3"'; }?> bgcolor="#fff">
+                                            <?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?>
+                                            <?php if($status != 'CLOSED') : ?>
+                                                <input type="hidden" name="sponseeneed_id" value="<?php echo $need['id']; ?>">
+                                                <input type="hidden" name="sponseeneed_amount" value="<?php echo $need['neededamount']; ?>">
+                                                <?php if($need['donation_method'] === 'onetime') : ?>
+                                                        <div style="margin:0;" class='pull-right paypal-btn  btn-small' data-type="monthly">
+                                                                <?php echo $this->paypal->button('Donate', array(
+                                                                        'type' => 'subscribe',
+                                                                        'item_name' => $need['description'],
+                                                                        'amount' => $need['neededamount'],
+                                                                        'term' => 'month', 'period' => '1'
+                                                                        ), array('class' => 'pull-right btn btn-info')); ?>
                                                         </div>
-                                                    <?php else: ?>
-                                                        <div>For how long?</div>
-                                                        <div class='pull-left'>
-                                                            <input type="number" name="no_of_months" class="span1"/>
-                                                        </div>
-                                                        <div class='pull-left topmargin4 leftmargin1'>Months</div>
-                                                        <div class='pull-left paypal-btn' data-type="monthly">
-                                                            <?php echo $this->paypal->button('Donate through paypal', array(
+                                                <?php else: ?>
+                                                        <div class='pull-right paypal-btn btn-small' data-type="monthly">
+                                                            <?php echo $this->paypal->button('Donate', array(
                                                                 'type' => 'subscribe',
                                                                 'item_name' => $need['description'],
                                                                 'amount' => $need['neededamount'],
                                                                 'term' => 'month', 'period' => ''
-                                                                ), array('class' => 'pull-right btn btn-info')); ?>
+                                                                ), array('class' => 'pull-right btn btn-info'));
+                                                            ?>
                                                         </div>
-                                                    <?php endif; ?>
-                                                </div>
-                                            </td>
-                                            <?php else: ?>
-                                            <td>
-                                                <?php echo $this->Time->format($donation['payment_date']); ?>
-                                            </td>
-                                            <td>
-                                                <a data-toggle="modal" href="<?php echo $this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php if($donation['first_name'] === '' and $donation['last_name'] === ''){ echo 'Anonymous'; } else{ echo $donation['first_name'].' '.$donation['last_name']; } ?></a>
-                                            </td>
-                                        <?php endif; ?>
+                                                        <div class='pull-right'>
+                                                            <span>For how long?</span>
+                                                            <br><input type="number" name="no_of_months" class="span1"/>
+                                                            <br><span>Months</span>
+                                                        </div>
+                                                        
+                                                <?php endif; ?>
+                                           <?php else: ?>
+                                                <td>
+                                                        <?php echo $this->Time->format($donation['payment_date']); ?>
+                                                </td>
+                                                <td>
+                                                        <a data-toggle="modal" href="<?php echo $this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php if($donation['first_name'] === '' and $donation['last_name'] === ''){ echo 'Anonymous'; } else{ echo $donation['first_name'].' '.$donation['last_name']; } ?></a>
+                                                </td>
+                                            <?php endif; ?>
+                                        </td>
                                     </tr>
                                     <?php
                                     
@@ -203,8 +203,8 @@ $user = $this->Session->read('Auth.User');
 
 <!-- Loading Modal -->
 <div id="loading-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-body" style="text-align: center">
-        <h4>Processing donation. Please wait.</h4>
+    <div class="modal-body" style="margin:20px; text-align: center; border:dashed 1px #eaeaea;">
+        <span><?php echo $this->Html->image('ajax-loader.gif');?></span><h4 class="fontcolor1">Processing donation. Please wait.</h4>
     </div>
 </div>
 
