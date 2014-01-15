@@ -42,7 +42,7 @@ CREATE TABLE `donation_requests` (
   `months_completed` int(11) DEFAULT '0',
   `last_month_completed` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=128 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -234,7 +234,7 @@ CREATE TABLE `portfolio_images` (
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `portfolios` */
 
@@ -328,7 +328,7 @@ CREATE TABLE `sponsee_needs` (
   `modified` timestamp NULL DEFAULT NULL,
   `donation_method` varchar(20) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL COMMENT 'OPEN|CLOSED',
-  `payer_id` varchar(200) DEFAULT NULL,
+  `payer_id` varchar(13) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
