@@ -42,6 +42,7 @@ echo $this->Html->docType('html5');
     echo $this->Html->script('bootstrap.min');
     echo $this->Html->script('app');
     echo $this->Html->script('html5lightbox'); //portfolio images effect
+    echo $this->Html->script('jquery.easing.1.3'); //gallery images effect
 
     echo $this->fetch('meta');
     echo $this->fetch('css');
@@ -106,7 +107,7 @@ echo $this->Html->docType('html5');
                     </div>
                 </div>
             </div>-->
-            <div class="clearfix container topmargin3">
+            <div>
                 <?php
                 $user = $this->Session->read('Auth.User');
                 $controller = $this->name;
@@ -154,14 +155,6 @@ echo $this->Html->docType('html5');
                 </div>
                 <?php endif; ?>
                 <?php echo $this->fetch('content'); ?>
-            </div>
-        </div>
-        <div id="footer">
-            <div class="container">
-                <?php include 'common_footer.php' ?>
-            </div>
-            <div class="copyright clear leftloat">
-                <?php include 'common_copyright.php' ?>
             </div>
         </div>
     </div>

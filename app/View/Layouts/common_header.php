@@ -6,20 +6,15 @@
                     <li class="<?php echo $this->name == 'Home' ? 'active' : '' ?>">
                         <?php echo $this->Html->link('HOME', '/home'); ?>
                     </li>
-                    <!--<li class="<?php // echo $this->name == 'Projects' ? 'active' : '' ?>">
-                        <?php // echo $this->Html->link('PROJECTS', '/projects'); ?>
-                    </li>
-                    <li class="<?php // echo $this->name == 'Programs' ? 'active' : '' ?>">
-                        <?php // echo $this->Html->link('PROGRAMS', '/programs'); ?>
-                    </li>-->
-                    <!--<li class="<?php // echo $this->name == 'Donations' ? 'active' : '' ?>">
-                        <?php // echo $this->Html->link('DONATE NOW', array('controller' => 'donations', 'action' => 'listing')); ?>
-                    </li>-->
                     <li class="<?php echo $this->name == 'Sponsees' ? 'active' : '' ?>">
                         <?php echo $this->Html->link('SPONSOR A CHILD', array('controller'=>'sponsees'));  ?>
                     </li>
-                    <li class="<?php echo $this->name == 'Portfolio' ? 'active' : '' ?>">
-                        <?php echo $this->Html->link('PORTFOLIO', array('controller' => 'portfolios', 'action' => 'index')); ?>
+                    <li class="<?php echo $this->name == 'Portfolio' ? 'active' : '' ?> dropdown">
+                        <?php echo $this->Html->link('PORTFOLIO', array('controller' => 'portfolios', 'action' => ''), array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'label' => 'GALLERY <b class="caret"></b>')); ?>
+                        <ul class="dropdown-menu">
+                            <li><?php echo $this->Html->link('Sponsees Portfolio', array('controller' => 'portfolios', 'action' => 'index')); ?></li>
+                            <li><?php echo $this->Html->link('Gallery', array('controller' => 'portfolios', 'action' => 'gallery')); ?></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#" class="dropdown-toggle" 

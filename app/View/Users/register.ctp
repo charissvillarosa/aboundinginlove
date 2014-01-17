@@ -18,8 +18,8 @@
 
 <div class="container">
     <div class="logincontent well">
-        <div class="pull-left topmargin2 span4">
-            <h3 class="fontcolor1">Lorem ipsum met fusce</h3>
+        <div class="pull-left topmargin1 span4">
+            <h3 class="fontcolor1 bottommargin1" style="font-size:30px;">Lorem ipsum met fusce</h3>
              <ul>
                  <li>Lorem ipsum dolor sit amet, ante fusce porttitor augue, turpis wisi, vestibulum tortornisl accumsan, sapien eu, lacus posuere. </li>
                  <li>Ac porta nunc, in tincidunt lorem maecenas egestas est. </li>

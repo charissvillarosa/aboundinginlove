@@ -1,6 +1,6 @@
 <div class="topmargin3 span11"> 
     <div class="pull-left span7 well">
-        <div class="pull-right rightmargin2 banner"><h1 class="fontcolor1">Autem enim tellus</h1></div>
+        <div class="pull-right rightmargin2 banner"><h1 class="fontcolor1" style="font-size:30px;">Autem enim tellus</h1></div>
         <div class="clearfix pull-left">
             <hr>
             <p class="topmargin1">
@@ -42,7 +42,10 @@
                 echo $this->Form->input("password");
                 ?>
             </fieldset>
-            <?php echo $this->Form->end("Login"); ?>
+            <div>
+                <div class="pull-right"><?php echo $this->Form->end("Login"); ?></div>
+                <div class="pull-left" style="width:120px; margin:10px 0 0 0; font-style:italic; font-size:12px;"><?php echo $this->Html->link("Not yet register? Register now!", array('action' => 'register')); ?></div>
+            </div>
             <script>
                 $('#UserUsername').focus();
             </script>

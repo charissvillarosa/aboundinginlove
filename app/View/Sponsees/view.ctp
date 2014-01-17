@@ -2,7 +2,7 @@
 $user = $this->Session->read('Auth.User');
 ?>
 <style>
-    table tr td {
+     table tr td {
         background: #efefef;
         border: none;
     }
@@ -207,7 +207,7 @@ $user = $this->Session->read('Auth.User');
                 $information = explode("\n", $sponsee['long_description']);
 
                 foreach ($information as $line):
-                    echo '<p style="text-align: justify;"> ' . $line . "</p>\n";
+                    echo '<p class="topmargin1" style="text-align: justify;"> ' . $line . "</p>\n";
                 endforeach;
            ?>
         </p>
@@ -235,7 +235,7 @@ $user = $this->Session->read('Auth.User');
                     $ctr = 1;
                     $prevCat = 0;
 
-                    echo "<h3 class='fontcolor1'>$itemLabel</h3>";
+                    echo "<h3 class='fontcolor1 topmargin1'>$itemLabel</h3>";
                     echo '<table class="table table-hover table-bordered">';
 
                     foreach ($itemArray as $item) :
@@ -246,34 +246,30 @@ $user = $this->Session->read('Auth.User');
 
                         if ($prevCat != $category['id']) : ?>
                             <tr>
-                                <th bgcolor="#eef6fa" colspan="9">
+                                <th colspan="9">
                                     <?php echo '<span class="category">'.$category['description'].'</span>'; ?>
                                 </th>
                             </tr
                             <tr>
-                                <td bgcolor="#f9f9f9">No.</td>
-                                <td bgcolor="#f9f9f9">Description</td>
-                                <td bgcolor="#f9f9f9">Needed Amount</td>
-                                <td bgcolor="#f9f9f9">Donated Amount</td>
-                                <td bgcolor="#f9f9f9">Date of Donation</td>
-                                <td bgcolor="#f9f9f9">Donor</td>
+                                <td>No.</td>
+                                <td>Description</td>
+                                <td>Needed Amount</td>
+                                <td>Donated Amount</td>
                             </tr>
                         <?php
                         $prevCat = $category['id'];
                         endif;
                         ?>
                         <tr>
-                            <td bgcolor="#fff">
+                            <td>
                                 <?php echo $ctr.'.'; ?>
                                 <span class="id" style="display:none;"><?php echo $need['id'] ?></span>
                                 <span class="sponseeid" style="display:none;"><?php echo $need['sponsee_id'] ?></span>
                                 <span class="donationmethod" style="display:none;"><?php echo $need['donation_method'] ?></span>
                             </td>
-                            <td bgcolor="#fff"><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
-                            <td bgcolor="#fff" style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
-                            <td bgcolor="#fff" style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
-                            <td bgcolor="#fff"><?php echo 'date'; ?></td>
-                            <td bgcolor="#fff"><?php echo 'donor'; ?></td>
+                            <td><?php echo '<span class="description">'.$need['description'].'</span>'; ?></td>
+                            <td style="text-align: right;"><?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?></td>
+                            <td style="text-align: right;"><?php echo $this->Number->currency($need['donatedamount'])?></td>
                         </tr>
                         <?php $ctr++;
                     endforeach;

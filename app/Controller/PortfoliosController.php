@@ -6,8 +6,7 @@
 
 class PortfoliosController extends AppController
 {
-
-    var $layout = 'document';
+    var $layout = 'gallery';
     
     var $uses = array('User', 'Sponsee', 'Portfolio');
     
@@ -59,7 +58,7 @@ class PortfoliosController extends AppController
     }
     
     public function gallery() {
-
+        
     }
 
     public function add($id) {
