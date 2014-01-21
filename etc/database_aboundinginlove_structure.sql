@@ -352,6 +352,19 @@ CREATE TABLE `sponsees` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
+/*Table structure for table `update_email` */
+
+DROP TABLE IF EXISTS `update_email`;
+
+CREATE TABLE `update_email` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `to` bigint(20) DEFAULT NULL,
+  `sponsee_id` bigint(20) DEFAULT NULL,
+  `message` bigint(20) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;

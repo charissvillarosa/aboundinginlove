@@ -1,33 +1,5 @@
 <?php $url = "{$this->webroot}img/gallery/"; ?>
 
-<style>
-    @import url(http://fonts.googleapis.com/css?family=Josefin+Sans+Std+Light);
-
-    html,body{height:100%;}
-    *{outline:none;}
-    body{margin:0px; padding:0px; background:#000;}
-    #toolbar{position:fixed; z-index:3; right:10px; top:50px; padding:5px; background:url(http://localhost/aboundinginlove/app/webroot/img/gallery/fs_img_g_bg.png);}
-    #toolbar img{border:none;}
-    #img_title{position:fixed; z-index:3; left:10px; top:50px; padding:10px; background:url(http://localhost/aboundinginlove/app/webroot/img/gallery/fs_img_g_bg.png); color:#FFF; font-family:'Josefin Sans Std Light', arial, serif; font-size:24px; text-transform:uppercase;}
-    #bg{position:fixed; z-index:1; overflow:hidden; width:100%; height:100%;}
-    #bgimg{display:none; -ms-interpolation-mode: bicubic;}
-    #preloader{position:relative; z-index:3; width:32px; padding:20px; top:80px; margin:auto; background:#000;}
-    #thumbnails_wrapper{z-index:2; position:fixed; bottom:0; width:100%; background:url(http://localhost/aboundinginlove/app/webroot/img/gallery/empty.gif); /* stupid ie needs a background value to understand hover area */}
-    #outer_container{position:relative; padding:0; width:100%; margin:40px auto;}
-    #outer_container .thumbScroller{position:relative; overflow:hidden; background:url(http://localhost/aboundinginlove/app/webroot/img/gallery/fs_img_g_bg.png);}
-    #outer_container .thumbScroller, #outer_container .thumbScroller .container, #outer_container .thumbScroller .content{height:170px;}
-    #outer_container .thumbScroller .container{position:relative; left:0;}
-    #outer_container .thumbScroller .content{float:left;}
-    #outer_container .thumbScroller .content div{margin:5px; height:100%;}
-    #outer_container .thumbScroller img{border:5px solid #fff;}
-    #outer_container .thumbScroller .content div a{display:block; padding:5px;}
-
-    .nextImageBtn, .prevImageBtn{display:block; position:absolute; width:50px; height:50px; top:50%; margin:-25px 10px 0 10px; z-index:3; filter:alpha(opacity=40); -moz-opacity:0.4; -khtml-opacity:0.4; opacity:0.4;}
-    .nextImageBtn:hover,.prevImageBtn:hover{filter:alpha(opacity=80); -moz-opacity:0.8; -khtml-opacity:0.8; opacity:0.8;}
-    .nextImageBtn{right:0; background:#000 url(http://localhost/aboundinginlove/app/webroot/img/gallery/nextImgBtn.png) center center no-repeat;}
-    .prevImageBtn{background:#000 url(http://localhost/aboundinginlove/app/webroot/img/gallery/prevImgBtn.png) center center no-repeat;}
-</style>
-
 <div id="bg"><a href="#" class="nextImageBtn" title="next"></a><a href="#" class="prevImageBtn" title="previous"></a><img src="<?php echo $url."Universe_and_planets_digital_art_wallpaper_denebola.jpg" ?>" width="1680" height="1050" alt="Denebola" title="Denebola" id="bgimg" /></div>
 <div id="preloader"><img src="<?php echo $url."ajax-loader_dark.gif" ?>" width="32" height="32" /></div>
 <div id="img_title"></div>
@@ -44,82 +16,82 @@
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_lux.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_lux_thumb.jpg"; ?>" title="Lux Aeterna" alt="Lux Aeterna" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_lux.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_lux_thumb.jpg"; ?>" title="Lux Aeterna" alt="Lux Aeterna" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_dk.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_dk_thumb.jpg" ?>" title="X-Wing on patrol" alt="X-Wing on patrol" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_dk.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_dk_thumb.jpg" ?>" title="X-Wing on patrol" alt="X-Wing on patrol" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_albireo.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_albireo_thumb.jpg" ?>" title="Albireo Outpost" alt="Albireo Outpost" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_albireo.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_albireo_thumb.jpg" ?>" title="Albireo Outpost" alt="Albireo Outpost" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_church.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_church_thumb.jpg" ?>" title="Church of Heaven" alt="Church of Heaven" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_church.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_church_thumb.jpg" ?>" title="Church of Heaven" alt="Church of Heaven" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_Decampment.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_Decampment_thumb.jpg" ?>" title="Decampment" alt="Decampment" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_Decampment.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_Decampment_thumb.jpg" ?>" title="Decampment" alt="Decampment" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_Hibernaculum.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_Hibernaculum_thumb.jpg" ?>" title="Hibernaculum" alt="Hibernaculum" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_Hibernaculum.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_Hibernaculum_thumb.jpg" ?>" title="Hibernaculum" alt="Hibernaculum" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_lucernarium.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_lucernarium_thumb.jpg" ?>" title="Supremus Lucernarium" alt="Supremus Lucernarium" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_lucernarium.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_lucernarium_thumb.jpg" ?>" title="Supremus Lucernarium" alt="Supremus Lucernarium" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_moons.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_moons_thumb.jpg" ?>" title="Aurea Mediocritas" alt="Aurea Mediocritas" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_moons.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_moons_thumb.jpg" ?>" title="Aurea Mediocritas" alt="Aurea Mediocritas" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_praedestinatio.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_praedestinatio_thumb.jpg" ?>" title="Praedestinatio" alt="Praedestinatio" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_praedestinatio.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_praedestinatio_thumb.jpg" ?>" title="Praedestinatio" alt="Praedestinatio" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_transitorius.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_transitorius_thumb.jpg" ?>" title="Transitorius" alt="Transitorius" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_transitorius.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_transitorius_thumb.jpg" ?>" title="Transitorius" alt="Transitorius" class="thumb" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="content">
-                <div>
-                    <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_victimofgravity.jpg" ?>">
-                        <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_victimofgravity_thumb.jpg" ?>" title="Victim of Gravity" alt="Victim of Gravity" class="thumb" />
-                    </a>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_victimofgravity.jpg" ?>">
+                            <img src="<?php echo $url . "Universe_and_planets_digital_art_wallpaper_victimofgravity_thumb.jpg" ?>" title="Victim of Gravity" alt="Victim of Gravity" class="thumb" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

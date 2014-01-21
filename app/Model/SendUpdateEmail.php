@@ -5,7 +5,7 @@
  */
 class SendUpdateEmail extends AppModel
 {
-   var $useTable = 'paypal_txn_logs';
+   var $useTable = 'update_email';
    
    var $hasOne = array(
         'Image' => array(

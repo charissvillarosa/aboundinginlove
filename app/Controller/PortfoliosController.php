@@ -58,7 +58,7 @@ class PortfoliosController extends AppController
     }
     
     public function gallery() {
-        
+        $this->layout = 'gallery_images';
     }
 
     public function add($id) {

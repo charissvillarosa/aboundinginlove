@@ -14,8 +14,8 @@
                 <th>Country</th>
                 <th>Gender</th>
                 <th>Birth Date</th>
-                <th>View Sponsee Needs</th>
-                <th>View Sponsee Portfolio</th>
+                <th>View <br>Sponsee <br>Needs</th>
+                <th>View <br>Sponsee <br>Portfolio</th>
                 <th>Edit</th>
                 <th>View</th>
                 <th>Delete</th>

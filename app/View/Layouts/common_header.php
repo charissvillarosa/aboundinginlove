@@ -12,8 +12,8 @@
                     <li class="<?php echo $this->name == 'Portfolio' ? 'active' : '' ?> dropdown">
                         <?php echo $this->Html->link('PORTFOLIO', array('controller' => 'portfolios', 'action' => ''), array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'label' => 'GALLERY <b class="caret"></b>')); ?>
                         <ul class="dropdown-menu">
-                            <li><?php echo $this->Html->link('Sponsees Portfolio', array('controller' => 'portfolios', 'action' => 'index')); ?></li>
-                            <li><?php echo $this->Html->link('Gallery', array('controller' => 'portfolios', 'action' => 'gallery')); ?></li>
+                            <li><?php echo $this->Html->link('SPONSEES PORTFOLIO', array('controller' => 'portfolios', 'action' => 'index')); ?></li>
+                            <li><?php echo $this->Html->link('GALLERY', array('controller' => 'portfolios', 'action' => 'gallery')); ?></li>
                         </ul>
                     </li>
                     <li>
