@@ -1,37 +1,5 @@
-<?php
-$user = $this->Session->read('Auth.User');
-?>
-
-<style>
-    .container form {
-        padding: 0;
-        margin: 0;
-        width: 100%;
-    }
-
-    .container form div {
-        padding-left: 0;
-    }
-
-    a {color:#333333;}
-    a:hover {color:#4385ce; text-decoration:none;}
-</style>
-
-<div class="container">
-    <div class="dropdown clearfix span2 topmargin3">
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
-            <li class="<?php echo $this->name == 'Profile' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Donor Profile', array('controller' => 'Profile', 'action' => 'index')) ?>
-            </li>
-            <li class="<?php echo $this->name == 'DonationHistory' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Donation History', array('controller' => 'DonationHistory', 'action' => 'index')) ?>
-            </li>
-            <li class="<?php echo $this->name == 'InviteFriends' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Invite Friends', array('controller' => 'InviteFriends', 'action' => 'index')) ?>
-            </li>
-        </ul>
-    </div>
-    <div class="span9 well" style="padding:0 0 0 0; background: #fff; margin-top:103px;">
+<div class="container tabs">
+    <div>
         <div class="clearfix pull-left headerstyle">
             <?php
             $sponsee = $sponsee['SponseeListingItem'];
@@ -40,15 +8,15 @@ $user = $this->Session->read('Auth.User');
                 <p class="fontsize1 banner">DONATE FOR <?php echo strtoupper($sponsee['firstname'] . ' ' . $sponsee['lastname']) ?></p>
             </div>
         </div>
-        <div style="width:870px;" class="clearfix pull-left">
-            <div class="pull-left box topmargin1 span3">
-                <div style="margin-right:10px;" class="leftmargin1">
+        <div class="clearfix pull-left span12">
+            <div style="margin-left:0;" class="pull-left box topmargin1 span3 bottommargin1">
+                <div style="padding-right:8px;">
                     <?php
                             $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
                             $attrs = array('alt' => '', 'width' => '300', 'class' => 'img-polaroid');
                             echo $this->Html->image($imageURl, $attrs);
                     ?>
-                    <div class="topmargin1">
+                    <div style="width:270px; margin:auto;" class="topmargin1">
                         <hr>
                         <?php
                             echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
@@ -59,9 +27,10 @@ $user = $this->Session->read('Auth.User');
                     </div>
                  </div>
             </div>
-            <div class="pull-left">
-                <div class="pull-left span5">
+            <div class="pull-left topmargin1">
+                <div class="pull-left span8">
                     <h3 class="fontcolor1">BIOGRAPHY</h3>
+                    <hr style="border:dashed 1px #ccc;">
                     <p style="text-align: justify;">
                         <?php
                              $information = explode("\n", $sponsee['long_description']);
@@ -71,7 +40,8 @@ $user = $this->Session->read('Auth.User');
                              endforeach;
                         ?>
                      </p>
-                     <h3 class="fontcolor1">SPONSEE NEEDS</h3>
+                     <h3 class="fontcolor1 topmargin2">SPONSEE NEEDS</h3>
+                     <hr style="border:dashed 1px #ccc;">
                      <p class="bottommargin3">
                         By selecting the recurring or monthly support payments,
                         at abounding in love you may pause or cancel your support at any time for any reason.
@@ -156,23 +126,19 @@ $user = $this->Session->read('Auth.User');
                                                         </div>
                                                         <div class='pull-right'>
                                                             <span>For how long?</span>
-                                                            <br><input type="number" name="no_of_months" class="span1"/>
-                                                            <br><span>Months</span>
+                                                            <input type="number" name="no_of_months" class="span1"/>
+                                                            <span>Months</span>
                                                         </div>
-                                                        
+
                                                 <?php endif; ?>
                                            <?php else: ?>
-                                                <td>
-                                                        <?php echo $this->Time->format($donation['payment_date']); ?>
-                                                </td>
-                                                <td>
-                                                        <a data-toggle="modal" href="<?php echo $this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php if($donation['first_name'] === '' and $donation['last_name'] === ''){ echo 'Anonymous'; } else{ echo $donation['first_name'].' '.$donation['last_name']; } ?></a>
-                                                </td>
+                                                <?php echo ' - '.$this->Time->format($donation['payment_date']); ?>
+                                                <a data-toggle="modal" href="<?php echo ' - '.$this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php if($donation['first_name'] === '' and $donation['last_name'] === ''){ echo 'Anonymous'; } else{ echo $donation['first_name'].' '.$donation['last_name']; } ?></a>
                                             <?php endif; ?>
                                         </td>
                                     </tr>
                                     <?php
-                                    
+
                                     $ctr++;
                                     $itemIndex++;
 
@@ -184,8 +150,7 @@ $user = $this->Session->read('Auth.User');
                         }
                         ?>
                 </div>
-            </div>
-        </div>
+           </div>
     </div>
 </div>
 

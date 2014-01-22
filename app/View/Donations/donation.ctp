@@ -1,48 +1,34 @@
 <?php
 $user = $this->Session->read('Auth.User');
 ?>
-<div class="container">
-    <div class="dropdown clearfix span2 topmargin3">
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
-            <li class="<?php echo $this->name == 'Profile' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Donor Profile', array('controller' => 'Profile', 'action' => 'index')) ?>
-            </li>
-            <li class="<?php echo $this->name == 'DonationHistory' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Donation History', array('controller' => 'DonationHistory', 'action' => 'index')) ?>
-            </li>
-            <li class="<?php echo $this->name == 'InviteFriends' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Invite Friends', array('controller' => 'InviteFriends', 'action' => 'index')) ?>
-            </li>
-        </ul>
+<div class="container tabs">
+    <div class="headerstyle banner">
+        <div class="leftmargin1"><p class="fontsize1">Donate Any Amount to the Sponsored Children of Abounding In Love</p></div>
     </div>
-    <div class="span9 well" style="padding:0 0 30px 0; background: #fff; margin-top:103px;">
-        <div class="clearfix pull-left headerstyle">
-            <div class="pull-left leftmargin2 bottommargin2">
-                <p class="fontsize1">Donate Any Amount to the Sponsored Children of Abounding In Love</p>
-            </div>
-        </div>
-        <div class="clearfix pull-left leftmargin2 width2 overlayable">
-            <label>Donation:</label>
+    <div class="span11">
+        <div style="width:600px; margin:40px auto; overflow:auto;" class="box overlayable">
+            <label class="fontsize1">Donation:</label>
             <input type="number" id="sponsee-donation" class="text-right" value="0"/>
             <p>
-                Suggested donation to Abounding in love operation expenses: 
-                <b>$<span id="org-donation">0.00</span></b>  
-                <a href="#" id="edit-org-donation">Edit</a>
+                Suggested donation to Abounding in love operation expenses:
+                <b>$<span id="org-donation">0.00</span></b>
+                <a href="#" id="edit-org-donation" class="btn btn-info"><i class="icon-edit"></i> Edit</a>
             </p>
             <p>Why this organization need your help?</p>
             <hr>
-            <p><b>TOTAL: $<span id="total">0.00</span></b></p>
-            <div id="paypal-btn">
-<!--                <div style="padding:0 0 0 15px; margin:0;">
-                    <?php echo $this->Html->image('cards.gif') ?>
-                </div>-->
-                <?php echo $this->paypal->button('Donate through paypal', array('type' => 'donate', 'item_name' => '', 'amount' => '')) ?>
+            <div>
+                <div class="pull-left"><p class="fontsize1">TOTAL: $<span id="total">0.00</span></p></div>
+                <div id="paypal-btn">
+                    <div class="pull-right">
+                        <?php echo $this->paypal->button('Donate through paypal', array('type' => 'donate', 'item_name' => '', 'amount' => '')) ?>
+                    </div>
+                </div>
             </div>
-            
             <div class="modal-backdrop overlay hide"></div>
         </div>
     </div>
 </div>
+
 
 <script>
     $(function(){

@@ -28,7 +28,7 @@
                 endforeach;
             ?>
             </div>
-            <div class="leftmargin2">
+            <div style="margin-right:45px;" class="pull-right">
                 <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
                 <?php echo $this->Paginator->numbers(); ?>
                 <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
@@ -37,3 +37,4 @@
          </div>
     </div>
 </div>
+

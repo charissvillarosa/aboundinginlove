@@ -17,9 +17,10 @@
 
                         if ($prevCat != $category['id']) : ?>
                             <div class="fontcolor1 span11 topmargin1">
-                                <h2>
+                                <p class="fontsize1">
                                     <?php echo $category['description'] ?>
-                                </h2>
+                                </p>
+                                <hr style="border:dashed 1px #ccc;">
                             </div>
                             <div class="span11">
                                 <p style="text-align:justify;">
@@ -41,7 +42,7 @@
                                 echo "</a>";
                             endforeach;
                             ?>
-                         </div>
+                       </div>
                     <?php endforeach;
                  }
               ?>

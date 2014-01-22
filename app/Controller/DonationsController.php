@@ -15,7 +15,7 @@ class DonationsController extends AppController
 
     var $paginate = array(
         'SponseeListingItem' => array(
-            'limit' => 3
+            'limit' => 4
         )
     );
 

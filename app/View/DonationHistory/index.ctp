@@ -1,57 +1,108 @@
-<?php
-$user = $this->Session->read('Auth.User');
-?>
-<div class="container">
-    <div class="dropdown clearfix span2 topmargin3">
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
-            <li class="<?php echo $this->name == 'Profile' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Donor Profile', array('controller' => 'Profile', 'action' => 'index')) ?>
-            </li>
-            <li class="<?php echo $this->name == 'DonationHistory' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Donation History', array('controller' => 'DonationHistory', 'action' => 'index')) ?>
-            </li>
-            <li class="<?php echo $this->name == 'InviteFriends' ? 'active' : '' ?>">
-                <?php echo $this->Html->link('Invite Friends', array('controller' => 'InviteFriends', 'action' => 'index')) ?>
-            </li>
-        </ul>
-    </div>
-    <div class="span9 well" style="padding:0 0 30px 0; background: #fff; margin-top:103px;">
-        <div class="clearfix pull-left headerstyle">
-            <div class="pull-left leftmargin2 bottommargin2">
-                <p class="banner fontsize1">DONATION HISTORY</p>
+<style>
+    .span11 {width:1105px;}
+</style>
+<div class="clearfix container">
+    <?php
+    $user = $this->Session->read('Auth.User');
+    $controller = $this->name;
+
+    if ($user && $user['role'] == 'admin') :
+    ?>
+        <div class="navbar navbar-static-top" style="margin: -1px -1px 0;">
+            <div class="navbar-inner">
+                <div class="container" style="width: auto; padding: 0 20px;">
+                    <ul class="nav">
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'Sponsees' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Sponsees', array('controller'=>'sponsees', 'action'=>'index')); ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'Users' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index')); ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Need Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Portfolio Categories', array('controller'=>'PortfolioCategories', 'action'=>'listing')); ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Donations', array('controller'=>'DonationHistory', 'action'=>'listing')); ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'SendUpdateEmail' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Send Update Email', array('controller'=>'SendUpdateEmail', 'action'=>'listing')); ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Invites', array('controller'=>'InviteFriends', 'action'=>'listing')); ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="clearfix pull-left leftmargin2 width2">
-            <?php
-            $user = $this->Session->read('Auth.User');
-            ?>
-            <div>
-                <div class="pull-left">
-                <?php
-                foreach ($sponseeList as $item) :
-                    $sponseeImage = $item['Image'];
-                endforeach;
-
-                $imageURl = array('controller' => 'ProfileImages', 'action' => 'view', $user['id'], $sponseeImage['hash_key']);
-                $attrs = array('alt' => '', 'width' => '190px', 'class' => 'img-polaroid');
-                echo $this->Html->image($imageURl, $attrs);
-                ?>
+    <?php else: ?>
+        <div class="navbar navbar-static-top" style="margin: -1px -1px 0;">
+            <div class="navbar-inner">
+                <div class="container" style="width: auto; padding: 0 20px;">
+                    <ul class="nav">
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'Profile' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Donor Profile', array('controller' => 'Profile', 'action' => 'index')) ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Donation History', array('controller' => 'DonationHistory', 'action' => 'index')) ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Invite Friends', array('controller' => 'InviteFriends', 'action' => 'index')) ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                    </ul>
                 </div>
-                <div class="pull-left span6">
-                    <h2 class="fontcolor1"><?php echo $user['firstname'] . ' ' . $user['lastname']; ?></h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, orci sed quisque venenatis eget nullam ut, eget eros bibendum condimentum 
-                        tellus suscipit non, eget viverra a pulvinar, wisi fringilla etiam at qui. Risus nullam libero gravida 
-                        ligula, diam vivamus ullamcorper sit sapien, nulla id dolor semper nunc, felis nulla enim quam wisi 
-                        lorem integer, fringilla sed accumsan mauris. Pellentesque sit.
-                    </p>
-                    <hr>
-                </div>
-                <div class="clearfix"></div>
             </div>
-            <div>
-                <div class="pull-left"><h4 class="fontcolor1">Donation Record</h4></div>
-                <div class="pull-right">
+        </div>
+    <?php endif; ?>
+</div>
+
+<div class="container tabs">
+    <div class="headerstyle banner">
+        <div class="leftmargin1"><p class="fontsize1">DONATION HISTORY</p></div>
+    </div>
+    <div class="topmargin1 span12 bottommargin1">
+        <div>
+            <div class="pull-left">
+            <?php
+            foreach ($sponseeList as $item) :
+                $sponseeImage = $item['Image'];
+            endforeach;
+
+            $imageURl = array('controller' => 'ProfileImages', 'action' => 'view', $user['id'], $sponseeImage['hash_key']);
+            $attrs = array('alt' => '', 'width' => '190px', 'class' => 'img-polaroid');
+            echo $this->Html->image($imageURl, $attrs);
+            ?>
+            </div>
+            <div class="pull-left span9">
+                <h2 class="fontcolor1"><?php echo $user['firstname'] . ' ' . $user['lastname']; ?></h2>
+                <hr style="border:dashed 1px #ccc;">
+                <p>
+                    Lorem ipsum dolor sit amet, orci sed quisque venenatis eget nullam ut, eget eros bibendum condimentum
+                    tellus suscipit non, eget viverra a pulvinar, wisi fringilla etiam at qui. Risus nullam libero gravida
+                    ligula, diam vivamus ullamcorper sit sapien, nulla id dolor semper nunc, felis nulla enim quam wisi
+                    lorem integer, fringilla sed accumsan mauris. Pellentesque sit.
+                </p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div>
+            <div style="margin-left:0;" class="span11">
+                <div class="pull-left topmargin1"><h4 class="fontcolor1">Donation Record</h4></div>
+                <div class="pull-right topmargin1">
                     <div class="pull-right leftmargin5">
                         <?php echo $this->Html->link('Donate any amount', array('controller'=>'donations', 'action' => 'donation'), array('class' => 'btn btn-info')); ?>
                     </div>
@@ -59,10 +110,11 @@ $user = $this->Session->read('Auth.User');
                         <?php echo $this->Html->link('Donate a sponsee', array('controller'=>'donations', 'action' => 'sponseedonation'), array('class' => 'btn btn-info')); ?>
                     </div>
                 </div>
+                <div class="clearfix"></div>
             </div>
-            <div>
+            <div style="margin-left:0;" class="span11">
                 <table width="100%" class="table table-hover table-bordered">
-                    
+
                     <tr><th colspan="5">One Time Donation<th></tr>
                     <tr>
                         <th>Reference No.</th>
@@ -101,7 +153,7 @@ $user = $this->Session->read('Auth.User');
                     <?php endforeach; ?>
                 </table>
             </div>
-            <div>
+            <div style="margin-left:0;" class="span11">
                 <div class="pull-right">
                     <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
                     <?php echo $this->Paginator->numbers(); ?>
@@ -109,7 +161,7 @@ $user = $this->Session->read('Auth.User');
                     <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
                 </div>
             </div>
-            <div class="topmargin3">
+            <div style="margin-left:0;" class="topmargin1 span11">
                 <table width="100%" class="table table-hover table-bordered">
 
                     <tr><th colspan="5">Monthly Donation<th></tr>
@@ -150,7 +202,7 @@ $user = $this->Session->read('Auth.User');
                     <?php endforeach; ?>
                 </table>
             </div>
-            <div>
+            <div style="margin-left:0;" class="span11">
                 <div class="pull-right">
                     <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
                     <?php echo $this->Paginator->numbers(); ?>
@@ -158,9 +210,7 @@ $user = $this->Session->read('Auth.User');
                     <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
                 </div>
             </div>
-        </div>
-        <div>
-            <div class="leftmargin2 width2">
+            <div style="margin-left:0;" class="span11">
                 <h4 class="fontcolor1">Queued Donation</h4>
                 <div class="topmargin1">
                     <table width="100%" class="table table-hover table-bordered">
@@ -196,15 +246,15 @@ $user = $this->Session->read('Auth.User');
                         <?php endforeach; ?>
                     </table>
                 </div>
-                <div>
-                    <div class="clear pull-right">
-                        <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
-                        <?php echo $this->Paginator->numbers(); ?>
-                        <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
-                        <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
-                    </div>
+            </div>
+            <div style="margin-left:0;" class="span11">
+                <div class="clear pull-right">
+                    <button class="btn"><?php echo $this->Paginator->prev('« Previous', null, null, array('class' => 'disabled')); ?></button>
+                    <?php echo $this->Paginator->numbers(); ?>
+                    <button class="btn"><?php echo $this->Paginator->next('Next »', null, null, array('class' => 'disabled')); ?></button>
+                    <button class="btn"><?php echo $this->Paginator->counter(); ?></button>
                 </div>
             </div>
-        </div>
-    </div>
+         </div>
+     </div>
 </div>

@@ -157,6 +157,11 @@ echo $this->Html->docType('html5');
                 <?php echo $this->fetch('content'); ?>
             </div>
         </div>
+        <div id="footer">
+            <div class="copyright clear leftloat">
+                <?php include 'common_copyright.php' ?>
+            </div>
+        </div>
     </div>
 <!--     login modal-->
     <div style="width:310px; left:60%;" id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

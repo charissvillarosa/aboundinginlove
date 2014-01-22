@@ -11,10 +11,11 @@ $user = $this->Session->read('Auth.User');
         overflow: auto;
     }
 </style>
-<div class="pull-right">
-    <?php echo $this->Html->link('Go back to Sponsee Listing', array('action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
-</div>
+
 <div class="clearfix topmargin1 well span11 pull-right bottommargin2">
+    <div class="pull-right">
+        <?php echo $this->Html->link('Go back to Sponsee Listing', array('action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
+    </div>
     <div style="margin-left:0;" class="span3 pull-left topmargin1 bottommargin2">
         <?php
         $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
