@@ -1,9 +1,9 @@
 <div class="container tabs portfolio">
     <div class="span11 margin3">
         <?php
-        echo $this->Form->create('', array('type' => 'GET', 'url' => array('controller'=>'SendUpdateEmail', 'action' => 'listing')));
+        echo $this->Form->create('', array('type' => 'GET', 'url' => array('controller'=>'SendUpdate', 'action' => 'listing')));
         ?>
-        <div class="pull-right banner">
+        <div class="clearfix pull-right banner">
             <div class="pull-left topmargin7">
                 <p>Donation search by:</p>
             </div>
@@ -21,6 +21,7 @@
             </div>
         </div>
         <?php echo $this->Form->end(); ?>
+        <?php echo $this->Session->flash(); ?>
         <table width="100%" class="table table-hover table-bordered">
             <tr>
                 <th>Paypal Payers ID</th>
@@ -51,8 +52,8 @@
                         ?>
                     </td>
                     <td><i><?php echo $this->Html->link('', array('controller' => 'DonationHistory', 'action' => 'view', $donation['id']), array('class' => 'icon-folder-open','title' => 'View donation details')); ?></i></td>
-                    <td><i><?php echo $this->Html->link('', array('controller' => 'SendUpdateEmail', 'action' => 'index', $donation['id']), array('class' => 'icon-folder-open','title' => 'View emails')); ?></i></td>
-                    <td><i><?php echo $this->Html->link('', array('controller' => 'SendUpdateEmail', 'action' => 'sendemail', $donation['id'], $sponsee['id']), array('class' => ' icon-envelope','title' => 'Send update emails')); ?></i></td>
+                    <td><i><?php echo $this->Html->link('', array('controller' => 'SendUpdate', 'action' => 'index', $donation['id']), array('class' => 'icon-folder-open','title' => 'View emails')); ?></i></td>
+                    <td><i><?php echo $this->Html->link('', array('controller' => 'SendUpdate', 'action' => 'email', $user['id'], $donation['id'], $sponsee['id']), array('class' => ' icon-envelope','title' => 'Send update emails')); ?></i></td>
                 </tr>
             <?php endforeach; ?>
         </table>

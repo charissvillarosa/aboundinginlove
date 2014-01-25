@@ -64,6 +64,7 @@ class DonationsController extends AppController
             }
 
             $this->set("sponseeneeds", $sponseeneeds);
+
         }
         
         $this->set("sponseeImage", $sponsee['Image']);

@@ -18,7 +18,7 @@ class SponseeNeed extends AppModel
         ),
         'Donation' => array(
             'className' => 'Donation',
-            'foreignKey' => 'payer_id'
+            'foreignKey' => 'paypal_txn'
         )
     );
     

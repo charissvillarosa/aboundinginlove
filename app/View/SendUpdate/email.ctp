@@ -14,29 +14,40 @@ $user = $this->Session->read('Auth.User');
 <div class="container tabs portfolio">
     <div class="pull-right headerstyle banner span11">
         <div class="pull-left"><p class="fontsize1">SEND EMAIL</p></div>
-        <div class="pull-right"><?php echo $this->Html->link('Go back to Send Update Email', array('action' => 'listing'), array('class' => 'btn btn-info btn-medium')); ?></div>
+        <div class="pull-right"><?php echo $this->Html->link('Go back to Send Update Email', array('action' => 'listing'), array('class' => 'btn btn-info btn-medium rightmargin1')); ?></div>
     </div>
+    <?php foreach ($result as $item) :
+        $donor = $item['User'];
+        $donation = $item['DonationRequest'];
+        $sponsee = $item['SponseeListingItem'];
+        $date = $donation['last_month_completed'];
+        $paypal = $item['DonationHistory'];
+    ?>
     <div style="width:800px; margin:50px auto;">
-        <?php echo $this->Form->create('', array('type' => 'POST', 'url' => array('controller'=>'SendUpdateEmail', 'action' => 'sendemail'))); ?>
+        <?php echo $this->Form->create('SendUpdate', array('type' => 'POST', 'url' => array('controller'=>'SendUpdate', 'action' => 'sendemail'))); ?>
         <div style="padding-left:7px;">
             <?php echo $this->Session->flash(); ?>
             <?php echo $this->Form->label('To: '); ?>
             <?php
-                $email = $user['email'];
-                echo $this->Form->textarea('to', array('class' => 'span4','value' => trim($email)));
+                echo $this->Form->textarea('to', array('class' => 'span4','value' => trim($donor['email'])));
             ?>
         </div>
         <div style="padding-left:7px;">
-            <?php echo $this->Form->label('Message: '); ?>
+            <?php 
+                echo $this->Form->label('Message: ');
+                echo $this->Form->hidden('sponsee', array('value' => $sponsee['id']));
+                echo $this->Form->hidden('donor', array('value' => $donor['id']));
+                echo $this->Form->hidden('paypal_txn', array('value' => $paypal['id']));
+            ?>
             <?php
             $defaultMessage = "
 Thank you from Abounding in Love
 
 
-Dear $user[firstname] $user[lastname],
+Dear $donor[firstname] $donor[lastname],
 
 
-I would like to sincerely thank you for your generous donation worth $200 to --------- on -----------.
+I would like to sincerely thank you for your generous donation worth $ $donation[total] to $sponsee[firstname] $sponsee[middlename] $sponsee[lastname] on $date.
 Every Donation helps ensure that we can continue with our work.
 
 I know there are a lot of other ways you can have spent this money, and we appreciate the support you have given to our cause.
@@ -55,4 +66,5 @@ Abounding in Love
         </div>
         <?php echo $this->Form->end(__('Send')); ?>
     </div>
+    <?php endforeach; ?>
 </div>

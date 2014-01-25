@@ -156,9 +156,9 @@ class AppController extends Controller
                             $amount = $remaining;
                             $remaining = 0;
                         }
-                        $paypal_id = $ipnTxn['txn_id'];
+                        $id = $ipnTxn['txn_id'];
 
-                        $this->postSponseeNeedDonation($item[0], $amount, $paypal_id);
+                        $this->postSponseeNeedDonation($item[0], $amount, $id);
                     }
                 }
             }
@@ -169,7 +169,7 @@ class AppController extends Controller
     }
 
     // updates a sponsee need donation
-    private function postSponseeNeedDonation($id, $amount, $paypal_id)
+    private function postSponseeNeedDonation($id, $amount, $id)
     {
         $this->SponseeNeed->id = $id;
         $need = $this->SponseeNeed->read();
@@ -179,7 +179,7 @@ class AppController extends Controller
 
         $this->SponseeNeed->set('donatedamount', $total);
         $this->SponseeNeed->set('status', 'CLOSED');
-        $this->SponseeNeed->set('paypal_id', $paypal_id);
+        $this->SponseeNeed->set('paypal_txn', $id);
         $this->SponseeNeed->save();
     }
 

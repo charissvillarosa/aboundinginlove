@@ -44,8 +44,8 @@ $user = $this->Session->read('Auth.User');
                             <?php echo $this->Html->link('Donations', array('controller'=>'DonationHistory', 'action'=>'listing')); ?>
                         </li>
                         <li class="divider-vertical"></li>
-                        <li class="<?php echo $controller == 'SendUpdateEmail' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Send Update Email', array('controller'=>'SendUpdateEmail', 'action'=>'listing')); ?>
+                        <li class="<?php echo $controller == 'SendUpdate' ? 'active' : '' ?>">
+                            <?php echo $this->Html->link('Send Update Email', array('controller'=>'SendUpdate', 'action'=>'listing')); ?>
                         </li>
                         <li class="divider-vertical"></li>
                         <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">

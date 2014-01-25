@@ -3,10 +3,9 @@
 /*
  * @author Chariss
  */
-class SendUpdateEmail extends AppModel
+class UpdateEmail extends AppModel
 {
-   var $useTable = 'update_email';
-   
+
    var $hasOne = array(
         'Image' => array(
             'className' => 'SponseeImage',

@@ -96,46 +96,63 @@
                                     <tr>
                                          <td bgcolor="#fff" style="text-align: right;">
                                                 <?php if($status == 'CLOSED') : ?>
-                                                                <?php echo $this->Html->image('check.png'); ?>
+                                                    <?php echo $this->Html->image('check.png'); ?>
                                                 <?php endif; ?>
                                                 <?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?>
                                         </td>
-                                        <td <?php if($need['donation_method'] === 'onetime'){ echo'colspan="3"'; } else { echo'colspan="3"'; }?> bgcolor="#fff">
-                                            <?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?>
-                                            <?php if($status != 'CLOSED') : ?>
-                                                <input type="hidden" name="sponseeneed_id" value="<?php echo $need['id']; ?>">
-                                                <input type="hidden" name="sponseeneed_amount" value="<?php echo $need['neededamount']; ?>">
-                                                <?php if($need['donation_method'] === 'onetime') : ?>
-                                                        <div style="margin:0;" class='pull-right paypal-btn  btn-small' data-type="monthly">
-                                                                <?php echo $this->paypal->button('Donate', array(
-                                                                        'type' => 'subscribe',
-                                                                        'item_name' => $need['description'],
-                                                                        'amount' => $need['neededamount'],
-                                                                        'term' => 'month', 'period' => '1'
-                                                                        ), array('class' => 'pull-right btn btn-info')); ?>
-                                                        </div>
-                                                <?php else: ?>
-                                                        <div class='pull-right paypal-btn btn-small' data-type="monthly">
-                                                            <?php echo $this->paypal->button('Donate', array(
-                                                                'type' => 'subscribe',
-                                                                'item_name' => $need['description'],
-                                                                'amount' => $need['neededamount'],
-                                                                'term' => 'month', 'period' => ''
-                                                                ), array('class' => 'pull-right btn btn-info'));
-                                                            ?>
-                                                        </div>
-                                                        <div class='pull-right'>
-                                                            <span>For how long?</span>
-                                                            <input type="number" name="no_of_months" class="span1"/>
-                                                            <span>Months</span>
-                                                        </div>
-
-                                                <?php endif; ?>
-                                           <?php else: ?>
-                                                <?php echo ' - '.$this->Time->format($donation['payment_date']); ?>
-                                                <a data-toggle="modal" href="<?php echo ' - '.$this->Html->url( array('action' => 'donor', $donation['user_id'])); ?>" data-target="#modal"><?php if($donation['first_name'] === '' and $donation['last_name'] === ''){ echo 'Anonymous'; } else{ echo $donation['first_name'].' '.$donation['last_name']; } ?></a>
+                                        <?php if($need['donation_method'] === 'onetime') : ?>
+                                            <?php if($status === 'CLOSED') : ?>
+                                                <td><?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?></td>
+                                                <td><?php echo $this->Time->format($donation['payment_date']); ?></td>
+                                                <td>
+                                                    <?php
+                                                    if($donation['first_name'] === '' and $donation['last_name'] === ''){ echo 'Anonymous'; }
+                                                    else{
+                                                        echo "<a data-toggle=\"modal\" href=\"".$this->Html->url( array('action' => 'donor', $donation['user_id']))."\" data-target=\"#modal\">";
+                                                            echo $donation['first_name'].' '.$donation['last_name'];
+                                                        echo "</a>";
+                                                    }
+                                                    ?>
+                                                    
+                                                </td>
+                                            <?php else: ?>
+                                                <td colspan="3">
+                                                    <?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?>
+                                                    <div style="margin:0;" class='pull-right paypal-btn  btn-small' data-type="monthly">
+                                                    <?php echo $this->paypal->button('Donate', array(
+                                                        'type' => 'subscribe',
+                                                        'item_name' => $need['description'],
+                                                        'amount' => $need['neededamount'],
+                                                        'term' => 'month', 'period' => '1'
+                                                        ), array('class' => 'pull-right btn btn-info')); ?>
+                                                    </div>
+                                                </td>
                                             <?php endif; ?>
-                                        </td>
+                                        <?php else: ?>
+                                            <?php if($status === 'CLOSED') : ?>
+                                                <td>
+                                                    <?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?>
+                                                </td>
+                                            <?php else: ?>
+                                                <td colspan="3">
+                                                    <?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?>
+                                                    <div class='pull-right paypal-btn btn-small' data-type="monthly">
+                                                        <?php echo $this->paypal->button('Donate', array(
+                                                            'type' => 'subscribe',
+                                                            'item_name' => $need['description'],
+                                                            'amount' => $need['neededamount'],
+                                                            'term' => 'month', 'period' => ''
+                                                            ), array('class' => 'pull-right btn btn-info'));
+                                                        ?>
+                                                    </div>
+                                                    <div class='pull-right'>
+                                                        <span>For how long?</span>
+                                                        <input type="number" name="no_of_months" class="span1"/>
+                                                        <span>Months</span>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
                                     </tr>
                                     <?php
 
