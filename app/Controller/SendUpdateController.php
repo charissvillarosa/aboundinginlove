@@ -71,7 +71,7 @@ class SendUpdateController extends AppController
         else {
             $postData = $this->request->data['SendUpdate'];
             $toArray = explode(',', $postData['to']);
-
+            
             foreach ($toArray as $emailTo) {
                 $emailTo = trim($emailTo);
 
@@ -82,14 +82,15 @@ class SendUpdateController extends AppController
                     $this->Email->emailFormat('html');
                     $this->Email->template('sendupdate');
                     $this->Email->viewVars(array(
-                        'paypal_txn' => $postData['paypal_txn'],
-                        'donor' => $postData['donor'],
+                        'paypal_paymentdate' => $postData['paypal_paymentdate'],
+                        'donor' => $postData['donorname'],
+                        'donation' => $postData['donation'],
                         'to' => $emailTo,
-                        'paypal_txn' => $postData['paypal_txn'],
+                        'sponseename' => $postData['sponseename'],
                         'message' => $postData['message']
 
                     ));
-//                    $this->Email->send();
+                    $this->Email->send();
 
                     //saving email content into send update
                     $this->UpdateEmail->create();

@@ -20,31 +20,36 @@ $user = $this->Session->read('Auth.User');
         $donor = $item['User'];
         $donation = $item['DonationRequest'];
         $sponsee = $item['SponseeListingItem'];
-        $date = $donation['last_month_completed'];
+        $date = $this->Time->format($donation['last_month_completed']);
         $paypal = $item['DonationHistory'];
+
+        $donorname = $donor['firstname'].' '.$donor['middlename'].' '.$donor['lastname'];
+        $sponseename = $sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname'];
     ?>
     <div style="width:800px; margin:50px auto;">
         <?php echo $this->Form->create('SendUpdate', array('type' => 'POST', 'url' => array('controller'=>'SendUpdate', 'action' => 'sendemail'))); ?>
         <div style="padding-left:7px;">
             <?php echo $this->Session->flash(); ?>
             <?php echo $this->Form->label('To: '); ?>
-            <?php
-                echo $this->Form->textarea('to', array('class' => 'span4','value' => trim($donor['email'])));
-            ?>
+            <?php echo $this->Form->textarea('to', array('class' => 'span4','value' => trim($donor['email']))); ?>
         </div>
         <div style="padding-left:7px;">
             <?php 
                 echo $this->Form->label('Message: ');
                 echo $this->Form->hidden('sponsee', array('value' => $sponsee['id']));
+                echo $this->Form->hidden('sponseename', array('value' => $sponseename));
                 echo $this->Form->hidden('donor', array('value' => $donor['id']));
                 echo $this->Form->hidden('paypal_txn', array('value' => $paypal['id']));
+                echo $this->Form->hidden('donorname', array('value' => $donorname));
+                echo $this->Form->hidden('paypal_paymentdate', array('value' => $date));
+                echo $this->Form->hidden('donation', array('value' => $donation['total']));
             ?>
             <?php
             $defaultMessage = "
 Thank you from Abounding in Love
 
 
-Dear $donor[firstname] $donor[lastname],
+Dear $donorname,
 
 
 I would like to sincerely thank you for your generous donation worth $ $donation[total] to $sponsee[firstname] $sponsee[middlename] $sponsee[lastname] on $date.
