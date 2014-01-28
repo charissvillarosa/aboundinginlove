@@ -86,6 +86,7 @@ class SendUpdateController extends AppController
                         'donor' => $postData['donorname'],
                         'donation' => $postData['donation'],
                         'to' => $emailTo,
+                        'sponseeid' => $postData['sponsee'],
                         'sponseename' => $postData['sponseename'],
                         'message' => $postData['message']
 

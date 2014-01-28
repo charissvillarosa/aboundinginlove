@@ -32,6 +32,10 @@ class UpdateEmail extends AppModel
        'SponseeListingItem' => array(
             'className' => 'SponseeListingItem',
             'foreignKey' => 'sponsee_id'
+        ),
+       'Portfolio' => array(
+            'className' => 'Portfolio',
+            'foreignKey' => 'sponsee_id'
         )
     );
 }
