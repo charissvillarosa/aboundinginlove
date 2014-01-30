@@ -27,10 +27,23 @@ class SendUpdateController extends AppController
         $this->Email->from(array('aboundinginlove@avare-llc.com'=>'AboundingInLove.org'));
     }
 
-    public function index(){
+    public function index($paypaltxn, $donor, $sponsee){
 
+        $this->set('emailitems', $this->paginate('UpdateEmail', array(
+            'UpdateEmail.paypal_txn' => $paypaltxn,
+            'User.id' => $donor,
+            'Sponsee.id' => $sponsee
+        )));
     }
-    
+
+    public function view($id){
+
+        $this->UpdateEmail->id = $id;
+        $this->set('emailitems', $this->paginate('UpdateEmail', array(
+            'UpdateEmail.id' => $id
+        )));
+    }
+
     public function listing()
     {
         $category = '';
@@ -51,7 +64,7 @@ class SendUpdateController extends AppController
          
     }
 
-    public function email($donor, $donation, $sponsee){
+    public function email($donor, $donation, $sponsee, $portfolio){
         if (!$this->request->is('post')) {
             $result = $this->DonationHistory->find('all', array(
                 'conditions' => array(
@@ -71,7 +84,8 @@ class SendUpdateController extends AppController
         else {
             $postData = $this->request->data['SendUpdate'];
             $toArray = explode(',', $postData['to']);
-            
+
+            //debug($postData);
             foreach ($toArray as $emailTo) {
                 $emailTo = trim($emailTo);
 
@@ -88,14 +102,16 @@ class SendUpdateController extends AppController
                         'to' => $emailTo,
                         'sponseeid' => $postData['sponsee'],
                         'sponseename' => $postData['sponseename'],
-                        'message' => $postData['message']
+                        'message' => $postData['message'],
+                        'portfoliocontent' => $postData['portfoliocontent'],
+                        'portfolioname' => $postData['portfolioname']
 
                     ));
                     $this->Email->send();
 
                     //saving email content into send update
                     $this->UpdateEmail->create();
-                    $this->UpdateEmail ->set('paypal_txn', $postData['paypal_txn']);
+                    $this->UpdateEmail->set('paypal_txn', $postData['paypal_txn']);
                     $this->UpdateEmail->set('donor', $postData['donor']);
                     $this->UpdateEmail->set('to', $emailTo);
                     $this->UpdateEmail->set('sponsee_id', $postData['sponsee']);

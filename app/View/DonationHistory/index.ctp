@@ -125,7 +125,10 @@
                         <th>Status</th>
                     </tr>
                     <?php
-
+                    if(!$onetimedonationitems){
+                        echo "<tr><td colspan=\"6\">No record found</td></tr>";
+                    }
+                    else{
                     foreach ($onetimedonationitems as $item) :
 
                         $donation = $item['DonationHistory'];
@@ -150,7 +153,8 @@
                             <td style="text-align: right;"><?php echo $this->Number->currency($donation['payment_gross']); ?></td>
                             <td><?php echo 'Completed'; ?></td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach;
+                    } ?>
                 </table>
             </div>
             <div style="margin-left:0;" class="span11">
@@ -175,31 +179,36 @@
                     </tr>
 
                     <?php
-                    foreach ($monthlydonationitems as $item) :
+                    if(!$monthlydonationitems){
+                        echo "<tr><td colspan=\"6\">No record found</td></tr>";
+                    }
+                    else{
+                        foreach ($monthlydonationitems as $item) :
 
-                        $donation = $item['DonationHistory'];
-                        $sponsee = $item['SponseeListingItem'];
-                        $need = $item['SponseeNeed'];
+                            $donation = $item['DonationHistory'];
+                            $sponsee = $item['SponseeListingItem'];
+                            $need = $item['SponseeNeed'];
 
-                        ?>
-                        <tr>
-                            <td><?php echo $donation['id'] ?></td>
-                            <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
-                            <td>
-                                <?php
-                                if($donation['donation_type']=='organization'){
-                                    echo "Organization";
-                                }
-                                else{
-                                    echo $sponsee['firstname'].' '.$sponsee['lastname'];
-                                }
-                                ?>
-                            </td>
-                            <td><?php echo $need['description']; ?></td>
-                            <td style="text-align: right;"><?php echo $this->Number->currency($donation['payment_gross']); ?></td>
-                            <td><?php echo 'Completed'; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
+                            ?>
+                            <tr>
+                                <td><?php echo $donation['id'] ?></td>
+                                <td style="text-align: center;"><?php echo $this->Time->format($donation['payment_date']) ?></td>
+                                <td>
+                                    <?php
+                                    if($donation['donation_type']=='organization'){
+                                        echo "Organization";
+                                    }
+                                    else{
+                                        echo $sponsee['firstname'].' '.$sponsee['lastname'];
+                                    }
+                                    ?>
+                                </td>
+                                <td><?php echo $need['description']; ?></td>
+                                <td style="text-align: right;"><?php echo $this->Number->currency($donation['payment_gross']); ?></td>
+                                <td><?php echo 'Completed'; ?></td>
+                            </tr>
+                        <?php endforeach;
+                    }?>
                 </table>
             </div>
             <div style="margin-left:0;" class="span11">
@@ -224,26 +233,32 @@
                             <th>Status</th>
                             <th></th>
                         </tr>
-                        <?php foreach ($queueditems as $item) :
-                            $donreq = $item['DonationRequest'];
-                            $sponsee = $item['Sponsee'];
-                            $need = $item['SponseeNeed'];
+                        <?php
+                        if(!$queueditems){
+                            echo "<tr><td colspan=\"8\">No record found</td></tr>";
+                        }
+                        else{
+                            foreach ($queueditems as $item) :
+                                $donreq = $item['DonationRequest'];
+                                $sponsee = $item['Sponsee'];
+                                $need = $item['SponseeNeed'];
 
-                        ?>
-                            <tr>
-                                <td><?php echo $donreq['no_of_months']; if($donreq['no_of_months'] > 1){echo " Months";} else{echo " Month";} ?></td>
-                                <td><?php echo $donreq['months_completed']; if($donreq['months_completed'] > 1){echo " Months Completed";} else{echo " Month Completed";} ?></td>
-                                <td><?php echo $this->Time->format($donreq['last_month_completed']); ?></td>
-                                <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname'];?></td>
-                                <td><?php echo $need['description'] ?></td>
-                                <td style="text-align: right;"><?php echo $this->Number->currency($donreq['total']); ?></td>
-                                <td><?php echo 'Ongoing'; ?></td>
-                                <td style="width:115px;">
-                                    <?php echo $this->Html->link('Cancel', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
-                                    <?php echo $this->Html->link('Pause', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                            ?>
+                                <tr>
+                                    <td><?php echo $donreq['no_of_months']; if($donreq['no_of_months'] > 1){echo " Months";} else{echo " Month";} ?></td>
+                                    <td><?php echo $donreq['months_completed']; if($donreq['months_completed'] > 1){echo " Months Completed";} else{echo " Month Completed";} ?></td>
+                                    <td><?php echo $this->Time->format($donreq['last_month_completed']); ?></td>
+                                    <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname'];?></td>
+                                    <td><?php echo $need['description'] ?></td>
+                                    <td style="text-align: right;"><?php echo $this->Number->currency($donreq['total']); ?></td>
+                                    <td><?php echo 'Ongoing'; ?></td>
+                                    <td style="width:115px;">
+                                        <?php echo $this->Html->link('Cancel', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
+                                        <?php echo $this->Html->link('Pause', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach;
+                        }?>
                     </table>
                 </div>
             </div>

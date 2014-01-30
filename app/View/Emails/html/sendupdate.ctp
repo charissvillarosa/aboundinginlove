@@ -69,15 +69,12 @@
                 </th>
                 </tr>
                 <tr>
-                    <td style="background: #fff; padding:10px 20px; font:20px/1.3 'Segoe UI',Arial, sans-serif;" colspan="2">About <?php echo $sponseename; ?></td>
+                    <td style="background: #fff; padding:10px 20px; font:20px/1.3 'Segoe UI',Arial, sans-serif;" colspan="2">Latest update about <?php echo $sponseename; ?></td>
                 </tr>
                 <tr>
-                    <td style="background: #fff; padding:10px 20px;" valign="top"><img src="<?php echo Configure::read('sponsee.image.url') . $sponseeid ?>" alt="" width="150px" class="img-polaroid"></td>
-                    <td style="background: #fff; padding:10px 20px; font:15px/1.3 'Segoe UI',Arial, sans-serif; text-align:justify;" valign="top">
-                        <b>Latest Progress</b><br>
-                        <b><?php echo $portfolioname; ?></b><br>
-                        <br>
-                        <?php echo $portfoliocontent; ?>
+                    <td style="background: #fff; padding:20px;" valign="top"><img src="<?php echo Configure::read('sponsee.image.url') . $sponseeid ?>" alt="" width="150px" class="img-polaroid"></td>
+                    <td style="background: #fff; padding:10px 20px; font:14px/1.3 'Segoe UI',Arial, sans-serif; text-align:justify;" valign="top">
+                        <br><?php echo $portfoliocontent; ?>
                         <br><br>
                         <a href="<?php echo Configure::read('sponsee.portfolio.url'); ?><?php echo $sponseeid; ?>">
                             Read more

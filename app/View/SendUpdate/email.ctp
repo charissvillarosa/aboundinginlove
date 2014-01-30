@@ -17,14 +17,17 @@ $user = $this->Session->read('Auth.User');
         <div class="pull-right"><?php echo $this->Html->link('Go back to Send Update Email', array('action' => 'listing'), array('class' => 'btn btn-info btn-medium rightmargin1')); ?></div>
     </div>
     <?php foreach ($result as $item) :
+
         $donor = $item['User'];
         $donation = $item['DonationRequest'];
         $sponsee = $item['SponseeListingItem'];
         $date = $this->Time->format($donation['last_month_completed']);
         $paypal = $item['DonationHistory'];
+        $portfolio = $item['Portfolio'];
 
         $donorname = $donor['firstname'].' '.$donor['middlename'].' '.$donor['lastname'];
         $sponseename = $sponsee['firstname'].' '.$sponsee['middlename'].' '.$sponsee['lastname'];
+
     ?>
     <div style="width:800px; margin:50px auto;">
         <?php echo $this->Form->create('SendUpdate', array('type' => 'POST', 'url' => array('controller'=>'SendUpdate', 'action' => 'sendemail'))); ?>
@@ -43,6 +46,8 @@ $user = $this->Session->read('Auth.User');
                 echo $this->Form->hidden('donorname', array('value' => $donorname));
                 echo $this->Form->hidden('paypal_paymentdate', array('value' => $date));
                 echo $this->Form->hidden('donation', array('value' => $donation['total']));
+                echo $this->Form->hidden('portfoliocontent', array('value' => $portfolio['description']));
+                echo $this->Form->hidden('portfolioname', array('value' => $portfolio['description']));
             ?>
             <?php
             $defaultMessage = "

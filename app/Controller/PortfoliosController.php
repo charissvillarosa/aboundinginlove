@@ -17,7 +17,7 @@ class PortfoliosController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('index', 'view', 'gallery');
+        $this->Auth->allow('index', 'view', 'gallery', 'listing');
     }
 
     public function listing($id)

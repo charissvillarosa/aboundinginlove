@@ -34,6 +34,10 @@ class DonationHistory extends AppModel
             'className' => 'SponseeNeed',
             'conditions' => array('SponseeNeed.id = DonationRequest.sponsee_need_id'),
             'foreignKey' => ''
-       )
+       ),
+       'Portfolio' => array(
+            'className' => 'Portfolio',
+            'foreignKey' => 'sponsee_id'
+        )
     );
 }

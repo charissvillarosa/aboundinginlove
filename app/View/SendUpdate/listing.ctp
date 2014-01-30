@@ -39,6 +39,7 @@
                 $donation = $item['DonationHistory'];
                 $sponsee = $item['SponseeListingItem'];
                 $user = $item['User'];
+
                 ?>
                 <tr>
                     <td><?php echo $donation['id'] ?></td>
@@ -52,7 +53,7 @@
                         ?>
                     </td>
                     <td><i><?php echo $this->Html->link('', array('controller' => 'DonationHistory', 'action' => 'view', $donation['id']), array('class' => 'icon-folder-open','title' => 'View donation details')); ?></i></td>
-                    <td><i><?php echo $this->Html->link('', array('controller' => 'SendUpdate', 'action' => 'index', $donation['id']), array('class' => 'icon-folder-open','title' => 'View emails')); ?></i></td>
+                    <td><i><?php echo $this->Html->link('', array('controller' => 'SendUpdate', 'action' => 'index', $donation['id'], $user['id'], $sponsee['id']), array('class' => 'icon-folder-open','title' => 'View emails')); ?></i></td>
                     <td><i><?php echo $this->Html->link('', array('controller' => 'SendUpdate', 'action' => 'email', $user['id'], $donation['id'], $sponsee['id']), array('class' => ' icon-envelope','title' => 'Send update emails')); ?></i></td>
                 </tr>
             <?php endforeach; ?>

@@ -171,27 +171,32 @@ Join now!
                 </tr>
                 <?php
                 $ctr = 1;
-                foreach ($list as $item) :
-                    $invite = $item['InviteFriend'];
-                    ?>
-                    <tr>
-                        <td><?php echo $ctr; ?></td>
-                        <td><?php echo $this->Time->format($invite['created']) ?></td>
-                        <td><?php echo $invite['to'] ?></td>
-                        <td><?php echo $invite['type'] ?></td>
-                        <td>
-                        <?php
-                            if ($invite['type'] == 'email'){ echo $invite['status']; }
-                            else {
-                                if($invite['clicks'] > 1) echo $invite['clicks'] . ' clicks';
-                                else echo $invite['clicks'] . ' click';
-                            }
+                if(!$list){
+                    echo "<tr><td colspan=\"5\">No record found</td></tr>";
+                }
+                else{
+                    foreach ($list as $item) :
+                        $invite = $item['InviteFriend'];
                         ?>
-                        </td>
-                    </tr>
-                    <?php
-                    $ctr++;
-                endforeach;
+                        <tr>
+                            <td><?php echo $ctr; ?></td>
+                            <td><?php echo $this->Time->format($invite['created']) ?></td>
+                            <td><?php echo $invite['to'] ?></td>
+                            <td><?php echo $invite['type'] ?></td>
+                            <td>
+                            <?php
+                                if ($invite['type'] == 'email'){ echo $invite['status']; }
+                                else {
+                                    if($invite['clicks'] > 1) echo $invite['clicks'] . ' clicks';
+                                    else echo $invite['clicks'] . ' click';
+                                }
+                            ?>
+                            </td>
+                        </tr>
+                        <?php
+                        $ctr++;
+                    endforeach;
+                }
                 ?>
             </table>
             <div class="pull-right bottommargin1">

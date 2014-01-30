@@ -42,7 +42,7 @@ CREATE TABLE `donation_requests` (
   `months_completed` int(11) DEFAULT '0',
   `last_month_completed` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=128 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=143 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -328,7 +328,7 @@ CREATE TABLE `sponsee_needs` (
   `modified` timestamp NULL DEFAULT NULL,
   `donation_method` varchar(20) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL COMMENT 'OPEN|CLOSED',
-  `payer_id` varchar(13) DEFAULT NULL,
+  `paypal_txn` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
@@ -338,32 +338,34 @@ DROP TABLE IF EXISTS `sponsees`;
 
 CREATE TABLE `sponsees` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(100) DEFAULT NULL,
-  `lastname` varchar(100) DEFAULT NULL,
-  `middlename` varchar(100) DEFAULT NULL,
-  `gender` varchar(20) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `country` varchar(10) DEFAULT NULL,
-  `maplocation` varchar(500) DEFAULT NULL,
-  `videolink` text,
-  `long_description` text,
-  `short_description` text,
+  `firstname` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `lastname` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `middlename` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `gender` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `country` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
+  `maplocation` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
+  `videolink` text CHARACTER SET utf8,
+  `long_description` text CHARACTER SET utf8,
+  `short_description` text CHARACTER SET utf8,
   `birthdate` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
-/*Table structure for table `update_email` */
+/*Table structure for table `update_emails` */
 
-DROP TABLE IF EXISTS `update_email`;
+DROP TABLE IF EXISTS `update_emails`;
 
-CREATE TABLE `update_email` (
+CREATE TABLE `update_emails` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `to` bigint(20) DEFAULT NULL,
+  `paypal_txn` varchar(100) DEFAULT NULL,
+  `donor` bigint(20) DEFAULT NULL,
+  `to` varchar(100) DEFAULT NULL,
   `sponsee_id` bigint(20) DEFAULT NULL,
-  `message` bigint(20) DEFAULT NULL,
+  `message` longtext,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `users` */
 
@@ -386,7 +388,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uix_user_username` (`username`),
   UNIQUE KEY `uix_user_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 /*!50106 set global event_scheduler = 1*/;
 
@@ -429,16 +431,16 @@ DROP TABLE IF EXISTS `sponsee_listing`;
 
 /*!50001 CREATE TABLE `sponsee_listing` (
   `id` bigint(20) NOT NULL DEFAULT '0',
-  `firstname` varchar(100) DEFAULT NULL,
-  `lastname` varchar(100) DEFAULT NULL,
-  `middlename` varchar(100) DEFAULT NULL,
-  `gender` varchar(20) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `country` varchar(10) DEFAULT NULL,
-  `maplocation` varchar(500) DEFAULT NULL,
-  `videolink` text,
-  `long_description` text,
-  `short_description` text,
+  `firstname` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `lastname` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `middlename` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `gender` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `country` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
+  `maplocation` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
+  `videolink` text CHARACTER SET utf8,
+  `long_description` text CHARACTER SET utf8,
+  `short_description` text CHARACTER SET utf8,
   `birthdate` date DEFAULT NULL,
   `age` int(5) DEFAULT NULL,
   `total_neededamount` decimal(32,2) DEFAULT NULL,

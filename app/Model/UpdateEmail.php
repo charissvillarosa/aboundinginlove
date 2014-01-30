@@ -27,7 +27,7 @@ class UpdateEmail extends AppModel
         ),
        'User' => array(
             'className' => 'User',
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'donor'
         ),
        'SponseeListingItem' => array(
             'className' => 'SponseeListingItem',
@@ -36,6 +36,10 @@ class UpdateEmail extends AppModel
        'Portfolio' => array(
             'className' => 'Portfolio',
             'foreignKey' => 'sponsee_id'
+        ),
+       'DonationHistory' => array(
+            'className' => 'Portfolio',
+            'foreignKey' => 'paypal_txn'
         )
     );
 }

@@ -114,8 +114,7 @@ echo $this->Html->docType('html5');
                 
                 if ($user && $user['role'] == 'admin') :
                 ?>
-                <div>
-                    <div class="navbar navbar-static-top" style="margin: -1px -1px 0;">
+                <div class="navbar navbar-static-top" style="margin: -1px -1px 0;">
                         <div class="navbar-inner">
                             <div class="container" style="width: auto; padding: 0 20px;">
                                 <ul class="nav">
@@ -152,7 +151,28 @@ echo $this->Html->docType('html5');
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php else: ?>
+                    <div class="navbar navbar-static-top" style="margin: -1px -1px 0;">
+                        <div class="navbar-inner">
+                            <div class="container" style="width: auto; padding: 0 20px;">
+                                <ul class="nav">
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'Profile' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Donor Profile', array('controller' => 'Profile', 'action' => 'index')) ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Donation History', array('controller' => 'DonationHistory', 'action' => 'index')) ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
+                                        <?php echo $this->Html->link('Invite Friends', array('controller' => 'InviteFriends', 'action' => 'index')) ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 <?php endif; ?>
                 <?php echo $this->fetch('content'); ?>
             </div>
