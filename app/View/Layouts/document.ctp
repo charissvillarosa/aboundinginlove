@@ -37,7 +37,7 @@ echo $this->Html->docType('html5');
     echo $this->Html->css('bootstrap-responsive');
     echo $this->Html->css('background');
     echo $this->Html->css('style');
-    
+
     echo $this->Html->script('jquery');
     echo $this->Html->script('bootstrap.min');
     echo $this->Html->script('app');
@@ -58,10 +58,10 @@ echo $this->Html->docType('html5');
 
             //contact us pop up window
             $('a[rel=popover]').popover({html: 'true'});
-            
+
             //add event for logo scrolling
             //apply event when there is a .banner element
-            if ($('.banner').length > 0) 
+            if ($('.banner').length > 0)
             {
                 $(window).scroll(function(e) {
                     var hHeight = $('.banner').height() + $('.banner').position().top;
@@ -69,7 +69,7 @@ echo $this->Html->docType('html5');
                     var nHeight = $('.navbar').height();
                     var sTop = $(window).scrollTop();
                     var bannerViewHeight = hHeight - sTop;
-                    
+
                     if (bannerViewHeight < nHeight) {
                         var top = Math.min(nHeight, lHeight) - lHeight;
                         $('.logo').removeClass('scroll').css('top', top + 'px');
@@ -97,61 +97,65 @@ echo $this->Html->docType('html5');
             </div>
         </div>
         <div class="clearfix">
-<!--            <div class="container">
-                <div class="logo document">
-                    <div>
-                        <?php
+            <!--            <div class="container">
+                            <div class="logo document">
+                                <div>
+            <?php
 //                        echo $this->Html->image('aboundinginlove_logo.png', array('alt'=>'Abounding in Love Organization Logo'));
-                        ?>
-                    </div>
-                </div>
-            </div>-->
+            ?>
+                                </div>
+                            </div>
+                        </div>-->
             <div class="clearfix container topmargin3">
                 <?php
                 $user = $this->Session->read('Auth.User');
                 $controller = $this->name;
-                
+
                 if ($user && $user['role'] == 'admin') :
-                ?>
-                <div>
-                    <div class="navbar navbar-static-top" style="margin: -1px -1px 0;">
-                        <div class="navbar-inner">
-                            <div class="container" style="width: auto; padding: 0 20px;">
-                                <ul class="nav">
-                                    <li class="divider-vertical"></li>
-                                    <li class="<?php echo $controller == 'Sponsees' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Sponsees', array('controller'=>'sponsees', 'action'=>'index')); ?>
-                                    </li>
-                                    <li class="divider-vertical"></li>
-                                    <li class="<?php echo $controller == 'Users' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index')); ?>
-                                    </li>
-                                    <li class="divider-vertical"></li>
-                                    <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Need Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
-                                    </li>
-                                    <li class="divider-vertical"></li>
-                                    <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Portfolio Categories', array('controller'=>'PortfolioCategories', 'action'=>'listing')); ?>
-                                    </li>
-                                    <li class="divider-vertical"></li>
-                                    <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Donations', array('controller'=>'DonationHistory', 'action'=>'listing')); ?>
-                                    </li>
-                                    <li class="divider-vertical"></li>
-                                    <li class="<?php echo $controller == 'SendUpdate' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Send Update Email', array('controller'=>'SendUpdate', 'action'=>'listing')); ?>
-                                    </li>
-                                    <li class="divider-vertical"></li>
-                                    <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Invites', array('controller'=>'InviteFriends', 'action'=>'listing')); ?>
-                                    </li>
-                                    <li class="divider-vertical"></li>
-                                </ul>
+                    ?>
+                    <div>
+                        <div class="navbar navbar-static-top" style="margin: -1px -1px 0;">
+                            <div class="navbar-inner">
+                                <div class="container" style="width: auto; padding: 0 20px;">
+                                    <ul class="nav">
+                                        <li class="divider-vertical"></li>
+                                        <li class="<?php echo $controller == 'Sponsees' ? 'active' : '' ?>">
+                                            <?php echo $this->Html->link('Sponsees', array('controller' => 'sponsees', 'action' => 'index')); ?>
+                                        </li>
+                                        <li class="divider-vertical"></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
+                                                    <?php echo $this->Html->link('Need Categories', array('controller' => 'SponseeNeedCategories', 'action' => 'listing')); ?>
+                                                </li>
+                                                <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
+                                                    <?php echo $this->Html->link('Portfolio Categories', array('controller' => 'PortfolioCategories', 'action' => 'listing')); ?>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="divider-vertical"></li>
+                                        <li class="<?php echo $controller == 'Users' ? 'active' : '' ?>">
+                                            <?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?>
+                                        </li>
+                                        <li class="divider-vertical"></li>
+                                        <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
+                                            <?php echo $this->Html->link('Donations', array('controller' => 'DonationHistory', 'action' => 'listing')); ?>
+                                        </li>
+                                        <li class="divider-vertical"></li>
+                                        <li class="<?php echo $controller == 'SendUpdate' ? 'active' : '' ?>">
+                                            <?php echo $this->Html->link('Send Update Email', array('controller' => 'SendUpdate', 'action' => 'listing')); ?>
+                                        </li>
+                                        <li class="divider-vertical"></li>
+                                        <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
+                                            <?php echo $this->Html->link('Invites', array('controller' => 'InviteFriends', 'action' => 'listing')); ?>
+                                        </li>
+                                        <li class="divider-vertical"></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <?php endif; ?>
                 <?php echo $this->fetch('content'); ?>
             </div>
@@ -165,7 +169,7 @@ echo $this->Html->docType('html5');
             </div>
         </div>
     </div>
-<!--     login modal-->
+    <!--     login modal-->
     <div style="width:310px; left:60%;" id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

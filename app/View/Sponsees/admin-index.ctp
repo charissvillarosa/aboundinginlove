@@ -46,7 +46,7 @@
                             echo '<span class="address">'.$add.'</span>';
                         ?>
                     </td>
-                    <td><?php echo '<span class="country">'.$sponsee['country'].'</span>'; ?></td>
+                    <td><?php $flag = "/img/flag/".$sponsee['country'].".png"; echo $this->Html->image("$flag"); echo ' ' . '<span class="country">'.$sponsee['country'].'</span>'; ?></td>
                     <td><?php echo '<span class="gender">'.$sponsee['gender'].'</span>'; ?></td>
                     <td><?php echo '<span class="birthdate">'.$this->Time->format($sponsee['birthdate']).'</span>' ?></td>
                     <td>

@@ -17,13 +17,10 @@
                             echo $this->Html->image($imageURl, $attrs);
                     ?>
                     <div style="width:270px; margin:auto;" class="topmargin1">
-                        <hr>
                         <?php
-                            echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
+                            echo "<div><center><p class='fontcolor2 fontsize1 topmargin1'>".$this->Number->toPercentage($sponsee['percentage'])." Raised </p></center></div>";
                             echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
-                            echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
                         ?>
-                        <hr>
                     </div>
                  </div>
             </div>
@@ -119,7 +116,7 @@
                                                 <td colspan="3">
                                                     <?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?>
                                                     <div style="margin:0;" class='pull-right paypal-btn  btn-small' data-type="monthly">
-                                                    <?php echo $this->paypal->button('Donate', array(
+                                                    <?php echo $this->paypal->button('Donate through Paypal', array(
                                                         'type' => 'subscribe',
                                                         'item_name' => $need['description'],
                                                         'amount' => $need['neededamount'],
@@ -137,7 +134,7 @@
                                                 <td colspan="3">
                                                     <?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?>
                                                     <div class='pull-right paypal-btn btn-small' data-type="monthly">
-                                                        <?php echo $this->paypal->button('Donate', array(
+                                                        <?php echo $this->paypal->button('Donate through Paypal', array(
                                                             'type' => 'subscribe',
                                                             'item_name' => $need['description'],
                                                             'amount' => $need['neededamount'],

@@ -17,7 +17,6 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Country</th>
-                <th>Purpose of Donation</th>
                 <th>Edit</th>
                 <th>View</th>
                 <th>Delete</th>
@@ -33,6 +32,7 @@
                     <td>
                         <?php echo $ctr; ?>
                         <span class="id" style="display:none;"><?php echo $user['id'] ?></span>
+                        <span class="purpose" style="display:none;"><?php echo $user['purpose_of_donation'] ?></span>
                     </td>
                     <td><?php echo '<span class="username">'.$user['username'].'</span>'; ?></td>
                     <td><?php echo '<span class="role">'.$user['role'].'</span>'; ?></td>
@@ -56,11 +56,6 @@
                         if($user['country'] != ''){
                             echo '<span class="country">'. $this->Html->image("$flag") . ' ' . $user['country'].'</span>';
                         }
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                            echo '<span class="purpose">'.$user['purpose_of_donation'].'</span>';
                         ?>
                     </td>
                     <td>

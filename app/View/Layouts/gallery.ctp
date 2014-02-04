@@ -120,31 +120,35 @@ echo $this->Html->docType('html5');
                                 <ul class="nav">
                                     <li class="divider-vertical"></li>
                                     <li class="<?php echo $controller == 'Sponsees' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Sponsees', array('controller'=>'sponsees', 'action'=>'index')); ?>
+                                        <?php echo $this->Html->link('Sponsees', array('controller' => 'sponsees', 'action' => 'index')); ?>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
+                                                <?php echo $this->Html->link('Need Categories', array('controller' => 'SponseeNeedCategories', 'action' => 'listing')); ?>
+                                            </li>
+                                            <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
+                                                <?php echo $this->Html->link('Portfolio Categories', array('controller' => 'PortfolioCategories', 'action' => 'listing')); ?>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li class="divider-vertical"></li>
                                     <li class="<?php echo $controller == 'Users' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index')); ?>
-                                    </li>
-                                    <li class="divider-vertical"></li>
-                                    <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Need Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
-                                    </li>
-                                    <li class="divider-vertical"></li>
-                                    <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Portfolio Categories', array('controller'=>'PortfolioCategories', 'action'=>'listing')); ?>
+                                        <?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?>
                                     </li>
                                     <li class="divider-vertical"></li>
                                     <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Donations', array('controller'=>'DonationHistory', 'action'=>'listing')); ?>
+                                        <?php echo $this->Html->link('Donations', array('controller' => 'DonationHistory', 'action' => 'listing')); ?>
                                     </li>
                                     <li class="divider-vertical"></li>
                                     <li class="<?php echo $controller == 'SendUpdate' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Send Update Email', array('controller'=>'SendUpdate', 'action'=>'listing')); ?>
+                                        <?php echo $this->Html->link('Send Update Email', array('controller' => 'SendUpdate', 'action' => 'listing')); ?>
                                     </li>
                                     <li class="divider-vertical"></li>
                                     <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
-                                        <?php echo $this->Html->link('Invites', array('controller'=>'InviteFriends', 'action'=>'listing')); ?>
+                                        <?php echo $this->Html->link('Invites', array('controller' => 'InviteFriends', 'action' => 'listing')); ?>
                                     </li>
                                     <li class="divider-vertical"></li>
                                 </ul>

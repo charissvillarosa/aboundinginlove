@@ -44,7 +44,7 @@ $user = $this->Session->read('Auth.User');
                         <b class="fontcolor1">
                             <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
                         </b><br>
-                        <b><?php echo $sponsee['country'] ?> : <a href="<?php echo $sponsee['maplocation'] ?>" target="_blank">Map Location</a></b>
+                        <b  class="fontcolor1 fontsize3"><?php $flag = "/img/flag/".$sponsee['country'].".png"; echo $this->Html->image("$flag"); echo ' ' . $sponsee['country']; ?> : <a href="<?php echo $sponsee['maplocation'] ?>" target="_blank">Map Location</a></b>
                     </p>
                 </div>
                 <hr/>
@@ -89,7 +89,7 @@ $user = $this->Session->read('Auth.User');
                     <h4 class="fontcolor1 topmargin2">NEEDS</h4>
                     <?php
                         $user = $this->Session->read('Auth.User');
-                        $addbutton = $this->Html->url(array('controller'=>'Sponsees', 'action' => 'add'));
+                        $addbutton = $this->Html->url(array('controller'=>'SponseeNeeds', 'action' => 'viewlisting', $sponsee['id']));
                         
                         if(empty($sponseeneeds)){
 
@@ -97,13 +97,13 @@ $user = $this->Session->read('Auth.User');
 
                             if ($user && $user['role'] == 'admin'){
                                 echo "<div class='alert alert-info'>
-                                    <h4>Not yet specified.</h4> 
+                                    <p class='fontcolor1'>Not yet specified.</p><hr>
                                     <p class='topmargin1'>To add, just click the add button below.</p>";
                                 echo "<a href=\"$addbutton\" class=\"btn btn-info add\"><i class=\"icon-plus\"></i> Add Record</a>";
                                 echo "</div>";
                             }
                             else {
-                                echo "<div class='alert alert-info'><h4>Not yet specified.</h4></div>";
+                                echo "<div class='alert alert-info'><p>Not yet specified.</p></div>";
                             }
                      }
                         else {

@@ -22,7 +22,7 @@
             <div class="pull-right"><?php echo $this->Html->link('Go back to Sponsee List', array('controller' => 'sponsees', 'action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?></div>
         </div>
         <div class="span11">
-            <div class="pull-right bottommargin2">
+            <div class="pull-right">
                 <!-- Button to trigger modal -->
                 <a href="#myModal" role="button" class="btn btn-info add"><i class="icon-plus"></i> Add Record</a>
             </div>
@@ -34,8 +34,8 @@
                     echo '
                         <table class="leftmargin1 table table-hover table-bordered">
                             <tr class="alert alert-info">
-                            <td><h3>Not yet specified.</h3></td>
-                        </tr>';
+                                <td><p class="fontcolor1">Not yet specified.</p></td>
+                            </tr>';
                 }
                 else {
                     foreach ($sponseeneeds as $itemLabel=>$itemArray) :

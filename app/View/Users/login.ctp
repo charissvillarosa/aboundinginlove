@@ -33,14 +33,16 @@
         <?php echo $this->Session->flash("auth"); ?>
         <div style="background:#fafafa; width:230px;" class="pull-right well bottommargin1">
             <?php echo $this->Form->create("User"); ?>
-            <div class="modal-header">
+            <div style="padding: 0px 15px 15px 5px;" class="modal-header">
                 <h3 id="myModalLabel">Login</h3>
             </div>
             <fieldset>
-                <?php
-                echo $this->Form->input("username");
-                echo $this->Form->input("password");
-                ?>
+                <div style="padding-left:0;" class="topmargin1">
+                    <?php
+                    echo $this->Form->input("username");
+                    echo $this->Form->input("password");
+                    ?>
+                </div>
             </fieldset>
             <div>
                 <div class="pull-right"><?php echo $this->Form->end("Login"); ?></div>

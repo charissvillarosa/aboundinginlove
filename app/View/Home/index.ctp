@@ -71,10 +71,10 @@
                         <div class="pull-left leftmargin1">
                             <div class="pull-left span3">
                                 <p>
-                                    <b class="fontcolor1">
+                                    <p class="fontcolor1">
                                         <?php echo $sponsee['firstname'] . ' ' . $sponsee['lastname'] ?>
-                                    </b><br>
-                                    <b><?php $flag = "/img/flag/".$sponsee['country'].".png"; echo $this->Html->image("$flag"); echo ' ' . $sponsee['country']; ?> : <a href="<?php echo $sponsee['maplocation'] ?>" target="_blank">Map Location</a></b>
+                                    </p>
+                                    <p class="fontsize3"><?php $flag = "/img/flag/".$sponsee['country'].".png"; echo $this->Html->image("$flag"); echo ' ' . $sponsee['country']; ?> : <a href="<?php echo $sponsee['maplocation'] ?>" target="_blank">Map Location</a></p>
                                 </p>
                                 <p>
                                     <?php
@@ -93,11 +93,11 @@
                             </div>
                             <div class="rightfloat span2 verticalline">
                                 <?php 
-                                    echo "<div><b class='fontcolor1 fontsize1'>".$this->Number->toPercentage($sponsee['percentage'])."</b> raised</div>";
+                                    echo "<div class='fontcolor1 fontsize1 fontcolor2'><center><p>".$this->Number->toPercentage($sponsee['percentage'])." Raised </p></center></div>";
                                     echo "<div class='progress'><div class='bar' style='width:".$this->Number->toPercentage($sponsee['percentage'])."'></div></div>";
-                                    echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_neededamount'], 'USD')."</b> = Needed</div>";
-                                    echo "<div class='bottommargin2'><b class='fontcolor1'>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')."</b> = Donated</div>";
-                                    echo $this->Html->link('Donate', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info'));
+                                    echo "<div class='bottommargin2 fontcolor1 fontsize3'><p>".$this->Number->currency($sponsee['total_neededamount'], 'USD')." = Needed Amount</p></div>";
+                                    echo "<div class='bottommargin2 fontcolor1 fontsize3'><p>".$this->Number->currency($sponsee['total_donatedamount'], 'USD')." = Donated Amount</p></div>";
+                                    echo $this->Html->link('Donate Now!', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-primary btn-block'));
                                 ?>
                             </div>
                         </div>

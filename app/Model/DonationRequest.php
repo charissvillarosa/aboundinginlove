@@ -13,6 +13,11 @@ class DonationRequest extends AppModel
        'SponseeNeed' => array(
             'className' => 'SponseeNeed',
             'foreignKey' => 'sponsee_need_id',
+        ),
+        'DonationHistory' => array(
+            'className' => 'DonationHistory',
+            'conditions' => array('DonationHistory.item_number = DonationRequest.id'),
+            'foreignKey' => ''
         )
     );
 }

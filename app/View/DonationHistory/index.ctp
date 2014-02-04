@@ -14,31 +14,35 @@
                     <ul class="nav">
                         <li class="divider-vertical"></li>
                         <li class="<?php echo $controller == 'Sponsees' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Sponsees', array('controller'=>'sponsees', 'action'=>'index')); ?>
+                            <?php echo $this->Html->link('Sponsees', array('controller' => 'sponsees', 'action' => 'index')); ?>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
+                                    <?php echo $this->Html->link('Need Categories', array('controller' => 'SponseeNeedCategories', 'action' => 'listing')); ?>
+                                </li>
+                                <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
+                                    <?php echo $this->Html->link('Portfolio Categories', array('controller' => 'PortfolioCategories', 'action' => 'listing')); ?>
+                                </li>
+                            </ul>
                         </li>
                         <li class="divider-vertical"></li>
                         <li class="<?php echo $controller == 'Users' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index')); ?>
-                        </li>
-                        <li class="divider-vertical"></li>
-                        <li class="<?php echo $controller == 'SponseeNeedCategories' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Need Categories', array('controller'=>'SponseeNeedCategories', 'action'=>'listing')); ?>
-                        </li>
-                        <li class="divider-vertical"></li>
-                        <li class="<?php echo $controller == 'PortfolioCategories' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Portfolio Categories', array('controller'=>'PortfolioCategories', 'action'=>'listing')); ?>
+                            <?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?>
                         </li>
                         <li class="divider-vertical"></li>
                         <li class="<?php echo $controller == 'DonationHistory' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Donations', array('controller'=>'DonationHistory', 'action'=>'listing')); ?>
+                            <?php echo $this->Html->link('Donations', array('controller' => 'DonationHistory', 'action' => 'listing')); ?>
                         </li>
                         <li class="divider-vertical"></li>
                         <li class="<?php echo $controller == 'SendUpdate' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Send Update Email', array('controller'=>'SendUpdate', 'action'=>'listing')); ?>
+                            <?php echo $this->Html->link('Send Update Email', array('controller' => 'SendUpdate', 'action' => 'listing')); ?>
                         </li>
                         <li class="divider-vertical"></li>
                         <li class="<?php echo $controller == 'InviteFriends' ? 'active' : '' ?>">
-                            <?php echo $this->Html->link('Invites', array('controller'=>'InviteFriends', 'action'=>'listing')); ?>
+                            <?php echo $this->Html->link('Invites', array('controller' => 'InviteFriends', 'action' => 'listing')); ?>
                         </li>
                         <li class="divider-vertical"></li>
                     </ul>
@@ -239,15 +243,16 @@
                         }
                         else{
                             foreach ($queueditems as $item) :
+                
                                 $donreq = $item['DonationRequest'];
                                 $sponsee = $item['Sponsee'];
                                 $need = $item['SponseeNeed'];
-
+                                $donation = $item['DonationHistory']
                             ?>
                                 <tr>
                                     <td><?php echo $donreq['no_of_months']; if($donreq['no_of_months'] > 1){echo " Months";} else{echo " Month";} ?></td>
                                     <td><?php echo $donreq['months_completed']; if($donreq['months_completed'] > 1){echo " Months Completed";} else{echo " Month Completed";} ?></td>
-                                    <td><?php echo $this->Time->format($donreq['last_month_completed']); ?></td>
+                                    <td><?php echo $donation['id'] . ' - ' .$this->Time->format($donreq['last_month_completed']); ?></td>
                                     <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname'];?></td>
                                     <td><?php echo $need['description'] ?></td>
                                     <td style="text-align: right;"><?php echo $this->Number->currency($donreq['total']); ?></td>
@@ -255,6 +260,7 @@
                                     <td style="width:115px;">
                                         <?php echo $this->Html->link('Cancel', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
                                         <?php echo $this->Html->link('Pause', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
+                                        <?php echo $this->Paypal->button('Unsubscribe', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?>
                                     </td>
                                 </tr>
                             <?php endforeach;
