@@ -13,7 +13,7 @@ class PortfoliosController extends AppController
     var $paginate = array(
         'limit' => 4
     );
-    
+
     public function beforeFilter()
     {
         parent::beforeFilter();
@@ -49,12 +49,11 @@ class PortfoliosController extends AppController
     }
     
     public function view($id) {
-        $portfolio = $this->Portfolio->find('all', array(
-            'conditions' => array('Portfolio.sponsee_id' => $id),
-            'order' => array('Portfolio.category_id')
-        ));
 
-        $this->set("listing", $this->paginate('Portfolio'));
+        $this->Portfolio->id = $id;
+        $this->set("listing", $this->paginate('Portfolio', array(
+            'Portfolio.sponsee_id' => $id
+        )));
     }
     
     public function gallery() {

@@ -14,7 +14,7 @@ $user = $this->Session->read('Auth.User');
 
 <div class="clearfix topmargin1 well span11 pull-right bottommargin2">
     <div class="pull-right">
-        <?php echo $this->Html->link('Go back to Sponsee Listing', array('action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
+        <?php echo $this->Html->link('Go back to Sponsees', array('action' => 'index'), array('class' => 'btn btn-info btn-medium')); ?>
     </div>
     <div style="margin-left:0;" class="span3 pull-left topmargin1 bottommargin2">
         <?php
@@ -30,24 +30,26 @@ $user = $this->Session->read('Auth.User');
         <div style="margin-left:0;" class="span3 pull-left">
             <table style="border:none;">
                 <tr>
-                    <td><strong>Name: </strong></td>
-                    <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></td>
-                </tr>
-                <tr>
-                    <td><strong>Gender: </strong></td>
-                    <td><?php echo $sponsee['gender']; ?></td>
-                </tr>
-                <tr>
-                    <td><strong>Birth Date: </strong></td>
-                    <td><?php echo $sponsee['birthdate']; ?></td>
-                </tr>
-                <tr>
-                    <td><strong>Location: </strong></td>
                     <td>
-                        <span class="pull-left">
+                        <p class="fontcolor1">Name: <?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="fontcolor1">Gender: <?php echo $sponsee['gender']; ?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="fontcolor1">Birth Date: <?php echo $this->Time->Format($sponsee['birthdate']); ?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="fontcolor1">Location: 
                             <?php $flag = "/img/flag/".$sponsee['country'].".png"; echo $this->Html->image("$flag");?>
                             <?php echo $sponsee['country']; ?>
-                        </span>
+                        </p>
                     </td>
                 </tr>
             </table>
@@ -84,38 +86,32 @@ $user = $this->Session->read('Auth.User');
     </div>
     <div style="clear:both;" class="modal-body">
         <div style="margin-left:0; width:810px;" class="pull-left box">
-            <div style="margin-left:0;" class="span3 pull-left">
-                <?php
-                $imageURl = array('controller' => 'SponseeImages', 'action' => 'view', $sponsee['id'], $sponseeImage['hash_key']);
-                $attrs = array('alt' => '', 'width' => '260px', 'class' => 'img-polaroid');
-                echo $this->Html->image($imageURl, $attrs);
-                ?>
-                <?php echo $this->Html->link('Donate Now!', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-block btn-large')); ?>
-            </div>
-            <div class="span2 pull-left">
+            <div class="pull-left"><?php echo $sponsee['videolink']; ?></div>
+            <div class="pull-left leftmargin1">
                 <table style="border:none;">
                     <tr>
-                        <td><strong>Name: </strong></td>
-                        <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></td>
+                        <td><p class="fontcolor1">Name: <?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></p></td>
                     </tr>
                     <tr>
-                        <td><strong>Gender: </strong></td>
-                        <td><?php echo $sponsee['gender']; ?></td>
+                        <td><p class="fontcolor1">Gender: <?php echo $sponsee['gender']; ?></p></td>
                     </tr>
                     <tr>
-                        <td><strong>Birth Date: </strong></td>
-                        <td><?php echo $sponsee['birthdate']; ?></td>
+                        <td><p class="fontcolor1">Birth Date: <?php echo $this->Time->Format($sponsee['birthdate']); ?></p></td>
                     </tr>
                     <tr>
-                        <td><strong>Location: </strong></td>
                         <td>
+                            <p class="fontcolor1">Location:
                             <?php $flag = "/img/flag/".$sponsee['country'].".png"; echo $this->Html->image("$flag");?>
-                            <?php echo $sponsee['country']; ?>
+                            <?php echo $sponsee['country']; ?></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <?php echo $this->Html->link('Donate Now!', array('controller' => 'donations', 'action' => 'view', $sponsee['id']), array('class' => 'btn btn-info btn-block btn-large')); ?>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div class="span2 pull-left"><?php echo $sponsee['videolink']; ?></div>
         </div>
     </div>
     <div class="modal-footer">
@@ -148,22 +144,19 @@ $user = $this->Session->read('Auth.User');
             <div class="span5 pull-left">
                 <table style="border:none;">
                     <tr>
-                        <td><strong>Name: </strong></td>
-                        <td><?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></td>
+                        <td><p class="fontcolor1">Name: <?php echo $sponsee['firstname'].' '.$sponsee['lastname']; ?></p></td>
                     </tr>
                     <tr>
-                        <td><strong>Gender: </strong></td>
-                        <td><?php echo $sponsee['gender']; ?></td>
+                        <td><p class="fontcolor1">Gender: <?php echo $sponsee['gender']; ?></p></td>
                     </tr>
                     <tr>
-                        <td><strong>Birth Date: </strong></td>
-                        <td><?php echo $sponsee['birthdate']; ?></td>
+                        <td><p class="fontcolor1">Birth Date: <?php echo $this->Time->Format($sponsee['birthdate']); ?></p></td>
                     </tr>
                     <tr>
-                        <td><strong>Location: </strong></td>
                         <td>
+                            <p class="fontcolor1">Location:
                             <?php $flag = "/img/flag/".$sponsee['country'].".png"; echo $this->Html->image("$flag");?>
-                            <?php echo $sponsee['country']; ?>
+                            <?php echo $sponsee['country']; ?></p>
                         </td>
                     </tr>
                 </table>
@@ -193,10 +186,10 @@ $user = $this->Session->read('Auth.User');
                     }
                     ?>
                     <?php
-                    echo "<div><b class='fontcolor1 fontsize1'>" . $this->Number->toPercentage($percentage) . "</b> raised</div>";
+                    echo "<div><center><p class='fontcolor2 fontsize1'>" . $this->Number->toPercentage($percentage) . " Raised </p></center></div>";
                     echo "<div class='progress'><div class='bar' style='width:" . $this->Number->toPercentage($percentage) . "'></div></div>";
-                    echo "<div class='bottommargin2'><b class='fontcolor1'>" . $this->Number->currency($totalneededamount, 'USD') . "</b> = Needed</div>";
-                    echo "<div class='bottommargin2'><b class='fontcolor1'>" . $this->Number->currency($totaldonatedamount, 'USD') . "</b> = Donated</div>";
+                    echo "<div class='bottommargin2 fontcolor1 fontsize3'><p>" . $this->Number->currency($totalneededamount, 'USD') . " = Needed Amount </p></div>";
+                    echo "<div class='bottommargin2 fontcolor1 fontsize3'><p>" . $this->Number->currency($totaldonatedamount, 'USD') . " = Donated Amount </p></div>";
                     ?>
                 </div>
                 <hr>

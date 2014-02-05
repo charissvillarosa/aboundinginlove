@@ -6,7 +6,7 @@
 
                 if(empty($listing)){
                     echo "<div class='topmargin2 alert alert-info'>
-                        <p><h3>Not yet specified.</h3></p>
+                        <p class='fontcolor1'>Sponsee portfolio record are not yet specified.</p>
                     </div>";
                 }
                 else {

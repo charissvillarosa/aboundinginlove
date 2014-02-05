@@ -231,14 +231,13 @@ body {
 }
 
 a {
-  color: #0088cc;
+  color: #333333;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #005580;
-  text-decoration: underline;
+  color: #0088cc;
 }
 
 .img-rounded {

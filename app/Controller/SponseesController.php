@@ -87,9 +87,6 @@ class SponseesController extends AppController
             $this->set("sponseeneeds", $sponseeneeds);
         }
 
-        
-        $this->set("sponseeImage", $sponsee['Image']);
-
         if ($sponseeneeds == '') {
             $this->render('/Errors/notFound');
         }
