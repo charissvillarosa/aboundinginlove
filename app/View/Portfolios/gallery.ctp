@@ -93,6 +93,13 @@
                         </a>
                     </div>
                 </div>
+                <div class="content">
+                    <div>
+                        <a href="<?php echo $url . "sam.jpg" ?>">
+                            <img src="<?php echo $url . "sam_thumb.jpg" ?>" title="Sam Cañete" alt="Sam Cañete" class="thumb" />
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

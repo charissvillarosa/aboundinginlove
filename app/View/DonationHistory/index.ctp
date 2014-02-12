@@ -257,10 +257,9 @@
                                     <td><?php echo $need['description'] ?></td>
                                     <td style="text-align: right;"><?php echo $this->Number->currency($donreq['total']); ?></td>
                                     <td><?php echo 'Ongoing'; ?></td>
-                                    <td style="width:115px;">
-                                        <?php echo $this->Html->link('Cancel', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
-                                        <?php echo $this->Html->link('Pause', array('controller'=>'', 'action' => ''), array('class' => 'btn btn-info btn-small')); ?>
-                                        <?php echo $this->Paypal->button('Unsubscribe', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?>
+                                    <td style="width:150px;">
+                                        <span class="pull-left"><?php echo $this->Paypal->button('Cancel', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?></div>
+                                        <span class="pull-left"><?php echo $this->Paypal->button('Pause', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?></div>
                                     </td>
                                 </tr>
                             <?php endforeach;
