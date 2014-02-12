@@ -18,7 +18,7 @@
         <table width="100%" class="table table-hover table-bordered">
             <tr>
                 <th>Date Sent</th>
-                <th>Paypal Txn</th>
+                <th>Paypal Payers ID</th>
                 <th>Donor</th>
                 <th>To</th>
                 <th>Sponsee</th>

@@ -29,6 +29,7 @@
                 <th>Payment Fee</th>
                 <th>Amount</th>
                 <th>Payment Gross</th>
+                <th>Donation Method</th>
                 <th>Sponsee</th>
                 <th>Details</th>
             </tr>
@@ -38,6 +39,7 @@
                 $donation = $item['DonationHistory'];
                 $sponsee = $item['SponseeListingItem'];
                 $user = $item['User'];
+                $donation_method = $item['SponseeNeed'];
 
                 ?>
                 <tr>
@@ -47,6 +49,12 @@
                     <td style="text-align: right;"><?php echo $this->Number->currency($donation['payment_fee']); ?></td>
                     <td style="text-align: right;"><?php echo $this->Number->currency($donation['amount']); ?></td>
                     <td style="text-align: right;"><?php echo $this->Number->currency($donation['payment_gross']); ?></td>
+                    <td style="text-align: right;">
+                        <?php
+                            if($donation_method['donation_method'] === 'onetime'){echo "One Time Donation";}
+                            else {echo "Monthly Donation";}
+                        ?>
+                    </td>
                     <td>
                         <?php
                         if($sponsee['firstname'] != '') echo $sponsee['firstname'].' '.$sponsee['lastname'];
