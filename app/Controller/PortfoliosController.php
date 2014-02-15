@@ -65,6 +65,10 @@ class PortfoliosController extends AppController
             $portfolio = $this->Portfolio->findBySponseeId($sponsee_id);
         }
 
+        if (empty($portfolio)) {
+            $this->render('view-empty');
+        }
+
         $portfolioList = $this->Portfolio->findAllBySponseeId($sponsee_id, 
                 array('Portfolio.id', 'Portfolio.description', 'Category.id', 'Category.description'),
                 array('Category.id'));
