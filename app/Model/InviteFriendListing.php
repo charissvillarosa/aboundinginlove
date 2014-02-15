@@ -4,9 +4,9 @@
  * CakePHP InviteFriend
  * @author chariss
  */
-class InviteFriend extends AppModel
+class InviteFriendListing extends AppModel
 {
-    var $useTable = 'invites';
+    var $useTable = 'friend_invites';
     
     var $belongsTo = array(
         'User' => array(

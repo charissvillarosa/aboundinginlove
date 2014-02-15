@@ -17,12 +17,10 @@ class Portfolio extends AppModel
     // this should be hasMany because
     // a portfolio can contain many Image
     var $hasMany = array(
-        'Images' => array(
-            'className' => 'PortfolioImage',
+        'Folders' => array(
+            'className' => 'PortfolioImageFolder',
             'foreignKey' => 'portfolio_id',
-            'dependent' => true,
-            // the 'image' field is not required here
-            'fields' => array('id', 'portfolio_id', 'description', 'created')
+            'dependent' => true
         )
     );
     

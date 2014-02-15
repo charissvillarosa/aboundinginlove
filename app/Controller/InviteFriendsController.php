@@ -8,7 +8,7 @@ class InviteFriendsController extends AppController
   
     var $Email = null;
     
-    var $uses = array('User', 'InviteFriend');
+    var $uses = array('User', 'InviteFriend', 'InviteFriendListing');
     
     var $paginate = array(
         'limit' => 10
@@ -43,20 +43,15 @@ class InviteFriendsController extends AppController
         $this->set('category', $category);
         
         if ($category) {
-            $this->set('list', $this->InviteFriend->find('all', array(
-                'conditions' => array(
-                    'AND' => array(
-                    'InviteFriend.type' => $category,
-                    'InviteFriend.user_id' => $user['User']['id'] )))
-                        
-            ));
-            $this->set('list', $this->paginate('InviteFriend', array(
+            $this->set('list', $this->paginate('InviteFriendListing', array(
                     array(
-                    'InviteFriend.type' => $category,
-                    'InviteFriend.user_id' => $user['User']['id']))));
+                    'InviteFriendListing.type' => $category,
+                    'InviteFriendListing.user_id' => $user['User']['id']))));
         }
         else {
-            $this->set('list', $this->paginate('InviteFriend', array('InviteFriend.user_id' => $user['User']['id'])));
+            $this->set('list', $this->paginate('InviteFriendListing', array(
+                'InviteFriendListing.user_id' => $user['User']['id']
+            )));
         }
     }
     
@@ -144,12 +139,12 @@ class InviteFriendsController extends AppController
         $this->set('category', $category);
         
         if ($category) {
-            $this->set('invitelist', $this->paginate('InviteFriend', array(
-                'InviteFriend.type' => $category
+            $this->set('invitelist', $this->paginate('InviteFriendListing', array(
+                'InviteFriendListing.type' => $category
             )));
         }
         else {
-            $this->set('invitelist', $this->paginate('InviteFriend'));
+            $this->set('invitelist', $this->paginate('InviteFriendListing'));
         }
     }
 }

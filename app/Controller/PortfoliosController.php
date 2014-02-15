@@ -11,7 +11,9 @@ class PortfoliosController extends AppController
     var $uses = array('User', 'Sponsee', 'Portfolio');
     
     var $paginate = array(
-        'limit' => 4
+        'Sponsee' => array(
+            'limit' => 4
+        )
     );
 
     public function beforeFilter()
@@ -47,15 +49,44 @@ class PortfoliosController extends AppController
             $this->render('/Errors/notFound');
         }
     }
-    
-    public function view($id) {
 
-        $this->Portfolio->id = $id;
-        $this->set("listing", $this->paginate('Portfolio', array(
-            'Portfolio.sponsee_id' => $id
-        )));
+    /**
+     * Displays the portfolio content based on sponsee_id
+     *
+     * @param $sponsee_id
+     * @param $portfolio_id (optional)
+     */
+    public function view($sponsee_id, $portfolio_id = null)
+    {
+        if ($portfolio_id) {
+            $portfolio = $this->Portfolio->findByIdAndSponseeId($portfolio_id, $sponsee_id);
+        }
+        else {
+            $portfolio = $this->Portfolio->findBySponseeId($sponsee_id);
+        }
+
+        $portfolioList = $this->Portfolio->findAllBySponseeId($sponsee_id, 
+                array('Portfolio.id', 'Portfolio.description', 'Category.id', 'Category.description'),
+                array('Category.id'));
+
+        // in cases that two or more portfolios fall in same cate gory
+        // name them like 'Pre Operation - 1', 'Pre Operation - 2', and so on
+        $counter = 1;
+        for ($i = 0; $i < sizeof($portfolioList); ++$i) {
+            if ($i > 0 && $portfolioList[$i]['Category']['id'] == $portfolioList[$i-1]['Category']['id']) {
+                $desc = $portfolioList[$i-1]['Category']['description'];
+                $portfolioList[$i-1]['Category']['description'] = $desc . ' - ' . $counter;
+                $portfolioList[$i]['Category']['description'] = $desc . ' - ' . (++$counter);
+            }
+            else {
+                $counter = 1;
+            }
+        }
+
+        $this->set('portfolioList', $portfolioList);
+        $this->set('portfolioModel', $portfolio);
     }
-    
+
     public function gallery() {
         $this->layout = 'gallery_images';
     }

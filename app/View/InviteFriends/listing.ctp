@@ -30,7 +30,7 @@
             </tr>
             <?php
             foreach ($invitelist as $item) :
-                $invite = $item['InviteFriend'];
+                $invite = $item['InviteFriendListing'];
                 $user = $item['User'];
                 ?>
                 <tr>

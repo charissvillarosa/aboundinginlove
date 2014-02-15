@@ -92,7 +92,7 @@ $user = $this->Session->read('Auth.User');
     <div class="span11">
          <div class="leftmargin2 topmargin1">
             <ul class="menulist" style="border-bottom:solid 1px #eee;">
-                <li class="align"><a href="#"><?php echo $this->Html->image('email.jpg');?></a></li>
+                <!--<li class="align"><a href="#"><?php echo $this->Html->image('email.jpg');?></a></li>-->
                 <li class="align"><a href="#" id="fb-btn"><?php echo $this->Html->image('fb.jpg');?></a></li>
                 <li>
                     <!--<a id="twitter-btn"
@@ -107,13 +107,8 @@ $user = $this->Session->read('Auth.User');
                 </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane leftmargin1" id="tab1">
-                    <p>TWITTER</p>
-                </div>
-                <div class="tab-pane leftmargin1" id="tab2">
-                    <p>FACEBOOK</p>
-                </div>
                 <div class="tab-pane active leftmargin1" id="tab3">
+                    <h3>Invite Friends via Email</h3>
                     <?php echo $this->Form->create('InviteFriend', array('action' => 'sendMail')); ?>
                     <div style="padding-left:7px;">
                         <?php echo $this->Session->flash(); ?>
@@ -180,7 +175,7 @@ Join now!
                 }
                 else{
                     foreach ($list as $item) :
-                        $invite = $item['InviteFriend'];
+                        $invite = $item['InviteFriendListing'];
                         ?>
                         <tr>
                             <td><?php echo $ctr; ?></td>

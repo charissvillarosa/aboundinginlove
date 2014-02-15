@@ -1,51 +1,59 @@
 <div  class="clearfix container topmargin3">
     <div style="margin-left:0;" class="pull-left span12">
         <div class="well">
+            <div class="banner"></div>
+
             <?php
-                $prevCat = 0;
+            $portfolio = $portfolioModel['Portfolio'];
+            $category = $portfolioModel['Category'];
+            ?>
 
-                if(empty($listing)){
-                    echo "<div class='topmargin2 alert alert-info'>
-                        <p class='fontcolor1'>Sponsee portfolio record are not yet specified.</p>
-                    </div>";
-                }
-                else {
-                    echo "<div class=\"banner\"></div>";
-                    foreach ($listing as $item) :
-                        $portfolio = $item['Portfolio'];
-                        $category= $item['Category'];
+            <div class="fontcolor1 span11 topmargin1">
+                <select class="fontsize1" onchange="location.href = $(this).val()">
+                    <?php
+                    foreach ($portfolioList as $item) :
+                        $url = $this->Html->url(array(
+                            'action' => 'view',
+                            $portfolio['sponsee_id'], $item['Portfolio']['id']
+                        ));
 
-                        if ($prevCat != $category['id']) : ?>
-                            <div class="fontcolor1 span11 topmargin1">
-                                <p class="fontsize1">
-                                    <?php echo $category['description'] ?>
-                                </p>
-                                <hr style="border:dashed 1px #ccc;">
-                            </div>
-                            <div class="span11">
-                                <p style="text-align:justify;">
-                                    <?php echo $portfolio['description'] ?>
-                                </p>
-                            </div>
-                        <?php
-                        $prevCat = $category['id'];
-                        endif;
+                        $selectedAttr = ($item['Portfolio']['id'] === $portfolio['id']) ? 'selected' : '';
+                        echo "<option value=\"{$url}\" {$selectedAttr}>{$item['Category']['description']}</option>";
+                    endforeach;
+                    ?>
+                </select>
+                <hr style="border:dashed 1px #ccc;">
+            </div>
+            <div class="span11">
+                <p style="text-align:justify;">
+                    <?php echo $portfolio['description'] ?>
+                </p>
+            </div>
+
+            <div style="margin-left:32px;" class="span11">
+                <ul class="thumbnails">
+                    <?php
+                    foreach ($portfolioModel['Folders'] as $folder) :
+                        $url = $this->Html->url(array(
+                            'controller' => 'PortfolioImageFolders',
+                            'action' => 'index',
+                            $folder['id']
+                        ));
                         ?>
-                        <div style="margin-left:32px;" class="span11">
-                            <?php
-                            foreach ($item['Images'] as $image) :
-                                $imageURl = array('controller' => 'PortfolioImages', 'action' => 'view', $image['id']);
-                                $attrs = array('alt' => '', 'style' => 'margin-left:0; width:203px;', 'class' => 'html5lightbox span2 img-polaroid', 'data-group' => 'mygroup');
-    //                            echo '<div style="margin-left:0; width:203px;" class="span2 img-polaroid">'.$this->Html->image($imageURl, $attrs).'</div>';
-                                echo "<a href=\"/aboundinginlove/index.php/PortfolioImages/view/"; echo $image['id']; echo "\" class=\"html5lightbox\" data-group=\"mygroup\">";
-                                     echo $this->Html->image($imageURl, $attrs);
-                                echo "</a>";
-                            endforeach;
-                            ?>
-                       </div>
-                    <?php endforeach;
-                 }
-              ?>
-         </div>
+
+                        <li>
+                            <a href="<?php echo $url ?>" class="thumbnail">
+                                <img src="<?php echo "{$this->webroot}/img/portfolio/folder-icon.png" ?>"
+                                     width="150px"/>
+                                <div class="text-center"><?php echo $folder['name'] ?></div>
+                            </a>
+                        </li>
+
+                        <?php
+                    endforeach;
+                    ?>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
