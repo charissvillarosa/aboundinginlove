@@ -235,7 +235,8 @@
                             <th>Sponsee Need</th>
                             <th>Amount</th>
                             <th>Status</th>
-                            <th></th>
+                            <th>Cancel <br>Donation</th>
+                            <th>Pause <br>Donation</th>
                         </tr>
                         <?php
                         if(!$queueditems){
@@ -257,9 +258,11 @@
                                     <td><?php echo $need['description'] ?></td>
                                     <td style="text-align: right;"><?php echo $this->Number->currency($donreq['total']); ?></td>
                                     <td><?php echo 'Ongoing'; ?></td>
-                                    <td style="width:150px;">
-                                        <span class="pull-left"><?php echo $this->Paypal->button('Cancel', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?></div>
-                                        <span class="pull-left"><?php echo $this->Paypal->button('Pause', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?></div>
+                                    <td>
+                                        <?php echo $this->paypal->button('Cancel', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->paypal->button('Pause', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?>
                                     </td>
                                 </tr>
                             <?php endforeach;

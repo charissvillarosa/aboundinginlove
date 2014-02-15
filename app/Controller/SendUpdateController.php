@@ -27,7 +27,7 @@ class SendUpdateController extends AppController
         $this->Email->from(array('aboundinginlove@avare-llc.com'=>'AboundingInLove.org'));
     }
 
-    public function index($paypaltxn, $donor, $sponsee){
+    public function index($paypaltxn = null, $donor = null, $sponsee = null){
 
         $this->set('emailitems', $this->paginate('UpdateEmail', array(
             'UpdateEmail.paypal_txn' => $paypaltxn,
@@ -64,15 +64,25 @@ class SendUpdateController extends AppController
          
     }
 
-    public function email($donor, $donation, $sponsee, $portfolio){
+    public function email($donor = null, $donation = null, $sponsee = null){
         if (!$this->request->is('post')) {
-            $result = $this->DonationHistory->find('all', array(
-                'conditions' => array(
-                    'DonationHistory.user_id' => $donor,
-                    'DonationHistory.id' => $donation,
-                    'DonationHistory.sponsee_id' => $sponsee
-                )
-            ));
+            if($sponsee ===''){
+                $result = $this->DonationHistory->find('all', array(
+                    'conditions' => array(
+                        'DonationHistory.user_id' => $donor,
+                        'DonationHistory.id' => $donation,
+                        'DonationHistory.sponsee_id' => $sponsee
+                    )
+                ));
+            }
+            else {
+                $result = $this->DonationHistory->find('all', array(
+                    'conditions' => array(
+                        'DonationHistory.user_id' => $donor,
+                        'DonationHistory.id' => $donation
+                    )
+                ));
+            }
             $this->set('result', $result);
         }  
     }
