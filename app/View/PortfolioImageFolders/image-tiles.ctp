@@ -24,11 +24,6 @@
             echo " <a href=\"{$this->Html->url($imageURl)}\" class=\"html5lightbox thumbnail pull-left\" data-group=\"mygroup\">";
             echo $this->Html->image($imageURl, $attrs);
             echo " <div class='text-center'>$image[description]</div>";
-
-            if ($user['role'] === 'admin') :
-                echo '<button class="close">&times;</button>';
-            endif;
-
             echo " </a>";
             echo '</li>';
         endforeach;
