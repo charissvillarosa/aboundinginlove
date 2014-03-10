@@ -19,8 +19,5 @@ $.ajaxSetup({
         if (xhr.status === 401 || xhr.status === 403) {
             window.location.reload();
         }
-        else {
-            alert('Something went wrong while processing the request. Please try again.');
-        }
     }
 });

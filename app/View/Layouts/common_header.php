@@ -12,17 +12,19 @@
                     <li class="<?php echo $this->name == 'Sponsees' ? 'active' : '' ?>">
                         <?php echo $this->Html->link('SPONSOR A CHILD', array('controller'=>'sponsees'));  ?>
                     </li>
-                    <li class="<?php echo $this->name == 'Portfolio' ? 'active' : '' ?> dropdown">
-                        <?php echo $this->Html->link('PORTFOLIO', array('controller' => 'portfolios', 'action' => ''), array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'label' => 'GALLERY <b class="caret"></b>')); ?>
+                    <li class="<?php echo $this->name == 'Portfolios' ? 'active' : '' ?> dropdown">
+                        <?php // echo $this->Html->link('PORTFOLIO', array('controller' => 'portfolios', 'action' => ''), array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'label' => 'GALLERY <b class="caret"></b>')); ?>
+                        <?php echo $this->Html->link('SPONSEES PORTFOLIO', array('controller' => 'portfolios', 'action' => 'index')); ?>
+                        <!--
                         <ul class="dropdown-menu">
                             <li><?php echo $this->Html->link('SPONSEES PORTFOLIO', array('controller' => 'portfolios', 'action' => 'index')); ?></li>
                             <li><?php echo $this->Html->link('GALLERY', array('controller' => 'portfolios', 'action' => 'gallery')); ?></li>
                         </ul>
+                        -->
                     </li>
                     <li>
                         <a href="#" class="dropdown-toggle" 
                            rel="popover" 
-                           data-toggle="popover" 
                            data-placement="bottom" 
                            data-toggle="popover"
                            data-content="

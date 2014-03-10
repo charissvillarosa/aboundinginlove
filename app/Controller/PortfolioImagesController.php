@@ -76,4 +76,36 @@ class PortfolioImagesController extends AppController
         }
     }
 
+    /**
+     * AJAX remove handler
+     */
+    function remove()
+    {
+        // set the two fields to false
+        // to prevent default view and layout rendering
+        $this->autoRender = false;
+        $this->autoLayout = false;
+        
+        if (!$this->request->is('post')) return;
+        
+        $id = $this->request->data['id'];
+        $image = $this->PortfolioImage->findById($id);
+        
+        if ($image) {
+            $this->PortfolioImage->delete($id);
+        }
+        else {
+            // throw this exception to allow 
+            // the UI to handle the error gracefully
+            throw new InternalErrorException();
+        }
+
+        // render the list of images for UI update
+        $folder = $this->PortfolioImageFolder->findById($image['PortfolioImage']['folder_id']);
+        $this->set('folderModel', $folder);
+
+        // we use '..' because this is relative to the current view folder
+        $this->render('../PortfolioImageFolders/image-tiles');
+    }
+
 }

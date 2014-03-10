@@ -15,34 +15,6 @@ $folderViewUrl = $this->Html->url(array(
     .thumbnails > li {
         width: auto;
     }
-
-    .thumbnails > li > a {
-        position: relative;
-    }
-
-    .thumbnails > li > a > .close {
-        position: absolute;
-        top: 3px; right: 3px;
-        opacity: 0;
-        -moz-opacity: 0;
-        -webkit-opacity: 0;
-        filter: alpha(opacity=0);
-
-        transition: .5s ease-in-out;
-        -moz-transition: .5s ease-in-out;
-        -webkit-transition: .5s ease-in-out;
-    }
-
-    .thumbnails > li > a:hover > .close {
-        opacity: 0.6;
-        -moz-opacity: 0.6;
-        -webkit-opacity: 0.6;
-        filter: alpha(opacity=60);
-    }
-
-    .thumbnails > li > a:hover > .close:hover {
-        color: #f00;
-    }
 </style>
 
 <div style="margin-top:60px;" class="clearfix container tabs">
