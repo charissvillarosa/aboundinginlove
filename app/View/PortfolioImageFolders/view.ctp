@@ -5,29 +5,19 @@
 
 
             <?php
+            $folder = $folderModel['PortfolioImageFolder'];
             $portfolio = $folderModel['Portfolio'];
             $portfolioCategory = $folderModel['PortfolioCategory'];
 
-            $portfolioListUrl = $this->Html->url(array(
-                'controller' => 'portfolios',
-                'action' => 'index'
-            ));
-
             $portfolioUrl = $this->Html->url(array(
                 'controller' => 'portfolios',
-                'action' => 'view',
-                $portfolio['sponsee_id'], $portfolio['id']
+                'action' => 'listing',
+                $portfolio['sponsee_id']
             ));
             ?>
 
             <div class="fontcolor1 span11 topmargin1">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="<?php echo $portfolioListUrl ?>">
-                            Sponsees Portfolio
-                        </a>
-                        <span class="divider"> / </span>
-                    </li>
+                <ol class="breadcrumb pull-left">
                     <li>
                         <a href="<?php echo $portfolioUrl ?>">
                             <?php echo $portfolioCategory['description'] ?>
@@ -36,10 +26,23 @@
                     </li>
                     <li class="active">
                         <span class="fontsize1">
-                            <?php echo $folderModel['PortfolioImageFolder']['name'] ?>
+                            <?php echo $folder['name'] ?>
                         </span>
                     </li>
                 </ol>
+
+                <div class="pull-right">
+                    <?php
+
+                    echo $this->Html->link(
+                        '<i class="icon-upload icon-white"></i> Upload Image',
+                        array('controller' => 'PortfolioImages', 'action' => 'upload', $folder['id']),
+                        array('class' => 'btn btn-info', 'escape' => false)
+                    );
+
+                    ?>
+                </div>
+                <div class="clearfix"></div>
                 <hr style="border:dashed 1px #ccc;">
             </div>
 

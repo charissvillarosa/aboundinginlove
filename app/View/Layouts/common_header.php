@@ -7,7 +7,7 @@
                         <?php echo $this->Html->link('HOME', '/home'); ?>
                     </li>
                     <li class="<?php echo $this->name == 'AboutUs' ? 'active' : '' ?>">
-                        <?php echo $this->Html->link('ABOUT US', '/aboutus'); ?>
+                        <?php echo $this->Html->link('ABOUT US', '/AboutUs'); ?>
                     </li>
                     <li class="<?php echo $this->name == 'Sponsees' ? 'active' : '' ?>">
                         <?php echo $this->Html->link('SPONSOR A CHILD', array('controller'=>'sponsees'));  ?>

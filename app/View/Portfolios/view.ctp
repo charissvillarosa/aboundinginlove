@@ -6,22 +6,34 @@
             <?php
             $portfolio = $portfolioModel['Portfolio'];
             $category = $portfolioModel['Category'];
+
+            $portfolioListUrl = $this->Html->url(array('controller' => 'portfolios', 'action'=> 'index'));
             ?>
 
             <div class="fontcolor1 span11 topmargin1">
-                <select class="fontsize1" onchange="location.href = $(this).val()">
-                    <?php
-                    foreach ($portfolioList as $item) :
-                        $url = $this->Html->url(array(
-                            'action' => 'view',
-                            $portfolio['sponsee_id'], $item['Portfolio']['id']
-                        ));
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="<?php echo $portfolioListUrl ?>">
+                            Sponsees Portfolio
+                        </a>
+                        <span class="divider"> / </span>
+                    </li>
+                    <li class="active">
+                        <select class="fontsize1" onchange="location.href = $(this).val()">
+                            <?php
+                            foreach ($portfolioList as $item) :
+                                $url = $this->Html->url(array(
+                                    'action' => 'view',
+                                    $portfolio['sponsee_id'], $item['Portfolio']['id']
+                                ));
 
-                        $selectedAttr = ($item['Portfolio']['id'] === $portfolio['id']) ? 'selected' : '';
-                        echo "<option value=\"{$url}\" {$selectedAttr}>{$item['Category']['description']}</option>";
-                    endforeach;
-                    ?>
-                </select>
+                                $selectedAttr = ($item['Portfolio']['id'] === $portfolio['id']) ? 'selected' : '';
+                                echo "<option value=\"{$url}\" {$selectedAttr}>{$item['Category']['description']}</option>";
+                            endforeach;
+                            ?>
+                        </select>
+                    </li>
+                </ol>
                 <hr style="border:dashed 1px #ccc;">
             </div>
             <div class="span11">

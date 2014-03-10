@@ -20,7 +20,8 @@ class Portfolio extends AppModel
         'Folders' => array(
             'className' => 'PortfolioImageFolder',
             'foreignKey' => 'portfolio_id',
-            'dependent' => true
+            'dependent' => true,
+            'order' => 'Folders.name'
         )
     );
     

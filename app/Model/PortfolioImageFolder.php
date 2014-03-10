@@ -15,6 +15,18 @@ class PortfolioImageFolder extends AppModel
             )
         )
     );
+
+    var $belongsTo = array(
+        'Portfolio' => array(
+            'className' => 'Portfolio',
+            'foreignKey' => 'portfolio_id'
+        ),
+        'PortfolioCategory' => array(
+            'className' => 'PortfolioCategory',
+            'foreignKey' => '',
+            'conditions' => 'Portfolio.category_id = PortfolioCategory.id'
+        )
+    );
     
     // this should be hasMany because
     // a portfolio can contain many Image

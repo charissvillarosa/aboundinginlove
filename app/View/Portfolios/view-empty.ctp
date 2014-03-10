@@ -3,7 +3,7 @@
         <div class="well">
             <div class="banner"></div>
 
-            <h3>No portfolio yet.</h3>
+            <p class="fontcolor1">No portfolio yet.</p>
         </div>
     </div>
 </div>

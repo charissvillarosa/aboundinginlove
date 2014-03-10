@@ -19,11 +19,17 @@ class PortfoliosController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('index', 'view', 'gallery', 'listing');
+        $this->Auth->allow('index', 'view', 'gallery');
     }
 
     public function listing($id)
     {
+        // check if sponsee really exists
+        $sponsee = $this->Sponsee->findById($id);
+        if (!$sponsee) {
+            throw new NotFoundException();
+        }
+
         $portfolio = $this->Portfolio->find('all', array(
             'conditions' => array('Portfolio.sponsee_id' => $id),
             'order' => array('Portfolio.category_id')

@@ -9,6 +9,8 @@ class PortfolioImagesController extends AppController
 
     var $layout = 'document';
 
+    var $uses = array('PortfolioImage', 'PortfolioImageFolder');
+
     public function beforeFilter()
     {
         $this->Auth->allow('view', 'upload');
@@ -33,7 +35,7 @@ class PortfolioImagesController extends AppController
         }
     }
 
-    function upload($sponsee_id, $category_id)
+    function upload($folderId)
     {
         if (empty($this->data)) {
             $this->render();
@@ -52,19 +54,22 @@ class PortfolioImagesController extends AppController
             }
             else {
                 $this->Session->setFlash('Please choose an image to be uploaded.');
-                $this->redirect(array('action' => 'upload', $sponsee_id, $category_id));
+                $this->redirect(array('action' => 'upload', $folderId));
             }
 
             unlink($tempName);
+
+            $folder = $this->PortfolioImageFolder->findById($folderId);
             
             $this->PortfolioImage->create();
-            $this->PortfolioImage->set('portfolio_id', $category_id);
+            $this->PortfolioImage->set('portfolio_id', $folder['PortfolioImageFolder']['portfolio_id']);
+            $this->PortfolioImage->set('folder_id', $folderId);
             $this->PortfolioImage->set('description', $des);
             $this->PortfolioImage->set('content_type', $type);
             $this->PortfolioImage->set('image', $content);
             
             if ($this->PortfolioImage->save()) {
-                $this->redirect(array('controller'=>'Portfolios', 'action'=>'listing', $sponsee_id));
+                $this->redirect(array('controller'=>'PortfolioImageFolders', 'action'=>'view', $folderId));
             } else {
                 $this->Session->setFlash('Please correct errors below.');
             }

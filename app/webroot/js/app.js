@@ -13,3 +13,14 @@ function formatNumber(mask, value) {
     return strValue.length > mask.length ? strValue : (mask + value).slice(-mask.length);
 }
 
+// global AJAX error handler
+$.ajaxSetup({
+    error: function(xhr) {
+        if (xhr.status === 401 || xhr.status === 403) {
+            window.location.reload();
+        }
+        else {
+            alert('Something went wrong while processing the request. Please try again.');
+        }
+    }
+});
