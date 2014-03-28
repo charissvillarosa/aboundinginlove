@@ -42,7 +42,7 @@ CREATE TABLE `donation_requests` (
   `months_completed` int(11) DEFAULT '0',
   `last_month_completed` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=143 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=156 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `instant_payment_notifications` */
 
@@ -220,7 +220,18 @@ CREATE TABLE `portfolio_categories` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `portfolio_image_folders` */
+
+DROP TABLE IF EXISTS `portfolio_image_folders`;
+
+CREATE TABLE `portfolio_image_folders` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `portfolio_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `portfolio_images` */
 
@@ -229,12 +240,13 @@ DROP TABLE IF EXISTS `portfolio_images`;
 CREATE TABLE `portfolio_images` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `portfolio_id` bigint(20) DEFAULT NULL,
+  `folder_id` bigint(20) DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `image` longblob,
   `content_type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=118 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `portfolios` */
 
@@ -246,7 +258,7 @@ CREATE TABLE `portfolios` (
   `category_id` bigint(20) DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `profile_images` */
 
@@ -330,7 +342,7 @@ CREATE TABLE `sponsee_needs` (
   `status` varchar(30) DEFAULT NULL COMMENT 'OPEN|CLOSED',
   `paypal_txn` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `sponsees` */
 
@@ -365,7 +377,7 @@ CREATE TABLE `update_emails` (
   `message` longtext,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `users` */
 
@@ -388,7 +400,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uix_user_username` (`username`),
   UNIQUE KEY `uix_user_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 /*!50106 set global event_scheduler = 1*/;
 

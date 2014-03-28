@@ -96,6 +96,10 @@
                                                     <?php echo $this->Html->image('check.png'); ?>
                                                 <?php endif; ?>
                                                 <?php echo '<span class="neededamount">'.$this->Number->currency($need['neededamount']).'</span>'; ?>
+
+                                                <!-- for the sponsee info -->
+                                                <input type="hidden" name="sponseeneed_id" value="<?php echo $need['id'] ?>"/>
+                                                <input type="hidden" name="sponseeneed_amount" value="<?php echo $need['neededamount'] ?>"/>
                                         </td>
                                         <?php if($need['donation_method'] === 'onetime') : ?>
                                             <?php if($status === 'CLOSED') : ?>
@@ -130,6 +134,18 @@
                                                 <td>
                                                     <?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?>
                                                 </td>
+												<td><?php echo $this->Time->format($donation['payment_date']); ?></td>
+                                                <td>
+                                                    <?php
+                                                    if($donation['first_name'] === '' and $donation['last_name'] === ''){ echo 'Anonymous'; }
+                                                    else{
+                                                        echo "<a data-toggle=\"modal\" href=\"".$this->Html->url( array('action' => 'donor', $donation['user_id']))."\" data-target=\"#modal\">";
+                                                            echo $donation['first_name'].' '.$donation['last_name'];
+                                                        echo "</a>";
+                                                    }
+                                                    ?>
+                                                    
+                                                </td>
                                             <?php else: ?>
                                                 <td colspan="3">
                                                     <?php echo '<div class="pull-left"><span class="description">'.$need['description'].'</span></div>'; ?>
@@ -138,7 +154,7 @@
                                                             'type' => 'subscribe',
                                                             'item_name' => $need['description'],
                                                             'amount' => $need['neededamount'],
-                                                            'term' => 'month', 'period' => ''
+                                                            'term' => 'day', 'period' => ''
                                                             ), array('class' => 'pull-right btn btn-info'));
                                                         ?>
                                                     </div>
@@ -217,6 +233,12 @@
 
             if(!noOfMonths){
                 alert("Number of months required.");
+                $tr.find('input[name=no_of_months]').focus();
+                return;
+            }
+
+            if(noOfMonths <= 0) {
+                alert("Invalid number of months.");
                 $tr.find('input[name=no_of_months]').focus();
                 return;
             }

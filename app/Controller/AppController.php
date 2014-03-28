@@ -100,7 +100,11 @@ class AppController extends Controller
         $ipnTxn = $transaction['InstantPaymentNotification'];
 
         $this->log("id: $ipnTxn[id], txn_id: $ipnTxn[txn_id]", 'paypal');
+        //for cancel donations
+        if ($transaction['InstantPaymentNotification']['txn_type'] == 'subscr_cancel') {
 
+        }
+        //for donations
         if ($transaction['InstantPaymentNotification']['payment_status'] == 'Completed') {
             $txnLog = $this->PaypalTxnLog->findById($ipnTxn['txn_id']);
             $donationReq = $this->DonationRequest->findById($ipnTxn['item_number']);
@@ -169,9 +173,9 @@ class AppController extends Controller
     }
 
     // updates a sponsee need donation
-    private function postSponseeNeedDonation($id, $amount, $id)
+    private function postSponseeNeedDonation($sponseeneedid, $amount, $id)
     {
-        $this->SponseeNeed->id = $id;
+        $this->SponseeNeed->id = $sponseeneedid;
         $need = $this->SponseeNeed->read();
 
         $donated = $need['SponseeNeed']['donatedamount'];
