@@ -124,7 +124,9 @@
                                                         'type' => 'subscribe',
                                                         'item_name' => $need['description'],
                                                         'amount' => $need['neededamount'],
-                                                        'term' => 'month', 'period' => '1'
+                                                        'term' => 'month', 
+                                                        'period' => '1',
+                                                        'srt' => '1'
                                                         ), array('class' => 'pull-right btn btn-info')); ?>
                                                     </div>
                                                 </td>
@@ -154,7 +156,9 @@
                                                             'type' => 'subscribe',
                                                             'item_name' => $need['description'],
                                                             'amount' => $need['neededamount'],
-                                                            'term' => 'day', 'period' => ''
+                                                            'term' => 'day', 
+                                                            'period' => '1',
+                                                            'srt' => ''
                                                             ), array('class' => 'pull-right btn btn-info'));
                                                         ?>
                                                     </div>
@@ -228,7 +232,7 @@
 
             if($tr.find('input[name=no_of_months]').length > 0){
                 noOfMonths = $tr.find('input[name=no_of_months]').val();
-                form.p3.value = noOfMonths;
+                form.srt.value = noOfMonths;
             }
 
             if(!noOfMonths){
