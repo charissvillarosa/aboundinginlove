@@ -96,95 +96,154 @@ class AppController extends Controller
     // paypal IPN callback function
     function afterPaypalNotification($txnId)
     {
+        $this->autoRender = false;
+
         $transaction = ClassRegistry::init('PaypalIpn.InstantPaymentNotification')->findById($txnId);
         $ipnTxn = $transaction['InstantPaymentNotification'];
 
         $this->log("id: $ipnTxn[id], txn_id: $ipnTxn[txn_id]", 'paypal');
-        //for cancel donations
-        if ($transaction['InstantPaymentNotification']['txn_type'] == 'subscr_cancel') {
 
+        //for cancelled subscriptions
+        if ($ipnTxn['txn_type'] == 'subscr_cancel') {
+            $this->processCancelSubscription($ipnTxn);
         }
         //for donations
-        if ($transaction['InstantPaymentNotification']['payment_status'] == 'Completed') {
-            $txnLog = $this->PaypalTxnLog->findById($ipnTxn['txn_id']);
-            $donationReq = $this->DonationRequest->findById($ipnTxn['item_number']);
-            
-            // just get the key-value pairs
-            $donationReq = $donationReq['DonationRequest'];
-            
-            // let update the info if this $txnId is not yet recorded
-            // paypal IPN sends notification multiple times
-            if (!$txnLog) {
-                $this->PaypalTxnLog->create();
-                $this->PaypalTxnLog->save(array(
-                    'PaypalTxnLog' => array(
-                        'id' => $ipnTxn['txn_id'], //from instant_payment_notifications table column txn_id
-                        'item_number' => $ipnTxn['item_number'],
-                        'user_id' => $donationReq['user_id'],
-                        'sponsee_id' => $donationReq['sponsee_id'],
-                        'details' => $donationReq['details'],
-                        'donation_type' => $donationReq['type'],
-                        'refno' => $ipnTxn['item_number'], //from instant_payment_notifications table column item_number
-                        'first_name' => $ipnTxn['first_name'], 
-                        'last_name' => $ipnTxn['last_name'],
-                        'payer_email' => $ipnTxn['payer_email'],
-                        'payer_id' => $ipnTxn['payer_id'],
-                        'payer_status' => $ipnTxn['payer_status'],
-                        'contact_phone' => $ipnTxn['contact_phone'],
-                        'payment_fee' => $ipnTxn['payment_fee'],
-                        'payment_gross' => $ipnTxn['payment_gross'],
-                        'amount' => $ipnTxn['payment_gross'] - $ipnTxn['payment_fee'],
-                        'payment_date' =>  $ipnTxn['payment_date']
-                    )
-                ));
-
-                //update donation_request table
-                $this->DonationRequest->id = $donationReq['id'];
-                $this->DonationRequest->set('months_completed', $donationReq['months_completed'] + 1);
-                $this->DonationRequest->set('last_month_completed', date_parse($ipnTxn['payment_date']));
-                $this->DonationRequest->save();
-
-                // update sponsee_needs table if donation_type is 'sponsee'
-                if ($donationReq['type'] == 'sponsee') {
-                    $items = explode(',', $donationReq['details']);
-                    $remaining = $ipnTxn['payment_gross'] - $ipnTxn['payment_fee'];
-
-                    foreach ($items as $value) {
-                        $item = explode('=', $value);
-
-                        $amount = floatval($item[1]);
-                        if ($remaining > $amount) {
-                            $remaining = $remaining - $amount;
-                        }
-                        else {
-                            $amount = $remaining;
-                            $remaining = 0;
-                        }
-                        $id = $ipnTxn['txn_id'];
-
-                        $this->postSponseeNeedDonation($item[0], $amount, $id);
-                    }
-                }
-            }
+        else if ($ipnTxn['payment_status'] == 'Completed') {
+            $this->processDonation($ipnTxn);
         }
         else {
             // I don't know what to do yet.
         }
     }
 
-    // updates a sponsee need donation
-    private function postSponseeNeedDonation($sponseeneedid, $amount, $id)
+
+    private function processCancelSubscription($ipnTxn)
     {
-        $this->SponseeNeed->id = $sponseeneedid;
+        $donationReqModel = $this->DonationRequest->findById($ipnTxn['item_number']);
+        if (!$donationReqModel) return; // do not proceed if no request found
+
+        $donationReq = $donationReqModel['DonationRequest'];
+
+        // cancel the request
+        $this->DonationRequest->id = $donationReq['id'];
+        $this->DonationRequest->set('status', 'cancelled');
+        $this->DonationRequest->save();
+
+        // update sponsee_needs table if donation_type is 'sponsee'
+        if ($donationReq['type'] == 'sponsee') {
+            $items = explode(',', $donationReq['details']);
+
+            foreach ($items as $value) {
+                $item = explode('=', $value);
+                $this->reopenSponseeNeedStatus($item[0]);
+            }
+        }
+    }
+
+    private function processDonation($ipnTxn)
+    {
+        $donationReqModel = $this->DonationRequest->findById($ipnTxn['item_number']);
+        if (!$donationReqModel) return; // do not proceed if no request found
+
+        $txnLog = $this->PaypalTxnLog->findById($ipnTxn['txn_id']);
+        
+        // - only update the info if this $ipnTxn['txn_id'] is not yet recorded
+        // - paypal IPN sends notification multiple times
+        if ($txnLog) return;
+
+        // just get the key-value pairs
+        $donationReq = $donationReqModel['DonationRequest'];
+
+        $this->PaypalTxnLog->create();
+        $this->PaypalTxnLog->save(array(
+            'PaypalTxnLog' => array(
+                'id' => $ipnTxn['txn_id'], //from instant_payment_notifications table column txn_id
+                'item_number' => $ipnTxn['item_number'],
+                'user_id' => $donationReq['user_id'],
+                'sponsee_id' => $donationReq['sponsee_id'],
+                'details' => $donationReq['details'],
+                'donation_type' => $donationReq['type'],
+                'refno' => $ipnTxn['item_number'], //from instant_payment_notifications table column item_number
+                'first_name' => $ipnTxn['first_name'],
+                'last_name' => $ipnTxn['last_name'],
+                'payer_email' => $ipnTxn['payer_email'],
+                'payer_id' => $ipnTxn['payer_id'],
+                'payer_status' => $ipnTxn['payer_status'],
+                'contact_phone' => $ipnTxn['contact_phone'],
+                'payment_fee' => $ipnTxn['payment_fee'],
+                'payment_gross' => $ipnTxn['payment_gross'],
+                'amount' => $ipnTxn['payment_gross'] - $ipnTxn['payment_fee'],
+                'payment_date' =>  $ipnTxn['payment_date']
+            )
+        ));
+
+        //update donation_request table
+        $monthsCompleted = $donationReq['months_completed'] + 1;
+
+        $this->DonationRequest->id = $donationReq['id'];
+        $this->DonationRequest->set('months_completed', $monthsCompleted);
+        $this->DonationRequest->set('last_month_completed', date_parse($ipnTxn['payment_date']));
+        $this->DonationRequest->save();
+
+        // update sponsee_needs table if donation_type is 'sponsee'
+        if ($donationReq['type'] == 'sponsee') {
+            $items = explode(',', $donationReq['details']);
+            $remaining = $ipnTxn['payment_gross'] - $ipnTxn['payment_fee'];
+
+            $completed = ($monthsCompleted >= $donationReq['no_of_months']);
+
+            foreach ($items as $value) {
+                $item = explode('=', $value);
+
+                $amount = floatval($item[1]);
+                if ($remaining > $amount) {
+                    $remaining = $remaining - $amount;
+                }
+                else {
+                    $amount = $remaining;
+                    $remaining = 0;
+                }
+                $id = $ipnTxn['txn_id'];
+
+                $this->postSponseeNeedDonation($item[0], $amount, $id, $completed);
+            }
+        }
+    }
+
+    // updates a sponsee need donation
+    private function postSponseeNeedDonation($sponseeNeedId, $amount, $id, $completed)
+    {
+        $this->SponseeNeed->id = $sponseeNeedId;
         $need = $this->SponseeNeed->read();
 
         $donated = $need['SponseeNeed']['donatedamount'];
         $total = $amount + ($donated ? $donated : 0);
 
         $this->SponseeNeed->set('donatedamount', $total);
-        $this->SponseeNeed->set('status', 'CLOSED');
-        $this->SponseeNeed->set('paypal_txn', $id);
+
+        // reopen once completed if it is monthly donation type
+        if ('monthly' === $need['SponseeNeed']['donation_method']) {
+            $this->SponseeNeed->set('status', ($completed ? null : 'CLOSED'));
+            $this->SponseeNeed->set('paypal_txn', ($completed ? null : $id));
+        }
+        else {
+            $this->SponseeNeed->set('status', 'CLOSED');
+            $this->SponseeNeed->set('paypal_txn', $id);
+        }
         $this->SponseeNeed->save();
+    }
+
+    private function reopenSponseeNeedStatus($sponseeNeedId)
+    {
+        $this->SponseeNeed->id = $sponseeNeedId;
+        $need = $this->SponseeNeed->read();
+
+        // reopen only if it is monthly donation type
+        if ('monthly' === $need['SponseeNeed']['donation_method']) {
+            $this->SponseeNeed->set('status', null);
+            $this->SponseeNeed->set('paypal_txn', null);
+            $this->SponseeNeed->save();
+        }
     }
 
 }
