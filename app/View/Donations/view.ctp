@@ -156,7 +156,7 @@
                                                             'type' => 'subscribe',
                                                             'item_name' => $need['description'],
                                                             'amount' => $need['neededamount'],
-                                                            'term' => 'day', 
+                                                            'term' => 'month',
                                                             'period' => '1',
                                                             'srt' => ''
                                                             ), array('class' => 'pull-right btn btn-info'));
