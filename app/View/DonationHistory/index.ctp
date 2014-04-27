@@ -236,7 +236,7 @@
                             <th>Amount</th>
                             <th>Status</th>
                             <th>Cancel <br>Donation</th>
-                            <th>Pause <br>Donation</th>
+                            <!--<th>Pause <br>Donation</th>-->
                         </tr>
                         <?php
                         if(!$queueditems){
@@ -259,11 +259,15 @@
                                     <td style="text-align: right;"><?php echo $this->Number->currency($donreq['total']); ?></td>
                                     <td><?php echo 'Ongoing'; ?></td>
                                     <td>
-                                        <?php echo $this->paypal->button('Cancel', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?>
+                                        <?php if($donreq['status'] === 'cancelled'): ?>
+                                            Canceled
+                                        <?php else: ?>
+                                            <?php echo $this->paypal->button('Cancel', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?>
+                                        <?php endif;?>
                                     </td>
-                                    <td>
+                                    <!--<td>
                                         <?php echo $this->paypal->button('Pause', array('type' => 'unsubscribe'), array('class' => 'btn btn-info btn-small')); ?>
-                                    </td>
+                                    </td>-->
                                 </tr>
                             <?php endforeach;
                         }?>
